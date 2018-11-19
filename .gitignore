@@ -327,4 +327,12 @@ ASALocalRun/
 *.nvuser
 
 # MFractors (Xamarin productivity tool) working folder 
-.mfractor/
+.mfractor/ 
+packages/
+bin/
+obj/
+v15/
+nuget/
+.vs/Futurez.Xrm.XrmToolbox.Controls/DesignTimeBuild/.dtbcache
+/.vs
+

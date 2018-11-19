@@ -85,7 +85,7 @@ namespace XrmToolBox.Controls
                 if (ParentEntity.Attributes == null)
                 {
                     // load the attributes for the entity
-                    LoadData();
+                    LoadData(false);
                 }
             }
         }
@@ -96,11 +96,14 @@ namespace XrmToolBox.Controls
         /// <param name="entityLogicalName"></param>
         private void SetParentEntity(string entityLogicalName)
         {
+            if (entityLogicalName == null)
+                return;
+
+            _parentEntity = new EntityMetadata() {
+                LogicalName = entityLogicalName
+            };
             // set up the entity and then load
-            if (AutoLoadData)
-            {
-                LoadData();
-            }
+            LoadData(false);
         }
 
         /// <summary>

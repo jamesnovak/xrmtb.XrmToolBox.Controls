@@ -154,7 +154,7 @@ namespace XrmToolBox.Controls
 
             SetPropertySelectedObject();
 
-            this.attributeDropdownControl1.ParentEntity = ent;
+            this.attributeDropdownControl1.ParentEntityLogicalName = ent.LogicalName;
         }
         private void EntitiesListControl1_ClearDataComplete(object sender, EventArgs e)
         {

@@ -1,58 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
-
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Metadata;
 
 namespace XrmToolBox.Controls
 {
-    /// <summary>
-    /// Shared XrmToolBox Control that will load a list of entities into a Dropdown control
-    /// </summary>
-    public partial class EntitiesDropdownControl : XrmToolBoxControlBase
+    public partial class SolutionsDropdownControl : XrmToolBoxControlBase
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public EntitiesDropdownControl()
+        public SolutionsDropdownControl()
         {
             InitializeComponent();
         }
 
-        #region Private properties
-        private bool _autoLoadData = false;
-
-        #endregion
-
-        #region Public Properties
+        private List<string> _publisherPrefixes = new List<string>();
 
         /// <summary>
-        /// The currently selected EntityMetadata object in the ListView
+        /// Reference to the Parent Entity for the attributes
         /// </summary>
-        [DisplayName("Selected Entity")]
-        [Description("The Entity that is currently selected in the Dropdown.")]
+        [Category("XrmToolBox")]
+        [DisplayName("Publisher Prefix Filters")]
+        [Description("Load solutoins for only the Publisher Prefixes provided in the list")]
+        public List<string> PublisherPrefixes { get => _publisherPrefixes; }
+
+
+        /// <summary>
+        /// The currently selected Solution object in the ListView
+        /// </summary>
+        [DisplayName("Selected Solution")]
+        [Description("The Solution that is currently selected in the Dropdown.")]
         [Category("XrmToolBox")]
         [Browsable(false)]
-        public EntityMetadata SelectedEntity { get; private set; } = null;
+        public Entity SelectedSolution { get; private set; } = null;
 
         /// <summary>
         /// List of all loaded EntityMetadata objects for the current connection
         /// </summary>
-        [Description("List of all Entities that have been loaded into the Dropdown.")]
+        [Description("List of all Solutions that have been loaded into the Dropdown.")]
         [Category("XrmToolBox")]
         [Browsable(false)]
-        public List<EntityMetadata> AllEntities { get; private set; } = null;
+        public List<Entity> AllSolutions { get; private set; } = null;
 
         /// <summary>
-        /// Reference to all Entities as a bindable list
+        /// Reference to all Attributes as a bindable list
         /// </summary>
         [Category("XrmToolBox")]
-        [Description("Reference to all Entities as a bindable list")]
+        [Description("Reference to all Solutions as a bindable list")]
         [Browsable(false)]
-        public List<ListDisplayItem> AllEntitiesBindable { get => comboEntities.DataSource as List<ListDisplayItem>; }
-        #endregion
+        public List<ListDisplayItem> AllAttributesBindable { get => comboSolutions.DataSource as List<ListDisplayItem>; }
 
         #region Event Definitions
         /// <summary>
@@ -63,9 +66,6 @@ namespace XrmToolBox.Controls
         public event EventHandler SelectedItemChanged;
         #endregion
 
-        #region Public properties
-        #endregion
-
         #region IXrmToolBoxControl methods
         /// <summary>
         /// Clear all loaded data in your control
@@ -74,33 +74,20 @@ namespace XrmToolBox.Controls
         {
             OnBeginClearData();
 
-            if (SelectedEntity != null)
+            if (SelectedSolution != null)
             {
-                SelectedEntity = null;
+                SelectedSolution = null;
                 SelectedItemChanged?.Invoke(this, new EventArgs());
             }
 
-            comboEntities.DataSource = null;
-            comboEntities.Items.Clear();
+            comboSolutions.DataSource = null;
+            comboSolutions.Items.Clear();
 
             base.ClearData();
         }
 
         /// <summary>
-        /// Close the control and release anything that might be hanging around
-        /// </summary>
-        public override void Close()
-        {
-            OnBeginClose();
-
-            ClearData();
-
-            base.Close();
-        }
-
-        /// <summary>
-        /// Load the Entities using the current IOrganizationService.
-        /// The call is asynchronous and will leverage the WorkAsync object on the parent XrmToolBox control
+        /// Load data into the control
         /// </summary>
         public override void LoadData()
         {
@@ -134,33 +121,30 @@ namespace XrmToolBox.Controls
                 }
                 return;
             }
-
             ToggleMainControlsEnabled(false);
-
             ClearData();
 
             try
             {
-                OnProgressChanged(0, "Begin loading Entities from CRM");
+                OnProgressChanged(0, "Begin loading Solutions from CRM");
 
                 // retrieve all entities and bind to the combo
-                // var entities = CrmActions.RetrieveAllEntities(Service);
                 var worker = new BackgroundWorker();
 
                 worker.DoWork += (w, e) => {
-                    var entities = CrmActions.RetrieveAllEntities(Service);
+                    var entities = CrmActions.RetrieveSolutions(Service, PublisherPrefixes);
                     e.Result = entities;
                 };
 
                 worker.RunWorkerCompleted += (s, e) =>
                 {
-                    var entities = e.Result as List<EntityMetadata>;
+                    var entities = e.Result as List<Entity>;
 
-                    AllEntities = entities;
+                    AllSolutions = entities;
 
                     LoadComboItems();
 
-                    OnProgressChanged(100, "Loading Entities from CRM Complete!");
+                    OnProgressChanged(100, "Loading Solutions from CRM Complete!");
 
                     base.LoadData();
                 };
@@ -172,10 +156,23 @@ namespace XrmToolBox.Controls
             {
                 OnNotificationMessage($"An error occured attetmpting to load the list of Entities", MessageLevel.Exception, ex);
 
-                if (throwException) {
+                if (throwException)
+                {
                     throw ex;
                 }
             }
+        }
+
+        /// <summary>
+        /// Close the control and release anything that might be hanging around
+        /// </summary>
+        public override void Close()
+        {
+            OnBeginClose();
+
+            ClearData();
+
+            base.Close();
         }
 
         /// <summary>
@@ -193,7 +190,7 @@ namespace XrmToolBox.Controls
             }
 
             // if the auto load is set, now is the time to reload!
-            if (_autoLoadData && (Service != null))
+            if (AutoLoadData && (Service != null))
             {
                 LoadData(true);
             }
@@ -201,29 +198,29 @@ namespace XrmToolBox.Controls
             ToggleMainControlsEnabled();
         }
         #endregion
-
         #region Private helper methods
         /// <summary>
         /// Load the list of Entities into the Combo control
         /// </summary>
         private void LoadComboItems()
         {
-            comboEntities.SuspendLayout();
+            comboSolutions.SuspendLayout();
 
             ClearData();
 
-            var items = from ent in AllEntities
-                        select new ListDisplayItem(
-                            ent.SchemaName, 
-                            CrmActions.GetLocalizedLabel(ent.DisplayName, ent.SchemaName, LanguageCode),
-                            CrmActions.GetLocalizedLabel(ent.Description, null, LanguageCode), 
+            var items = from ent in AllSolutions
+                        select 
+                        new ListDisplayItem( 
+                            (string)ent["uniquename"], 
+                            (string)ent["friendlyname"], 
+                            (ent.Attributes.ContainsKey("description")) ? (string)ent["description"] : "", 
                             ent);
 
-            comboEntities.DataSource = items.OrderBy(e => e.Name).ToList();
-            comboEntities.DisplayMember = "SummaryName";
-            comboEntities.ValueMember = "Name";
+            comboSolutions.DataSource = items.OrderBy(e => e.Name).ToList();
+            comboSolutions.DisplayMember = "SummaryName";
+            comboSolutions.ValueMember = "Name";
 
-            comboEntities.ResumeLayout();
+            comboSolutions.ResumeLayout();
 
             ToggleMainControlsEnabled(true);
         }
@@ -232,21 +229,21 @@ namespace XrmToolBox.Controls
 
         #region Control event handlers
 
-        private void ComboEntities_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboSolutions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboEntities.SelectedItem is ListDisplayItem item)
+            if (comboSolutions.SelectedItem is ListDisplayItem item)
             {
                 // check to see if we want to raise the change event
-                var ent = item.Object as EntityMetadata;
-                if (ent.LogicalName == SelectedEntity?.LogicalName)
+                var ent = item.Object as Entity;
+                if (ent.Id == SelectedSolution?.Id)
                 {
                     return;
                 }
                 // new entity, set and raise the event
-                SelectedEntity = ent;
+                SelectedSolution = ent;
             }
             else {
-                SelectedEntity = null;
+                SelectedSolution = null;
             }
             SelectedItemChanged?.Invoke(this, new EventArgs());
         }

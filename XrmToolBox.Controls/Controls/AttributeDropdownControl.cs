@@ -59,10 +59,26 @@ namespace XrmToolBox.Controls
         /// Reference to the currently selected Attribute
         /// </summary>
         [Category("XrmToolBox")]
-        [Description("Reference to the All Attributes in the list")]
+        [Description("Reference to all Attributes in the list")]
         [Browsable(false)]
-        public List<AttributeMetadata> AllAttributes { get=> ParentEntity?.Attributes?.ToList<AttributeMetadata>(); }
+        public List<AttributeMetadata> AllAttributes
+        {
+            get {
+                var list = ParentEntity?.Attributes?.ToList<AttributeMetadata>();
+                if (list == null) {
+                    list = new List<AttributeMetadata>();
+                }
+                return list;
+            }
+        }
 
+        /// <summary>
+        /// Reference to all Attributes as a bindable list
+        /// </summary>
+        [Category("XrmToolBox")]
+        [Description("Reference to all Attributes as a bindable list")]
+        [Browsable(false)]
+        public List<ListDisplayItem> AllAttributesBindable { get => comboAttributes.DataSource as List<ListDisplayItem>; }
 
         #endregion
 
@@ -72,11 +88,24 @@ namespace XrmToolBox.Controls
         /// <param name="entity"></param>
         private void SetParentEntity(EntityMetadata entity)
         {
+            // already cleared or never initialized, nothing to do 
+            if (_parentEntity == null && entity == null) {
+                return;
+            }
+            // if this is a reference to the same entity, then do not reload.
+            else if (_parentEntity?.LogicalName.ToLower() == entity?.LogicalName.ToLower())
+            {
+                return;
+            }
+
+            // now update the parent entity reference
             _parentEntity = entity;
 
             // if the parent entity is null
             if (ParentEntity == null) {
-                this.ClearData();
+
+                ClearData();
+
                 ToggleMainControlsEnabled(false);
             }
             else
@@ -96,14 +125,28 @@ namespace XrmToolBox.Controls
         /// <param name="entityLogicalName"></param>
         private void SetParentEntity(string entityLogicalName)
         {
-            if (entityLogicalName == null)
+            // already cleared or never initialized, nothing to do 
+            if ((_parentEntity == null) && (entityLogicalName == null))
+            {
                 return;
+            }
+            // setting existing to null, clear and disable
+            else if ((_parentEntity != null) && (entityLogicalName == null))
+            {
+                ClearData();
+                ToggleMainControlsEnabled(false);
+            }
+            else
+            {
+                // set up new.. 
+                _parentEntity = new EntityMetadata()
+                {
+                    LogicalName = entityLogicalName
+                };
 
-            _parentEntity = new EntityMetadata() {
-                LogicalName = entityLogicalName
-            };
-            // set up the entity and then load
-            LoadData(false);
+                // set up the entity and then load
+                LoadData(false);
+            }
         }
 
         /// <summary>
@@ -138,7 +181,7 @@ namespace XrmToolBox.Controls
 
             ToggleMainControlsEnabled(false);
 
-            this.ClearData();
+            ClearData();
 
             try
             {
@@ -156,19 +199,17 @@ namespace XrmToolBox.Controls
                 worker.RunWorkerCompleted += (s, e) =>
                 {
                     // set the parent entity reference with the loaded attributes
-                    ParentEntity = e.Result as EntityMetadata;
-
-                    OnProgressChanged(0, "Loading Entity Attributes from CRM Complete!");
+                    _parentEntity = e.Result as EntityMetadata;
 
                     LoadComboItems();
+
+                    OnProgressChanged(100, "Loading Entity Attributes from CRM Complete!");
 
                     base.LoadData();
                 };
 
                 // kick off the worker thread!
                 worker.RunWorkerAsync();
-
-                base.LoadData();
             }
             catch (System.ServiceModel.FaultException ex)
             {
@@ -206,7 +247,7 @@ namespace XrmToolBox.Controls
         {
             comboAttributes.SuspendLayout();
 
-            this.ClearData();
+            ClearData();
 
             var items = from attrib in ParentEntity.Attributes
                         where attrib.AttributeType != AttributeTypeCode.Virtual &&
@@ -221,10 +262,10 @@ namespace XrmToolBox.Controls
             comboAttributes.ValueMember = "SummaryName";
             comboAttributes.ValueMember = "Name";
 
-            if (comboAttributes.Items.Count > 0)
-            {
-                comboAttributes.SelectedIndex = 0;
-            }
+            //if (comboAttributes.Items.Count > 0)
+            //{
+            //    comboAttributes.SelectedIndex = 0;
+            //}
 
             comboAttributes.ResumeLayout();
 
@@ -250,11 +291,19 @@ namespace XrmToolBox.Controls
         /// <param name="e"></param>
         private void comboAttributes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedAttribute = null;
-
             if (comboAttributes.SelectedItem is ListDisplayItem item)
             {
-                SelectedAttribute = item.Object as AttributeMetadata;
+                // check to see if we want to raise the change event
+                var attrib = item.Object as AttributeMetadata;
+                if (attrib.LogicalName == SelectedAttribute?.LogicalName)
+                {
+                    return;
+                }
+                // new attribute, set and raise the event
+                SelectedAttribute = attrib;
+            }
+            else {
+                SelectedAttribute = null;
             }
 
             SelectedItemChanged?.Invoke(this, new EventArgs());

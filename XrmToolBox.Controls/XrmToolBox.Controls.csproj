@@ -117,6 +117,12 @@
     <Compile Include="Controls\EntitiesListControl.Designer.cs">
       <DependentUpon>EntitiesListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SolutionsDropdownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SolutionsDropdownControl.Designer.cs">
+      <DependentUpon>SolutionsDropdownControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\XrmToolBoxControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EntitiesListControl.resx">
       <DependentUpon>EntitiesListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SolutionsDropdownControl.resx">
+      <DependentUpon>SolutionsDropdownControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XrmToolBoxControlBase.resx">
       <DependentUpon>XrmToolBoxControlBase.cs</DependentUpon>

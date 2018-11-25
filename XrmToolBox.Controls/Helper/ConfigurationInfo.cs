@@ -125,7 +125,6 @@ namespace XrmToolBox.Controls
         public ConfigurationInfo() {
 
             EntityFilters = new List<FilterInfo>() {
-                new FilterInfo() { FilterString = "syncerror", FilterMatchType = EnumFilterMatchType.Equals }
             };
 
             EntityTypes = EnumEntityTypes.BothCustomAndSystem;

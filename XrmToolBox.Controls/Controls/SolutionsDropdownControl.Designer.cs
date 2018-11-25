@@ -1,6 +1,6 @@
 ﻿namespace XrmToolBox.Controls
 {
-    partial class EntitiesDropdownControl
+    partial class SolutionsDropdownControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -13,7 +13,8 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -27,34 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboEntities = new System.Windows.Forms.ComboBox();
             this.buttonReload = new System.Windows.Forms.Button();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.comboSolutions = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // comboEntities
-            // 
-            this.comboEntities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboEntities.FormattingEnabled = true;
-            this.comboEntities.IntegralHeight = false;
-            this.comboEntities.ItemHeight = 25;
-            this.comboEntities.Location = new System.Drawing.Point(7, 6);
-            this.comboEntities.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.comboEntities.Name = "comboEntities";
-            this.comboEntities.Size = new System.Drawing.Size(686, 33);
-            this.comboEntities.TabIndex = 0;
-            this.comboEntities.SelectedIndexChanged += new System.EventHandler(this.ComboEntities_SelectedIndexChanged);
             // 
             // buttonReload
             // 
             this.buttonReload.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonReload.Font = new System.Drawing.Font("Wingdings 3", 8.142858F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.buttonReload.Location = new System.Drawing.Point(707, 6);
-            this.buttonReload.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.buttonReload.MinimumSize = new System.Drawing.Size(38, 36);
+            this.buttonReload.Location = new System.Drawing.Point(396, 3);
+            this.buttonReload.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonReload.MinimumSize = new System.Drawing.Size(19, 19);
             this.buttonReload.Name = "buttonReload";
-            this.buttonReload.Size = new System.Drawing.Size(38, 36);
+            this.buttonReload.Size = new System.Drawing.Size(19, 19);
             this.buttonReload.TabIndex = 1;
             this.buttonReload.Text = "P";
             this.buttonReload.UseVisualStyleBackColor = true;
@@ -64,26 +52,39 @@
             // 
             this.tableLayoutPanelMain.ColumnCount = 2;
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanelMain.Controls.Add(this.buttonReload, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.comboEntities, 0, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.comboSolutions, 0, 0);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 1;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(749, 48);
-            this.tableLayoutPanelMain.TabIndex = 2;
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(416, 25);
+            this.tableLayoutPanelMain.TabIndex = 4;
             // 
-            // EntitiesDropdownControl
+            // comboSolutions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.comboSolutions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboSolutions.FormattingEnabled = true;
+            this.comboSolutions.IntegralHeight = false;
+            this.comboSolutions.ItemHeight = 13;
+            this.comboSolutions.Location = new System.Drawing.Point(4, 3);
+            this.comboSolutions.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboSolutions.Name = "comboSolutions";
+            this.comboSolutions.Size = new System.Drawing.Size(384, 21);
+            this.comboSolutions.TabIndex = 0;
+            this.comboSolutions.SelectedIndexChanged += new System.EventHandler(this.ComboSolutions_SelectedIndexChanged);
+            // 
+            // SolutionsDropdownControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanelMain);
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.Name = "EntitiesDropdownControl";
-            this.Size = new System.Drawing.Size(749, 48);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Name = "SolutionsDropdownControl";
+            this.Size = new System.Drawing.Size(416, 25);
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -91,8 +92,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboEntities;
         private System.Windows.Forms.Button buttonReload;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
+        private System.Windows.Forms.ComboBox comboSolutions;
     }
 }

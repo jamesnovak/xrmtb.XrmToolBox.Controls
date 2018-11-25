@@ -362,7 +362,7 @@ namespace XrmToolBox.Controls
                     foreach (var entity in entities)
                     {
                         counter++;
-                        if (counter % 10 == 0) {
+                        if (counter % 50 == 0) {
                             OnProgressChanged((int)(100 * counter / total), "Loading Entities ...");
                         }
                         // filter based on configuration settings

@@ -349,14 +349,37 @@ namespace XrmToolBox.Controls
         /// Retrieve a list of Solutions with some common attributes
         /// </summary>
         /// <param name="service"></param>
+        /// <param name="publisherFilters"></param>
         /// <returns></returns>
-        public static List<Entity> RetrieveSolutions(IOrganizationService service)
+        public static List<Entity> RetrieveSolutions(IOrganizationService service, List<string> publisherFilters = null)
         {
-            // Instantiate QueryExpression QEsolution
             var query = new QueryExpression("solution") {
-                ColumnSet = new ColumnSet("friendlyname", "publisherid", "organizationid", "solutionid", "uniquename", "installedon", "description", "solutiontype", "ismanaged")
+                ColumnSet = new ColumnSet("solutionid", "uniquename", "friendlyname", "description", "publisherid", "isvisible", "ismanaged",
+                                            "version", "versionnumber", "installedon", "createdon", "modifiedon",
+                                            "solutionpackageversion", "solutiontype", "parentsolutionid",  
+                                            "updatedon", "createdonbehalfby", "configurationpageid", "organizationid")
             };
 
+            // Add link-entity QEsolution_publisher
+            var publink = query.AddLink("publisher", "publisherid", "publisherid", JoinOperator.Inner);
+            publink.EntityAlias = "pub";
+            publink.Columns.AddColumns("customizationprefix", "friendlyname", "publisherid", "uniquename");
+
+            if (publisherFilters != null)
+            {
+                foreach (var publisher in publisherFilters)
+                {
+                    // filter on either the publisher name or prefix
+                    var filter = new FilterExpression() {
+                        FilterOperator = LogicalOperator.Or,
+                        Conditions = {
+                            new ConditionExpression("customizationprefix", ConditionOperator.Equal, publisher),
+                            new ConditionExpression("friendlyname", ConditionOperator.Equal, publisher),
+                            new ConditionExpression("uniquename", ConditionOperator.Equal, publisher)}
+                    };
+                    publink.LinkCriteria.AddFilter(filter);
+                }
+            }
             var resp = service.RetrieveMultiple(query);
 
             return resp.Entities.ToList();

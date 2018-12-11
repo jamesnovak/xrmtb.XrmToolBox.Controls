@@ -66,6 +66,7 @@ namespace XrmToolBox.Controls
             this.label10 = new System.Windows.Forms.Label();
             this.EntityDropdownAttribList = new XrmToolBox.Controls.EntitiesDropdownControl();
             this.label11 = new System.Windows.Forms.Label();
+            this.AttribListControl = new XrmToolBox.Controls.AttributeListControl();
             this.tableAttribListDetail = new System.Windows.Forms.TableLayoutPanel();
             this.propGridAttrList = new System.Windows.Forms.PropertyGrid();
             this.textAttribListLog = new System.Windows.Forms.TextBox();
@@ -103,7 +104,6 @@ namespace XrmToolBox.Controls
             this.radioSolnDropdownShowProps = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.radioSolnDropdownShowSoln = new System.Windows.Forms.RadioButton();
-            this.AttribListControl = new XrmToolBox.Controls.AttributeListControl();
             this.toolStripMenu.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageEntList.SuspendLayout();
@@ -619,6 +619,37 @@ namespace XrmToolBox.Controls
             this.label11.TabIndex = 0;
             this.label11.Text = "Entity Dropdown Control";
             // 
+            // AttribListControl
+            // 
+            this.AttribListControl.AutoLoadData = false;
+            this.AttribListControl.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
+            this.AttribListControl.Checkboxes = true;
+            this.AttribListControl.DisplayToolbar = true;
+            this.AttribListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AttribListControl.LanguageCode = 1033;
+            this.AttribListControl.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[] {
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs1"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs2"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs3"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs4"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs5"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs6")))};
+            this.AttribListControl.Location = new System.Drawing.Point(0, 171);
+            this.AttribListControl.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.AttribListControl.Name = "AttribListControl";
+            this.AttribListControl.ParentEntity = null;
+            this.AttribListControl.ParentEntityLogicalName = null;
+            this.AttribListControl.Service = null;
+            this.AttribListControl.Size = new System.Drawing.Size(301, 952);
+            this.AttribListControl.TabIndex = 19;
+            this.AttribListControl.SelectedItemChanged += new System.EventHandler(this.AttribListControl_SelectedItemChanged);
+            this.AttribListControl.CheckedItemsChanged += new System.EventHandler(this.AttribListControl_CheckedItemsChanged);
+            this.AttribListControl.FilterListComplete += new System.EventHandler(this.AttribListControl_FilterListComplete);
+            this.AttribListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttribListControl_ProgressChanged);
+            this.AttribListControl.LoadDataComplete += new System.EventHandler(this.AttribListControl_LoadDataComplete);
+            this.AttribListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
             // tableAttribListDetail
             // 
             this.tableAttribListDetail.ColumnCount = 2;
@@ -1125,29 +1156,6 @@ namespace XrmToolBox.Controls
             this.radioSolnDropdownShowSoln.TabStop = true;
             this.radioSolnDropdownShowSoln.Text = "Selected Entity";
             this.radioSolnDropdownShowSoln.UseVisualStyleBackColor = true;
-            // 
-            // AttribListControl
-            // 
-            this.AttribListControl.AutoLoadData = false;
-            this.AttribListControl.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
-            this.AttribListControl.Checkboxes = true;
-            this.AttribListControl.DisplayToolbar = true;
-            this.AttribListControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AttribListControl.LanguageCode = 1033;
-            this.AttribListControl.Location = new System.Drawing.Point(0, 171);
-            this.AttribListControl.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.AttribListControl.Name = "AttribListControl";
-            this.AttribListControl.ParentEntity = null;
-            this.AttribListControl.ParentEntityLogicalName = null;
-            this.AttribListControl.Service = null;
-            this.AttribListControl.Size = new System.Drawing.Size(301, 952);
-            this.AttribListControl.TabIndex = 19;
-            this.AttribListControl.SelectedItemChanged += new System.EventHandler(this.AttribListControl_SelectedItemChanged);
-            this.AttribListControl.CheckedItemsChanged += new System.EventHandler(this.AttribListControl_CheckedItemsChanged);
-            this.AttribListControl.FilterListComplete += new System.EventHandler(this.AttribListControl_FilterListComplete);
-            this.AttribListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttribListControl_ProgressChanged);
-            this.AttribListControl.LoadDataComplete += new System.EventHandler(this.AttribListControl_LoadDataComplete);
-            this.AttribListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // ControlTesterPluginControl
             // 

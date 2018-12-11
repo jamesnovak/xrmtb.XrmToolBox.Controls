@@ -85,6 +85,7 @@ namespace XrmToolBox.Controls
         [DisplayName("List View Columns")]
         [Description("List of Column Definitions for the main ListView.  If not specified, the Columns will be automatically generated using the type of object in the AllItems list")]
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public ListViewColumnDef[] ListViewColDefs
         {
             get { return _listViewColDefs; }
@@ -100,6 +101,18 @@ namespace XrmToolBox.Controls
                 // update ListVidew with new settings
                 SetUpListViewColumns();
             }
+        }
+
+        /// <summary>
+        /// Used for the designer, allow reset of the ListViewColumnDef array in the property grid
+        /// </summary>
+        protected virtual void ResetListViewColDefs() {
+            _listViewColDefs = new ListViewColumnDef[0];
+        }
+
+        protected virtual bool ShouldListViewColDefs()
+        {
+            return true;
         }
 
         /// <summary>
@@ -193,7 +206,7 @@ namespace XrmToolBox.Controls
 
         #endregion
 
-        #region Protected Internal properties
+        #region Protected Internal properties/methods
         // These will be extended by derived classes
         /// <summary>
         /// .NET Type for the bound item. Used to set up columns and retrieve property values
@@ -201,7 +214,7 @@ namespace XrmToolBox.Controls
         protected internal Type ListItemType
         {
             get { return _listItemType; }
-            set 
+            private set 
             {
                 _listItemType = value;
                 // only set up columns col defs not defined
@@ -211,34 +224,32 @@ namespace XrmToolBox.Controls
                 }
             }
         }
-
         /// <summary>
-        /// Internal collection of items bound to the list view.
+        /// Helper method for setting the internal list of items bound to the ListView.
+        /// Allows us to specify the object Type being bound
         /// </summary>
-        protected internal List<object> AllItems
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        protected internal void SetAllItems<T>(List<T> items)
         {
-            get { return _allItems; }
-            set 
-            {
-                _allItems = value;
+            _allItems = items.ConvertAll<object>(new Converter<T, object>( (item)=> { return item as object; })); 
 
-                // set the ListItemType from the list of items if not set
-                // this is not always foolproof if the objects in the list are varying types of a shared base!
-                // re: AttributeMetadata - different types
-                if (ListItemType == null && AllItems != null)
-                {
-                    if (AllItems.Count > 0) {
-                        ListItemType = AllItems[0].GetType();
-                    }
-                }
-                else {
-                    SetUpListViewColumns();
-                }
+            ListItemType = typeof(T);
 
-                // load up the items into the list view.
-                PopulateListView();
-            }
+            // set the ListItemType from the list of items if not set
+            SetUpListViewColumns();
+
+            // load up the items into the list view.
+            PopulateListView();
         }
+
+        ///// <summary>
+        ///// Internal collection of items bound to the list view.
+        ///// </summary>
+        //protected internal List<object> AllItems
+        //{
+        //    get { return _allItems; }
+        //}
 
         /// <summary>
         /// The currently selected object in the ListView
@@ -301,24 +312,19 @@ namespace XrmToolBox.Controls
             // persist the list of list view items for the filtering
             _listViewItemsColl = new List<ListViewItem>();
 
-            if (AllItems != null)
+            if (_allItems != null)
             {
                 var cols = ListViewMain.Columns;
 
                 var props = ListItemType.GetProperties().ToDictionary(p=>p.Name, p=>p);
 
-                foreach (var item in AllItems)
+                foreach (var item in _allItems)
                 {
                     var col = cols[0];
                     var colDef = col.Tag as ListViewColumnDef;
 
                     // get the ListView group for the current row/ListViewItem
                     var group = GetListItemGroup(item, props);
-
-                    // columns are already defined in order, Name field correspondng to the Property key.
-                    // all strings here for the list.
-                    //if (item.GetType() != ListItemType)
-                    //    continue;
 
                     var text = Utility.GetPropertyValue<string>(item, props[col.Name]);
                     

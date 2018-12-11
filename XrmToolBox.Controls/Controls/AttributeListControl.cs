@@ -83,12 +83,10 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Constructor!
+        /// Set up the ListViewColumnDef defaults
         /// </summary>
-        public AttributeListControl()
+        protected override void ResetListViewColDefs()
         {
-            InitializeComponent();
-
             // default the col defs for the 
             ListViewColDefs = new ListViewColumnDef[] {
                 new ListViewColumnDef( "SchemaName", 0, "Schema Name"){ Width = 150 },
@@ -99,9 +97,16 @@ namespace XrmToolBox.Controls
                 new ListViewColumnDef("IsPrimaryName", 5, "Is Primary Name"),
                 new ListViewColumnDef("IsManaged", 6, "Is Managed")
             };
-            // Note, this needs to be set in case the objects in the list have different types
-            // example here, LookupAttributeMetadata is AttributeMetadata, but when loading, we can get errors pulling data
-            ListItemType = typeof(AttributeMetadata);
+        }
+        
+        /// <summary>
+        /// Constructor!
+        /// </summary>
+        public AttributeListControl()
+        {
+            InitializeComponent();
+            // init the col defs items
+            ResetListViewColDefs();
         }
         /// <summary>
         /// Set a reference to the parent entity for the attributes
@@ -223,9 +228,8 @@ namespace XrmToolBox.Controls
                     _parentEntity = e.Result as EntityMetadata;
 
                     // set the base control list of all items to populate the list view
-                    AllItems = ParentEntity.Attributes.ToList<object>();
-
-                    ToggleMainControlsEnabled(AllItems.Count > 0);
+                    SetAllItems<AttributeMetadata>(ParentEntity.Attributes.ToList<AttributeMetadata>());
+                    ToggleMainControlsEnabled(AllAttributes.Count > 0);
 
                     OnProgressChanged(100, "Loading Entity Attributes from CRM complete!");
 

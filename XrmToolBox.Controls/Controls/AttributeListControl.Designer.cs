@@ -30,12 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // AttributeListView
+            // ListViewMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.ListViewMain.Size = new System.Drawing.Size(1399, 854);
+            // 
+            // AttributeListControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "AttributeListView";
-            this.Size = new System.Drawing.Size(637, 533);
+            this.Name = "AttributeListControl";
+            this.Size = new System.Drawing.Size(1399, 912);
             this.ResumeLayout(false);
 
         }

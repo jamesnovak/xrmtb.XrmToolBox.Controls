@@ -35,6 +35,7 @@ namespace XrmToolBox.Controls
         [Category("XrmToolBox")]
         [Description("Event that fires when the list of Checked Items changes")]
         public event EventHandler FilterEntitiesListComplete;
+
         #region Public properties
 
         #region Options
@@ -289,11 +290,31 @@ namespace XrmToolBox.Controls
 
             ListViewEntities.Items.Clear();
 
-            if (SelectedEntity != null) 
+            if (SelectedEntity != null)
+
+            this.ToggleMainControlsEnabled();
 
             SelectedItemChanged?.Invoke(this, new EventArgs());
 
             base.ClearData();
+        }
+
+        /// <summary>
+        /// Override to handle enabling tool bar buttons
+        /// </summary>
+        protected override void ToggleMainControlsEnabled() {
+
+            if (Service != null)
+            {
+                toolStripTextFilter.Enabled =
+                toolLinkCheckAll.Enabled =
+                toolLinkCheckNone.Enabled = false;
+                toolStripMain.Enabled =
+                toolButtonLoadEntities.Enabled = true;
+            }
+            else {
+                base.ToggleMainControlsEnabled();
+            }
         }
 
         /// <summary>

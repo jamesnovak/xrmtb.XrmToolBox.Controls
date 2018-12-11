@@ -1,6 +1,6 @@
 ﻿namespace XrmToolBox.Controls
 {
-    partial class EntitiesListControl
+    partial class FilteredListViewBaseControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("System", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Custom", System.Windows.Forms.HorizontalAlignment.Left);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntitiesListControl));
-            this.ListViewEntities = new System.Windows.Forms.ListView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilteredListViewBaseControl));
+            this.ListViewMain = new System.Windows.Forms.ListView();
             this.colDisplayName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSchemaName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,43 +45,44 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelFilter = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextFilter = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolButtonClearFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ListViewEntities
+            // ListViewMain
             // 
-            this.ListViewEntities.CheckBoxes = true;
-            this.ListViewEntities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ListViewMain.CheckBoxes = true;
+            this.ListViewMain.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colDisplayName,
             this.colName,
             this.colSchemaName,
             this.colState,
             this.colDescription});
-            this.ListViewEntities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListViewEntities.FullRowSelect = true;
+            this.ListViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListViewMain.FullRowSelect = true;
             listViewGroup1.Header = "System";
             listViewGroup1.Name = "System";
             listViewGroup1.Tag = "System";
             listViewGroup2.Header = "Custom";
             listViewGroup2.Name = "Custom";
             listViewGroup2.Tag = "Custom";
-            this.ListViewEntities.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            this.ListViewMain.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.ListViewEntities.HideSelection = false;
-            this.ListViewEntities.Location = new System.Drawing.Point(0, 30);
-            this.ListViewEntities.MultiSelect = false;
-            this.ListViewEntities.Name = "ListViewEntities";
-            this.ListViewEntities.Size = new System.Drawing.Size(840, 537);
-            this.ListViewEntities.TabIndex = 3;
-            this.ListViewEntities.Tag = "0";
-            this.ListViewEntities.UseCompatibleStateImageBehavior = false;
-            this.ListViewEntities.View = System.Windows.Forms.View.Details;
-            this.ListViewEntities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewEntities_ColumnClick);
-            this.ListViewEntities.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListViewEntities_ItemChecked);
-            this.ListViewEntities.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ListViewEntities_ItemSelectionChanged);
-            this.ListViewEntities.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListViewEntities_KeyUp);
+            this.ListViewMain.HideSelection = false;
+            this.ListViewMain.Location = new System.Drawing.Point(0, 58);
+            this.ListViewMain.Margin = new System.Windows.Forms.Padding(6);
+            this.ListViewMain.MultiSelect = false;
+            this.ListViewMain.Name = "ListViewMain";
+            this.ListViewMain.Size = new System.Drawing.Size(1174, 909);
+            this.ListViewMain.TabIndex = 5;
+            this.ListViewMain.Tag = "0";
+            this.ListViewMain.UseCompatibleStateImageBehavior = false;
+            this.ListViewMain.View = System.Windows.Forms.View.Details;
+            this.ListViewMain.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewMain_ColumnClick);
+            this.ListViewMain.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListViewMain_ItemChecked);
+            this.ListViewMain.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ListViewMain_ItemSelectionChanged);
+            this.ListViewMain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListViewMain_KeyUp);
             // 
             // colDisplayName
             // 
@@ -116,6 +117,7 @@
             // toolStripMain
             // 
             this.toolStripMain.AutoSize = false;
+            this.toolStripMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolButtonLoadEntities,
             this.toolStripSeparator1,
@@ -124,11 +126,12 @@
             this.toolStripSeparator3,
             this.toolStripLabelFilter,
             this.toolStripTextFilter,
-            this.toolStripSeparator2});
+            this.toolButtonClearFilter});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(840, 30);
-            this.toolStripMain.TabIndex = 4;
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStripMain.Size = new System.Drawing.Size(1174, 58);
+            this.toolStripMain.TabIndex = 6;
             this.toolStripMain.Text = "Typescript Helper Class Utility";
             // 
             // toolButtonLoadEntities
@@ -138,15 +141,15 @@
             this.toolButtonLoadEntities.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolButtonLoadEntities.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolButtonLoadEntities.Name = "toolButtonLoadEntities";
-            this.toolButtonLoadEntities.Size = new System.Drawing.Size(95, 27);
-            this.toolButtonLoadEntities.Text = "Load Entities";
+            this.toolButtonLoadEntities.Size = new System.Drawing.Size(90, 27);
+            this.toolButtonLoadEntities.Text = "Load Items";
             this.toolButtonLoadEntities.ToolTipText = "Load / Reload Entities from the server";
             this.toolButtonLoadEntities.Click += new System.EventHandler(this.ToolButtonLoadEntities_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 30);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 58);
             // 
             // toolLinkCheckAll
             // 
@@ -158,7 +161,7 @@
             this.toolLinkCheckAll.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.toolLinkCheckAll.LinkColor = System.Drawing.SystemColors.HotTrack;
             this.toolLinkCheckAll.Name = "toolLinkCheckAll";
-            this.toolLinkCheckAll.Size = new System.Drawing.Size(95, 27);
+            this.toolLinkCheckAll.Size = new System.Drawing.Size(95, 22);
             this.toolLinkCheckAll.Text = "Check All";
             this.toolLinkCheckAll.ToolTipText = "Check all items in the list of Entities";
             this.toolLinkCheckAll.Click += new System.EventHandler(this.ToolLinkCheckAll_Click);
@@ -181,7 +184,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 30);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
             // 
             // toolStripLabelFilter
             // 
@@ -190,7 +193,7 @@
             this.toolStripLabelFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripLabelFilter.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripLabelFilter.Name = "toolStripLabelFilter";
-            this.toolStripLabelFilter.Size = new System.Drawing.Size(65, 27);
+            this.toolStripLabelFilter.Size = new System.Drawing.Size(60, 27);
             this.toolStripLabelFilter.Text = "Filter:";
             // 
             // toolStripTextFilter
@@ -198,23 +201,32 @@
             this.toolStripTextFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextFilter.MaxLength = 200;
             this.toolStripTextFilter.Name = "toolStripTextFilter";
-            this.toolStripTextFilter.Size = new System.Drawing.Size(125, 30);
+            this.toolStripTextFilter.Size = new System.Drawing.Size(248, 58);
             this.toolStripTextFilter.ToolTipText = "Enter a filter for the list of entities";
             this.toolStripTextFilter.TextChanged += new System.EventHandler(this.ToolStripTextFilter_TextChanged);
             // 
-            // toolStripSeparator2
+            // toolButtonClearFilter
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 30);
+            this.toolButtonClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolButtonClearFilter.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolButtonClearFilter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.toolButtonClearFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolButtonClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolButtonClearFilter.Name = "toolButtonClearFilter";
+            this.toolButtonClearFilter.Size = new System.Drawing.Size(33, 55);
+            this.toolButtonClearFilter.Text = "x";
+            this.toolButtonClearFilter.ToolTipText = "Clear the current filter";
+            this.toolButtonClearFilter.Click += new System.EventHandler(this.ToolButtonClearFilter_Click);
             // 
-            // EntitiesListControl
+            // FilteredListViewBaseControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ListViewEntities);
+            this.Controls.Add(this.ListViewMain);
             this.Controls.Add(this.toolStripMain);
-            this.Name = "EntitiesListControl";
-            this.Size = new System.Drawing.Size(840, 567);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "FilteredListViewBaseControl";
+            this.Size = new System.Drawing.Size(1174, 967);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.ResumeLayout(false);
@@ -222,21 +234,20 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView ListViewEntities;
         private System.Windows.Forms.ColumnHeader colDisplayName;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colSchemaName;
         private System.Windows.Forms.ColumnHeader colState;
         private System.Windows.Forms.ColumnHeader colDescription;
-        private System.Windows.Forms.ToolStrip toolStripMain;
-        private System.Windows.Forms.ToolStripButton toolButtonLoadEntities;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripLabel toolLinkCheckAll;
-        private System.Windows.Forms.ToolStripLabel toolLinkCheckNone;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabelFilter;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextFilter;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        protected System.Windows.Forms.ListView ListViewMain;
+        protected System.Windows.Forms.ToolStripButton toolButtonLoadEntities;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        protected System.Windows.Forms.ToolStripLabel toolLinkCheckAll;
+        protected System.Windows.Forms.ToolStripLabel toolLinkCheckNone;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        protected System.Windows.Forms.ToolStripLabel toolStripLabelFilter;
+        protected System.Windows.Forms.ToolStripTextBox toolStripTextFilter;
+        protected System.Windows.Forms.ToolStrip toolStripMain;
+        private System.Windows.Forms.ToolStripButton toolButtonClearFilter;
     }
 }

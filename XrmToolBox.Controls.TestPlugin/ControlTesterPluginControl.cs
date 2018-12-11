@@ -24,12 +24,13 @@ namespace XrmToolBox.Controls
         /// <param name="e"></param>
         private void MyPluginControl_Load(object sender, EventArgs args)
         {
-            // apply some Entity Filters.  Do not load entities from the futz_ publisher.
-            //EntityListControl.EntityFilters.Add(new FilterInfo()
-            //{
-            //    FilterMatchType = EnumFilterMatchType.StartsWith,
-            //    FilterString = "futz_"
-            //});
+            int width = (int)ClientSize.Width / 3;
+            splitterAttribDropdown.SplitterDistance =
+                splitterAttribList.SplitterDistance =
+                splitterEntDropdown.SplitterDistance =
+                splitterEntityList.SplitterDistance = 
+                splitterSolnDropdown.SplitterDistance = width;
+
 
             EntityListControl.DisplayToolbar = true;
 
@@ -41,6 +42,7 @@ namespace XrmToolBox.Controls
             SetPropertySelectedObject(radioEntDropdownShowProps, propGridEntDropdown, EntityDropdown, null);
             SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, null);
             SetPropertySelectedObject(radioSolnDropdownShowProps, propGridSolutions, SolutionDropdown, null);
+            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, null);
 
             // set up service references
             EntityListControl.Service = Service;
@@ -48,15 +50,7 @@ namespace XrmToolBox.Controls
             AttributeDropdown.Service = Service;
             SolutionDropdown.Service = Service;
             EntityDropdownAttribs.Service = Service;
-
-            if (Service == null)
-                return;
-
-            // automatically load the data?
-            //if (MessageBox.Show("Would you like to automatically load the Entities?", "Load Entities", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //{
-            //    EntitiesListControl.LoadData();
-            //}
+            EntityDropdownAttribList.Service = Service;
         }
 
         private void AllControls_NotificationMessage(object sender, NotificationEventArgs e)
@@ -74,6 +68,33 @@ namespace XrmToolBox.Controls
         private void tsbClose_Click(object sender, EventArgs e)
         {
             CloseTool();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // do stuff based on active tab
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                    EntityListControl.LoadData();
+                    break;
+                case "tabPageEntDropdown":
+                    EntityDropdown.LoadData();
+                    break;
+                case "tabPageAttrList":
+                    AttribListControl.ClearData();
+                    EntityDropdownAttribList.LoadData();
+
+                    break;
+                case "tabPageAttrDropDown":
+                    AttributeDropdown.ClearData();
+                    EntityDropdownAttribs.LoadData();
+
+                    break;
+                case "tabPageSolution":
+                    SolutionDropdown.LoadData();
+                    break;
+            }
         }
 
         /// <summary>
@@ -100,6 +121,10 @@ namespace XrmToolBox.Controls
             AttributeDropdown.UpdateConnection(newService);
             EntityDropdownAttribs.UpdateConnection(newService);
             SolutionDropdown.UpdateConnection(newService);
+
+            AttribListControl.UpdateConnection(newService);
+            EntityDropdownAttribList.UpdateConnection(newService);
+
         }
 
         #region Entity Listview Control event handlers
@@ -127,6 +152,10 @@ namespace XrmToolBox.Controls
         private void EntitiesListControl_CheckedItemsChanged(object sender, EventArgs e)
         {
             UpdateControlLogger(textEntListLog, $"CheckedItemsChanged - Checked Entities count: {EntityListControl.CheckedEntities.Count}");
+
+            var ent = EntityListControl.CheckedEntities[0];
+
+            SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, ent);
         }
         private void EntitiesListControl_SelectedItemChanged(object sender, EventArgs e)
         {
@@ -150,10 +179,6 @@ namespace XrmToolBox.Controls
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, EntityListControl.SelectedEntity);
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            EntityListControl.LoadData();
-        }
 
         private void EntitiesListControl_BeginLoadData(object sender, EventArgs e)
         {
@@ -283,6 +308,55 @@ namespace XrmToolBox.Controls
         }
         #endregion
 
+        #region Attrib Dropdown events
+
+        private void EntityDropdownAttribList_SelectedItemChanged(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textAttribListLog, $"SelectedItemChanged (Entity): {EntityDropdownAttribList.SelectedEntity?.LogicalName}");
+
+            AttribListControl.ParentEntity = EntityDropdownAttribList.SelectedEntity;
+        }
+
+        private void AttribListControl_SelectedItemChanged(object sender, EventArgs e)
+        {
+            var attr = AttribListControl.SelectedAttribute;
+            UpdateControlLogger(textAttribListLog, $"SelectedItemChanged (Attribute): {attr?.LogicalName}");
+            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attr);
+        }
+
+        private void AttribListControl_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            UpdateControlLogger(textAttribListLog, $"ProgressChanged (Attributes): {e.UserState} : {e.ProgressPercentage}");
+        }
+
+        private void AttribListControl_CheckedItemsChanged(object sender, EventArgs e)
+        {
+            AttributeMetadata attr = null;
+            var count = AttribListControl.CheckedAttributes?.Count;
+            if (count > 0) {
+                attr = AttribListControl.CheckedAttributes[count.Value-1];
+            }
+            UpdateControlLogger(textAttribListLog, $"CheckedItemsChanged (Attributes) - {AttribListControl.CheckedAttributes?.Count}");
+            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attr);
+        }
+
+        private void AttribListControl_FilterListComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textAttribListLog, $"FilterListComplete (Attributes) - {AttribListControl.AllAttributes.Count}");
+        }
+
+        private void AttribListControl_LoadDataComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textAttribListLog, $"LoadDataComplete (Attributes) - {AttribListControl.AllAttributes.Count}");
+        }
+
+        private void RadioAttribList_CheckedChanged(object sender, EventArgs e)
+        {
+            var attr = AttribListControl.SelectedAttribute;
+            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attr);
+        }
+
+        #endregion
         #region Solution Dropdown events
         private void SolutionsDropdown_LoadDataComplete(object sender, EventArgs e)
         {

@@ -42,7 +42,7 @@ namespace XrmToolBox.Controls
         /// Flag indicating whether to automatically load data when the Service connection is set or updated.
         /// </summary>
         [Category("XrmToolBox")]
-        [DisplayName("Automatically LoadData")]
+        [DisplayName("Automatically Load Data")]
         [Description("Flag indicating whether to automatically load data when the Service connection is set or updated.")]
         public bool AutoLoadData { get; set; }
         #endregion
@@ -217,7 +217,7 @@ namespace XrmToolBox.Controls
         /// <summary>
         /// Helper method for toggling main UI controls enabled based on Service ref and base Enabled state
         /// </summary>
-        protected void ToggleMainControlsEnabled()
+        protected virtual void ToggleMainControlsEnabled()
         {
             var enabled = (Enabled) ? Service != null : Enabled;
 
@@ -228,7 +228,7 @@ namespace XrmToolBox.Controls
         /// Toggle the main controls enabled
         /// </summary>
         /// <param name="enabled"></param>
-        protected void ToggleMainControlsEnabled(bool enabled)
+        protected virtual void ToggleMainControlsEnabled(bool enabled)
         {
             foreach (Control control in Controls)
             {

@@ -102,12 +102,23 @@ namespace XrmToolBox.Controls
         /// <summary>
         /// Constructor!
         /// </summary>
-        public AttributeListControl()
+        public AttributeListControl(): base()
         {
             InitializeComponent();
+
             // init the col defs items
             ResetListViewColDefs();
         }
+
+        /// <summary>
+        /// Clear out the parent entity and the related attributes
+        /// </summary>
+        public override void ClearData()
+        {
+            _parentEntity = null;
+            base.ClearData();
+        }
+
         /// <summary>
         /// Set a reference to the parent entity for the attributes
         /// </summary>
@@ -187,7 +198,12 @@ namespace XrmToolBox.Controls
             LoadData(true);
         }
 
-        private void LoadData(bool throwException)
+        /// <summary>
+        /// Private method that will rethrow an Exception if specified in the parameter.
+        /// This is meant to allow for external programmatic calls to load vs those from the built in controls
+        /// </summary>
+        /// <param name="throwException">Flag indicating whether to rethrow a captured exception</param>
+        protected override void LoadData(bool throwException)
         {
             OnBeginLoadData();
 
@@ -205,13 +221,12 @@ namespace XrmToolBox.Controls
                 return;
             }
 
-            ToggleMainControlsEnabled(false);
-
-            ClearData();
-
             try
             {
                 OnProgressChanged(0, "Begin loading Entity Attributes from CRM");
+
+                OnBeginLoadData();
+                ToggleMainControlsEnabled(false);
 
                 // load the entity metadata for the current entity logical name
                 var worker = new BackgroundWorker();
@@ -243,8 +258,7 @@ namespace XrmToolBox.Controls
             {
                 OnNotificationMessage($"An error occured attetmpting to load the list of Entity Attributes", MessageLevel.Exception, ex);
 
-                if (throwException)
-                {
+                if (throwException) {
                     throw ex;
                 }
             }

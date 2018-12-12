@@ -357,7 +357,7 @@ namespace XrmToolBox.Controls
                 ColumnSet = new ColumnSet("solutionid", "uniquename", "friendlyname", "description", "publisherid", "isvisible", "ismanaged",
                                             "version", "versionnumber", "installedon", "createdon", "modifiedon",
                                             "solutionpackageversion", "solutiontype", "parentsolutionid",  
-                                            "updatedon", "createdonbehalfby", "configurationpageid", "organizationid")
+                                            "createdonbehalfby", "configurationpageid", "organizationid")
             };
 
             // Add link-entity QEsolution_publisher

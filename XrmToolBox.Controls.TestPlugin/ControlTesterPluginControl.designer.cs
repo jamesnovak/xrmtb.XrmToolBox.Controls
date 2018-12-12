@@ -38,7 +38,6 @@ namespace XrmToolBox.Controls
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageEntList = new System.Windows.Forms.TabPage();
             this.splitterEntityList = new System.Windows.Forms.SplitContainer();
-            this.EntityListControl = new XrmToolBox.Controls.EntitiesListControl();
             this.tableEntListDetails = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioEntListShowProps = new System.Windows.Forms.RadioButton();
@@ -50,7 +49,6 @@ namespace XrmToolBox.Controls
             this.splitterEntDropdown = new System.Windows.Forms.SplitContainer();
             this.tableEntDropdown = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.EntityDropdown = new XrmToolBox.Controls.EntitiesDropdownControl();
             this.labelEntityDropdown = new System.Windows.Forms.Label();
             this.listBoxEntities = new System.Windows.Forms.ListBox();
             this.tableEntDropdownDetail = new System.Windows.Forms.TableLayoutPanel();
@@ -64,9 +62,7 @@ namespace XrmToolBox.Controls
             this.splitterAttribList = new System.Windows.Forms.SplitContainer();
             this.tableAttribList = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
-            this.EntityDropdownAttribList = new XrmToolBox.Controls.EntitiesDropdownControl();
             this.label11 = new System.Windows.Forms.Label();
-            this.AttribListControl = new XrmToolBox.Controls.AttributeListControl();
             this.tableAttribListDetail = new System.Windows.Forms.TableLayoutPanel();
             this.propGridAttrList = new System.Windows.Forms.PropertyGrid();
             this.textAttribListLog = new System.Windows.Forms.TextBox();
@@ -77,9 +73,7 @@ namespace XrmToolBox.Controls
             this.tabPageAttrDropDown = new System.Windows.Forms.TabPage();
             this.splitterAttribDropdown = new System.Windows.Forms.SplitContainer();
             this.tableAttribDropdown = new System.Windows.Forms.TableLayoutPanel();
-            this.AttributeDropdown = new XrmToolBox.Controls.AttributeDropdownControl();
             this.labelAttributes = new System.Windows.Forms.Label();
-            this.EntityDropdownAttribs = new XrmToolBox.Controls.EntitiesDropdownControl();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxAttributes = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -94,7 +88,6 @@ namespace XrmToolBox.Controls
             this.splitterSolnDropdown = new System.Windows.Forms.SplitContainer();
             this.tableSolnDropdown = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
-            this.SolutionDropdown = new XrmToolBox.Controls.SolutionsDropdownControl();
             this.label2 = new System.Windows.Forms.Label();
             this.listBoxSolutions = new System.Windows.Forms.ListBox();
             this.tableSolnDropdownDetail = new System.Windows.Forms.TableLayoutPanel();
@@ -104,6 +97,13 @@ namespace XrmToolBox.Controls
             this.radioSolnDropdownShowProps = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.radioSolnDropdownShowSoln = new System.Windows.Forms.RadioButton();
+            this.EntityListControl = new XrmToolBox.Controls.EntitiesListControl();
+            this.EntityDropdown = new XrmToolBox.Controls.EntitiesDropdownControl();
+            this.EntityDropdownAttribList = new XrmToolBox.Controls.EntitiesDropdownControl();
+            this.AttribListControl = new XrmToolBox.Controls.AttributeListControl();
+            this.AttributeDropdown = new XrmToolBox.Controls.AttributeDropdownControl();
+            this.EntityDropdownAttribs = new XrmToolBox.Controls.EntitiesDropdownControl();
+            this.SolutionDropdown = new XrmToolBox.Controls.SolutionsDropdownControl();
             this.toolStripMenu.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageEntList.SuspendLayout();
@@ -230,32 +230,6 @@ namespace XrmToolBox.Controls
             this.splitterEntityList.Size = new System.Drawing.Size(1650, 1117);
             this.splitterEntityList.SplitterDistance = 301;
             this.splitterEntityList.TabIndex = 0;
-            // 
-            // EntityListControl
-            // 
-            this.EntityListControl.AutoLoadData = false;
-            this.EntityListControl.Checkboxes = true;
-            this.EntityListControl.ColumnDisplayMode = XrmToolBox.Controls.ListViewColumnDisplayMode.Expanded;
-            this.EntityListControl.DisplayToolbar = false;
-            this.EntityListControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EntityListControl.EntityTypes = XrmToolBox.Controls.EnumEntityTypes.BothCustomAndSystem;
-            this.EntityListControl.GroupByType = true;
-            this.EntityListControl.LanguageCode = 1033;
-            this.EntityListControl.Location = new System.Drawing.Point(0, 0);
-            this.EntityListControl.Margin = new System.Windows.Forms.Padding(12);
-            this.EntityListControl.Name = "EntityListControl";
-            this.EntityListControl.Padding = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.EntityListControl.RetrieveAsIfPublished = true;
-            this.EntityListControl.Service = null;
-            this.EntityListControl.Size = new System.Drawing.Size(301, 1117);
-            this.EntityListControl.TabIndex = 13;
-            this.EntityListControl.SelectedItemChanged += new System.EventHandler(this.EntitiesListControl_SelectedItemChanged);
-            this.EntityListControl.CheckedItemsChanged += new System.EventHandler(this.EntitiesListControl_CheckedItemsChanged);
-            this.EntityListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntitiesListControl_ProgressChanged);
-            this.EntityListControl.LoadDataComplete += new System.EventHandler(this.EntitiesListControl_LoadDataComplete);
-            this.EntityListControl.ClearDataComplete += new System.EventHandler(this.EntitiesListControl_ClearDataComplete);
-            this.EntityListControl.CloseComplete += new System.EventHandler(this.EntitiesListControl_CloseComplete);
-            this.EntityListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // tableEntListDetails
             // 
@@ -407,25 +381,6 @@ namespace XrmToolBox.Controls
             this.label7.Size = new System.Drawing.Size(544, 44);
             this.label7.TabIndex = 21;
             this.label7.Text = "Full list of Entities";
-            // 
-            // EntityDropdown
-            // 
-            this.EntityDropdown.AutoLoadData = false;
-            this.EntityDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EntityDropdown.LanguageCode = 1033;
-            this.EntityDropdown.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.EntityDropdown.Name = "EntityDropdown";
-            this.EntityDropdown.Service = null;
-            this.EntityDropdown.Size = new System.Drawing.Size(540, 57);
-            this.EntityDropdown.TabIndex = 15;
-            this.EntityDropdown.SelectedItemChanged += new System.EventHandler(this.EntityDropdown_SelectedItemChanged);
-            this.EntityDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntityDropdown_ProgressChanged);
-            this.EntityDropdown.BeginLoadData += new System.EventHandler(this.EntityDropdown_BeginLoadData);
-            this.EntityDropdown.LoadDataComplete += new System.EventHandler(this.EntityDropdown_LoadDataComplete);
-            this.EntityDropdown.BeginClearData += new System.EventHandler(this.EntityDropdown_BeginClearData);
-            this.EntityDropdown.ClearDataComplete += new System.EventHandler(this.EntityDropdown_ClearDataComplete);
-            this.EntityDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // labelEntityDropdown
             // 
@@ -596,19 +551,6 @@ namespace XrmToolBox.Controls
             this.label10.TabIndex = 18;
             this.label10.Text = "Attributes List";
             // 
-            // EntityDropdownAttribList
-            // 
-            this.EntityDropdownAttribList.AutoLoadData = false;
-            this.EntityDropdownAttribList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EntityDropdownAttribList.LanguageCode = 1033;
-            this.EntityDropdownAttribList.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdownAttribList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.EntityDropdownAttribList.Name = "EntityDropdownAttribList";
-            this.EntityDropdownAttribList.Service = null;
-            this.EntityDropdownAttribList.Size = new System.Drawing.Size(285, 57);
-            this.EntityDropdownAttribList.TabIndex = 15;
-            this.EntityDropdownAttribList.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribList_SelectedItemChanged);
-            // 
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -618,37 +560,6 @@ namespace XrmToolBox.Controls
             this.label11.Size = new System.Drawing.Size(293, 50);
             this.label11.TabIndex = 0;
             this.label11.Text = "Entity Dropdown Control";
-            // 
-            // AttribListControl
-            // 
-            this.AttribListControl.AutoLoadData = false;
-            this.AttribListControl.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
-            this.AttribListControl.Checkboxes = true;
-            this.AttribListControl.DisplayToolbar = true;
-            this.AttribListControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AttribListControl.LanguageCode = 1033;
-            this.AttribListControl.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[] {
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs1"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs2"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs3"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs4"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs5"))),
-        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs6")))};
-            this.AttribListControl.Location = new System.Drawing.Point(0, 171);
-            this.AttribListControl.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.AttribListControl.Name = "AttribListControl";
-            this.AttribListControl.ParentEntity = null;
-            this.AttribListControl.ParentEntityLogicalName = null;
-            this.AttribListControl.Service = null;
-            this.AttribListControl.Size = new System.Drawing.Size(301, 952);
-            this.AttribListControl.TabIndex = 19;
-            this.AttribListControl.SelectedItemChanged += new System.EventHandler(this.AttribListControl_SelectedItemChanged);
-            this.AttribListControl.CheckedItemsChanged += new System.EventHandler(this.AttribListControl_CheckedItemsChanged);
-            this.AttribListControl.FilterListComplete += new System.EventHandler(this.AttribListControl_FilterListComplete);
-            this.AttribListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttribListControl_ProgressChanged);
-            this.AttribListControl.LoadDataComplete += new System.EventHandler(this.AttribListControl_LoadDataComplete);
-            this.AttribListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // tableAttribListDetail
             // 
@@ -794,27 +705,6 @@ namespace XrmToolBox.Controls
             this.tableAttribDropdown.Size = new System.Drawing.Size(596, 1117);
             this.tableAttribDropdown.TabIndex = 19;
             // 
-            // AttributeDropdown
-            // 
-            this.AttributeDropdown.AutoLoadData = false;
-            this.AttributeDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AttributeDropdown.LanguageCode = 1033;
-            this.AttributeDropdown.Location = new System.Drawing.Point(0, 171);
-            this.AttributeDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.AttributeDropdown.Name = "AttributeDropdown";
-            this.AttributeDropdown.ParentEntity = null;
-            this.AttributeDropdown.ParentEntityLogicalName = null;
-            this.AttributeDropdown.Service = null;
-            this.AttributeDropdown.Size = new System.Drawing.Size(596, 65);
-            this.AttributeDropdown.TabIndex = 17;
-            this.AttributeDropdown.SelectedItemChanged += new System.EventHandler(this.AttributeDropdown_SelectedItemChanged);
-            this.AttributeDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttributeDropdown_ProgressChanged);
-            this.AttributeDropdown.BeginLoadData += new System.EventHandler(this.AttributeDropdown_BeginLoadData);
-            this.AttributeDropdown.LoadDataComplete += new System.EventHandler(this.AttributeDropdown_LoadDataComplete);
-            this.AttributeDropdown.BeginClearData += new System.EventHandler(this.AttributeDropdown_BeginClearData);
-            this.AttributeDropdown.ClearDataComplete += new System.EventHandler(this.AttributeDropdown_ClearDataComplete);
-            this.AttributeDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
-            // 
             // labelAttributes
             // 
             this.labelAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -824,23 +714,6 @@ namespace XrmToolBox.Controls
             this.labelAttributes.Size = new System.Drawing.Size(588, 50);
             this.labelAttributes.TabIndex = 18;
             this.labelAttributes.Text = "Attributes Dropdown";
-            // 
-            // EntityDropdownAttribs
-            // 
-            this.EntityDropdownAttribs.AutoLoadData = false;
-            this.EntityDropdownAttribs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EntityDropdownAttribs.LanguageCode = 1033;
-            this.EntityDropdownAttribs.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdownAttribs.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.EntityDropdownAttribs.Name = "EntityDropdownAttribs";
-            this.EntityDropdownAttribs.Service = null;
-            this.EntityDropdownAttribs.Size = new System.Drawing.Size(580, 57);
-            this.EntityDropdownAttribs.TabIndex = 15;
-            this.EntityDropdownAttribs.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribs_SelectedItemChanged);
-            this.EntityDropdownAttribs.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntityDropdownAttribs_ProgressChanged);
-            this.EntityDropdownAttribs.BeginLoadData += new System.EventHandler(this.EntityDropdownAttribs_BeginLoadData);
-            this.EntityDropdownAttribs.LoadDataComplete += new System.EventHandler(this.EntityDropdownAttribs_LoadDataComplete);
-            this.EntityDropdownAttribs.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // label4
             // 
@@ -1025,27 +898,6 @@ namespace XrmToolBox.Controls
             this.label9.TabIndex = 21;
             this.label9.Text = "Solutions Dropdown Control";
             // 
-            // SolutionDropdown
-            // 
-            this.SolutionDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SolutionDropdown.AutoLoadData = false;
-            this.SolutionDropdown.LanguageCode = 1033;
-            this.SolutionDropdown.Location = new System.Drawing.Point(0, 52);
-            this.SolutionDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.SolutionDropdown.Name = "SolutionDropdown";
-            this.SolutionDropdown.Service = null;
-            this.SolutionDropdown.Size = new System.Drawing.Size(600, 65);
-            this.SolutionDropdown.TabIndex = 19;
-            this.SolutionDropdown.SelectedItemChanged += new System.EventHandler(this.SolutionDropdown_SelectedItemChanged);
-            this.SolutionDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.SolutionDropdown_ProgressChanged);
-            this.SolutionDropdown.BeginLoadData += new System.EventHandler(this.SolutionDropdown_BeginLoadData);
-            this.SolutionDropdown.LoadDataComplete += new System.EventHandler(this.SolutionsDropdown_LoadDataComplete);
-            this.SolutionDropdown.BeginClearData += new System.EventHandler(this.SolutionDropdown_BeginClearData);
-            this.SolutionDropdown.ClearDataComplete += new System.EventHandler(this.SolutionDropdown_ClearDataComplete);
-            this.SolutionDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
-            // 
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1156,6 +1008,159 @@ namespace XrmToolBox.Controls
             this.radioSolnDropdownShowSoln.TabStop = true;
             this.radioSolnDropdownShowSoln.Text = "Selected Entity";
             this.radioSolnDropdownShowSoln.UseVisualStyleBackColor = true;
+            // 
+            // EntityListControl
+            // 
+            this.EntityListControl.AutoLoadData = false;
+            this.EntityListControl.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
+            this.EntityListControl.Checkboxes = true;
+            this.EntityListControl.DisplayToolbar = false;
+            this.EntityListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EntityListControl.EntityTypes = XrmToolBox.Controls.EnumEntityTypes.BothCustomAndSystem;
+            this.EntityListControl.LanguageCode = 1033;
+            this.EntityListControl.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[] {
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs1"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs2"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs3"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs4")))};
+            this.EntityListControl.Location = new System.Drawing.Point(0, 0);
+            this.EntityListControl.Margin = new System.Windows.Forms.Padding(12);
+            this.EntityListControl.Name = "EntityListControl";
+            this.EntityListControl.Padding = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityListControl.RetrieveAsIfPublished = true;
+            this.EntityListControl.Service = null;
+            this.EntityListControl.Size = new System.Drawing.Size(301, 1117);
+            this.EntityListControl.TabIndex = 13;
+            this.EntityListControl.SelectedItemChanged += new System.EventHandler(this.EntitiesListControl_SelectedItemChanged);
+            this.EntityListControl.CheckedItemsChanged += new System.EventHandler(this.EntitiesListControl_CheckedItemsChanged);
+            this.EntityListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntitiesListControl_ProgressChanged);
+            this.EntityListControl.LoadDataComplete += new System.EventHandler(this.EntitiesListControl_LoadDataComplete);
+            this.EntityListControl.ClearDataComplete += new System.EventHandler(this.EntitiesListControl_ClearDataComplete);
+            this.EntityListControl.CloseComplete += new System.EventHandler(this.EntitiesListControl_CloseComplete);
+            this.EntityListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // EntityDropdown
+            // 
+            this.EntityDropdown.AutoLoadData = false;
+            this.EntityDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EntityDropdown.LanguageCode = 1033;
+            this.EntityDropdown.Location = new System.Drawing.Point(8, 56);
+            this.EntityDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdown.Name = "EntityDropdown";
+            this.EntityDropdown.Service = null;
+            this.EntityDropdown.Size = new System.Drawing.Size(540, 57);
+            this.EntityDropdown.TabIndex = 15;
+            this.EntityDropdown.SelectedItemChanged += new System.EventHandler(this.EntityDropdown_SelectedItemChanged);
+            this.EntityDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntityDropdown_ProgressChanged);
+            this.EntityDropdown.BeginLoadData += new System.EventHandler(this.EntityDropdown_BeginLoadData);
+            this.EntityDropdown.LoadDataComplete += new System.EventHandler(this.EntityDropdown_LoadDataComplete);
+            this.EntityDropdown.BeginClearData += new System.EventHandler(this.EntityDropdown_BeginClearData);
+            this.EntityDropdown.ClearDataComplete += new System.EventHandler(this.EntityDropdown_ClearDataComplete);
+            this.EntityDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // EntityDropdownAttribList
+            // 
+            this.EntityDropdownAttribList.AutoLoadData = false;
+            this.EntityDropdownAttribList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EntityDropdownAttribList.LanguageCode = 1033;
+            this.EntityDropdownAttribList.Location = new System.Drawing.Point(8, 56);
+            this.EntityDropdownAttribList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdownAttribList.Name = "EntityDropdownAttribList";
+            this.EntityDropdownAttribList.Service = null;
+            this.EntityDropdownAttribList.Size = new System.Drawing.Size(285, 57);
+            this.EntityDropdownAttribList.TabIndex = 15;
+            this.EntityDropdownAttribList.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribList_SelectedItemChanged);
+            // 
+            // AttribListControl
+            // 
+            this.AttribListControl.AutoLoadData = false;
+            this.AttribListControl.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
+            this.AttribListControl.Checkboxes = true;
+            this.AttribListControl.DisplayToolbar = false;
+            this.AttribListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AttribListControl.LanguageCode = 1033;
+            this.AttribListControl.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[] {
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs1"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs2"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs3"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs4"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs5"))),
+        ((XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs6")))};
+            this.AttribListControl.Location = new System.Drawing.Point(0, 171);
+            this.AttribListControl.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.AttribListControl.Name = "AttribListControl";
+            this.AttribListControl.ParentEntity = null;
+            this.AttribListControl.ParentEntityLogicalName = null;
+            this.AttribListControl.Service = null;
+            this.AttribListControl.Size = new System.Drawing.Size(301, 952);
+            this.AttribListControl.TabIndex = 19;
+            this.AttribListControl.SelectedItemChanged += new System.EventHandler(this.AttribListControl_SelectedItemChanged);
+            this.AttribListControl.CheckedItemsChanged += new System.EventHandler(this.AttribListControl_CheckedItemsChanged);
+            this.AttribListControl.FilterListComplete += new System.EventHandler(this.AttribListControl_FilterListComplete);
+            this.AttribListControl.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttribListControl_ProgressChanged);
+            this.AttribListControl.LoadDataComplete += new System.EventHandler(this.AttribListControl_LoadDataComplete);
+            this.AttribListControl.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // AttributeDropdown
+            // 
+            this.AttributeDropdown.AutoLoadData = false;
+            this.AttributeDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AttributeDropdown.LanguageCode = 1033;
+            this.AttributeDropdown.Location = new System.Drawing.Point(0, 171);
+            this.AttributeDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.AttributeDropdown.Name = "AttributeDropdown";
+            this.AttributeDropdown.ParentEntity = null;
+            this.AttributeDropdown.ParentEntityLogicalName = null;
+            this.AttributeDropdown.Service = null;
+            this.AttributeDropdown.Size = new System.Drawing.Size(596, 65);
+            this.AttributeDropdown.TabIndex = 17;
+            this.AttributeDropdown.SelectedItemChanged += new System.EventHandler(this.AttributeDropdown_SelectedItemChanged);
+            this.AttributeDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttributeDropdown_ProgressChanged);
+            this.AttributeDropdown.BeginLoadData += new System.EventHandler(this.AttributeDropdown_BeginLoadData);
+            this.AttributeDropdown.LoadDataComplete += new System.EventHandler(this.AttributeDropdown_LoadDataComplete);
+            this.AttributeDropdown.BeginClearData += new System.EventHandler(this.AttributeDropdown_BeginClearData);
+            this.AttributeDropdown.ClearDataComplete += new System.EventHandler(this.AttributeDropdown_ClearDataComplete);
+            this.AttributeDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // EntityDropdownAttribs
+            // 
+            this.EntityDropdownAttribs.AutoLoadData = false;
+            this.EntityDropdownAttribs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EntityDropdownAttribs.LanguageCode = 1033;
+            this.EntityDropdownAttribs.Location = new System.Drawing.Point(8, 56);
+            this.EntityDropdownAttribs.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdownAttribs.Name = "EntityDropdownAttribs";
+            this.EntityDropdownAttribs.Service = null;
+            this.EntityDropdownAttribs.Size = new System.Drawing.Size(580, 57);
+            this.EntityDropdownAttribs.TabIndex = 15;
+            this.EntityDropdownAttribs.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribs_SelectedItemChanged);
+            this.EntityDropdownAttribs.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.EntityDropdownAttribs_ProgressChanged);
+            this.EntityDropdownAttribs.BeginLoadData += new System.EventHandler(this.EntityDropdownAttribs_BeginLoadData);
+            this.EntityDropdownAttribs.LoadDataComplete += new System.EventHandler(this.EntityDropdownAttribs_LoadDataComplete);
+            this.EntityDropdownAttribs.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // SolutionDropdown
+            // 
+            this.SolutionDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SolutionDropdown.AutoLoadData = false;
+            this.SolutionDropdown.LanguageCode = 1033;
+            this.SolutionDropdown.Location = new System.Drawing.Point(0, 52);
+            this.SolutionDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.SolutionDropdown.Name = "SolutionDropdown";
+            this.SolutionDropdown.Service = null;
+            this.SolutionDropdown.Size = new System.Drawing.Size(600, 65);
+            this.SolutionDropdown.TabIndex = 19;
+            this.SolutionDropdown.SelectedItemChanged += new System.EventHandler(this.SolutionDropdown_SelectedItemChanged);
+            this.SolutionDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.SolutionDropdown_ProgressChanged);
+            this.SolutionDropdown.BeginLoadData += new System.EventHandler(this.SolutionDropdown_BeginLoadData);
+            this.SolutionDropdown.LoadDataComplete += new System.EventHandler(this.SolutionsDropdown_LoadDataComplete);
+            this.SolutionDropdown.BeginClearData += new System.EventHandler(this.SolutionDropdown_BeginClearData);
+            this.SolutionDropdown.ClearDataComplete += new System.EventHandler(this.SolutionDropdown_ClearDataComplete);
+            this.SolutionDropdown.NotificationMessage += new System.EventHandler<XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
             // 
             // ControlTesterPluginControl
             // 

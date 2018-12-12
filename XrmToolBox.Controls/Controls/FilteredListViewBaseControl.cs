@@ -16,7 +16,6 @@ namespace XrmToolBox.Controls
     {
 
         #region Internal/private/protected properties for use by this and possibly derived classes
-        #region Private items
         private List<ListViewItem> _listViewItemsColl = null;
         private List<string> _listViewGroups = new List<string>();
         private ListViewColumnDef[] _listViewColDefs = new List<ListViewColumnDef>().ToArray();
@@ -25,13 +24,19 @@ namespace XrmToolBox.Controls
         /// <summary>
         /// internal list of all items 
         /// </summary>
-        private List<object> _allItems = null;
+        private List<object> _allItems = new List<object>();
 
         /// <summary>
         /// ColDef set up as for grouping
         /// </summary>
         private ListViewColumnDef _groupByCol = null;
 
+        /// <summary>
+        /// .NET type for the bound list.  This will be used to retrieve property values 
+        /// </summary>
+        private Type _listItemType = null;
+
+        private ColumnHeaderAutoResizeStyle _autoResizeStyle = ColumnHeaderAutoResizeStyle.None;
         /// <summary>
         /// Helper method for the column to be used in grouping
         /// </summary>
@@ -51,14 +56,6 @@ namespace XrmToolBox.Controls
                 return _groupByCol;
             }
         }
-        /// <summary>
-        /// .NET type for the bound list.  This will be used to retrieve property values 
-        /// </summary>
-        private Type _listItemType = null;
-
-        private ColumnHeaderAutoResizeStyle _autoResizeStyle = ColumnHeaderAutoResizeStyle.None;
-
-        #endregion
         #endregion
 
         #region Runtime properties
@@ -109,7 +106,10 @@ namespace XrmToolBox.Controls
         protected virtual void ResetListViewColDefs() {
             _listViewColDefs = new ListViewColumnDef[0];
         }
-
+        /// <summary>
+        /// Property Grid helper methods 
+        /// </summary>
+        /// <returns></returns>
         protected virtual bool ShouldListViewColDefs()
         {
             return true;
@@ -232,7 +232,7 @@ namespace XrmToolBox.Controls
         /// <param name="items"></param>
         protected internal void SetAllItems<T>(List<T> items)
         {
-            _allItems = items.ConvertAll<object>(new Converter<T, object>( (item)=> { return item as object; })); 
+            _allItems = items.ConvertAll<object>(new Converter<T, object>( (item)=> { return item as object; }));
 
             ListItemType = typeof(T);
 
@@ -243,13 +243,34 @@ namespace XrmToolBox.Controls
             PopulateListView();
         }
 
-        ///// <summary>
-        ///// Internal collection of items bound to the list view.
-        ///// </summary>
-        //protected internal List<object> AllItems
-        //{
-        //    get { return _allItems; }
-        //}
+        /// <summary>
+        /// Internal collection of items bound to the list view.
+        /// </summary>
+        protected internal List<object> AllItems
+        {
+            get { return _allItems; }
+        }
+
+        /// <summary>
+        /// Clear out the saved entities list and update the ListView
+        /// </summary>
+        public override void ClearData()
+        {
+            // clear out list view list, collection of entities, etc.
+            _listViewItemsColl?.Clear();
+            CheckedItems = new List<object>();
+            _allItems = new List<object>();
+
+            ListViewMain.Items.Clear();
+
+            if (SelectedItem != null)
+            {
+                this.ToggleMainControlsEnabled();
+            }
+            SelectedItemChanged?.Invoke(this, new EventArgs());
+
+            base.ClearData();
+        }
 
         /// <summary>
         /// The currently selected object in the ListView
@@ -517,11 +538,28 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Sort the current list of Entities in the ListView
+        /// Close the control and release all resources
         /// </summary>
-        /// <param name="column">ListView column index to be sorted</param>
-        /// <param name="sortOrder"></param>
-        private void SortList(int column, SortOrder? sortOrder = null)
+        public override void Close()
+        {
+            ClearData();
+            base.Close();
+        }
+
+        /// <summary>
+        /// Internal method that allows us to decide whether to throw an exception to the user, or to simply add notification
+        /// </summary>
+        /// <param name="throwException"></param>
+        protected virtual void LoadData(bool throwException) {
+        }
+
+
+        /// <summary>
+        /// Sort the current list of items in the ListView
+        /// </summary>
+        /// <param name="sortColumn">ListView column index to be sorted</param>
+        /// <param name="sortOrder">Sort order for the selected column</param>
+        public void SortList(int sortColumn, SortOrder? sortOrder = null)
         {
             // toggle the sort order if not passed as a param
             if (sortOrder == null)
@@ -536,7 +574,7 @@ namespace XrmToolBox.Controls
             ListViewMain.Sorting = sortOrder.Value;
 
             ListSortOrder = ListViewMain.Sorting;
-            ListSortColumn = column;
+            ListSortColumn = sortColumn;
 
             // now apply the sorter helper 
             ListViewMain.ListViewItemSorter = new ListViewItemComparer(ListSortColumn, ListViewMain.Sorting);
@@ -584,7 +622,6 @@ namespace XrmToolBox.Controls
                     }
                 }
             }
-
             CheckedItemsChanged?.Invoke(this, new EventArgs());
         }
 
@@ -702,7 +739,6 @@ namespace XrmToolBox.Controls
 
             FilterListComplete?.Invoke(this, new EventArgs());
         }
-
         #endregion
 
         #region Additional UI element handlers
@@ -711,7 +747,6 @@ namespace XrmToolBox.Controls
         /// </summary>
         protected override void ToggleMainControlsEnabled()
         {
-
             if (Service != null)
             {
                 toolStripTextFilter.Enabled =
@@ -786,6 +821,5 @@ namespace XrmToolBox.Controls
         }
 
         #endregion
-
     }
 }

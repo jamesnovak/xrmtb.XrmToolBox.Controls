@@ -209,6 +209,21 @@ namespace XrmToolBox.Controls
         public virtual void UpdateConnection(IOrganizationService newService)
         {
             _service = newService;
+            
+            // if the service had previously been set, then clear things out
+            if (Service != null)
+            {
+                ClearData();
+            }
+
+            // toggle main controls based on the state of the new service 
+            this.ToggleMainControlsEnabled();
+
+            // if the auto load is set, now is the time to reload!
+            if (AutoLoadData && (Service != null))
+            {
+                LoadData();
+            }
         }
         #endregion
 

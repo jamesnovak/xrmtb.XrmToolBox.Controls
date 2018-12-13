@@ -70,7 +70,8 @@ namespace XrmToolBox.Controls
             CloseTool();
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        #region Call external methods on control
+        private void ToolButtonLoadData_Click(object sender, EventArgs e)
         {
             // do stuff based on active tab
             switch (tabControlMain.SelectedTab.Name)
@@ -96,7 +97,106 @@ namespace XrmToolBox.Controls
                     break;
             }
         }
+        private void ToolButtonClearData_Click(object sender, EventArgs e)
+        {
+            // do stuff based on active tab
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                    EntityListControl.ClearData();
+                    break;
+                case "tabPageEntDropdown":
+                    EntityDropdown.ClearData();
+                    break;
+                case "tabPageAttrList":
+                    AttribListControl.ClearData();
+                    EntityDropdownAttribList.ClearData();
 
+                    break;
+                case "tabPageAttrDropDown":
+                    AttributeDropdown.ClearData();
+                    EntityDropdownAttribs.ClearData();
+
+                    break;
+                case "tabPageSolution":
+                    SolutionDropdown.ClearData();
+                    break;
+            }
+        }
+
+        private void ToolButtonUpdateConnection_Click(object sender, EventArgs e)
+        {
+            // do stuff based on active tab
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                    EntityListControl.UpdateConnection(Service);
+                    break;
+                case "tabPageEntDropdown":
+                    EntityDropdown.UpdateConnection(Service);
+                    break;
+                case "tabPageAttrList":
+                    AttribListControl.UpdateConnection(Service);
+                    EntityDropdownAttribList.UpdateConnection(Service);
+
+                    break;
+                case "tabPageAttrDropDown":
+                    AttributeDropdown.UpdateConnection(Service);
+                    EntityDropdownAttribs.UpdateConnection(Service);
+
+                    break;
+                case "tabPageSolution":
+                    SolutionDropdown.UpdateConnection(Service);
+                    break;
+            }
+        }
+        private void ToolButtonClose_Click(object sender, EventArgs e)
+        {
+            // do stuff based on active tab
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                    EntityListControl.Close();
+                    break;
+                case "tabPageEntDropdown":
+                    EntityDropdown.Close();
+                    break;
+                case "tabPageAttrList":
+                    AttribListControl.Close();
+                    EntityDropdownAttribList.Close();
+
+                    break;
+                case "tabPageAttrDropDown":
+                    AttributeDropdown.Close();
+                    EntityDropdownAttribs.Close();
+
+                    break;
+                case "tabPageSolution":
+                    SolutionDropdown.Close();
+                    break;
+            }
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            toolStripTextFilter.Clear();
+            bool enabled = false;
+
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                case "tabPageAttrList":
+                    enabled = true;
+                    enabled = true;
+                    break;
+                default:
+                    enabled = false;
+                    break;
+            }
+            toolStripLabelFilter.Enabled = enabled;
+            toolStripTextFilter.Enabled = enabled;
+        }
+        #endregion
         /// <summary>
         /// This event occurs when the plugin is closed
         /// </summary>
@@ -153,7 +253,12 @@ namespace XrmToolBox.Controls
         {
             UpdateControlLogger(textEntListLog, $"CheckedItemsChanged - Checked Entities count: {EntityListControl.CheckedEntities.Count}");
 
-            var ent = EntityListControl.CheckedEntities[0];
+            EntityMetadata ent = null;
+
+            if (EntityListControl.CheckedEntities.Count > 0)
+            {
+                ent = EntityListControl.CheckedEntities[0];
+            }
 
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, ent);
         }
@@ -308,7 +413,7 @@ namespace XrmToolBox.Controls
         }
         #endregion
 
-        #region Attrib Dropdown events
+        #region Attrib ListControl events
 
         private void EntityDropdownAttribList_SelectedItemChanged(object sender, EventArgs e)
         {
@@ -357,6 +462,7 @@ namespace XrmToolBox.Controls
         }
 
         #endregion
+        
         #region Solution Dropdown events
         private void SolutionsDropdown_LoadDataComplete(object sender, EventArgs e)
         {
@@ -431,5 +537,22 @@ namespace XrmToolBox.Controls
 
         #endregion
 
+        /// <summary>
+        /// Apply the text filter programmatically 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripTextFilter_TextChanged(object sender, EventArgs e)
+        {
+            switch (tabControlMain.SelectedTab.Name)
+            {
+                case "tabPageEntList":
+                    EntityListControl.FilterList(toolStripTextFilter.Text);
+                    break;
+                case "tabPageAttrList":
+                    AttribListControl.FilterList(toolStripTextFilter.Text);
+                    break;
+            }
+        }
     }
 }

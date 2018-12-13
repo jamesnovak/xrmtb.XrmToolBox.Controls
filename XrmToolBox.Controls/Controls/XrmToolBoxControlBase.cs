@@ -191,7 +191,15 @@ namespace XrmToolBox.Controls
         /// </summary>
         public virtual void Close()
         {
+            OnBeginClose();
+
             _service = null;
+
+            // use this. to ensure that any overrides are called
+            this.ClearData();
+
+            ToggleMainControlsEnabled();
+
             OnCloseComplete();
         }
 
@@ -224,6 +232,8 @@ namespace XrmToolBox.Controls
             {
                 LoadData();
             }
+
+            ToggleMainControlsEnabled();
         }
         #endregion
 

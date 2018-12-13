@@ -60,5 +60,16 @@ namespace XrmToolBox.Controls
         /// ListView column item width
         /// </summary>
         public int Width { get; set; } = 100;
+
+        /// <summary>
+        /// Easier to read ...
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var filter = (IsFilterColumn) ? "Filter" : "No Filter";
+            var group = (IsGroupColumn) ? "Grouping" : "No Grouping";
+            return $"{DisplayName} ({Name}), Order: {Order}, {filter}, {group}, {Width} wide";
+        }
     }
 }

@@ -121,7 +121,6 @@ namespace XrmToolBox.Controls
         [Category("XrmToolBox")]
         [DisplayName("Display Toolbar")]
         [Description("Toggle the display of the toolbar within the control")]
-        [Browsable(true)]
         public bool DisplayToolbar
         {
             get { return toolStripMain.Visible; }
@@ -162,22 +161,24 @@ namespace XrmToolBox.Controls
         [Category("XrmToolBox")]
         [DisplayName("List Filter String")]
         [Description("Filter string applied to the main ListView control for the loaded Item List.")]
-        [Browsable(false)]
         public string ListFilterString
         {
             get {
                 var filter = toolStripTextFilter.Text;
                 return (filter != null) ? filter.Trim() : filter;
             }
-            internal set { toolStripTextFilter.Text = value; }
+            internal set {
+                if (DesignMode) return;
+                toolStripTextFilter.Text = value;
+            }
         }
 
         /// <summary>
-        /// Current SortOrder for the Entity List View
+        /// Current SortOrder for the main List View
         /// </summary>
         [Category("XrmToolBox")]
         [DisplayName("List Sort Order")]
-        [Description("Current SortOrder for the Entity List View.")]
+        [Description("Current SortOrder for the main List View.")]
         [Browsable(false)]
         public SortOrder ListSortOrder
         {
@@ -188,7 +189,7 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Current SortColumn index for the Entity List View
+        /// Current SortColumn index for the main List View
         /// </summary>
         [Category("XrmToolBox")]
         [DisplayName("List Sort Column")]
@@ -252,11 +253,30 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Clear out the saved entities list and update the ListView
+        /// The currently selected object in the ListView
+        /// </summary>
+        protected internal object SelectedItem { get; private set; } = null;
+
+        /// <summary>
+        /// List of all checked items in the ListView
+        /// </summary>
+        protected internal List<object> CheckedItems { get; private set; } = null;
+
+        /// <summary>
+        /// Filter the list of items using the current filter settings
+        /// </summary>
+        /// <param name="filterString"></param>
+        public void FilterList(string filterString)
+        {
+            this.toolStripTextFilter.Text = filterString;
+        }
+
+        /// <summary>
+        /// Clear out the saved items list and update the ListView
         /// </summary>
         public override void ClearData()
         {
-            // clear out list view list, collection of entities, etc.
+            // clear out list view list, collection of items, etc.
             _listViewItemsColl?.Clear();
             CheckedItems = new List<object>();
             _allItems = new List<object>();
@@ -272,15 +292,6 @@ namespace XrmToolBox.Controls
             base.ClearData();
         }
 
-        /// <summary>
-        /// The currently selected object in the ListView
-        /// </summary>
-        protected internal object SelectedItem { get; private set; } = null;
-
-        /// <summary>
-        /// List of all checked EntityMetadata objects in the ListView
-        /// </summary>
-        protected internal List<object> CheckedItems { get; private set; } = null;
         #endregion
 
         #region Events
@@ -363,7 +374,10 @@ namespace XrmToolBox.Controls
                     for (var i = 1; i< cols.Count; i++) {
                         var prop = props[cols[i].Name];
                         var colVal = Utility.GetPropertyValue<string>(item, prop);
-                        lvItem.SubItems.Add(new ListViewItem.ListViewSubItem(lvItem, colVal));
+                        var subitem = new ListViewItem.ListViewSubItem(lvItem, colVal) {
+                            Name = cols[i].Name
+                        };
+                        lvItem.SubItems.Add(subitem);
                     }
 
                     // add to the internal collection of ListView Items and the external list
@@ -498,7 +512,7 @@ namespace XrmToolBox.Controls
             if (!e.IsSelected)
                 return;
 
-            // grab the current selected entity.
+            // grab the current selected object from the ListItem tag.
             SelectedItem = e.Item.Tag;
 
             SelectedItemChanged?.Invoke(this, new EventArgs());
@@ -538,15 +552,6 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Close the control and release all resources
-        /// </summary>
-        public override void Close()
-        {
-            ClearData();
-            base.Close();
-        }
-
-        /// <summary>
         /// Internal method that allows us to decide whether to throw an exception to the user, or to simply add notification
         /// </summary>
         /// <param name="throwException"></param>
@@ -570,7 +575,7 @@ namespace XrmToolBox.Controls
             _performingBulkSelection = true;
             ListViewMain.SuspendLayout();
 
-            // update entities list and save the values to properties
+            // update the main list and save the values to properties
             ListViewMain.Sorting = sortOrder.Value;
 
             ListSortOrder = ListViewMain.Sorting;
@@ -673,9 +678,9 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Filter the entities list using the text in the text box.
+        /// Filter the list using the text in the text box.
         /// </summary>
-        private void FilterEntitiesList()
+        private void FilterList()
         {
             string filterText = toolStripTextFilter.Text.ToLower();
             List<ListViewItem> newList = null;
@@ -698,10 +703,11 @@ namespace XrmToolBox.Controls
                 newList = new List<ListViewItem>();
                 foreach (var col in filterCols)
                 {
-                    // filter the master list and bind it to the list view
-                    var curr = _listViewItemsColl
-                                .Where(i => i.Text.ToLower().Contains(filterText) ||
-                                            i.SubItems[col.Name].Text.ToLower().Contains(filterText)
+                    // filter the master list and bind it to the list view. Col 0 is the text while the rest are subitems/cols
+                    var curr =  _listViewItemsColl
+                                .Where(i => (col.Order == 0) ? 
+                                i.Text.ToLower().Contains(filterText) : 
+                                i.SubItems[col.Name].Text.ToLower().Contains(filterText)
                                 );
 
                     // add to the current list
@@ -747,13 +753,14 @@ namespace XrmToolBox.Controls
         /// </summary>
         protected override void ToggleMainControlsEnabled()
         {
+            var count = AllItems?.Count;
             if (Service != null)
             {
                 toolStripTextFilter.Enabled =
                 toolLinkCheckAll.Enabled =
-                toolLinkCheckNone.Enabled = false;
+                toolLinkCheckNone.Enabled = (count > 0);
                 toolStripMain.Enabled =
-                toolButtonLoadEntities.Enabled = true;
+                toolButtonLoadItems.Enabled = true;
             }
             else
             {
@@ -768,7 +775,7 @@ namespace XrmToolBox.Controls
         /// <param name="e"></param>
         private void ToolStripTextFilter_TextChanged(object sender, EventArgs e)
         {
-            FilterEntitiesList();
+            FilterList();
         }
 
         /// <summary>
@@ -805,7 +812,7 @@ namespace XrmToolBox.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolButtonLoadEntities_Click(object sender, EventArgs e)
+        private void ToolButtonLoadItems_Click(object sender, EventArgs e)
         {
             this.LoadData();
         }

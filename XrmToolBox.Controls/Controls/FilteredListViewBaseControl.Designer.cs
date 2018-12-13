@@ -38,7 +38,7 @@
             this.colState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
-            this.toolButtonLoadEntities = new System.Windows.Forms.ToolStripButton();
+            this.toolButtonLoadItems = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolLinkCheckAll = new System.Windows.Forms.ToolStripLabel();
             this.toolLinkCheckNone = new System.Windows.Forms.ToolStripLabel();
@@ -119,7 +119,7 @@
             this.toolStripMain.AutoSize = false;
             this.toolStripMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolButtonLoadEntities,
+            this.toolButtonLoadItems,
             this.toolStripSeparator1,
             this.toolLinkCheckAll,
             this.toolLinkCheckNone,
@@ -136,15 +136,15 @@
             // 
             // toolButtonLoadEntities
             // 
-            this.toolButtonLoadEntities.AutoSize = false;
-            this.toolButtonLoadEntities.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonLoadEntities.Image")));
-            this.toolButtonLoadEntities.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolButtonLoadEntities.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolButtonLoadEntities.Name = "toolButtonLoadEntities";
-            this.toolButtonLoadEntities.Size = new System.Drawing.Size(90, 27);
-            this.toolButtonLoadEntities.Text = "Load Items";
-            this.toolButtonLoadEntities.ToolTipText = "Load / Reload Entities from the server";
-            this.toolButtonLoadEntities.Click += new System.EventHandler(this.ToolButtonLoadEntities_Click);
+            this.toolButtonLoadItems.AutoSize = false;
+            this.toolButtonLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonLoadEntities.Image")));
+            this.toolButtonLoadItems.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolButtonLoadItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolButtonLoadItems.Name = "toolButtonLoadEntities";
+            this.toolButtonLoadItems.Size = new System.Drawing.Size(90, 27);
+            this.toolButtonLoadItems.Text = "Load Items";
+            this.toolButtonLoadItems.ToolTipText = "Load / Reload Entities from the server";
+            this.toolButtonLoadItems.Click += new System.EventHandler(this.ToolButtonLoadItems_Click);
             // 
             // toolStripSeparator1
             // 
@@ -240,7 +240,7 @@
         private System.Windows.Forms.ColumnHeader colState;
         private System.Windows.Forms.ColumnHeader colDescription;
         protected System.Windows.Forms.ListView ListViewMain;
-        protected System.Windows.Forms.ToolStripButton toolButtonLoadEntities;
+        protected System.Windows.Forms.ToolStripButton toolButtonLoadItems;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripLabel toolLinkCheckAll;
         protected System.Windows.Forms.ToolStripLabel toolLinkCheckNone;

@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Microsoft.Xrm.Sdk.Metadata;
-using System.Reflection;
 
 namespace XrmToolBox.Controls
 {
@@ -18,7 +12,7 @@ namespace XrmToolBox.Controls
     public partial class AttributeListControl : FilteredListViewBaseControl
     {
         private EntityMetadata _parentEntity;
-
+        #region Public Properties
         /// <summary>
         /// Reference to the Parent Entity for the attributes
         /// </summary>
@@ -92,13 +86,15 @@ namespace XrmToolBox.Controls
                 new ListViewColumnDef( "SchemaName", 0, "Schema Name"){ Width = 150 },
                 new ListViewColumnDef("DisplayName", 1, "Display Name"),
                 new ListViewColumnDef("AttributeTypeName", 2,"Attribute Type") { IsGroupColumn = true },
-                new ListViewColumnDef("Description", 3){ Width = 250 },
+                new ListViewColumnDef(){ Name="Description", Order=3, Width = 250 },
                 new ListViewColumnDef( "IsPrimaryId", 4, "Is Primary Id"),
                 new ListViewColumnDef("IsPrimaryName", 5, "Is Primary Name"),
                 new ListViewColumnDef("IsManaged", 6, "Is Managed")
             };
         }
-        
+        #endregion
+
+        #region Public methods
         /// <summary>
         /// Constructor!
         /// </summary>
@@ -119,6 +115,90 @@ namespace XrmToolBox.Controls
             base.ClearData();
         }
 
+        /// <summary>
+        /// Load the Attributes using the current IOrganizationService.
+        /// The call is asynchronous and will leverage the WorkAsync object on the parent XrmToolBox control
+        /// </summary>
+        public override void LoadData()
+        {
+            // this is for developers!  If LoadData is called from within WorkAsync, the controls will be 
+            // inaccessible because of the worker thread
+            if (this.InvokeRequired)
+                throw new InvalidOperationException("This method cannot be invoked from WorkAsync");
+
+            LoadData(true);
+        }
+
+        /// <summary>
+        /// Private method that will rethrow an Exception if specified in the parameter.
+        /// This is meant to allow for external programmatic calls to load vs those from the built in controls
+        /// </summary>
+        /// <param name="throwException">Flag indicating whether to rethrow a captured exception</param>
+        protected override void LoadData(bool throwException)
+        {
+            OnBeginLoadData();
+
+            if (Service == null || ParentEntityLogicalName == null)
+            {
+                var ex = new InvalidOperationException("The Service reference and Parent Entity must be set before loading the Entities list");
+
+                // raise the error event and if set, throw error
+                OnNotificationMessage(ex.Message, MessageLevel.Exception, ex);
+
+                if (throwException)
+                {
+                    throw ex;
+                }
+                return;
+            }
+
+            try
+            {
+                OnProgressChanged(0, "Begin loading Entity Attributes from CRM");
+
+                OnBeginLoadData();
+                ToggleMainControlsEnabled(false);
+
+                // load the entity metadata for the current entity logical name
+                var worker = new BackgroundWorker();
+
+                worker.DoWork += (w, e) =>
+                {
+                    var parentEntity = CrmActions.RetrieveEntity(Service, ParentEntityLogicalName, true, new List<EntityFilters> { EntityFilters.Attributes });
+                    e.Result = parentEntity;
+                };
+
+                worker.RunWorkerCompleted += (s, e) =>
+                {
+                    // set the parent entity reference with the loaded attributes
+                    _parentEntity = e.Result as EntityMetadata;
+
+                    // set the base control list of all items to populate the list view
+                    SetAllItems<AttributeMetadata>(ParentEntity.Attributes.ToList<AttributeMetadata>());
+
+                    ToggleMainControlsEnabled();
+
+                    OnProgressChanged(100, "Loading Entity Attributes from CRM complete!");
+
+                    base.LoadData();
+                };
+
+                // kick off the worker thread!
+                worker.RunWorkerAsync();
+            }
+            catch (System.ServiceModel.FaultException ex)
+            {
+                OnNotificationMessage($"An error occured attetmpting to load the list of Entity Attributes", MessageLevel.Exception, ex);
+
+                if (throwException)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
+
+        #region Private methods 
         /// <summary>
         /// Set a reference to the parent entity for the attributes
         /// </summary>
@@ -183,85 +263,6 @@ namespace XrmToolBox.Controls
                 LoadData(false);
             }
         }
-
-        /// <summary>
-        /// Load the Attributes using the current IOrganizationService.
-        /// The call is asynchronous and will leverage the WorkAsync object on the parent XrmToolBox control
-        /// </summary>
-        public override void LoadData()
-        {
-            // this is for developers!  If LoadData is called from within WorkAsync, the controls will be 
-            // inaccessible because of the worker thread
-            if (this.InvokeRequired)
-                throw new InvalidOperationException("This method cannot be invoked from WorkAsync");
-
-            LoadData(true);
-        }
-
-        /// <summary>
-        /// Private method that will rethrow an Exception if specified in the parameter.
-        /// This is meant to allow for external programmatic calls to load vs those from the built in controls
-        /// </summary>
-        /// <param name="throwException">Flag indicating whether to rethrow a captured exception</param>
-        protected override void LoadData(bool throwException)
-        {
-            OnBeginLoadData();
-
-            if (Service == null || ParentEntityLogicalName == null)
-            {
-                var ex = new InvalidOperationException("The Service reference and Parent Entity must be set before loading the Entities list");
-
-                // raise the error event and if set, throw error
-                OnNotificationMessage(ex.Message, MessageLevel.Exception, ex);
-
-                if (throwException)
-                {
-                    throw ex;
-                }
-                return;
-            }
-
-            try
-            {
-                OnProgressChanged(0, "Begin loading Entity Attributes from CRM");
-
-                OnBeginLoadData();
-                ToggleMainControlsEnabled(false);
-
-                // load the entity metadata for the current entity logical name
-                var worker = new BackgroundWorker();
-
-                worker.DoWork += (w, e) =>
-                {
-                    var parentEntity = CrmActions.RetrieveEntity(Service, ParentEntityLogicalName, true, new List<EntityFilters> { EntityFilters.Attributes });
-                    e.Result = parentEntity;
-                };
-
-                worker.RunWorkerCompleted += (s, e) =>
-                {
-                    // set the parent entity reference with the loaded attributes
-                    _parentEntity = e.Result as EntityMetadata;
-
-                    // set the base control list of all items to populate the list view
-                    SetAllItems<AttributeMetadata>(ParentEntity.Attributes.ToList<AttributeMetadata>());
-                    ToggleMainControlsEnabled(AllAttributes.Count > 0);
-
-                    OnProgressChanged(100, "Loading Entity Attributes from CRM complete!");
-
-                    base.LoadData();
-                };
-
-                // kick off the worker thread!
-                worker.RunWorkerAsync();
-            }
-            catch (System.ServiceModel.FaultException ex)
-            {
-                OnNotificationMessage($"An error occured attetmpting to load the list of Entity Attributes", MessageLevel.Exception, ex);
-
-                if (throwException) {
-                    throw ex;
-                }
-            }
-        }
+        #endregion
     }
 }

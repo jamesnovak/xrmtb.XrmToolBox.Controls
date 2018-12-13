@@ -7,6 +7,9 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace XrmToolBox.Controls
 {
+    /// <summary>
+    /// User control that will load all AttributeMetadata for a selected EntityMetadata object
+    /// </summary>
     public partial class AttributeDropdownControl : XrmToolBoxControlBase
     {
         /// <summary>
@@ -181,7 +184,8 @@ namespace XrmToolBox.Controls
 
             ToggleMainControlsEnabled(false);
 
-            ClearData();
+            // clear out the data, but leave the parent entity ref 
+            ClearData(false);
 
             try
             {
@@ -226,6 +230,11 @@ namespace XrmToolBox.Controls
         /// </summary>
         public override void ClearData()
         {
+            ClearData(true);
+        }
+
+        private void ClearData(bool clearParent) {
+
             OnBeginClearData();
 
             if (SelectedAttribute != null)
@@ -234,6 +243,10 @@ namespace XrmToolBox.Controls
                 SelectedItemChanged?.Invoke(this, new EventArgs());
             }
 
+            if (clearParent)
+            {
+                _parentEntity = null;
+            }
             comboAttributes.DataSource = null;
             comboAttributes.Items.Clear();
 
@@ -247,7 +260,8 @@ namespace XrmToolBox.Controls
         {
             comboAttributes.SuspendLayout();
 
-            ClearData();
+            comboAttributes.Items.Clear();
+            comboAttributes.DataSource = null;
 
             var items = from attrib in ParentEntity.Attributes
                         where attrib.AttributeType != AttributeTypeCode.Virtual &&
@@ -261,11 +275,6 @@ namespace XrmToolBox.Controls
             comboAttributes.DataSource = items.OrderBy(e => e.Name).ToList();
             comboAttributes.ValueMember = "SummaryName";
             comboAttributes.ValueMember = "Name";
-
-            //if (comboAttributes.Items.Count > 0)
-            //{
-            //    comboAttributes.SelectedIndex = 0;
-            //}
 
             comboAttributes.ResumeLayout();
 

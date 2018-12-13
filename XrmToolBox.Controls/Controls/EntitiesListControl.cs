@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Forms;
-using Microsoft.Xrm.Sdk;
-using XrmToolBox.Extensibility;
 using Microsoft.Xrm.Sdk.Metadata;
-using System.Threading.Tasks;
 
 namespace XrmToolBox.Controls
 {
@@ -229,7 +225,7 @@ namespace XrmToolBox.Controls
                     // now that the entities are loaded, populate the list view.
                     SetAllItems<EntityMetadata>(allEntities);
 
-                    ToggleMainControlsEnabled(AllEntities.Count > 0);
+                    ToggleMainControlsEnabled();
 
                     OnProgressChanged(100, "Loading Entities from CRM Complete!");
 

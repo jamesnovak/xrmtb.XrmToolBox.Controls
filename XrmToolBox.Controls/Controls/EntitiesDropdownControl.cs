@@ -80,22 +80,13 @@ namespace XrmToolBox.Controls
                 SelectedItemChanged?.Invoke(this, new EventArgs());
             }
 
+            AllEntities?.Clear();
+            AllEntities = new List<EntityMetadata>();
+
             comboEntities.DataSource = null;
             comboEntities.Items.Clear();
 
             base.ClearData();
-        }
-
-        /// <summary>
-        /// Close the control and release anything that might be hanging around
-        /// </summary>
-        public override void Close()
-        {
-            OnBeginClose();
-
-            ClearData();
-
-            base.Close();
         }
 
         /// <summary>
@@ -177,29 +168,6 @@ namespace XrmToolBox.Controls
                 }
             }
         }
-
-        /// <summary>
-        /// Handle the updated connection 
-        /// </summary>
-        /// <param name="newService">Reference to the new IOrganizationService</param>
-        public override void UpdateConnection(IOrganizationService newService)
-        {
-            base.UpdateConnection(newService);
-
-            // if the service had previously been set, then clear things out
-            if (Service != null)
-            {
-                ClearData();
-            }
-
-            // if the auto load is set, now is the time to reload!
-            if (_autoLoadData && (Service != null))
-            {
-                LoadData(true);
-            }
-
-            ToggleMainControlsEnabled();
-        }
         #endregion
 
         #region Private helper methods
@@ -210,7 +178,8 @@ namespace XrmToolBox.Controls
         {
             comboEntities.SuspendLayout();
 
-            ClearData();
+            comboEntities.Items.Clear();
+            comboEntities.DataSource = null;
 
             var items = from ent in AllEntities
                         select new ListDisplayItem(

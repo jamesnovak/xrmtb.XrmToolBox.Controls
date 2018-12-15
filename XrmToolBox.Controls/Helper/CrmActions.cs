@@ -384,6 +384,50 @@ namespace XrmToolBox.Controls
 
             return resp.Entities.ToList();
         }
+
+
+        /// <summary>
+        /// https://simonetagliaro.wordpress.com/2012/10/02/retrieve-all-the-entities-within-a-solution-crm-2011/
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="solutionName"></param>
+        /// <param name="retrieveAsIfPublished"></param>
+        /// <returns></returns>
+        public static List<EntityMetadata> RetrieveEntitiesForSolution(IOrganizationService service, string solutionName, bool retrieveAsIfPublished = true)
+        {
+            // get solution components for solution
+            var query = new QueryExpression
+            {
+                EntityName = "solutioncomponent",
+                ColumnSet = new ColumnSet("objectid"),
+                Criteria = new FilterExpression() {
+                    Conditions = { new ConditionExpression("componenttype", ConditionOperator.Equal, 1) }
+                },
+                LinkEntities = {
+                    new LinkEntity("solutioncomponent", "solution", "solutionid", "solutionid", JoinOperator.Inner) {
+                        LinkCriteria = new FilterExpression() {
+                            Conditions = { new ConditionExpression("uniquename", ConditionOperator.Equal, solutionName) }
+                        }
+                    }
+                }
+            };
+            var components = service.RetrieveMultiple(query);
+            
+            //Get all entities
+            var entRequest = new RetrieveAllEntitiesRequest() {
+                EntityFilters = EntityFilters.Entity,
+                RetrieveAsIfPublished = true
+            };
+
+            var entities = (RetrieveAllEntitiesResponse)service.Execute(entRequest);
+            //Join entities Id and solution Components Id 
+            return entities.EntityMetadata
+                .Join(
+                components.Entities.Select(x => x.Attributes["objectid"]), 
+                    x => x.MetadataId, y => y, 
+                    (x, y) => x)
+                .ToList();
+        }
         #endregion
 
         /// <summary>

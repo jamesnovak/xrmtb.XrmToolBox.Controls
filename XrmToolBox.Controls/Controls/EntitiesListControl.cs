@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 
 namespace XrmToolBox.Controls
@@ -14,7 +15,7 @@ namespace XrmToolBox.Controls
         #region Public properties
 
         #region Options
-        
+
         /// <summary>
         /// Defines which Entity types should be loaded on retrieve.
         /// </summary>
@@ -25,6 +26,23 @@ namespace XrmToolBox.Controls
         {
             get { return _config.EntityTypes; }
             set { _config.EntityTypes = value; }
+        }
+
+        /// <summary>
+        /// Defines which Entity types should be loaded on retrieve.
+        /// </summary>
+        [Category("XrmToolBox")]
+        [DisplayName("Display Solution Dropdown")]
+        [Description("Defines which Entity types should be loaded on retrieve.")]
+        public bool DisplaySolutionDropdown
+        {
+            get => solutionsDropdown.Visible;
+            set {
+                solutionsDropdown.Visible = value;
+                if (!solutionsDropdown.Visible) {
+                    solutionsDropdown.ClearData();
+                }
+            }
         }
 
         /// <summary>
@@ -95,7 +113,7 @@ namespace XrmToolBox.Controls
         {
             get => AllItems?.ConvertAll<EntityMetadata>(new Converter<object, EntityMetadata>((item) => { return item as EntityMetadata; }));
         }
-        
+
         /// <summary>
         /// Set up the ListViewColumnDef defaults
         /// </summary>
@@ -135,6 +153,25 @@ namespace XrmToolBox.Controls
 
         #region IXrmToolBoxControl methods
 
+        /// <summary>
+        ///  Override to account for solution dropdown
+        /// </summary>
+        protected override void ToggleMainControlsEnabled()
+        {
+            base.ToggleMainControlsEnabled();
+            solutionsDropdown.Enabled = buttonLoadItems.Enabled;
+        }
+
+        /// <summary>
+        ///  Override to account for solution dropdown 
+        /// </summary>
+        /// <param name="newService">New service reference</param>
+        public override void UpdateConnection(IOrganizationService newService)
+        {
+            base.UpdateConnection(newService);
+
+            solutionsDropdown.UpdateConnection(newService);
+        }
         /// <summary>
         /// Load the Attributes using the current IOrganizationService.
         /// The call is asynchronous and will leverage the WorkAsync object on the parent XrmToolBox control
@@ -182,7 +219,18 @@ namespace XrmToolBox.Controls
                 var worker = new BackgroundWorker();
 
                 worker.DoWork += (w, e) => {
-                    var entities = CrmActions.RetrieveAllEntities(Service, _config);
+
+                    var solutionName = solutionsDropdown.SelectedSolution?.Attributes["uniquename"].ToString();
+                    var entities = new List<EntityMetadata>();
+
+                    if (solutionName != null)
+                    {
+                        entities = CrmActions.RetrieveEntitiesForSolution(Service, solutionName);
+                    }
+                    else
+                    {
+                        entities = CrmActions.RetrieveAllEntities(Service, _config);
+                    }
                     e.Result = entities;
                 };
 
@@ -242,9 +290,10 @@ namespace XrmToolBox.Controls
                 if (throwException) {
                     throw ex;
                 }
-            }        
+            }
         }
         #endregion
         #endregion
+
     }
 }

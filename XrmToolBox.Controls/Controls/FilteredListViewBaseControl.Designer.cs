@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("System", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Custom", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("System", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Custom", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilteredListViewBaseControl));
             this.ListViewMain = new System.Windows.Forms.ListView();
             this.colDisplayName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,16 +37,18 @@
             this.colSchemaName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStripMain = new System.Windows.Forms.ToolStrip();
-            this.toolButtonLoadItems = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolLinkCheckAll = new System.Windows.Forms.ToolStripLabel();
-            this.toolLinkCheckNone = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelFilter = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextFilter = new System.Windows.Forms.ToolStripTextBox();
-            this.toolButtonClearFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripMain.SuspendLayout();
+            this.flowLayoutPanelToolbar = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonLoadItems = new System.Windows.Forms.Button();
+            this.buttonCheckAll = new System.Windows.Forms.Button();
+            this.buttonCheckNone = new System.Windows.Forms.Button();
+            this.labelFilter = new System.Windows.Forms.Label();
+            this.textFilterList = new System.Windows.Forms.TextBox();
+            this.buttonClearFilter = new System.Windows.Forms.Button();
+            this.splitContainerToolbar = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanelToolbar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).BeginInit();
+            this.splitContainerToolbar.Panel1.SuspendLayout();
+            this.splitContainerToolbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListViewMain
@@ -60,21 +62,20 @@
             this.colDescription});
             this.ListViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListViewMain.FullRowSelect = true;
-            listViewGroup1.Header = "System";
-            listViewGroup1.Name = "System";
-            listViewGroup1.Tag = "System";
-            listViewGroup2.Header = "Custom";
-            listViewGroup2.Name = "Custom";
-            listViewGroup2.Tag = "Custom";
+            listViewGroup7.Header = "System";
+            listViewGroup7.Name = "System";
+            listViewGroup7.Tag = "System";
+            listViewGroup8.Header = "Custom";
+            listViewGroup8.Name = "Custom";
+            listViewGroup8.Tag = "Custom";
             this.ListViewMain.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup7,
+            listViewGroup8});
             this.ListViewMain.HideSelection = false;
-            this.ListViewMain.Location = new System.Drawing.Point(0, 58);
-            this.ListViewMain.Margin = new System.Windows.Forms.Padding(6);
+            this.ListViewMain.Location = new System.Drawing.Point(0, 30);
             this.ListViewMain.MultiSelect = false;
             this.ListViewMain.Name = "ListViewMain";
-            this.ListViewMain.Size = new System.Drawing.Size(1174, 909);
+            this.ListViewMain.Size = new System.Drawing.Size(822, 473);
             this.ListViewMain.TabIndex = 5;
             this.ListViewMain.Tag = "0";
             this.ListViewMain.UseCompatibleStateImageBehavior = false;
@@ -114,140 +115,163 @@
             this.colDescription.Text = "Description";
             this.colDescription.Width = 300;
             // 
-            // toolStripMain
+            // flowLayoutPanelToolbar
             // 
-            this.toolStripMain.AutoSize = false;
-            this.toolStripMain.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolButtonLoadItems,
-            this.toolStripSeparator1,
-            this.toolLinkCheckAll,
-            this.toolLinkCheckNone,
-            this.toolStripSeparator3,
-            this.toolStripLabelFilter,
-            this.toolStripTextFilter,
-            this.toolButtonClearFilter});
-            this.toolStripMain.Location = new System.Drawing.Point(0, 0);
-            this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStripMain.Size = new System.Drawing.Size(1174, 58);
-            this.toolStripMain.TabIndex = 6;
-            this.toolStripMain.Text = "Typescript Helper Class Utility";
+            this.flowLayoutPanelToolbar.Controls.Add(this.buttonLoadItems);
+            this.flowLayoutPanelToolbar.Controls.Add(this.buttonCheckAll);
+            this.flowLayoutPanelToolbar.Controls.Add(this.buttonCheckNone);
+            this.flowLayoutPanelToolbar.Controls.Add(this.labelFilter);
+            this.flowLayoutPanelToolbar.Controls.Add(this.textFilterList);
+            this.flowLayoutPanelToolbar.Controls.Add(this.buttonClearFilter);
+            this.flowLayoutPanelToolbar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelToolbar.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelToolbar.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelToolbar.Name = "flowLayoutPanelToolbar";
+            this.flowLayoutPanelToolbar.Size = new System.Drawing.Size(600, 30);
+            this.flowLayoutPanelToolbar.TabIndex = 8;
             // 
-            // toolButtonLoadEntities
+            // buttonLoadItems
             // 
-            this.toolButtonLoadItems.AutoSize = false;
-            this.toolButtonLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonLoadEntities.Image")));
-            this.toolButtonLoadItems.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolButtonLoadItems.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolButtonLoadItems.Name = "toolButtonLoadEntities";
-            this.toolButtonLoadItems.Size = new System.Drawing.Size(90, 27);
-            this.toolButtonLoadItems.Text = "Load Items";
-            this.toolButtonLoadItems.ToolTipText = "Load / Reload Entities from the server";
-            this.toolButtonLoadItems.Click += new System.EventHandler(this.ToolButtonLoadItems_Click);
+            this.buttonLoadItems.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonLoadItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("buttonLoadItems.Image")));
+            this.buttonLoadItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLoadItems.Location = new System.Drawing.Point(0, 0);
+            this.buttonLoadItems.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonLoadItems.MinimumSize = new System.Drawing.Size(75, 14);
+            this.buttonLoadItems.Name = "buttonLoadItems";
+            this.buttonLoadItems.Size = new System.Drawing.Size(88, 27);
+            this.buttonLoadItems.TabIndex = 0;
+            this.buttonLoadItems.Text = "Load Items";
+            this.buttonLoadItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonLoadItems.UseVisualStyleBackColor = true;
+            this.buttonLoadItems.Click += new System.EventHandler(this.ToolButtonLoadItems_Click);
             // 
-            // toolStripSeparator1
+            // buttonCheckAll
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 58);
+            this.buttonCheckAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonCheckAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCheckAll.Image = ((System.Drawing.Image)(resources.GetObject("buttonCheckAll.Image")));
+            this.buttonCheckAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonCheckAll.Location = new System.Drawing.Point(88, 0);
+            this.buttonCheckAll.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonCheckAll.MinimumSize = new System.Drawing.Size(75, 14);
+            this.buttonCheckAll.Name = "buttonCheckAll";
+            this.buttonCheckAll.Size = new System.Drawing.Size(88, 27);
+            this.buttonCheckAll.TabIndex = 1;
+            this.buttonCheckAll.Text = "Check All";
+            this.buttonCheckAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonCheckAll.UseVisualStyleBackColor = true;
+            this.buttonCheckAll.Click += new System.EventHandler(this.ToolLinkCheckAll_Click);
             // 
-            // toolLinkCheckAll
+            // buttonCheckNone
             // 
-            this.toolLinkCheckAll.ActiveLinkColor = System.Drawing.SystemColors.HotTrack;
-            this.toolLinkCheckAll.AutoSize = false;
-            this.toolLinkCheckAll.Image = ((System.Drawing.Image)(resources.GetObject("toolLinkCheckAll.Image")));
-            this.toolLinkCheckAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolLinkCheckAll.IsLink = true;
-            this.toolLinkCheckAll.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.toolLinkCheckAll.LinkColor = System.Drawing.SystemColors.HotTrack;
-            this.toolLinkCheckAll.Name = "toolLinkCheckAll";
-            this.toolLinkCheckAll.Size = new System.Drawing.Size(95, 22);
-            this.toolLinkCheckAll.Text = "Check All";
-            this.toolLinkCheckAll.ToolTipText = "Check all items in the list of Entities";
-            this.toolLinkCheckAll.Click += new System.EventHandler(this.ToolLinkCheckAll_Click);
+            this.buttonCheckNone.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonCheckNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCheckNone.Image = ((System.Drawing.Image)(resources.GetObject("buttonCheckNone.Image")));
+            this.buttonCheckNone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonCheckNone.Location = new System.Drawing.Point(176, 0);
+            this.buttonCheckNone.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonCheckNone.MinimumSize = new System.Drawing.Size(75, 14);
+            this.buttonCheckNone.Name = "buttonCheckNone";
+            this.buttonCheckNone.Size = new System.Drawing.Size(96, 27);
+            this.buttonCheckNone.TabIndex = 2;
+            this.buttonCheckNone.Text = "Check None";
+            this.buttonCheckNone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonCheckNone.UseVisualStyleBackColor = true;
+            this.buttonCheckNone.Click += new System.EventHandler(this.ToolLinkCheckNone_Click);
             // 
-            // toolLinkCheckNone
+            // labelFilter
             // 
-            this.toolLinkCheckNone.ActiveLinkColor = System.Drawing.SystemColors.HotTrack;
-            this.toolLinkCheckNone.AutoSize = false;
-            this.toolLinkCheckNone.Image = ((System.Drawing.Image)(resources.GetObject("toolLinkCheckNone.Image")));
-            this.toolLinkCheckNone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolLinkCheckNone.IsLink = true;
-            this.toolLinkCheckNone.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.toolLinkCheckNone.LinkColor = System.Drawing.SystemColors.HotTrack;
-            this.toolLinkCheckNone.Name = "toolLinkCheckNone";
-            this.toolLinkCheckNone.Size = new System.Drawing.Size(95, 27);
-            this.toolLinkCheckNone.Text = "Check None";
-            this.toolLinkCheckNone.ToolTipText = "Clear the checked items in the list of Entities";
-            this.toolLinkCheckNone.Click += new System.EventHandler(this.ToolLinkCheckNone_Click);
+            this.labelFilter.Location = new System.Drawing.Point(272, 0);
+            this.labelFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.labelFilter.Name = "labelFilter";
+            this.labelFilter.Size = new System.Drawing.Size(44, 27);
+            this.labelFilter.TabIndex = 3;
+            this.labelFilter.Text = "Filter:";
+            this.labelFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // toolStripSeparator3
+            // textFilterList
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
+            this.textFilterList.Location = new System.Drawing.Point(316, 0);
+            this.textFilterList.Margin = new System.Windows.Forms.Padding(0);
+            this.textFilterList.MaxLength = 100;
+            this.textFilterList.MinimumSize = new System.Drawing.Size(90, 27);
+            this.textFilterList.Multiline = true;
+            this.textFilterList.Name = "textFilterList";
+            this.textFilterList.Size = new System.Drawing.Size(121, 27);
+            this.textFilterList.TabIndex = 4;
+            this.textFilterList.WordWrap = false;
+            this.textFilterList.TextChanged += new System.EventHandler(this.ToolStripTextFilter_TextChanged);
             // 
-            // toolStripLabelFilter
+            // buttonClearFilter
             // 
-            this.toolStripLabelFilter.AutoSize = false;
-            this.toolStripLabelFilter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabelFilter.Image")));
-            this.toolStripLabelFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabelFilter.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-            this.toolStripLabelFilter.Name = "toolStripLabelFilter";
-            this.toolStripLabelFilter.Size = new System.Drawing.Size(60, 27);
-            this.toolStripLabelFilter.Text = "Filter:";
+            this.buttonClearFilter.AutoSize = true;
+            this.buttonClearFilter.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearFilter.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.125F);
+            this.buttonClearFilter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.buttonClearFilter.Location = new System.Drawing.Point(437, 0);
+            this.buttonClearFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonClearFilter.Name = "buttonClearFilter";
+            this.buttonClearFilter.Size = new System.Drawing.Size(27, 30);
+            this.buttonClearFilter.TabIndex = 5;
+            this.buttonClearFilter.Text = "x";
+            this.buttonClearFilter.UseVisualStyleBackColor = true;
+            this.buttonClearFilter.Click += new System.EventHandler(this.ToolButtonClearFilter_Click);
             // 
-            // toolStripTextFilter
+            // splitContainerToolbar
             // 
-            this.toolStripTextFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextFilter.MaxLength = 200;
-            this.toolStripTextFilter.Name = "toolStripTextFilter";
-            this.toolStripTextFilter.Size = new System.Drawing.Size(248, 58);
-            this.toolStripTextFilter.ToolTipText = "Enter a filter for the list of entities";
-            this.toolStripTextFilter.TextChanged += new System.EventHandler(this.ToolStripTextFilter_TextChanged);
+            this.splitContainerToolbar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.splitContainerToolbar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitContainerToolbar.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerToolbar.Name = "splitContainerToolbar";
             // 
-            // toolButtonClearFilter
+            // splitContainerToolbar.Panel1
             // 
-            this.toolButtonClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolButtonClearFilter.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolButtonClearFilter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.toolButtonClearFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolButtonClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolButtonClearFilter.Name = "toolButtonClearFilter";
-            this.toolButtonClearFilter.Size = new System.Drawing.Size(33, 55);
-            this.toolButtonClearFilter.Text = "x";
-            this.toolButtonClearFilter.ToolTipText = "Clear the current filter";
-            this.toolButtonClearFilter.Click += new System.EventHandler(this.ToolButtonClearFilter_Click);
+            this.splitContainerToolbar.Panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.splitContainerToolbar.Panel1.Controls.Add(this.flowLayoutPanelToolbar);
+            // 
+            // splitContainerToolbar.Panel2
+            // 
+            this.splitContainerToolbar.Panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.splitContainerToolbar.Size = new System.Drawing.Size(822, 30);
+            this.splitContainerToolbar.SplitterDistance = 600;
+            this.splitContainerToolbar.SplitterWidth = 5;
+            this.splitContainerToolbar.TabIndex = 1;
             // 
             // FilteredListViewBaseControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ListViewMain);
-            this.Controls.Add(this.toolStripMain);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Controls.Add(this.splitContainerToolbar);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "FilteredListViewBaseControl";
-            this.Size = new System.Drawing.Size(1174, 967);
-            this.toolStripMain.ResumeLayout(false);
-            this.toolStripMain.PerformLayout();
+            this.Size = new System.Drawing.Size(822, 503);
+            this.flowLayoutPanelToolbar.ResumeLayout(false);
+            this.flowLayoutPanelToolbar.PerformLayout();
+            this.splitContainerToolbar.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).EndInit();
+            this.splitContainerToolbar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader colDisplayName;
-        private System.Windows.Forms.ColumnHeader colName;
-        private System.Windows.Forms.ColumnHeader colSchemaName;
-        private System.Windows.Forms.ColumnHeader colState;
-        private System.Windows.Forms.ColumnHeader colDescription;
         protected System.Windows.Forms.ListView ListViewMain;
-        protected System.Windows.Forms.ToolStripButton toolButtonLoadItems;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        protected System.Windows.Forms.ToolStripLabel toolLinkCheckAll;
-        protected System.Windows.Forms.ToolStripLabel toolLinkCheckNone;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        protected System.Windows.Forms.ToolStripLabel toolStripLabelFilter;
-        protected System.Windows.Forms.ToolStripTextBox toolStripTextFilter;
-        protected System.Windows.Forms.ToolStrip toolStripMain;
-        private System.Windows.Forms.ToolStripButton toolButtonClearFilter;
+        protected System.Windows.Forms.FlowLayoutPanel flowLayoutPanelToolbar;
+        protected System.Windows.Forms.Button buttonLoadItems;
+        protected System.Windows.Forms.Button buttonCheckAll;
+        protected System.Windows.Forms.Button buttonCheckNone;
+        protected System.Windows.Forms.Label labelFilter;
+        protected System.Windows.Forms.TextBox textFilterList;
+        protected System.Windows.Forms.Button buttonClearFilter;
+        protected System.Windows.Forms.ColumnHeader colDisplayName;
+        protected System.Windows.Forms.ColumnHeader colName;
+        protected System.Windows.Forms.ColumnHeader colSchemaName;
+        protected System.Windows.Forms.ColumnHeader colState;
+        protected System.Windows.Forms.ColumnHeader colDescription;
+        protected System.Windows.Forms.SplitContainer splitContainerToolbar;
     }
 }

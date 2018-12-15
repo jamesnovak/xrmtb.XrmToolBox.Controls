@@ -123,8 +123,8 @@ namespace XrmToolBox.Controls
         [Description("Toggle the display of the toolbar within the control")]
         public bool DisplayToolbar
         {
-            get { return toolStripMain.Visible; }
-            set { toolStripMain.Visible = value; }
+            get { return splitContainerToolbar.Visible; }
+            set { splitContainerToolbar.Visible = value; }
         }
 
         /// <summary>
@@ -147,8 +147,8 @@ namespace XrmToolBox.Controls
 
                 ListViewMain.CheckBoxes = value;
 
-                toolLinkCheckAll.Enabled = ListViewMain.CheckBoxes;
-                toolLinkCheckNone.Enabled = ListViewMain.CheckBoxes;
+                buttonCheckAll.Enabled = ListViewMain.CheckBoxes;
+                buttonCheckNone.Enabled = ListViewMain.CheckBoxes;
 
                 ListViewMain.ResumeLayout();
                 _performingBulkSelection = false;
@@ -164,12 +164,12 @@ namespace XrmToolBox.Controls
         public string ListFilterString
         {
             get {
-                var filter = toolStripTextFilter.Text;
+                var filter = textFilterList.Text;
                 return (filter != null) ? filter.Trim() : filter;
             }
             internal set {
                 if (DesignMode) return;
-                toolStripTextFilter.Text = value;
+                textFilterList.Text = value;
             }
         }
 
@@ -268,7 +268,7 @@ namespace XrmToolBox.Controls
         /// <param name="filterString"></param>
         public void FilterList(string filterString)
         {
-            this.toolStripTextFilter.Text = filterString;
+            this.textFilterList.Text = filterString;
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace XrmToolBox.Controls
             // handle the enabled changed event
             EnabledChanged += FilteredListViewBaseControl_EnabledChanged;
 
-            ToggleMainControlsEnabled();
+            //ToggleMainControlsEnabled();
         }
 
         #region Main Methods
@@ -682,7 +682,7 @@ namespace XrmToolBox.Controls
         /// </summary>
         private void FilterList()
         {
-            string filterText = toolStripTextFilter.Text.ToLower();
+            string filterText = textFilterList.Text.ToLower();
             List<ListViewItem> newList = null;
 
             _performingBulkSelection = true;
@@ -756,11 +756,11 @@ namespace XrmToolBox.Controls
             var count = AllItems?.Count;
             if (Service != null)
             {
-                toolStripTextFilter.Enabled =
-                toolLinkCheckAll.Enabled =
-                toolLinkCheckNone.Enabled = (count > 0);
-                toolStripMain.Enabled =
-                toolButtonLoadItems.Enabled = true;
+                textFilterList.Enabled =
+                buttonCheckAll.Enabled =
+                buttonCheckNone.Enabled = (count > 0);
+                splitContainerToolbar.Enabled =
+                buttonLoadItems.Enabled = true;
             }
             else
             {
@@ -785,7 +785,7 @@ namespace XrmToolBox.Controls
         /// <param name="e"></param>
         private void ToolButtonClearFilter_Click(object sender, EventArgs e)
         {
-            toolStripTextFilter.Clear();
+            textFilterList.Clear();
         }
         /// <summary>
         /// Clear the list of checked items

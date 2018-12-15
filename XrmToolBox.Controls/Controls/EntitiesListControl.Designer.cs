@@ -28,19 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.solutionsDropdown = new XrmToolBox.Controls.SolutionsDropdownControl();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).BeginInit();
+            this.splitContainerToolbar.Panel2.SuspendLayout();
+            this.splitContainerToolbar.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // ListViewMain
+            // 
+            this.ListViewMain.Size = new System.Drawing.Size(840, 537);
+            // 
+            // colDisplayName
+            // 
+            this.colDisplayName.DisplayIndex = 0;
+            // 
+            // colName
+            // 
+            this.colName.DisplayIndex = 1;
+            // 
+            // colSchemaName
+            // 
+            this.colSchemaName.DisplayIndex = 2;
+            // 
+            // colState
+            // 
+            this.colState.DisplayIndex = 3;
+            // 
+            // colDescription
+            // 
+            this.colDescription.DisplayIndex = 4;
+            // 
+            // splitContainerToolbar
+            // 
+            // 
+            // splitContainerToolbar.Panel2
+            // 
+            this.splitContainerToolbar.Panel2.Controls.Add(this.solutionsDropdown);
+            this.splitContainerToolbar.Size = new System.Drawing.Size(840, 30);
+            this.splitContainerToolbar.SplitterDistance = 466;
+            this.splitContainerToolbar.SplitterWidth = 5;
+            // 
+            // solutionsDropdown
+            // 
+            this.solutionsDropdown.AutoLoadData = false;
+            this.solutionsDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.solutionsDropdown.LanguageCode = 1033;
+            this.solutionsDropdown.Location = new System.Drawing.Point(0, 0);
+            this.solutionsDropdown.Margin = new System.Windows.Forms.Padding(1);
+            this.solutionsDropdown.Name = "solutionsDropdown";
+            this.solutionsDropdown.Service = null;
+            this.solutionsDropdown.Size = new System.Drawing.Size(369, 30);
+            this.solutionsDropdown.TabIndex = 1;
             // 
             // EntitiesListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[0];
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "EntitiesListControl";
-            this.Size = new System.Drawing.Size(1680, 1090);
+            this.Size = new System.Drawing.Size(840, 567);
+            this.splitContainerToolbar.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).EndInit();
+            this.splitContainerToolbar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private SolutionsDropdownControl solutionsDropdown;
     }
 }

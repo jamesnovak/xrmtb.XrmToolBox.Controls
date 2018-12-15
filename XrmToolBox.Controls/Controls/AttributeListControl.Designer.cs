@@ -28,18 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).BeginInit();
+            this.splitContainerToolbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListViewMain
             // 
-            this.ListViewMain.Size = new System.Drawing.Size(1399, 854);
+            this.ListViewMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ListViewMain.Size = new System.Drawing.Size(700, 446);
             // 
             // AttributeListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[0];
+            this.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.Name = "AttributeListControl";
-            this.Size = new System.Drawing.Size(1399, 912);
+            this.Size = new System.Drawing.Size(700, 474);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).EndInit();
+            this.splitContainerToolbar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

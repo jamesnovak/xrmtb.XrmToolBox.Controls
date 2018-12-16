@@ -51,6 +51,7 @@ namespace XrmToolBox.Controls
             SolutionDropdown.Service = Service;
             EntityDropdownAttribs.Service = Service;
             EntityDropdownAttribList.Service = Service;
+            crmGridView1.OrganizationService = Service;
         }
 
         private void AllControls_NotificationMessage(object sender, NotificationEventArgs e)
@@ -224,7 +225,7 @@ namespace XrmToolBox.Controls
 
             AttribListControl.UpdateConnection(newService);
             EntityDropdownAttribList.UpdateConnection(newService);
-
+            crmGridView1.OrganizationService = newService;
         }
 
         #region Entity Listview Control event handlers

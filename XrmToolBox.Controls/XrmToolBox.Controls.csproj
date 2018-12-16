@@ -104,12 +104,20 @@
     <Compile Include="Controls\AttributeListControl.Designer.cs">
       <DependentUpon>AttributeListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CRMGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CRMGridView.designer.cs">
+      <DependentUpon>CRMGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CRMRecordEventArgs.cs" />
     <Compile Include="Controls\EntitiesDropdownControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\EntitiesDropdownControl.Designer.cs">
       <DependentUpon>EntitiesDropdownControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EntitySerializer.cs" />
     <Compile Include="Controls\FilteredListViewBaseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +131,8 @@
     <Compile Include="Controls\EntitiesListControl.Designer.cs">
       <DependentUpon>EntitiesListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MetadataHelper.cs" />
+    <Compile Include="Helper\SerializationStyle.cs" />
     <Compile Include="Controls\SolutionsDropdownControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AttributeListControl.resx">
       <DependentUpon>AttributeListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CRMGridView.resx">
+      <DependentUpon>CRMGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EntitiesDropdownControl.resx">
       <DependentUpon>EntitiesDropdownControl.cs</DependentUpon>

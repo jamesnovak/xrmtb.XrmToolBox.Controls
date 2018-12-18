@@ -183,9 +183,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)$(TargetFileName)" "%25DEVTOOL%25\CRM Tools\XrmToolBox\Plugins\" /Y
-xcopy "$(TargetDir)$(TargetName).pdb" "%25DEVTOOL%25\CRM Tools\XrmToolBox\Plugins\" /Y
-xcopy "$(TargetDir)$(TargetFileName)" "$(ProjectDir)..\NuGet\Package\lib\net47\" /Y
+    <PostBuildEvent>xcopy "$(TargetDir)$(TargetFileName)" "$(ProjectDir)..\NuGet\Package\lib\net47\" /Y
 
 if $(ConfigurationName) == Debug (
   IF NOT EXIST Plugins mkdir Plugins

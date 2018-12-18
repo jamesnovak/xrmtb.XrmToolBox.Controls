@@ -27,6 +27,13 @@ namespace XrmToolBox.Controls
         #endregion
 
         #region Public Properties
+        /// <summary>
+        /// Defines which Entity types should be loaded on retrieve.
+        /// </summary>
+        [Category("XrmToolBox")]
+        [DisplayName("Solution Filter")]
+        [Description("Specifies a Solution Unique Name filter to be used when retrieving Entities.")]
+        public string SolutionFilter { get; set; }
 
         /// <summary>
         /// The currently selected EntityMetadata object in the ListView
@@ -139,7 +146,17 @@ namespace XrmToolBox.Controls
                 var worker = new BackgroundWorker();
 
                 worker.DoWork += (w, e) => {
-                    var entities = CrmActions.RetrieveAllEntities(Service);
+
+                    var entities = new List<EntityMetadata>();
+                    if (SolutionFilter != null)
+                    {
+                        entities = CrmActions.RetrieveEntitiesForSolution(Service, SolutionFilter);
+                    }
+                    else
+                    {
+                        entities = CrmActions.RetrieveAllEntities(Service);
+                    }
+
                     e.Result = entities;
                 };
 

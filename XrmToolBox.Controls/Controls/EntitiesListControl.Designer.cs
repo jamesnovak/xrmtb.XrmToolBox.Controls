@@ -36,7 +36,8 @@
             // 
             // ListViewMain
             // 
-            this.ListViewMain.Size = new System.Drawing.Size(840, 537);
+            this.ListViewMain.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.ListViewMain.Size = new System.Drawing.Size(1680, 1032);
             // 
             // colDisplayName
             // 
@@ -60,13 +61,13 @@
             // 
             // splitContainerToolbar
             // 
+            this.splitContainerToolbar.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             // 
             // splitContainerToolbar.Panel2
             // 
             this.splitContainerToolbar.Panel2.Controls.Add(this.solutionsDropdown);
-            this.splitContainerToolbar.Size = new System.Drawing.Size(840, 30);
-            this.splitContainerToolbar.SplitterDistance = 466;
-            this.splitContainerToolbar.SplitterWidth = 5;
+            this.splitContainerToolbar.Size = new System.Drawing.Size(1680, 58);
+            this.splitContainerToolbar.SplitterDistance = 932;
             // 
             // solutionsDropdown
             // 
@@ -74,20 +75,21 @@
             this.solutionsDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.solutionsDropdown.LanguageCode = 1033;
             this.solutionsDropdown.Location = new System.Drawing.Point(0, 0);
-            this.solutionsDropdown.Margin = new System.Windows.Forms.Padding(1);
+            this.solutionsDropdown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.solutionsDropdown.Name = "solutionsDropdown";
             this.solutionsDropdown.Service = null;
-            this.solutionsDropdown.Size = new System.Drawing.Size(369, 30);
+            this.solutionsDropdown.Size = new System.Drawing.Size(738, 58);
             this.solutionsDropdown.TabIndex = 1;
+            this.solutionsDropdown.SelectedItemChanged += new System.EventHandler(this.SolutionsDropdown_SelectedItemChanged);
             // 
             // EntitiesListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ListViewColDefs = new XrmToolBox.Controls.ListViewColumnDef[0];
-            this.Margin = new System.Windows.Forms.Padding(3);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "EntitiesListControl";
-            this.Size = new System.Drawing.Size(840, 567);
+            this.Size = new System.Drawing.Size(1680, 1090);
             this.splitContainerToolbar.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerToolbar)).EndInit();
             this.splitContainerToolbar.ResumeLayout(false);

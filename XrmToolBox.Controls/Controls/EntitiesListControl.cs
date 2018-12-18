@@ -33,7 +33,7 @@ namespace XrmToolBox.Controls
         /// </summary>
         [Category("XrmToolBox")]
         [DisplayName("Display Solution Dropdown")]
-        [Description("Defines which Entity types should be loaded on retrieve.")]
+        [Description("Flag indicating whether to display the Solution Filter Dropdown.")]
         public bool DisplaySolutionDropdown
         {
             get => solutionsDropdown.Visible;
@@ -44,6 +44,14 @@ namespace XrmToolBox.Controls
                 }
             }
         }
+
+        /// <summary>
+        /// Defines which Entity types should be loaded on retrieve.
+        /// </summary>
+        [Category("XrmToolBox")]
+        [DisplayName("Solution Filter")]
+        [Description("Specifies a Solution Unique Name filter to be used when retrieving Entities.")]
+        public string SolutionFilter { get; set; }
 
         /// <summary>
         /// List of Entities to excluded upon retrieval.
@@ -220,12 +228,11 @@ namespace XrmToolBox.Controls
 
                 worker.DoWork += (w, e) => {
 
-                    var solutionName = solutionsDropdown.SelectedSolution?.Attributes["uniquename"].ToString();
                     var entities = new List<EntityMetadata>();
 
-                    if (solutionName != null)
+                    if (SolutionFilter != null)
                     {
-                        entities = CrmActions.RetrieveEntitiesForSolution(Service, solutionName);
+                        entities = CrmActions.RetrieveEntitiesForSolution(Service, SolutionFilter);
                     }
                     else
                     {
@@ -293,6 +300,17 @@ namespace XrmToolBox.Controls
             }
         }
         #endregion
+
+        /// <summary>
+        /// Track the unique name of the selected Solution 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SolutionsDropdown_SelectedItemChanged(object sender, EventArgs e)
+        {
+            SolutionFilter = solutionsDropdown.SelectedSolution?.Attributes["uniquename"].ToString();
+        }
+
         #endregion
 
     }

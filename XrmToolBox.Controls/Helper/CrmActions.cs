@@ -8,7 +8,7 @@ using System;
 using Microsoft.Xrm.Sdk.Query;
 using System.Threading.Tasks;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Various helper methods for working with CRM queries, objects, etc.
@@ -56,7 +56,7 @@ namespace XrmToolBox.Controls
         }
 
         /// <summary>
-        /// Retrieve an Entity Metadata and include all Entity details
+        /// Retrieve an Entity Metadata and include the default entity Entity details
         /// </summary>
         /// <param name="service"></param>
         /// <param name="entityLogicalName"></param>
@@ -64,9 +64,21 @@ namespace XrmToolBox.Controls
         /// <returns></returns>
         public static EntityMetadata RetrieveEntity(IOrganizationService service, string entityLogicalName, bool retrieveAsIfPublished)
         {
-            return RetrieveEntity(service, entityLogicalName, retrieveAsIfPublished, new List<EntityFilters> { EntityFilters.All });
+            return RetrieveEntity(service, entityLogicalName, retrieveAsIfPublished, new List<EntityFilters> { EntityFilters.Default });
         }
 
+        /// <summary>
+        /// Retrieve the Entity Metadata and include the details as provided by the entityFilter argument
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="entityLogicalName"></param>
+        /// <param name="retrieveAsIfPublished"></param>
+        /// <param name="entityFilter"></param>
+        /// <returns></returns>
+        public static EntityMetadata RetrieveEntity(IOrganizationService service, string entityLogicalName, bool retrieveAsIfPublished, EntityFilters entityFilter)
+        {
+            return RetrieveEntity(service, entityLogicalName, retrieveAsIfPublished, new List<EntityFilters> { entityFilter });
+        }
         /// <summary>
         /// Retrieve an Entity Metadata and include Entity details as specified in the EntityFilters provided 
         /// </summary>
@@ -81,7 +93,7 @@ namespace XrmToolBox.Controls
 
             var req = new RetrieveEntityRequest() {
                 RetrieveAsIfPublished = retrieveAsIfPublished,
-                EntityFilters = EntityFilters.All,
+                EntityFilters = filters,
                 LogicalName = entityLogicalName
             };
 
@@ -100,6 +112,10 @@ namespace XrmToolBox.Controls
         /// <returns></returns>
         public static List<EntityMetadata> RetrieveEntity(IOrganizationService service, List<string> entityLogcialNames, bool retrieveAsIfPublished = true, List<EntityFilters> entityFilters = null) {
 
+            EntityFilters filters = EntityFilters.Default;
+            if (entityFilters != null) {
+                filters = entityFilters.Aggregate<EntityFilters, EntityFilters>(0, (current, item) => current | item);
+            }
             var entities = new List<EntityMetadata>();
             // Create an ExecuteMultipleRequest object.
             var batchRequest = new ExecuteMultipleRequest() {
@@ -114,13 +130,12 @@ namespace XrmToolBox.Controls
                 batchRequest.Requests.Add(
                     new RetrieveEntityRequest() {
                         RetrieveAsIfPublished = retrieveAsIfPublished,
-                        EntityFilters = EntityFilters.All,
+                        EntityFilters = filters,
                         LogicalName = entityLogicalName
                     });
             }
 
             var responses = (ExecuteMultipleResponse)service.Execute(batchRequest);
-
 
             foreach (var resp in responses.Responses) {
                 entities.Add(((RetrieveEntityResponse)resp.Response).EntityMetadata);
@@ -129,6 +144,58 @@ namespace XrmToolBox.Controls
             return entities;
         }
 
+        #endregion
+
+        #region Entity Views
+
+        /// <summary>
+        /// Helper method for retrieving system and user saved queries for an entity
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="objectTypeCode"></param>
+        /// <param name="includePersonal"></param>
+        /// <returns></returns>
+        public static List<Entity> RetrieveEntityViews(IOrganizationService service, int objectTypeCode, bool includePersonal) {
+
+            var query = new QueryExpression("savedquery")
+            {
+                ColumnSet = new ColumnSet(true),
+                /*ColumnSet = new ColumnSet("savedqueryid", "returnedtypecode", "name", "description", "statuscode", "statecode", 
+                "savedqueryidunique", "conditionalformatting", "solutionid", "organizationid", "querytype",
+                "columnsetxml", "fetchxml", "layoutjson", "layoutxml",
+                "canbedeleted", "iscustom", "isdefault", "isuserdefined", "iscustomizable", "ismanaged", "isprivate", "isquickfindquery",
+                "createdon", "createdby", "modifiedby", "modifiedon", "componentstate", "introducedversion", "advancedgroupby",
+                "overwritetime", "queryapi", "organizationtaborder", "queryappusage", "versionnumber"),*/
+                Criteria = new FilterExpression() {
+                    Conditions = { new ConditionExpression("returnedtypecode", ConditionOperator.Equal, objectTypeCode) }
+                }
+            };
+
+            var systemViews = service.RetrieveMultiple(query);
+            var allViews = new List<Entity>(systemViews.Entities.ToList());
+
+            if (includePersonal) {
+
+                query = new QueryExpression("userquery") {
+                    ColumnSet = new ColumnSet(true),
+                    //ColumnSet = new ColumnSet("userqueryid", "returnedtypecode", "statecode", "description", "name",
+                    //    "layoutxml", "columnsetxml", "fetchxml", "querytype", "statuscode",
+                    //    "owninguser", "owningbusinessunit", "owningteam", "parentqueryid", "advancedgroupby", "conditionalformatting",
+                    //    "modifiedby", "modifiedon", "createdby", "createdon", "ownerid", "versionnumber"),
+                    Criteria = new FilterExpression() {
+                        Conditions = { new ConditionExpression("returnedtypecode", ConditionOperator.Equal, objectTypeCode) }
+                    }
+                };
+
+                var personalViews = service.RetrieveMultiple(query);
+
+                if (personalViews.Entities.Count > 0) {
+                    allViews.AddRange(personalViews.Entities.ToList());
+                }
+            }
+
+            return allViews;
+        }
         #endregion
 
         #region Entity Keys

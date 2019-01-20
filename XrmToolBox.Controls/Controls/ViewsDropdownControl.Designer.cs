@@ -1,6 +1,6 @@
-﻿namespace xrmtb.XrmToolBox.Controls
+﻿namespace xrmtb.XrmToolBox.Controls.Controls
 {
-    partial class AttributeDropdownControl
+    partial class ViewsDropdownControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,24 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboAttributes = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.buttonReload = new System.Windows.Forms.Button();
+            this.ComboViews = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // comboAttributes
-            // 
-            this.comboAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboAttributes.FormattingEnabled = true;
-            this.comboAttributes.IntegralHeight = false;
-            this.comboAttributes.ItemHeight = 25;
-            this.comboAttributes.Location = new System.Drawing.Point(7, 6);
-            this.comboAttributes.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.comboAttributes.Name = "comboAttributes";
-            this.comboAttributes.Size = new System.Drawing.Size(769, 33);
-            this.comboAttributes.TabIndex = 0;
-            this.comboAttributes.SelectedIndexChanged += new System.EventHandler(this.comboAttributes_SelectedIndexChanged);
             // 
             // tableLayoutPanelMain
             // 
@@ -53,21 +40,21 @@
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanelMain.Controls.Add(this.buttonReload, 1, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.comboAttributes, 0, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.ComboViews, 0, 0);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 1;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(832, 48);
-            this.tableLayoutPanelMain.TabIndex = 3;
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(800, 48);
+            this.tableLayoutPanelMain.TabIndex = 4;
             // 
             // buttonReload
             // 
             this.buttonReload.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonReload.Font = new System.Drawing.Font("Wingdings 3", 8.142858F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.buttonReload.Location = new System.Drawing.Point(790, 6);
+            this.buttonReload.Location = new System.Drawing.Point(758, 6);
             this.buttonReload.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.buttonReload.MinimumSize = new System.Drawing.Size(38, 36);
             this.buttonReload.Name = "buttonReload";
@@ -77,13 +64,26 @@
             this.buttonReload.UseVisualStyleBackColor = true;
             this.buttonReload.Click += new System.EventHandler(this.ButtonReload_Click);
             // 
-            // AttributeDropdownControl
+            // ComboViews
+            // 
+            this.ComboViews.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ComboViews.FormattingEnabled = true;
+            this.ComboViews.IntegralHeight = false;
+            this.ComboViews.ItemHeight = 25;
+            this.ComboViews.Location = new System.Drawing.Point(7, 6);
+            this.ComboViews.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.ComboViews.Name = "ComboViews";
+            this.ComboViews.Size = new System.Drawing.Size(737, 33);
+            this.ComboViews.TabIndex = 0;
+            this.ComboViews.SelectedIndexChanged += new System.EventHandler(this.ComboViews_SelectedIndexChanged);
+            // 
+            // ViewsDropdownControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanelMain);
-            this.Name = "AttributeDropdownControl";
-            this.Size = new System.Drawing.Size(832, 48);
+            this.Name = "ViewsDropdownControl";
+            this.Size = new System.Drawing.Size(800, 48);
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -91,8 +91,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboAttributes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private System.Windows.Forms.Button buttonReload;
+        private System.Windows.Forms.ComboBox ComboViews;
     }
 }

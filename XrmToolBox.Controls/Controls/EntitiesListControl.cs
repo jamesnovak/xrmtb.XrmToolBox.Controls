@@ -5,16 +5,20 @@ using System.Linq;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Shared XrmToolBox Control that will load a list of entities into a ListView control
     /// </summary>
     public partial class EntitiesListControl : FilteredListViewBaseControl
     {
-        #region Public properties
 
-        #region Options
+        #region Private items
+        private ConfigurationInfo _config = null;
+        private string _solutionFilter = null;
+        #endregion
+
+        #region Public properties
 
         /// <summary>
         /// Defines which Entity types should be loaded on retrieve.
@@ -39,8 +43,15 @@ namespace XrmToolBox.Controls
             get => solutionsDropdown.Visible;
             set {
                 solutionsDropdown.Visible = value;
-                if (!solutionsDropdown.Visible) {
+
+                if (!solutionsDropdown.Visible)
+                {
                     solutionsDropdown.ClearData();
+                    SolutionFilter = null;
+                }
+                else {
+                    solutionsDropdown.UpdateConnection(Service);
+                    solutionsDropdown.LoadData();
                 }
             }
         }
@@ -51,7 +62,22 @@ namespace XrmToolBox.Controls
         [Category("XrmToolBox")]
         [DisplayName("Solution Filter")]
         [Description("Specifies a Solution Unique Name filter to be used when retrieving Entities.")]
-        public string SolutionFilter { get; set; }
+        public string SolutionFilter {
+            get 
+            {
+                if (DisplaySolutionDropdown) {
+                    _solutionFilter = solutionsDropdown.SelectedSolution?.Attributes["uniquename"].ToString();
+                }
+                else {
+                    _solutionFilter = null;
+                }
+                return _solutionFilter;
+            }
+            set {
+                // TODO - update the dropdown!
+                _solutionFilter = value;
+            }
+        }
 
         /// <summary>
         /// List of Entities to excluded upon retrieval.
@@ -137,11 +163,7 @@ namespace XrmToolBox.Controls
             };
         }
         #endregion
-        #endregion
 
-        #region Private items
-        private ConfigurationInfo _config = null;
-        #endregion
 
         /// <summary>
         /// Constructor
@@ -178,7 +200,9 @@ namespace XrmToolBox.Controls
         {
             base.UpdateConnection(newService);
 
-            solutionsDropdown.UpdateConnection(newService);
+            if (DisplaySolutionDropdown) {
+                solutionsDropdown.UpdateConnection(newService);
+            }
         }
         /// <summary>
         /// Load the Attributes using the current IOrganizationService.
@@ -300,18 +324,6 @@ namespace XrmToolBox.Controls
             }
         }
         #endregion
-
-        /// <summary>
-        /// Track the unique name of the selected Solution 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SolutionsDropdown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            SolutionFilter = solutionsDropdown.SelectedSolution?.Attributes["uniquename"].ToString();
-        }
-
         #endregion
-
     }
 }

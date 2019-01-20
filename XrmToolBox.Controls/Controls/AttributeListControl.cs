@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Microsoft.Xrm.Sdk.Metadata;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Control that displays a list of Attributes for an Entity
@@ -232,6 +232,23 @@ namespace XrmToolBox.Controls
                     // load the attributes for the entity
                     LoadData(false);
                 }
+            }
+        }
+
+        protected override void ToggleMainControlsEnabled() {
+
+            var count = AllItems?.Count;
+
+            if (Service != null && ParentEntity != null)
+            {
+                textFilterList.Enabled =
+                checkBoxCheckAllNone.Enabled = (count > 0);
+                splitContainerToolbar.Enabled =
+                buttonLoadItems.Enabled = true;
+            }
+            else
+            {
+                base.ToggleMainControlsEnabled(false);
             }
         }
 

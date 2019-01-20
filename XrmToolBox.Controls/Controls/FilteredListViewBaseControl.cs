@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Drawing;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Base UserControl class that will implement the data binding of a generic List of objects to a ListView
@@ -147,9 +148,9 @@ namespace XrmToolBox.Controls
 
                 ListViewMain.CheckBoxes = value;
 
-                buttonCheckAll.Enabled = ListViewMain.CheckBoxes;
-                buttonCheckNone.Enabled = ListViewMain.CheckBoxes;
-
+                // buttonCheckAll.Enabled = ListViewMain.CheckBoxes;
+                // buttonCheckNone.Enabled = ListViewMain.CheckBoxes;
+                checkBoxCheckAllNone.Enabled = ListViewMain.CheckBoxes;
                 ListViewMain.ResumeLayout();
                 _performingBulkSelection = false;
             }
@@ -555,9 +556,7 @@ namespace XrmToolBox.Controls
         /// Internal method that allows us to decide whether to throw an exception to the user, or to simply add notification
         /// </summary>
         /// <param name="throwException"></param>
-        protected virtual void LoadData(bool throwException) {
-        }
-
+        protected virtual void LoadData(bool throwException) { }
 
         /// <summary>
         /// Sort the current list of items in the ListView
@@ -757,8 +756,9 @@ namespace XrmToolBox.Controls
             if (Service != null)
             {
                 textFilterList.Enabled =
-                buttonCheckAll.Enabled =
-                buttonCheckNone.Enabled = (count > 0);
+                //buttonCheckAll.Enabled =
+                // buttonCheckNone.Enabled
+                checkBoxCheckAllNone.Enabled = (count > 0);
                 splitContainerToolbar.Enabled =
                 buttonLoadItems.Enabled = true;
             }
@@ -827,6 +827,54 @@ namespace XrmToolBox.Controls
             ToggleMainControlsEnabled();
         }
 
+        private void CheckBoxCheckAllNone_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckAllNone(checkBoxCheckAllNone.Checked);
+        }
+
+        private void CheckBoxCheckAllNone_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckAllNone(checkBoxCheckAllNone.Checked);
+        }
+
+        /// <summary>
+        /// When the ListView is not active, the selected row is really hard to see. Set the highlight manually on enter/leave
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListViewMain_HighLightSelected(object sender, EventArgs e)
+        {
+            SetSelectedHighlight(SystemColors.Highlight, SystemColors.HighlightText);
+        }
+
+        /// <summary>
+        /// When the ListView is not active, the selected row is really hard to see. Set the highlight manually on enter/leave
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListViewMain_ClearHighLight(object sender, EventArgs e)
+        {
+            SetSelectedHighlight(SystemColors.Window, SystemColors.WindowText);
+        }
+        /// <summary>
+        /// Helper method for setting the fore and back color for the selected row
+        /// </summary>
+        /// <param name="backColor"></param>
+        /// <param name="foreColor"></param>
+        private void SetSelectedHighlight(Color backColor, Color foreColor)
+        {
+
+            ListViewMain.SuspendLayout();
+
+            if (ListViewMain.SelectedItems.Count > 0)
+            {
+                var selItem = ListViewMain.SelectedItems[0];
+                selItem.ForeColor = foreColor;
+                selItem.BackColor = backColor;
+            }
+            ListViewMain.ResumeLayout();
+        }
         #endregion
+
     }
 }

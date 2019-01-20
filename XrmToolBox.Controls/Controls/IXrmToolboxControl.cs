@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Microsoft.Xrm.Sdk;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// General interface for XrmToolBox helper controls

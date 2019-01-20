@@ -8,7 +8,7 @@
     <ProjectGuid>{F4093354-8269-47A6-817C-2E84986412E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XrmToolBox.Controls</RootNamespace>
+    <RootNamespace>xrmtb.XrmToolBox.Controls</RootNamespace>
     <AssemblyName>xrmtb.XrmToolBox.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -129,6 +129,12 @@
     <Compile Include="Controls\SolutionsDropdownControl.Designer.cs">
       <DependentUpon>SolutionsDropdownControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ViewsDropdownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ViewsDropdownControl.Designer.cs">
+      <DependentUpon>ViewsDropdownControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\XrmToolBoxControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SolutionsDropdownControl.resx">
       <DependentUpon>SolutionsDropdownControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ViewsDropdownControl.resx">
+      <DependentUpon>ViewsDropdownControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XrmToolBoxControlBase.resx">
       <DependentUpon>XrmToolBoxControlBase.cs</DependentUpon>

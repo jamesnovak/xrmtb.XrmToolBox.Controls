@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Shared XrmToolBox Control that will load a list of entities into a Dropdown control
@@ -195,7 +195,6 @@ namespace XrmToolBox.Controls
         {
             comboEntities.SuspendLayout();
 
-            comboEntities.Items.Clear();
             comboEntities.DataSource = null;
 
             var items = from ent in AllEntities

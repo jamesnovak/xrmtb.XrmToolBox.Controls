@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Xrm.Sdk;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public partial class SolutionsDropdownControl : XrmToolBoxControlBase
     {
@@ -175,7 +175,6 @@ namespace XrmToolBox.Controls
         {
             comboSolutions.SuspendLayout();
 
-            comboSolutions.Items.Clear();
             comboSolutions.DataSource = null;
 
             var items = from ent in AllSolutions

@@ -1,21 +1,19 @@
-﻿using System;
-using System.Linq;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Metadata;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
-using Microsoft.Xrm.Sdk.Metadata;
-
-namespace xrmtb.XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls.Controls
 {
-    /// <summary>
-    /// User control that will load all AttributeMetadata for a selected EntityMetadata object
-    /// </summary>
-    public partial class AttributeDropdownControl : XrmToolBoxControlBase
+    public partial class ViewsDropdownControl : XrmToolBoxControlBase
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public AttributeDropdownControl()
+
+        public ViewsDropdownControl()
         {
             InitializeComponent();
 
@@ -33,6 +31,21 @@ namespace xrmtb.XrmToolBox.Controls
 
         #region Properties
         private EntityMetadata _parentEntity;
+        private List<Entity> _allViews;
+        private bool _includePersonal;
+
+        /// <summary>
+        /// Flag indicating whether Personal views should be included in the list.
+        /// </summary>
+        [Category("XrmToolBox")]
+        [Description("Flag indicating whether Personal views should be included in the list.")]
+        public bool IncludePersonalViews
+        {
+            get { return _includePersonal; }
+            set {
+                _includePersonal = value;
+            }
+        }
 
         /// <summary>
         /// Reference to the Parent Entity for the attributes
@@ -54,9 +67,9 @@ namespace xrmtb.XrmToolBox.Controls
         /// Reference to the currently selected Attribute
         /// </summary>
         [Category("XrmToolBox")]
-        [Description("Reference to the Selected Attributes in the list")]
+        [Description("Reference to the Selected View in the list")]
         [Browsable(false)]
-        public AttributeMetadata SelectedAttribute { get; private set; } = null;
+        public Entity SelectedView { get; private set; } = null;
 
         /// <summary>
         /// Reference to the currently selected Attribute
@@ -64,14 +77,14 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("XrmToolBox")]
         [Description("Reference to all Attributes in the list")]
         [Browsable(false)]
-        public List<AttributeMetadata> AllAttributes
+        public List<Entity> AllViews
         {
             get {
-                var list = ParentEntity?.Attributes?.ToList<AttributeMetadata>();
-                if (list == null) {
-                    list = new List<AttributeMetadata>();
+                if (_allViews == null)
+                {
+                    _allViews = new List<Entity>();
                 }
-                return list;
+                return _allViews;
             }
         }
 
@@ -81,7 +94,7 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("XrmToolBox")]
         [Description("Reference to all Attributes as a bindable list")]
         [Browsable(false)]
-        public List<ListDisplayItem> AllAttributesBindable { get => comboAttributes.DataSource as List<ListDisplayItem>; }
+        public List<ListDisplayItem> AllViewsBindable { get => ComboViews.DataSource as List<ListDisplayItem>; }
 
         #endregion
 
@@ -92,7 +105,8 @@ namespace xrmtb.XrmToolBox.Controls
         private void SetParentEntity(EntityMetadata entity)
         {
             // already cleared or never initialized, nothing to do 
-            if (_parentEntity == null && entity == null) {
+            if (_parentEntity == null && entity == null)
+            {
                 return;
             }
             // if this is a reference to the same entity, then do not reload.
@@ -105,8 +119,8 @@ namespace xrmtb.XrmToolBox.Controls
             _parentEntity = entity;
 
             // if the parent entity is null
-            if (ParentEntity == null) {
-
+            if (ParentEntity == null)
+            {
                 ClearData();
 
                 ToggleMainControlsEnabled(false);
@@ -171,12 +185,13 @@ namespace xrmtb.XrmToolBox.Controls
 
             if (Service == null || ParentEntityLogicalName == null)
             {
-                var ex = new InvalidOperationException("The Service reference and Parent Entity must be set before loading the Entities list");
+                var ex = new InvalidOperationException("The Service reference and Parent Entity must be set before loading the Views");
 
                 // raise the error event and if set, throw error
                 OnNotificationMessage(ex.Message, MessageLevel.Exception, ex);
 
-                if (throwException) {
+                if (throwException)
+                {
                     throw ex;
                 }
                 return;
@@ -189,25 +204,25 @@ namespace xrmtb.XrmToolBox.Controls
 
             try
             {
-                OnProgressChanged(0, "Begin loading Entity Attributes from CRM");
+                OnProgressChanged(0, $"Begin loading Views for the Current Entity: {ParentEntityLogicalName}");
 
                 // load the entity metadata for the current entity logical name
                 var worker = new BackgroundWorker();
 
                 worker.DoWork += (w, e) =>
                 {
-                    var parentEntity = CrmActions.RetrieveEntity(Service, ParentEntityLogicalName, true, new List<EntityFilters> { EntityFilters.Attributes });
-                    e.Result = parentEntity;
+                    var views = CrmActions.RetrieveEntityViews(Service, ParentEntity.ObjectTypeCode.Value, IncludePersonalViews);
+                    e.Result = views;
                 };
 
                 worker.RunWorkerCompleted += (s, e) =>
                 {
                     // set the parent entity reference with the loaded attributes
-                    _parentEntity = e.Result as EntityMetadata;
+                    _allViews = e.Result as List<Entity>;
 
                     LoadComboItems();
 
-                    OnProgressChanged(100, "Loading Entity Attributes from CRM Complete!");
+                    OnProgressChanged(100, "Loading Entity Views from CRM Complete!");
 
                     base.LoadData();
                 };
@@ -217,9 +232,10 @@ namespace xrmtb.XrmToolBox.Controls
             }
             catch (System.ServiceModel.FaultException ex)
             {
-                OnNotificationMessage($"An error occured attetmpting to load the list of Entity Attributes", MessageLevel.Exception, ex);
+                OnNotificationMessage($"An error occured attetmpting to load the list of Entity Views", MessageLevel.Exception, ex);
 
-                if (throwException) {
+                if (throwException)
+                {
                     throw ex;
                 }
             }
@@ -233,13 +249,14 @@ namespace xrmtb.XrmToolBox.Controls
             ClearData(true);
         }
 
-        private void ClearData(bool clearParent) {
+        private void ClearData(bool clearParent)
+        {
 
             OnBeginClearData();
 
-            if (SelectedAttribute != null)
+            if (SelectedView != null)
             {
-                SelectedAttribute = null;
+                SelectedView = null;
                 SelectedItemChanged?.Invoke(this, new EventArgs());
             }
 
@@ -247,8 +264,8 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 _parentEntity = null;
             }
-            comboAttributes.DataSource = null;
-            comboAttributes.Items.Clear();
+            ComboViews.DataSource = null;
+            ComboViews.Items.Clear();
 
             base.ClearData();
         }
@@ -258,24 +275,22 @@ namespace xrmtb.XrmToolBox.Controls
         /// </summary>
         private void LoadComboItems()
         {
-            comboAttributes.SuspendLayout();
+            ComboViews.SuspendLayout();
 
-            comboAttributes.DataSource = null;
+            ComboViews.DataSource = null;
 
-            var items = from attrib in ParentEntity.Attributes
-                        where attrib.AttributeType != AttributeTypeCode.Virtual &&
-                              attrib.AttributeOf == null
+            var items = from view in _allViews
                         select new ListDisplayItem(
-                            attrib.SchemaName,
-                            CrmActions.GetLocalizedLabel(attrib.DisplayName, attrib.SchemaName, LanguageCode), 
-                            CrmActions.GetLocalizedLabel(attrib.Description, null, LanguageCode), 
-                            attrib);
+                            view.Attributes.ContainsKey("userqueryid") ? $"{(string)view["name"]} (Personal)" : (string)view["name"],
+                            null, 
+                            (view.Attributes.ContainsKey("description")) ? (string)view["description"] : null,
+                            view);
 
-            comboAttributes.DataSource = items.OrderBy(e => e.Name).ToList();
-            comboAttributes.DisplayMember = "SummaryName";
-            comboAttributes.ValueMember = "Name";
+            ComboViews.DataSource = items.OrderBy(e => e.Name).ToList();
+            ComboViews.DisplayMember = "SummaryName";
+            ComboViews.ValueMember = "Name";
 
-            comboAttributes.ResumeLayout();
+            ComboViews.ResumeLayout();
 
             ToggleMainControlsEnabled(true);
         }
@@ -297,21 +312,22 @@ namespace xrmtb.XrmToolBox.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void comboAttributes_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboViews_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboAttributes.SelectedItem is ListDisplayItem item)
+            if (ComboViews.SelectedItem is ListDisplayItem item)
             {
                 // check to see if we want to raise the change event
-                var attrib = item.Object as AttributeMetadata;
-                if (attrib.LogicalName == SelectedAttribute?.LogicalName)
+                var view = item.Object as Entity;
+                if (view.Id == SelectedView?.Id)
                 {
                     return;
                 }
-                // new attribute, set and raise the event
-                SelectedAttribute = attrib;
+                // new view, set and raise the event
+                SelectedView= view;
             }
-            else {
-                SelectedAttribute = null;
+            else
+            {
+                SelectedView = null;
             }
 
             SelectedItemChanged?.Invoke(this, new EventArgs());

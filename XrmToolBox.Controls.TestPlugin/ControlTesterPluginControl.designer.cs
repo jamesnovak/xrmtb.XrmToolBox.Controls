@@ -127,6 +127,16 @@ namespace xrmtb.XrmToolBox.Controls
             this.radioViewDropdownShowProps = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
             this.radioAttribDropdownShowView = new System.Windows.Forms.RadioButton();
+            this.tabPageGlobalOptSets = new System.Windows.Forms.TabPage();
+            this.splitterGlobalOptsList = new System.Windows.Forms.SplitContainer();
+            this.GlobalOptionSetList = new xrmtb.XrmToolBox.Controls.GlobalOptionSetListControl();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.radioGlobalOptsListShowProps = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.radioEntDropdownShowOptionSet = new System.Windows.Forms.RadioButton();
+            this.propGridGlobalOptsList = new System.Windows.Forms.PropertyGrid();
+            this.textGlobalOptsListLog = new System.Windows.Forms.TextBox();
             this.toolStripMenu.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageEntList.SuspendLayout();
@@ -176,6 +186,13 @@ namespace xrmtb.XrmToolBox.Controls
             this.tableViewDropdown.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.tabPageGlobalOptSets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterGlobalOptsList)).BeginInit();
+            this.splitterGlobalOptsList.Panel1.SuspendLayout();
+            this.splitterGlobalOptsList.Panel2.SuspendLayout();
+            this.splitterGlobalOptsList.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMenu
@@ -276,6 +293,7 @@ namespace xrmtb.XrmToolBox.Controls
             this.tabControlMain.Controls.Add(this.tabPageAttrDropDown);
             this.tabControlMain.Controls.Add(this.tabPageSolution);
             this.tabControlMain.Controls.Add(this.tabPageViewsDropdown);
+            this.tabControlMain.Controls.Add(this.tabPageGlobalOptSets);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.ItemSize = new System.Drawing.Size(175, 30);
             this.tabControlMain.Location = new System.Drawing.Point(0, 39);
@@ -376,10 +394,9 @@ namespace xrmtb.XrmToolBox.Controls
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.radioEntListShowEnt);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(4, 1009);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(3, 1008);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1074, 104);
+            this.panel1.Size = new System.Drawing.Size(1076, 106);
             this.panel1.TabIndex = 16;
             // 
             // radioEntListShowProps
@@ -389,10 +406,10 @@ namespace xrmtb.XrmToolBox.Controls
             this.radioEntListShowProps.Location = new System.Drawing.Point(20, 52);
             this.radioEntListShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.radioEntListShowProps.Name = "radioEntListShowProps";
-            this.radioEntListShowProps.Size = new System.Drawing.Size(264, 29);
+            this.radioEntListShowProps.Size = new System.Drawing.Size(258, 29);
             this.radioEntListShowProps.TabIndex = 3;
             this.radioEntListShowProps.TabStop = true;
-            this.radioEntListShowProps.Text = "Entity List View Control";
+            this.radioEntListShowProps.Text = "Entity ListView Control";
             this.radioEntListShowProps.UseVisualStyleBackColor = true;
             this.radioEntListShowProps.CheckedChanged += new System.EventHandler(this.RadioEntitiesList_CheckedChanged);
             // 
@@ -402,7 +419,7 @@ namespace xrmtb.XrmToolBox.Controls
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1074, 44);
+            this.label1.Size = new System.Drawing.Size(1076, 44);
             this.label1.TabIndex = 4;
             this.label1.Text = "Choose what displays in the property control";
             // 
@@ -1019,10 +1036,9 @@ namespace xrmtb.XrmToolBox.Controls
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.radioAttribDropdownShowAttrib);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(4, 1009);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(3, 1008);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1074, 104);
+            this.panel2.Size = new System.Drawing.Size(1076, 106);
             this.panel2.TabIndex = 16;
             // 
             // radioAttribDropdownShowProps
@@ -1045,7 +1061,7 @@ namespace xrmtb.XrmToolBox.Controls
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1074, 35);
+            this.label5.Size = new System.Drawing.Size(1076, 35);
             this.label5.TabIndex = 4;
             this.label5.Text = "Choose what displays in the property control";
             // 
@@ -1451,7 +1467,7 @@ namespace xrmtb.XrmToolBox.Controls
             this.radioViewDropdownShowProps.TabStop = true;
             this.radioViewDropdownShowProps.Text = "View Dropdown Control";
             this.radioViewDropdownShowProps.UseVisualStyleBackColor = true;
-            this.radioViewDropdownShowProps.CheckedChanged += new System.EventHandler(this.RadioAttribDropdown_CheckedChanged);
+            this.radioViewDropdownShowProps.CheckedChanged += new System.EventHandler(this.RadioViewsDropdown_CheckedChanged);
             // 
             // label16
             // 
@@ -1474,6 +1490,157 @@ namespace xrmtb.XrmToolBox.Controls
             this.radioAttribDropdownShowView.TabStop = true;
             this.radioAttribDropdownShowView.Text = "Selected View";
             this.radioAttribDropdownShowView.UseVisualStyleBackColor = true;
+            this.radioAttribDropdownShowView.CheckedChanged += new System.EventHandler(this.RadioViewsDropdown_CheckedChanged);
+            // 
+            // tabPageGlobalOptSets
+            // 
+            this.tabPageGlobalOptSets.Controls.Add(this.splitterGlobalOptsList);
+            this.tabPageGlobalOptSets.Location = new System.Drawing.Point(4, 34);
+            this.tabPageGlobalOptSets.Name = "tabPageGlobalOptSets";
+            this.tabPageGlobalOptSets.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageGlobalOptSets.Size = new System.Drawing.Size(1662, 1129);
+            this.tabPageGlobalOptSets.TabIndex = 6;
+            this.tabPageGlobalOptSets.Text = "Global OptionSet ListView";
+            this.tabPageGlobalOptSets.UseVisualStyleBackColor = true;
+            // 
+            // splitterGlobalOptsList
+            // 
+            this.splitterGlobalOptsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitterGlobalOptsList.Location = new System.Drawing.Point(3, 3);
+            this.splitterGlobalOptsList.Margin = new System.Windows.Forms.Padding(4);
+            this.splitterGlobalOptsList.Name = "splitterGlobalOptsList";
+            // 
+            // splitterGlobalOptsList.Panel1
+            // 
+            this.splitterGlobalOptsList.Panel1.Controls.Add(this.GlobalOptionSetList);
+            // 
+            // splitterGlobalOptsList.Panel2
+            // 
+            this.splitterGlobalOptsList.Panel2.Controls.Add(this.tableLayoutPanel1);
+            this.splitterGlobalOptsList.Size = new System.Drawing.Size(1656, 1123);
+            this.splitterGlobalOptsList.SplitterDistance = 549;
+            this.splitterGlobalOptsList.SplitterWidth = 20;
+            this.splitterGlobalOptsList.TabIndex = 1;
+            // 
+            // GlobalOptionSetList
+            // 
+            this.GlobalOptionSetList.AutoLoadData = false;
+            this.GlobalOptionSetList.AutosizeColumns = System.Windows.Forms.ColumnHeaderAutoResizeStyle.None;
+            this.GlobalOptionSetList.Checkboxes = true;
+            this.GlobalOptionSetList.DisplayToolbar = false;
+            this.GlobalOptionSetList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GlobalOptionSetList.LanguageCode = 1033;
+            this.GlobalOptionSetList.ListViewColDefs = new xrmtb.XrmToolBox.Controls.ListViewColumnDef[] {
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("GlobalOptionSetList.ListViewColDefs"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("GlobalOptionSetList.ListViewColDefs1"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("GlobalOptionSetList.ListViewColDefs2"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("GlobalOptionSetList.ListViewColDefs3"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("GlobalOptionSetList.ListViewColDefs4")))};
+            this.GlobalOptionSetList.Location = new System.Drawing.Point(0, 0);
+            this.GlobalOptionSetList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GlobalOptionSetList.Name = "GlobalOptionSetList";
+            this.GlobalOptionSetList.RetrieveAsIfPublished = false;
+            this.GlobalOptionSetList.Service = null;
+            this.GlobalOptionSetList.Size = new System.Drawing.Size(549, 1123);
+            this.GlobalOptionSetList.TabIndex = 0;
+            this.GlobalOptionSetList.SelectedItemChanged += new System.EventHandler(this.GlobalOptionSetList_SelectedItemChanged);
+            this.GlobalOptionSetList.CheckedItemsChanged += new System.EventHandler(this.GlobalOptionSetList_CheckedItemsChanged);
+            this.GlobalOptionSetList.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.GlobalOptionSetList_ProgressChanged);
+            this.GlobalOptionSetList.BeginLoadData += new System.EventHandler(this.SolutionDropdown_BeginLoadData);
+            this.GlobalOptionSetList.LoadDataComplete += new System.EventHandler(this.GlobalOptionSetList_LoadDataComplete);
+            this.GlobalOptionSetList.ClearDataComplete += new System.EventHandler(this.GlobalOptionSetList_ClearDataComplete);
+            this.GlobalOptionSetList.CloseComplete += new System.EventHandler(this.GlobalOptionSetList_CloseComplete);
+            this.GlobalOptionSetList.NotificationMessage += new System.EventHandler<xrmtb.XrmToolBox.Controls.NotificationEventArgs>(this.AllControls_NotificationMessage);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.propGridGlobalOptsList, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textGlobalOptsListLog, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1087, 1123);
+            this.tableLayoutPanel1.TabIndex = 20;
+            // 
+            // panel7
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.panel7, 2);
+            this.panel7.Controls.Add(this.radioGlobalOptsListShowProps);
+            this.panel7.Controls.Add(this.label17);
+            this.panel7.Controls.Add(this.radioEntDropdownShowOptionSet);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(4, 1014);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1079, 105);
+            this.panel7.TabIndex = 16;
+            // 
+            // radioGlobalOptsListShowProps
+            // 
+            this.radioGlobalOptsListShowProps.AutoSize = true;
+            this.radioGlobalOptsListShowProps.Checked = true;
+            this.radioGlobalOptsListShowProps.Location = new System.Drawing.Point(20, 52);
+            this.radioGlobalOptsListShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioGlobalOptsListShowProps.Name = "radioGlobalOptsListShowProps";
+            this.radioGlobalOptsListShowProps.Size = new System.Drawing.Size(367, 29);
+            this.radioGlobalOptsListShowProps.TabIndex = 3;
+            this.radioGlobalOptsListShowProps.TabStop = true;
+            this.radioGlobalOptsListShowProps.Text = "Global OptionSet ListView Control";
+            this.radioGlobalOptsListShowProps.UseVisualStyleBackColor = true;
+            this.radioGlobalOptsListShowProps.CheckedChanged += new System.EventHandler(this.RadioGlobalOptionSetList_CheckedChanged);
+            // 
+            // label17
+            // 
+            this.label17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label17.Location = new System.Drawing.Point(0, 0);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(1079, 44);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Choose what displays in the property control";
+            // 
+            // radioEntDropdownShowOptionSet
+            // 
+            this.radioEntDropdownShowOptionSet.AutoSize = true;
+            this.radioEntDropdownShowOptionSet.Location = new System.Drawing.Point(407, 52);
+            this.radioEntDropdownShowOptionSet.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntDropdownShowOptionSet.Name = "radioEntDropdownShowOptionSet";
+            this.radioEntDropdownShowOptionSet.Size = new System.Drawing.Size(296, 29);
+            this.radioEntDropdownShowOptionSet.TabIndex = 2;
+            this.radioEntDropdownShowOptionSet.TabStop = true;
+            this.radioEntDropdownShowOptionSet.Text = "Selected Global OptionSet";
+            this.radioEntDropdownShowOptionSet.UseVisualStyleBackColor = true;
+            this.radioEntDropdownShowOptionSet.CheckedChanged += new System.EventHandler(this.RadioGlobalOptionSetList_CheckedChanged);
+            // 
+            // propGridGlobalOptsList
+            // 
+            this.propGridGlobalOptsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propGridGlobalOptsList.Location = new System.Drawing.Point(8, 6);
+            this.propGridGlobalOptsList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridGlobalOptsList.Name = "propGridGlobalOptsList";
+            this.propGridGlobalOptsList.Size = new System.Drawing.Size(527, 998);
+            this.propGridGlobalOptsList.TabIndex = 8;
+            // 
+            // textGlobalOptsListLog
+            // 
+            this.textGlobalOptsListLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textGlobalOptsListLog.Location = new System.Drawing.Point(551, 6);
+            this.textGlobalOptsListLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textGlobalOptsListLog.Multiline = true;
+            this.textGlobalOptsListLog.Name = "textGlobalOptsListLog";
+            this.textGlobalOptsListLog.ReadOnly = true;
+            this.textGlobalOptsListLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textGlobalOptsListLog.Size = new System.Drawing.Size(528, 998);
+            this.textGlobalOptsListLog.TabIndex = 7;
             // 
             // ControlTesterPluginControl
             // 
@@ -1546,6 +1713,15 @@ namespace xrmtb.XrmToolBox.Controls
             this.tableLayoutPanel2.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.tabPageGlobalOptSets.ResumeLayout(false);
+            this.splitterGlobalOptsList.Panel1.ResumeLayout(false);
+            this.splitterGlobalOptsList.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitterGlobalOptsList)).EndInit();
+            this.splitterGlobalOptsList.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1648,5 +1824,15 @@ namespace xrmtb.XrmToolBox.Controls
         private System.Windows.Forms.RadioButton radioViewDropdownShowProps;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RadioButton radioAttribDropdownShowView;
+        private System.Windows.Forms.TabPage tabPageGlobalOptSets;
+        private System.Windows.Forms.SplitContainer splitterGlobalOptsList;
+        private GlobalOptionSetListControl GlobalOptionSetList;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.RadioButton radioGlobalOptsListShowProps;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RadioButton radioEntDropdownShowOptionSet;
+        private System.Windows.Forms.PropertyGrid propGridGlobalOptsList;
+        private System.Windows.Forms.TextBox textGlobalOptsListLog;
     }
 }

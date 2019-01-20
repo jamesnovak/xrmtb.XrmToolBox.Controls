@@ -31,12 +31,8 @@ namespace xrmtb.XrmToolBox.Controls
                 splitterEntDropdown.SplitterDistance =
                 splitterEntityList.SplitterDistance =
                 splitterSolnDropdown.SplitterDistance = width =
-                splitterViewDropdown.SplitterDistance = width;
-
-            EntityListControl.DisplayToolbar = true;
-
-            // add the entity filter that will return Attribute metadata
-            // EntitiesListControl.EntityRequestFilters.Add(EntityFilters.Attributes);
+                splitterViewDropdown.SplitterDistance = width =
+                splitterGlobalOptsList.SplitterDistance = width;
 
             // set up the properties detail
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, null);
@@ -45,6 +41,7 @@ namespace xrmtb.XrmToolBox.Controls
             SetPropertySelectedObject(radioSolnDropdownShowProps, propGridSolutions, SolutionDropdown, null);
             SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, null);
             SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, null);
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
 
             // set up service references
             UpdateAllServices(Service);
@@ -97,6 +94,11 @@ namespace xrmtb.XrmToolBox.Controls
                     ViewDropdown.ClearData();
                     EntityDropdownViews.LoadData();
                     break;
+
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.LoadData();
+                    break;
+
             }
         }
         private void ToolButtonClearData_Click(object sender, EventArgs e)
@@ -126,6 +128,10 @@ namespace xrmtb.XrmToolBox.Controls
                 case "tabPageViewsDropdown":
                     ViewDropdown.ClearData();
                     EntityDropdownViews.ClearData();
+                    break;
+
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.ClearData();
                     break;
             }
         }
@@ -157,6 +163,9 @@ namespace xrmtb.XrmToolBox.Controls
                     ViewDropdown.UpdateConnection(Service);
                     EntityDropdownViews.UpdateConnection(Service);
                     break;
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.UpdateConnection(Service);
+                    break;
             }
         }
         private void ToolButtonClose_Click(object sender, EventArgs e)
@@ -173,12 +182,11 @@ namespace xrmtb.XrmToolBox.Controls
                 case "tabPageAttrList":
                     AttribListControl.Close();
                     EntityDropdownAttribList.Close();
-
                     break;
+
                 case "tabPageAttrDropDown":
                     AttributeDropdown.Close();
                     EntityDropdownAttribs.Close();
-
                     break;
                 case "tabPageSolution":
                     SolutionDropdown.Close();
@@ -187,6 +195,10 @@ namespace xrmtb.XrmToolBox.Controls
                     ViewDropdown.Close();
                     EntityDropdownViews.Close();
                     break;
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.Close();
+                    break;
+
             }
         }
 
@@ -199,7 +211,6 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 case "tabPageEntList":
                 case "tabPageAttrList":
-                    enabled = true;
                     enabled = true;
                     break;
                 default:
@@ -245,6 +256,8 @@ namespace xrmtb.XrmToolBox.Controls
 
             ViewDropdown.UpdateConnection(newService);
             EntityDropdownViews.UpdateConnection(newService);
+
+            GlobalOptionSetList.UpdateConnection(newService);
         }
 
         #region Entity Listview Control event handlers
@@ -595,6 +608,12 @@ namespace xrmtb.XrmToolBox.Controls
         {
             UpdateControlLogger(textViewsDropdownLog, $"ProgressChanged (Views): {e.UserState} : {e.ProgressPercentage}");
         }
+
+
+        private void RadioViewsDropdown_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, ViewDropdown.SelectedView);
+        }
         #endregion 
 
         #region Helpers
@@ -638,6 +657,72 @@ namespace xrmtb.XrmToolBox.Controls
                 case "tabPageAttrList":
                     AttribListControl.FilterList(toolStripTextFilter.Text);
                     break;
+            }
+        }
+        #endregion
+
+        #region Global OptionSet Listview Control event handlers
+        private void GlobalOptionSetList_CloseComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"CloseComplete");
+        }
+        private void GlobalOptionSetList_InitializeComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"InitializeComplete");
+        }
+
+        private void GlobalOptionSetList_LoadDataComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"LoadDataComplete - All Global OptionSets  count: {GlobalOptionSetList.AllOptionSets?.Count}");
+        }
+
+        private void GlobalOptionSetList_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"{e.UserState} : {e.ProgressPercentage}");
+        }
+
+        private void GlobalOptionSetList_CheckedItemsChanged(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"CheckedItemsChanged - Checked Global OptionSets count: {GlobalOptionSetList.CheckedOptionSets?.Count}");
+
+            OptionSetMetadataBase opt = null;
+
+            if (GlobalOptionSetList.CheckedOptionSets.Count > 0)
+            {
+                opt = GlobalOptionSetList.CheckedOptionSets[0];
+            }
+
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, opt);
+        }
+        private void GlobalOptionSetList_SelectedItemChanged(object sender, EventArgs e)
+        {
+            var opt = GlobalOptionSetList.SelectedOptionSet;
+
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, opt);
+
+            UpdateControlLogger(textGlobalOptsListLog, $"SelectedItemChanged: {opt?.Name}");
+        }
+        private void GlobalOptionSetList_ClearDataComplete(object sender, EventArgs e)
+        {
+            // ENTITIES LIST - log event
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
+
+            UpdateControlLogger(textGlobalOptsListLog, $"ClearDataComplete - All Global OptionSets count: {GlobalOptionSetList.AllOptionSets?.Count}");
+        }
+
+        private void RadioGlobalOptionSetList_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, EntityListControl.SelectedEntity);
+        }
+
+        private void GlobalOptionSetList_BeginLoadData(object sender, EventArgs e)
+        {
+            if (this.textEntListLog.InvokeRequired)
+            {
+            }
+            else
+            {
+                textGlobalOptsListLog.Clear();
             }
         }
         #endregion

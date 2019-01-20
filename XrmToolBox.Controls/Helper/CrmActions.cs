@@ -497,6 +497,19 @@ namespace xrmtb.XrmToolBox.Controls
         }
         #endregion
 
+        #region OptionSets
+        public static List<OptionSetMetadataBase > RetrieveGlobalOptionSets(IOrganizationService service, bool retrieveAsIfPublished = true, string solutionName = null) {
+            var request = new RetrieveAllOptionSetsRequest() {
+                RetrieveAsIfPublished = retrieveAsIfPublished
+            };
+
+            // Execute the request
+            var response = (RetrieveAllOptionSetsResponse)service.Execute(request);
+
+            return response.OptionSetMetadata.ToList();
+        }
+        #endregion
+
         /// <summary>
         /// Helper method to get the first label in the list of LocalizedLabels 
         /// </summary>

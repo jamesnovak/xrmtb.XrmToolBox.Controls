@@ -116,6 +116,12 @@
     <Compile Include="Controls\FilteredListViewBaseControl.Designer.cs">
       <DependentUpon>FilteredListViewBaseControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GlobalOptionSetListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GlobalOptionSetListControl.Designer.cs">
+      <DependentUpon>GlobalOptionSetListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\IXrmToolboxControl.cs" />
     <Compile Include="Controls\EntitiesListControl.cs">
       <SubType>UserControl</SubType>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FilteredListViewBaseControl.resx">
       <DependentUpon>FilteredListViewBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GlobalOptionSetListControl.resx">
+      <DependentUpon>GlobalOptionSetListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SolutionsDropdownControl.resx">
       <DependentUpon>SolutionsDropdownControl.cs</DependentUpon>

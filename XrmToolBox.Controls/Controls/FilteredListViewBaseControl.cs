@@ -98,6 +98,9 @@ namespace xrmtb.XrmToolBox.Controls
 
                 // update ListVidew with new settings
                 SetUpListViewColumns();
+
+                // reload items into list view now that cols have changed.
+                PopulateListView();
             }
         }
 
@@ -148,8 +151,6 @@ namespace xrmtb.XrmToolBox.Controls
 
                 ListViewMain.CheckBoxes = value;
 
-                // buttonCheckAll.Enabled = ListViewMain.CheckBoxes;
-                // buttonCheckNone.Enabled = ListViewMain.CheckBoxes;
                 checkBoxCheckAllNone.Enabled = ListViewMain.CheckBoxes;
                 ListViewMain.ResumeLayout();
                 _performingBulkSelection = false;
@@ -345,7 +346,7 @@ namespace xrmtb.XrmToolBox.Controls
             // persist the list of list view items for the filtering
             _listViewItemsColl = new List<ListViewItem>();
 
-            if (_allItems != null)
+            if (_allItems != null && _allItems?.Count > 0)
             {
                 var cols = ListViewMain.Columns;
 

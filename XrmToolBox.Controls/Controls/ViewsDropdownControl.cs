@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace xrmtb.XrmToolBox.Controls.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public partial class ViewsDropdownControl : XrmToolBoxControlBase
     {

@@ -119,7 +119,7 @@ namespace xrmtb.XrmToolBox.Controls
             this.label14 = new System.Windows.Forms.Label();
             this.listBoxViews = new System.Windows.Forms.ListBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.ViewDropdown = new xrmtb.XrmToolBox.Controls.Controls.ViewsDropdownControl();
+            this.ViewDropdown = new xrmtb.XrmToolBox.Controls.ViewsDropdownControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.propGridViewDropdown = new System.Windows.Forms.PropertyGrid();
             this.textViewsDropdownLog = new System.Windows.Forms.TextBox();
@@ -1816,7 +1816,7 @@ namespace xrmtb.XrmToolBox.Controls
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ListBox listBoxViews;
         private System.Windows.Forms.Label label15;
-        private Controls.ViewsDropdownControl ViewDropdown;
+        private ViewsDropdownControl ViewDropdown;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PropertyGrid propGridViewDropdown;
         private System.Windows.Forms.TextBox textViewsDropdownLog;

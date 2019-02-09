@@ -133,10 +133,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF NOT EXIST merged mkdir merged
-"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ILMerge.exe" /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7" /lib:"C:\Windows\Microsoft.Net\Framework64\v4.0.30319" /log:ilmerge.log /out:"$(TargetDir)Merged\$(TargetFileName)" "$(TargetFileName)" "$(TargetDir)xrmtb.XrmToolBox.Controls.dll"
+"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ILMerge.exe" /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7" /lib:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /log:ilmerge.log /out:"$(TargetDir)Merged\$(TargetFileName)" "$(TargetFileName)" "$(TargetDir)xrmtb.XrmToolBox.Controls.dll"
 
 xcopy "$(TargetDir)merged\$(TargetFileName)" "$(TargetDir)Plugins\" /Y
-xcopy "$(TargetDir)merged\$(TargetName).pdb" "$(TargetDir)Plugins\" /Y</PostBuildEvent>
+xcopy "$(TargetDir)merged\$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

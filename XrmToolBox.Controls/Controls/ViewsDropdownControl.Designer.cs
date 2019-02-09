@@ -1,4 +1,4 @@
-﻿namespace xrmtb.XrmToolBox.Controls.Controls
+﻿namespace xrmtb.XrmToolBox.Controls
 {
     partial class ViewsDropdownControl
     {

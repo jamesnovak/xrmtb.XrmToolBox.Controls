@@ -139,8 +139,8 @@
 xcopy "$(TargetDir)merged\$(TargetFileName)" "$(TargetDir)Plugins\" /Y
 xcopy "$(TargetDir)merged\$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
 
-del "$(TargetDir)xrmtb.XrmToolBox.Controls.dll"
-del "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb"
+REM del "$(TargetDir)xrmtb.XrmToolBox.Controls.dll"
+REM del "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

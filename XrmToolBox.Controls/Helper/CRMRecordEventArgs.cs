@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public class CRMRecordEventArgs : EventArgs
     {

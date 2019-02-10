@@ -8,6 +8,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -42,6 +43,7 @@ namespace xrmtb.XrmToolBox.Controls
             SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, null);
             SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, null);
             SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, null);
 
             // set up service references
             UpdateAllServices(Service);
@@ -89,7 +91,7 @@ namespace xrmtb.XrmToolBox.Controls
                 case "tabPageSolution":
                     SolutionDropdown.LoadData();
                     break;
-                    
+
                 case "tabPageViewsDropdown":
                     ViewDropdown.ClearData();
                     EntityDropdownViews.LoadData();
@@ -301,7 +303,8 @@ namespace xrmtb.XrmToolBox.Controls
             var ent = EntityListControl.SelectedEntity;
 
             UpdateControlLogger(textEntListLog, $"SelectedItemChanged: {ent?.SchemaName}");
-            if (ent != null) {
+            if (ent != null)
+            {
                 ent = CrmActions.RetrieveEntity(Service, ent.LogicalName, true, new List<EntityFilters>() { EntityFilters.All });
             }
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, ent);
@@ -487,8 +490,9 @@ namespace xrmtb.XrmToolBox.Controls
         {
             AttributeMetadata attr = null;
             var count = AttribListControl.CheckedAttributes?.Count;
-            if (count > 0) {
-                attr = AttribListControl.CheckedAttributes[count.Value-1];
+            if (count > 0)
+            {
+                attr = AttribListControl.CheckedAttributes[count.Value - 1];
             }
             UpdateControlLogger(textAttribListLog, $"CheckedItemsChanged (Attributes) - {AttribListControl.CheckedAttributes?.Count}");
             SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attr);
@@ -511,7 +515,7 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         #endregion
-        
+
         #region Solution Dropdown events
         private void SolutionsDropdown_LoadDataComplete(object sender, EventArgs e)
         {
@@ -631,7 +635,7 @@ namespace xrmtb.XrmToolBox.Controls
             }
         }
 
-        private void SetPropertySelectedObject(RadioButton radio, PropertyGrid grid, UserControl targetCtl, object targetObj)
+        private void SetPropertySelectedObject(RadioButton radio, PropertyGrid grid, object targetCtl, object targetObj)
         {
             if (radio.Checked)
             {
@@ -728,5 +732,13 @@ namespace xrmtb.XrmToolBox.Controls
         }
         #endregion
 
+        #region CRMGridView event handlers
+
+        private void RadioCRMGridViewShowProps_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, crmGridView1.SelectedCellRecords?.Entities?.FirstOrDefault());
+        }
+
+        #endregion CRMGridView event handlers
     }
 }

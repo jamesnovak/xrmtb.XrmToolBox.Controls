@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public class EntitySerializer
     {

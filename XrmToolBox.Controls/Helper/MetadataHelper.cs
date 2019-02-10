@@ -5,7 +5,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata.Query;
 using Microsoft.Xrm.Sdk.Messages;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public static class MetadataHelper
     {

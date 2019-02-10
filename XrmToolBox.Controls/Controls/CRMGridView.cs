@@ -8,7 +8,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 using System.Drawing;
 using System.Linq;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public partial class CRMGridView : DataGridView
     {

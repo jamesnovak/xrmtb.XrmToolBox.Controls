@@ -1,4 +1,4 @@
-﻿namespace XrmToolBox.Controls
+﻿namespace xrmtb.XrmToolBox.Controls
 {
     partial class CRMGridView
     {

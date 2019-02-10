@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Helper base class for XrmToolBox Controls

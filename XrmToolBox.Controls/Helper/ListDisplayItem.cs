@@ -1,4 +1,4 @@
-﻿namespace XrmToolBox.Controls
+﻿namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Helper class for binding to UI controls

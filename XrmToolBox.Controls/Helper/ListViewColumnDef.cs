@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     /// <summary>
     /// Helper class for defining ListView Columns and Groups

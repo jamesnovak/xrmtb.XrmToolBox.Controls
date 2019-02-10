@@ -7,8 +7,9 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
+using System.Collections.Generic;
 
-namespace XrmToolBox.Controls
+namespace xrmtb.XrmToolBox.Controls
 {
     public partial class ControlTesterPluginControl : PluginControlBase
     {
@@ -28,14 +29,10 @@ namespace XrmToolBox.Controls
             splitterAttribDropdown.SplitterDistance =
                 splitterAttribList.SplitterDistance =
                 splitterEntDropdown.SplitterDistance =
-                splitterEntityList.SplitterDistance = 
-                splitterSolnDropdown.SplitterDistance = width;
-
-
-            EntityListControl.DisplayToolbar = true;
-
-            // add the entity filter that will return Attribute metadata
-            // EntitiesListControl.EntityRequestFilters.Add(EntityFilters.Attributes);
+                splitterEntityList.SplitterDistance =
+                splitterSolnDropdown.SplitterDistance = width =
+                splitterViewDropdown.SplitterDistance = width =
+                splitterGlobalOptsList.SplitterDistance = width;
 
             // set up the properties detail
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, null);
@@ -43,15 +40,11 @@ namespace XrmToolBox.Controls
             SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, null);
             SetPropertySelectedObject(radioSolnDropdownShowProps, propGridSolutions, SolutionDropdown, null);
             SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, null);
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, null);
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
 
             // set up service references
-            EntityListControl.Service = Service;
-            EntityDropdown.Service = Service;
-            AttributeDropdown.Service = Service;
-            SolutionDropdown.Service = Service;
-            EntityDropdownAttribs.Service = Service;
-            EntityDropdownAttribList.Service = Service;
-            crmGridView1.OrganizationService = Service;
+            UpdateAllServices(Service);
         }
 
         private void AllControls_NotificationMessage(object sender, NotificationEventArgs e)
@@ -96,6 +89,16 @@ namespace XrmToolBox.Controls
                 case "tabPageSolution":
                     SolutionDropdown.LoadData();
                     break;
+                    
+                case "tabPageViewsDropdown":
+                    ViewDropdown.ClearData();
+                    EntityDropdownViews.LoadData();
+                    break;
+
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.LoadData();
+                    break;
+
             }
         }
         private void ToolButtonClearData_Click(object sender, EventArgs e)
@@ -122,6 +125,14 @@ namespace XrmToolBox.Controls
                 case "tabPageSolution":
                     SolutionDropdown.ClearData();
                     break;
+                case "tabPageViewsDropdown":
+                    ViewDropdown.ClearData();
+                    EntityDropdownViews.ClearData();
+                    break;
+
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.ClearData();
+                    break;
             }
         }
 
@@ -144,10 +155,16 @@ namespace XrmToolBox.Controls
                 case "tabPageAttrDropDown":
                     AttributeDropdown.UpdateConnection(Service);
                     EntityDropdownAttribs.UpdateConnection(Service);
-
                     break;
                 case "tabPageSolution":
                     SolutionDropdown.UpdateConnection(Service);
+                    break;
+                case "tabPageViewsDropdown":
+                    ViewDropdown.UpdateConnection(Service);
+                    EntityDropdownViews.UpdateConnection(Service);
+                    break;
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.UpdateConnection(Service);
                     break;
             }
         }
@@ -165,16 +182,23 @@ namespace XrmToolBox.Controls
                 case "tabPageAttrList":
                     AttribListControl.Close();
                     EntityDropdownAttribList.Close();
-
                     break;
+
                 case "tabPageAttrDropDown":
                     AttributeDropdown.Close();
                     EntityDropdownAttribs.Close();
-
                     break;
                 case "tabPageSolution":
                     SolutionDropdown.Close();
                     break;
+                case "tabPageViewsDropdown":
+                    ViewDropdown.Close();
+                    EntityDropdownViews.Close();
+                    break;
+                case "tabPageGlobalOptSets":
+                    GlobalOptionSetList.Close();
+                    break;
+
             }
         }
 
@@ -188,7 +212,6 @@ namespace XrmToolBox.Controls
                 case "tabPageEntList":
                 case "tabPageAttrList":
                     enabled = true;
-                    enabled = true;
                     break;
                 default:
                     enabled = false;
@@ -198,6 +221,7 @@ namespace XrmToolBox.Controls
             toolStripTextFilter.Enabled = enabled;
         }
         #endregion
+
         /// <summary>
         /// This event occurs when the plugin is closed
         /// </summary>
@@ -216,6 +240,10 @@ namespace XrmToolBox.Controls
 
             LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
 
+        }
+
+        private void UpdateAllServices(IOrganizationService newService)
+        {
             // ENTITIES LIST - update the connection 
             EntityListControl.UpdateConnection(newService);
             EntityDropdown.UpdateConnection(newService);
@@ -225,6 +253,11 @@ namespace XrmToolBox.Controls
 
             AttribListControl.UpdateConnection(newService);
             EntityDropdownAttribList.UpdateConnection(newService);
+
+            ViewDropdown.UpdateConnection(newService);
+            EntityDropdownViews.UpdateConnection(newService);
+
+            GlobalOptionSetList.UpdateConnection(newService);
             crmGridView1.OrganizationService = newService;
         }
 
@@ -268,7 +301,9 @@ namespace XrmToolBox.Controls
             var ent = EntityListControl.SelectedEntity;
 
             UpdateControlLogger(textEntListLog, $"SelectedItemChanged: {ent?.SchemaName}");
-
+            if (ent != null) {
+                ent = CrmActions.RetrieveEntity(Service, ent.LogicalName, true, new List<EntityFilters>() { EntityFilters.All });
+            }
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, ent);
 
         }
@@ -427,7 +462,20 @@ namespace XrmToolBox.Controls
         {
             var attr = AttribListControl.SelectedAttribute;
             UpdateControlLogger(textAttribListLog, $"SelectedItemChanged (Attribute): {attr?.LogicalName}");
-            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attr);
+
+            object attrObj = attr;
+            if (attr != null)
+            {
+                switch (attr.AttributeType)
+                {
+                    case AttributeTypeCode.Lookup:
+                        attrObj = (LookupAttributeMetadata)attr;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, attrObj);
         }
 
         private void AttribListControl_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -510,6 +558,65 @@ namespace XrmToolBox.Controls
         }
         #endregion
 
+        #region View Dropdown Events
+
+        private void EntityDropdownViews_SelectedItemChanged(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"SelectedItemChanged: {EntityDropdownViews.SelectedEntity?.SchemaName}");
+
+            ViewDropdown.ParentEntity = EntityDropdownViews.SelectedEntity;
+
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, ViewDropdown.SelectedView);
+        }
+
+        private void ViewDropdown_SelectedItemChanged(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"SelectedItemChanged (View): {ViewDropdown.SelectedView?.LogicalName}");
+
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, ViewDropdown.SelectedView);
+        }
+
+        private void ViewDropdown_LoadDataComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textAttribDropdownLog, $"LoadDataComplete (Views), Count: {ViewDropdown.AllViews.Count}");
+
+            var v = listBoxViews;
+            v.DataSource = null;
+            v.Items.Clear();
+            v.DataSource = ViewDropdown.AllViewsBindable;
+            v.DisplayMember = "Name";
+            v.ValueMember = "Object";
+
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, ViewDropdown.SelectedView);
+        }
+
+        private void ViewDropdown_ClearDataComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"ClearDataComplete (Views) - Count: {ViewDropdown.AllViews.Count}");
+        }
+
+        private void ViewDropdown_BeginLoadData(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"BeginLoadData (Views)");
+        }
+
+        private void ViewDropdown_BeginClearData(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"BeginClearData (Views)");
+        }
+
+        private void ViewDropdown_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            UpdateControlLogger(textViewsDropdownLog, $"ProgressChanged (Views): {e.UserState} : {e.ProgressPercentage}");
+        }
+
+
+        private void RadioViewsDropdown_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, ViewDropdown.SelectedView);
+        }
+        #endregion 
+
         #region Helpers
 
         private void UpdateControlLogger(TextBox ctl, string message, bool clear = false)
@@ -536,8 +643,6 @@ namespace XrmToolBox.Controls
             }
         }
 
-        #endregion
-
         /// <summary>
         /// Apply the text filter programmatically 
         /// </summary>
@@ -555,5 +660,73 @@ namespace XrmToolBox.Controls
                     break;
             }
         }
+        #endregion
+
+        #region Global OptionSet Listview Control event handlers
+        private void GlobalOptionSetList_CloseComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"CloseComplete");
+        }
+        private void GlobalOptionSetList_InitializeComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"InitializeComplete");
+        }
+
+        private void GlobalOptionSetList_LoadDataComplete(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"LoadDataComplete - All Global OptionSets  count: {GlobalOptionSetList.AllOptionSets?.Count}");
+        }
+
+        private void GlobalOptionSetList_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"{e.UserState} : {e.ProgressPercentage}");
+        }
+
+        private void GlobalOptionSetList_CheckedItemsChanged(object sender, EventArgs e)
+        {
+            UpdateControlLogger(textGlobalOptsListLog, $"CheckedItemsChanged - Checked Global OptionSets count: {GlobalOptionSetList.CheckedOptionSets?.Count}");
+
+            OptionSetMetadataBase opt = null;
+
+            if (GlobalOptionSetList.CheckedOptionSets.Count > 0)
+            {
+                opt = GlobalOptionSetList.CheckedOptionSets[0];
+            }
+
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, opt);
+        }
+        private void GlobalOptionSetList_SelectedItemChanged(object sender, EventArgs e)
+        {
+            var opt = GlobalOptionSetList.SelectedOptionSet;
+
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, opt);
+
+            UpdateControlLogger(textGlobalOptsListLog, $"SelectedItemChanged: {opt?.Name}");
+        }
+        private void GlobalOptionSetList_ClearDataComplete(object sender, EventArgs e)
+        {
+            // ENTITIES LIST - log event
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
+
+            UpdateControlLogger(textGlobalOptsListLog, $"ClearDataComplete - All Global OptionSets count: {GlobalOptionSetList.AllOptionSets?.Count}");
+        }
+
+        private void RadioGlobalOptionSetList_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, EntityListControl.SelectedEntity);
+        }
+
+        private void GlobalOptionSetList_BeginLoadData(object sender, EventArgs e)
+        {
+            if (this.textEntListLog.InvokeRequired)
+            {
+            }
+            else
+            {
+                textGlobalOptsListLog.Clear();
+            }
+        }
+        #endregion
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace xrmtb.XrmToolBox.Controls
 {
-    partial class XrmToolBoxControlBase
+    partial class GlobalOptionSetListControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,13 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // XrmToolBoxControlBase
+            // GlobalOptionSetListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "XrmToolBoxControlBase";
-            this.Size = new System.Drawing.Size(652, 293);
-            this.EnabledChanged += new System.EventHandler(this.XrmToolBoxControlBase_EnabledChanged);
+            this.Name = "GlobalOptionSetListControl";
+            this.Size = new System.Drawing.Size(921, 635);
             this.ResumeLayout(false);
 
         }

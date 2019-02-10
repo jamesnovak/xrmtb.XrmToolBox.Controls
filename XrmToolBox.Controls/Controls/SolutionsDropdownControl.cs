@@ -55,7 +55,7 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("XrmToolBox")]
         [Description("Reference to all Solutions as a bindable list")]
         [Browsable(false)]
-        public List<ListDisplayItem> AllAttributesBindable { get => comboSolutions.DataSource as List<ListDisplayItem>; }
+        public List<ListDisplayItem> AllSolutionsBindable { get => comboSolutions.DataSource as List<ListDisplayItem>; }
 
         #region Event Definitions
         /// <summary>

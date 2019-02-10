@@ -33,7 +33,8 @@ namespace xrmtb.XrmToolBox.Controls
                 splitterEntityList.SplitterDistance =
                 splitterSolnDropdown.SplitterDistance = width =
                 splitterViewDropdown.SplitterDistance = width =
-                splitterGlobalOptsList.SplitterDistance = width;
+                splitterGlobalOptsList.SplitterDistance = width =
+                splitterCRMGridView.SplitterDistance = width;
 
             // set up the properties detail
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, null);
@@ -260,6 +261,8 @@ namespace xrmtb.XrmToolBox.Controls
             EntityDropdownViews.UpdateConnection(newService);
 
             GlobalOptionSetList.UpdateConnection(newService);
+
+            SolutionDropdownGridView.UpdateConnection(newService);
             crmGridView1.OrganizationService = newService;
         }
 
@@ -523,7 +526,7 @@ namespace xrmtb.XrmToolBox.Controls
 
             listBoxSolutions.DataSource = null;
             listBoxSolutions.Items.Clear();
-            listBoxSolutions.DataSource = SolutionDropdown.AllAttributesBindable;
+            listBoxSolutions.DataSource = SolutionDropdown.AllSolutionsBindable;
             listBoxSolutions.DisplayMember = "DisplayName";
             listBoxSolutions.ValueMember = "Object";
 
@@ -740,5 +743,23 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         #endregion CRMGridView event handlers
+
+        private void SolutionDropdownGridView_SelectedItemChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void SolutionDropdownGridView_LoadDataComplete(object sender, EventArgs e)
+        {
+            var coll = new EntityCollection(SolutionDropdownGridView.AllSolutions) {
+                EntityName = "solution"
+            };
+            crmGridView1.DataSource = coll;
+            crmGridView1.Refresh();
+        }
+
+        private void crmGridView1_RecordClick(object sender, CRMRecordEventArgs e)
+        {
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, e.Entity);
+        }
     }
 }

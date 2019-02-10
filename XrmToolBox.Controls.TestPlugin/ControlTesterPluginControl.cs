@@ -8,8 +8,9 @@ using Microsoft.Xrm.Sdk.Metadata;
 using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
 using System.Collections.Generic;
+using xrmtb.XrmToolBox.Controls;
 
-namespace xrmtb.XrmToolBox.Controls
+namespace Sample.XrmToolBox.TestPlugin
 {
     public partial class ControlTesterPluginControl : PluginControlBase
     {

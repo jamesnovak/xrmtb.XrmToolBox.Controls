@@ -29,8 +29,11 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("XrmToolBox")]
         [DisplayName("Publisher Prefix Filters")]
         [Description("Load solutoins for only the Publisher Prefixes provided in the list")]
-        public List<string> PublisherPrefixes { get => _publisherPrefixes; }
-
+        [Browsable(true)]
+        [Editor(@"System.Windows.Forms.Design.StringCollectionEditor,System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+            typeof(System.Drawing.Design.UITypeEditor))]
+        // [TypeConverter(typeof(CsvConverter))]
+        public List<string> PublisherPrefixes { get => _publisherPrefixes; set => _publisherPrefixes = value; }
 
         /// <summary>
         /// The currently selected Solution object in the ListView

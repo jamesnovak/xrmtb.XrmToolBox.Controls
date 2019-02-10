@@ -39,12 +39,6 @@
     <AssemblyOriginatorKeyFile>XrmToolBox.Controls.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="McTools.Xrm.Connection">
-      <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2018.7.19\lib\net462\McTools.Xrm.Connection.dll</HintPath>
-    </Reference>
-    <Reference Include="McTools.Xrm.Connection.WinForms">
-      <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2018.7.19\lib\net462\McTools.Xrm.Connection.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.5\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
     </Reference>
@@ -79,16 +73,6 @@
     </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <HintPath>..\packages\DockPanelSuite.ThemeVS2015.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
-    </Reference>
-    <Reference Include="XrmToolBox, Version=1.2018.6.24, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XrmToolBoxPackage.1.2018.6.24\lib\net462\XrmToolBox.exe</HintPath>
-    </Reference>
-    <Reference Include="XrmToolBox.Extensibility">
-      <HintPath>..\packages\XrmToolBoxPackage.1.2018.7.28\lib\net462\XrmToolBox.Extensibility.dll</HintPath>
-    </Reference>
-    <Reference Include="XrmToolBox.PluginsStore">
-      <HintPath>..\packages\XrmToolBoxPackage.1.2018.7.28\lib\net462\XrmToolBox.PluginsStore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Futurez.XrmToolBox.TestPlugin
+namespace Sample.XrmToolBox.TestPlugin
 {
     /// <summary>
     /// This class can help you to store settings for your plugin

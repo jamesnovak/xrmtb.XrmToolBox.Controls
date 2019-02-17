@@ -11,6 +11,9 @@ using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
 using xrmtb.XrmToolBox.Controls;
 
+using System.IO;
+using System.Reflection;
+
 namespace Sample.XrmToolBox.TestPlugin
 {
     public partial class ControlTesterPluginControl : PluginControlBase
@@ -241,6 +244,8 @@ namespace Sample.XrmToolBox.TestPlugin
         public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
         {
             base.UpdateConnection(newService, detail, actionName, parameter);
+
+            UpdateAllServices(newService);
 
             LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
 

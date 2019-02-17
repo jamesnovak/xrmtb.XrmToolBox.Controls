@@ -116,7 +116,7 @@ namespace xrmtb.XrmToolBox.Controls
 
             if (Service == null)
             {
-                var ex = new InvalidOperationException("The Service reference must be set before loading the Entities list");
+                var ex = new InvalidOperationException("The Service reference must be set before loading the Solutions list");
 
                 // raise the error event and if set, throw error
                 OnNotificationMessage(ex.Message, MessageLevel.Exception, ex);

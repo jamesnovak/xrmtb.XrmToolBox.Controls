@@ -8,8 +8,8 @@
     <ProjectGuid>{AD8E16A9-3946-4EC1-9B95-3EB279B4F34F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XrmToolBox.Controls.TestPlugin</RootNamespace>
-    <AssemblyName>XrmToolBox.Controls.TestPlugin</AssemblyName>
+    <RootNamespace>Sample.XrmToolBox.TestPlugin</RootNamespace>
+    <AssemblyName>Sample.XrmToolBox.TestPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -133,15 +133,28 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF NOT EXIST merged mkdir merged
-"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ILMerge.exe" /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7" /lib:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /target:winexe /log:ilmerge.log /out:"$(TargetDir)Merged\$(TargetFileName)" "$(TargetFileName)" "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" 
+    <PostBuildEvent>IF $(ConfigurationName) == Debug (
+   IF NOT EXIST Plugins mkdir Plugins
+   IF NOT EXIST Plugins\References mkdir Plugins\References
 
-xcopy "$(TargetDir)merged\$(TargetFileName)" "$(TargetDir)Plugins\" /Y
-xcopy "$(TargetDir)merged\$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
+   xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Plugins\" /Y
+   xcopy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
 
-REM del "$(TargetDir)xrmtb.XrmToolBox.Controls.dll"
-REM del "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb"
-</PostBuildEvent>
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(TargetDir)Plugins\References" /Y
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb" "$(TargetDir)Plugins\References" /Y
+)
+
+REM for NuGet package
+IF $(ConfigurationName) == Release (
+   IF NOT EXIST $(ProjectDir)NuGet\Package\lib\net47\Plugins\ mkdir $(ProjectDir)NuGet\Package\lib\net47\Plugins\
+   IF NOT EXIST $(ProjectDir)NuGet\Package\lib\net47\Plugins\References\ mkdir $(ProjectDir)NuGet\Package\lib\net47\Plugins\References\
+
+   xcopy "$(TargetDir)$(TargetFileName)" "$(ProjectDir)NuGet\Package\lib\net47\Plugins\" /Y
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(ProjectDir)NuGet\Package\lib\net47\Plugins\References\" /Y   
+)
+
+del "$(TargetDir)xrmtb.XrmToolBox.Controls.*"
+del "$(TargetDir)$(TargetFileName).*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

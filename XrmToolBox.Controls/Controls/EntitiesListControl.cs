@@ -51,7 +51,9 @@ namespace xrmtb.XrmToolBox.Controls
                 }
                 else {
                     solutionsDropdown.UpdateConnection(Service);
-                    solutionsDropdown.LoadData();
+                    if (Service != null) {
+                        solutionsDropdown.LoadData();
+                    }
                 }
             }
         }

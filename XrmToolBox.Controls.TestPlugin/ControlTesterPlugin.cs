@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using XrmToolBox.Extensibility;
 using XrmToolBox.Extensibility.Interfaces;
 
@@ -16,9 +21,58 @@ namespace Sample.XrmToolBox.TestPlugin
         ExportMetadata("SecondaryFontColor", "Gray")]
     public class ControlTesterPlugin : PluginBase
     {
+        // Move to config/resx/constant?
+        const string REF_FOLDER = @"Plugins\References";
+
+        public ControlTesterPlugin() {
+
+            // hook into the event that will fire when an Assembly fails to resolve
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolveEventHandler);
+        }
+
+        /// <summary>
+        /// This handler is called only when the CLR tries to bind to the assembly and fails.
+        /// If the argument includes an assembly that we don't want to load, return a null and the CLR will load it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args">Argument containing the details of the assembly that failed to resolve.</param>
+        /// <returns></returns>
+        private Assembly AssemblyResolveEventHandler(object sender, ResolveEventArgs args)
+        {
+            Assembly assembly = null;
+            
+            // grab the base name of the assembly
+            var argName = args.Name.Substring(0, args.Name.IndexOf(","));
+
+            //Retrieve the list of referenced assemblies
+            // check to see if the failing assembly is one that we reference.
+            List<AssemblyName> refAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().ToList();
+            var refAssembly = refAssemblies.Where(a => a.Name == argName).FirstOrDefault();
+
+            // if the current unresolved assembly is one we reference, then attempt to load it from our folder.
+            if (refAssembly != null)
+            {
+                string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, REF_FOLDER);
+
+                var assmbPath = Path.Combine(dir, $"{argName}.dll");
+
+                if (File.Exists(assmbPath))
+                {
+                    assembly = Assembly.LoadFrom(assmbPath);
+                }
+                else {
+                    throw new FileNotFoundException($"Unable to locate dependency: {assmbPath}");
+                }
+            }
+
+            // return loaded assembly 
+            return assembly;
+        }
+
         public override IXrmToolBoxPluginControl GetControl()
         {
             return new ControlTesterPluginControl();
         }
+
     }
 }

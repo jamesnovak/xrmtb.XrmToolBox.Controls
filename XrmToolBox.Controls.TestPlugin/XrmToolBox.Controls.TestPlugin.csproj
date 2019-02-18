@@ -135,26 +135,28 @@
   <PropertyGroup>
     <PostBuildEvent>IF $(ConfigurationName) == Debug (
    IF NOT EXIST Plugins mkdir Plugins
-   IF NOT EXIST Plugins\References mkdir Plugins\References
+   IF NOT EXIST Plugins\$(TargetName) mkdir Plugins\$(TargetName)
 
    xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Plugins\" /Y
    xcopy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
 
-   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(TargetDir)Plugins\References" /Y
-   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb" "$(TargetDir)Plugins\References" /Y
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(TargetDir)Plugins\$(TargetName)" /Y
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb" "$(TargetDir)Plugins\$(TargetName)" /Y
 )
 
 REM for NuGet package
 IF $(ConfigurationName) == Release (
    IF NOT EXIST $(ProjectDir)NuGet\Package\lib\net47\Plugins\ mkdir $(ProjectDir)NuGet\Package\lib\net47\Plugins\
-   IF NOT EXIST $(ProjectDir)NuGet\Package\lib\net47\Plugins\References\ mkdir $(ProjectDir)NuGet\Package\lib\net47\Plugins\References\
+   IF NOT EXIST $(ProjectDir)NuGet\Package\lib\net47\Plugins\$(TargetName)\ mkdir $(ProjectDir)NuGet\Package\lib\net47\Plugins\$(TargetName)\
 
    xcopy "$(TargetDir)$(TargetFileName)" "$(ProjectDir)NuGet\Package\lib\net47\Plugins\" /Y
-   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(ProjectDir)NuGet\Package\lib\net47\Plugins\References\" /Y   
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(ProjectDir)NuGet\Package\lib\net47\Plugins\$(TargetName)\" /Y
 )
 
 del "$(TargetDir)xrmtb.XrmToolBox.Controls.*"
-del "$(TargetDir)$(TargetFileName).*"</PostBuildEvent>
+del "$(TargetDir)$(TargetFileName).*"
+
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

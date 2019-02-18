@@ -21,9 +21,6 @@ namespace Sample.XrmToolBox.TestPlugin
         ExportMetadata("SecondaryFontColor", "Gray")]
     public class ControlTesterPlugin : PluginBase
     {
-        // Move to config/resx/constant?
-        const string REF_FOLDER = @"Plugins\References";
-
         public ControlTesterPlugin() {
 
             // hook into the event that will fire when an Assembly fails to resolve
@@ -39,26 +36,28 @@ namespace Sample.XrmToolBox.TestPlugin
         /// <returns></returns>
         private Assembly AssemblyResolveEventHandler(object sender, ResolveEventArgs args)
         {
-            Assembly assembly = null;
-            
+            Assembly loadAssembly = null;
+            Assembly currAssembly = Assembly.GetExecutingAssembly();
             // grab the base name of the assembly
             var argName = args.Name.Substring(0, args.Name.IndexOf(","));
 
             //Retrieve the list of referenced assemblies
             // check to see if the failing assembly is one that we reference.
-            List<AssemblyName> refAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().ToList();
+            List<AssemblyName> refAssemblies = currAssembly.GetReferencedAssemblies().ToList();
             var refAssembly = refAssemblies.Where(a => a.Name == argName).FirstOrDefault();
 
             // if the current unresolved assembly is one we reference, then attempt to load it from our folder.
             if (refAssembly != null)
             {
-                string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, REF_FOLDER);
+                string dir = Path.GetDirectoryName(currAssembly.Location).ToLower();
+                string folder = Path.GetFileNameWithoutExtension(currAssembly.Location);
+                dir =  Path.Combine(dir, folder);
 
                 var assmbPath = Path.Combine(dir, $"{argName}.dll");
 
                 if (File.Exists(assmbPath))
                 {
-                    assembly = Assembly.LoadFrom(assmbPath);
+                    loadAssembly = Assembly.LoadFrom(assmbPath);
                 }
                 else {
                     throw new FileNotFoundException($"Unable to locate dependency: {assmbPath}");
@@ -66,7 +65,7 @@ namespace Sample.XrmToolBox.TestPlugin
             }
 
             // return loaded assembly 
-            return assembly;
+            return loadAssembly;
         }
 
         public override IXrmToolBoxPluginControl GetControl()

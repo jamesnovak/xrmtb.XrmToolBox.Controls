@@ -140,8 +140,7 @@
    xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Plugins\" /Y
    xcopy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
 
-   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.dll" "$(TargetDir)Plugins\$(TargetName)" /Y
-   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.pdb" "$(TargetDir)Plugins\$(TargetName)" /Y
+   xcopy "$(TargetDir)xrmtb.XrmToolBox.Controls.*" "$(TargetDir)Plugins\$(TargetName)" /Y
 )
 
 REM for NuGet package
@@ -154,9 +153,7 @@ IF $(ConfigurationName) == Release (
 )
 
 del "$(TargetDir)xrmtb.XrmToolBox.Controls.*"
-del "$(TargetDir)$(TargetFileName).*"
-
-</PostBuildEvent>
+del "$(TargetDir)$(TargetFileName).*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

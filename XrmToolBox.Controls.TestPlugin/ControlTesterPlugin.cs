@@ -38,20 +38,21 @@ namespace Sample.XrmToolBox.TestPlugin
         {
             Assembly loadAssembly = null;
             Assembly currAssembly = Assembly.GetExecutingAssembly();
-            // grab the base name of the assembly
+            
+            // base name of the assembly that failed to resolve
             var argName = args.Name.Substring(0, args.Name.IndexOf(","));
 
-            //Retrieve the list of referenced assemblies
             // check to see if the failing assembly is one that we reference.
             List<AssemblyName> refAssemblies = currAssembly.GetReferencedAssemblies().ToList();
             var refAssembly = refAssemblies.Where(a => a.Name == argName).FirstOrDefault();
 
-            // if the current unresolved assembly is one we reference, then attempt to load it from our folder.
+            // if the current unresolved assembly is referenced by our plugin, attempt to load
             if (refAssembly != null)
             {
+                // load from the path to this plugin assembly, not host executable
                 string dir = Path.GetDirectoryName(currAssembly.Location).ToLower();
                 string folder = Path.GetFileNameWithoutExtension(currAssembly.Location);
-                dir =  Path.Combine(dir, folder);
+                dir = Path.Combine(dir, folder);
 
                 var assmbPath = Path.Combine(dir, $"{argName}.dll");
 
@@ -64,7 +65,6 @@ namespace Sample.XrmToolBox.TestPlugin
                 }
             }
 
-            // return loaded assembly 
             return loadAssembly;
         }
 

@@ -31,6 +31,8 @@ namespace Sample.XrmToolBox.TestPlugin
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlTesterPluginControl));
+            xrmtb.XrmToolBox.Controls.XMLViewerSettings xmlViewerSettings1 = new xrmtb.XrmToolBox.Controls.XMLViewerSettings();
+            xrmtb.XrmToolBox.Controls.XMLViewerSettings xmlViewerSettings2 = new xrmtb.XrmToolBox.Controls.XMLViewerSettings();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.tssSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -150,6 +152,16 @@ namespace Sample.XrmToolBox.TestPlugin
             this.radioCRMGridViewSelEntity = new System.Windows.Forms.RadioButton();
             this.propCRMGridView = new System.Windows.Forms.PropertyGrid();
             this.textCRMGridView = new System.Windows.Forms.TextBox();
+            this.tabPageXrmViewer = new System.Windows.Forms.TabPage();
+            this.TableXmlViewers = new System.Windows.Forms.TableLayoutPanel();
+            this.splitterXmlViewerControl = new System.Windows.Forms.SplitContainer();
+            this.XmlViewerControl = new xrmtb.XrmToolBox.Controls.XmlViewerControl();
+            this.propGridXmlViewerControl = new System.Windows.Forms.PropertyGrid();
+            this.splitterXmlViewer = new System.Windows.Forms.SplitContainer();
+            this.XmlViewer = new xrmtb.XrmToolBox.Controls.XMLViewer();
+            this.propGridXmlViewer = new System.Windows.Forms.PropertyGrid();
+            this.labelXmlViewerControlTitle = new System.Windows.Forms.Label();
+            this.labelXmlViewerTitle = new System.Windows.Forms.Label();
             this.toolStripMenu.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageEntList.SuspendLayout();
@@ -215,6 +227,16 @@ namespace Sample.XrmToolBox.TestPlugin
             ((System.ComponentModel.ISupportInitialize)(this.crmGridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.tabPageXrmViewer.SuspendLayout();
+            this.TableXmlViewers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterXmlViewerControl)).BeginInit();
+            this.splitterXmlViewerControl.Panel1.SuspendLayout();
+            this.splitterXmlViewerControl.Panel2.SuspendLayout();
+            this.splitterXmlViewerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterXmlViewer)).BeginInit();
+            this.splitterXmlViewer.Panel1.SuspendLayout();
+            this.splitterXmlViewer.Panel2.SuspendLayout();
+            this.splitterXmlViewer.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMenu
@@ -317,8 +339,9 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabControlMain.Controls.Add(this.tabPageViewsDropdown);
             this.tabControlMain.Controls.Add(this.tabPageGlobalOptSets);
             this.tabControlMain.Controls.Add(this.tabPageCRMGridView);
+            this.tabControlMain.Controls.Add(this.tabPageXrmViewer);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.ItemSize = new System.Drawing.Size(175, 30);
+            this.tabControlMain.ItemSize = new System.Drawing.Size(150, 30);
             this.tabControlMain.Location = new System.Drawing.Point(0, 39);
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlMain.Name = "tabControlMain";
@@ -1849,6 +1872,171 @@ namespace Sample.XrmToolBox.TestPlugin
             this.textCRMGridView.Size = new System.Drawing.Size(580, 993);
             this.textCRMGridView.TabIndex = 7;
             // 
+            // tabPageXrmViewer
+            // 
+            this.tabPageXrmViewer.Controls.Add(this.TableXmlViewers);
+            this.tabPageXrmViewer.Location = new System.Drawing.Point(4, 34);
+            this.tabPageXrmViewer.Name = "tabPageXrmViewer";
+            this.tabPageXrmViewer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageXrmViewer.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageXrmViewer.TabIndex = 8;
+            this.tabPageXrmViewer.Text = "XrmViewer";
+            this.tabPageXrmViewer.UseVisualStyleBackColor = true;
+            // 
+            // TableXmlViewers
+            // 
+            this.TableXmlViewers.ColumnCount = 1;
+            this.TableXmlViewers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableXmlViewers.Controls.Add(this.splitterXmlViewerControl, 0, 1);
+            this.TableXmlViewers.Controls.Add(this.splitterXmlViewer, 0, 3);
+            this.TableXmlViewers.Controls.Add(this.labelXmlViewerControlTitle, 0, 0);
+            this.TableXmlViewers.Controls.Add(this.labelXmlViewerTitle, 0, 2);
+            this.TableXmlViewers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableXmlViewers.Location = new System.Drawing.Point(3, 3);
+            this.TableXmlViewers.Name = "TableXmlViewers";
+            this.TableXmlViewers.RowCount = 4;
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableXmlViewers.Size = new System.Drawing.Size(1816, 1123);
+            this.TableXmlViewers.TabIndex = 2;
+            // 
+            // splitterXmlViewerControl
+            // 
+            this.splitterXmlViewerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitterXmlViewerControl.Location = new System.Drawing.Point(3, 48);
+            this.splitterXmlViewerControl.Name = "splitterXmlViewerControl";
+            // 
+            // splitterXmlViewerControl.Panel1
+            // 
+            this.splitterXmlViewerControl.Panel1.Controls.Add(this.XmlViewerControl);
+            // 
+            // splitterXmlViewerControl.Panel2
+            // 
+            this.splitterXmlViewerControl.Panel2.Controls.Add(this.propGridXmlViewerControl);
+            this.splitterXmlViewerControl.Size = new System.Drawing.Size(1810, 510);
+            this.splitterXmlViewerControl.SplitterDistance = 919;
+            this.splitterXmlViewerControl.SplitterWidth = 15;
+            this.splitterXmlViewerControl.TabIndex = 1;
+            // 
+            // XmlViewerControl
+            // 
+            this.XmlViewerControl.AcceptsTab = false;
+            this.XmlViewerControl.AutoWordSelection = false;
+            this.XmlViewerControl.BulletIndent = 0;
+            this.XmlViewerControl.DetectUrls = true;
+            this.XmlViewerControl.DisplayParseErrors = true;
+            this.XmlViewerControl.DisplayToolbar = true;
+            this.XmlViewerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.XmlViewerControl.EnableAutoDragDrop = false;
+            this.XmlViewerControl.FormatAsYouType = true;
+            this.XmlViewerControl.HideSelection = true;
+            this.XmlViewerControl.Location = new System.Drawing.Point(0, 0);
+            this.XmlViewerControl.MaxLength = 2147483647;
+            this.XmlViewerControl.Multiline = true;
+            this.XmlViewerControl.Name = "XmlViewerControl";
+            this.XmlViewerControl.ReadOnly = false;
+            this.XmlViewerControl.RightMargin = 0;
+            this.XmlViewerControl.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
+            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Blue;
+            xmlViewerSettings1.AttributeValue = System.Drawing.Color.DarkRed;
+            xmlViewerSettings1.Comment = System.Drawing.Color.Gray;
+            xmlViewerSettings1.Element = System.Drawing.Color.DarkGreen;
+            xmlViewerSettings1.FontName = "Consolas";
+            xmlViewerSettings1.FontSize = 9F;
+            xmlViewerSettings1.QuoteCharacter = '\"';
+            xmlViewerSettings1.Tag = System.Drawing.Color.ForestGreen;
+            xmlViewerSettings1.Value = System.Drawing.Color.Black;
+            this.XmlViewerControl.Settings = xmlViewerSettings1;
+            this.XmlViewerControl.ShortcutsEnabled = true;
+            this.XmlViewerControl.ShowSelectionMargin = false;
+            this.XmlViewerControl.Size = new System.Drawing.Size(919, 510);
+            this.XmlViewerControl.TabIndex = 0;
+            this.XmlViewerControl.WordWrap = true;
+            this.XmlViewerControl.ZoomFactor = 1F;
+            // 
+            // propGridXmlViewerControl
+            // 
+            this.propGridXmlViewerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propGridXmlViewerControl.Location = new System.Drawing.Point(0, 0);
+            this.propGridXmlViewerControl.Name = "propGridXmlViewerControl";
+            this.propGridXmlViewerControl.SelectedObject = this.XmlViewerControl;
+            this.propGridXmlViewerControl.Size = new System.Drawing.Size(876, 510);
+            this.propGridXmlViewerControl.TabIndex = 0;
+            // 
+            // splitterXmlViewer
+            // 
+            this.splitterXmlViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitterXmlViewer.Location = new System.Drawing.Point(3, 609);
+            this.splitterXmlViewer.Name = "splitterXmlViewer";
+            // 
+            // splitterXmlViewer.Panel1
+            // 
+            this.splitterXmlViewer.Panel1.Controls.Add(this.XmlViewer);
+            // 
+            // splitterXmlViewer.Panel2
+            // 
+            this.splitterXmlViewer.Panel2.Controls.Add(this.propGridXmlViewer);
+            this.splitterXmlViewer.Size = new System.Drawing.Size(1810, 511);
+            this.splitterXmlViewer.SplitterDistance = 932;
+            this.splitterXmlViewer.SplitterWidth = 15;
+            this.splitterXmlViewer.TabIndex = 2;
+            // 
+            // XmlViewer
+            // 
+            this.XmlViewer.CurrentParseError = null;
+            this.XmlViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.XmlViewer.FormatAsYouType = true;
+            this.XmlViewer.Location = new System.Drawing.Point(0, 0);
+            this.XmlViewer.Name = "XmlViewer";
+            xmlViewerSettings2.AttributeKey = System.Drawing.Color.Blue;
+            xmlViewerSettings2.AttributeValue = System.Drawing.Color.DarkRed;
+            xmlViewerSettings2.Comment = System.Drawing.Color.Gray;
+            xmlViewerSettings2.Element = System.Drawing.Color.DarkGreen;
+            xmlViewerSettings2.FontName = "Consolas";
+            xmlViewerSettings2.FontSize = 9F;
+            xmlViewerSettings2.QuoteCharacter = '\"';
+            xmlViewerSettings2.Tag = System.Drawing.Color.ForestGreen;
+            xmlViewerSettings2.Value = System.Drawing.Color.Black;
+            this.XmlViewer.Settings = xmlViewerSettings2;
+            this.XmlViewer.Size = new System.Drawing.Size(932, 511);
+            this.XmlViewer.TabIndex = 0;
+            this.XmlViewer.Text = "";
+            // 
+            // propGridXmlViewer
+            // 
+            this.propGridXmlViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propGridXmlViewer.Location = new System.Drawing.Point(0, 0);
+            this.propGridXmlViewer.Name = "propGridXmlViewer";
+            this.propGridXmlViewer.SelectedObject = this.XmlViewer;
+            this.propGridXmlViewer.Size = new System.Drawing.Size(863, 511);
+            this.propGridXmlViewer.TabIndex = 0;
+            // 
+            // labelXmlViewerControlTitle
+            // 
+            this.labelXmlViewerControlTitle.AutoSize = true;
+            this.labelXmlViewerControlTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelXmlViewerControlTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXmlViewerControlTitle.Location = new System.Drawing.Point(3, 0);
+            this.labelXmlViewerControlTitle.Name = "labelXmlViewerControlTitle";
+            this.labelXmlViewerControlTitle.Size = new System.Drawing.Size(1810, 45);
+            this.labelXmlViewerControlTitle.TabIndex = 3;
+            this.labelXmlViewerControlTitle.Text = "XmlViewerControl";
+            this.labelXmlViewerControlTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelXmlViewerTitle
+            // 
+            this.labelXmlViewerTitle.AutoSize = true;
+            this.labelXmlViewerTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelXmlViewerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXmlViewerTitle.Location = new System.Drawing.Point(3, 561);
+            this.labelXmlViewerTitle.Name = "labelXmlViewerTitle";
+            this.labelXmlViewerTitle.Size = new System.Drawing.Size(1810, 45);
+            this.labelXmlViewerTitle.TabIndex = 4;
+            this.labelXmlViewerTitle.Text = "XmlViewer";
+            this.labelXmlViewerTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ControlTesterPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1940,6 +2128,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel3.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.tabPageXrmViewer.ResumeLayout(false);
+            this.TableXmlViewers.ResumeLayout(false);
+            this.TableXmlViewers.PerformLayout();
+            this.splitterXmlViewerControl.Panel1.ResumeLayout(false);
+            this.splitterXmlViewerControl.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitterXmlViewerControl)).EndInit();
+            this.splitterXmlViewerControl.ResumeLayout(false);
+            this.splitterXmlViewer.Panel1.ResumeLayout(false);
+            this.splitterXmlViewer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitterXmlViewer)).EndInit();
+            this.splitterXmlViewer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2065,5 +2264,15 @@ namespace Sample.XrmToolBox.TestPlugin
         private System.Windows.Forms.Label label19;
         private xrmtb.XrmToolBox.Controls.CRMGridView crmGridView1;
         private xrmtb.XrmToolBox.Controls.SolutionsDropdownControl SolutionDropdownGridView;
+        private System.Windows.Forms.TabPage tabPageXrmViewer;
+        private xrmtb.XrmToolBox.Controls.XmlViewerControl XmlViewerControl;
+        private System.Windows.Forms.SplitContainer splitterXmlViewerControl;
+        private System.Windows.Forms.PropertyGrid propGridXmlViewerControl;
+        private System.Windows.Forms.TableLayoutPanel TableXmlViewers;
+        private System.Windows.Forms.SplitContainer splitterXmlViewer;
+        private xrmtb.XrmToolBox.Controls.XMLViewer XmlViewer;
+        private System.Windows.Forms.PropertyGrid propGridXmlViewer;
+        private System.Windows.Forms.Label labelXmlViewerControlTitle;
+        private System.Windows.Forms.Label labelXmlViewerTitle;
     }
 }

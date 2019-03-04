@@ -11,9 +11,6 @@ using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
 using xrmtb.XrmToolBox.Controls;
 
-using System.IO;
-using System.Reflection;
-
 namespace Sample.XrmToolBox.TestPlugin
 {
     public partial class ControlTesterPluginControl : PluginControlBase
@@ -38,7 +35,9 @@ namespace Sample.XrmToolBox.TestPlugin
                 splitterSolnDropdown.SplitterDistance = width =
                 splitterViewDropdown.SplitterDistance = width =
                 splitterGlobalOptsList.SplitterDistance = width =
-                splitterCRMGridView.SplitterDistance = width;
+                splitterCRMGridView.SplitterDistance = width =
+                splitterXmlViewerControl.SplitterDistance = width =
+                splitterXmlViewer.SplitterDistance = width;
 
             // set up the properties detail
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, null);
@@ -331,7 +330,6 @@ namespace Sample.XrmToolBox.TestPlugin
         {
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, EntityListControl.SelectedEntity);
         }
-
 
         private void EntitiesListControl_BeginLoadData(object sender, EventArgs e)
         {

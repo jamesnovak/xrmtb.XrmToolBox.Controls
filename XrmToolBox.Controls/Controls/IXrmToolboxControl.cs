@@ -84,6 +84,7 @@ namespace xrmtb.XrmToolBox.Controls
         {
             Message = message;
             Exception = ex;
+            Level = level;
         }
     }
 }

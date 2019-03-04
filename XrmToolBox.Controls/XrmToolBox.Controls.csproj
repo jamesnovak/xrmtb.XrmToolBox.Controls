@@ -94,6 +94,16 @@
     <Compile Include="Controls\CRMGridView.designer.cs">
       <DependentUpon>CRMGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\XMLViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\XmlViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\XmlViewerControl.Designer.cs">
+      <DependentUpon>XmlViewerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CharacterEncoder.cs" />
     <Compile Include="Helper\CRMRecordEventArgs.cs" />
     <Compile Include="Controls\EntitiesDropdownControl.cs">
       <SubType>UserControl</SubType>
@@ -146,6 +156,7 @@
     <Compile Include="Helper\ListDisplayItem.cs" />
     <Compile Include="Helper\ListViewColumnDef.cs" />
     <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Helper\XMLViewerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -187,6 +198,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewsDropdownControl.resx">
       <DependentUpon>ViewsDropdownControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\XMLViewer.resx">
+      <DependentUpon>XMLViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\XmlViewerControl.resx">
+      <DependentUpon>XmlViewerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XrmToolBoxControlBase.resx">
       <DependentUpon>XrmToolBoxControlBase.cs</DependentUpon>

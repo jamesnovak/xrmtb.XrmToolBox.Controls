@@ -252,7 +252,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
             this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStripMenu.Size = new System.Drawing.Size(1830, 39);
+            this.toolStripMenu.Size = new System.Drawing.Size(1678, 37);
             this.toolStripMenu.TabIndex = 4;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -260,14 +260,14 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.tsbClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(171, 36);
+            this.tsbClose.Size = new System.Drawing.Size(148, 34);
             this.tsbClose.Text = "Close this tool";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
             // tssSeparator1
             // 
             this.tssSeparator1.Name = "tssSeparator1";
-            this.tssSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.tssSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // toolStripDropDownButton1
             // 
@@ -280,52 +280,52 @@ namespace Sample.XrmToolBox.TestPlugin
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(274, 36);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(242, 34);
             this.toolStripDropDownButton1.Text = "Call External Method...";
             // 
             // toolButton_LoadData
             // 
             this.toolButton_LoadData.Name = "toolButton_LoadData";
-            this.toolButton_LoadData.Size = new System.Drawing.Size(328, 38);
+            this.toolButton_LoadData.Size = new System.Drawing.Size(289, 34);
             this.toolButton_LoadData.Text = "LoadData()";
             this.toolButton_LoadData.Click += new System.EventHandler(this.ToolButtonLoadData_Click);
             // 
             // toolButton_ClearData
             // 
             this.toolButton_ClearData.Name = "toolButton_ClearData";
-            this.toolButton_ClearData.Size = new System.Drawing.Size(328, 38);
+            this.toolButton_ClearData.Size = new System.Drawing.Size(289, 34);
             this.toolButton_ClearData.Text = "ClearData()";
             this.toolButton_ClearData.Click += new System.EventHandler(this.ToolButtonClearData_Click);
             // 
             // toolButton_UpdateConnection
             // 
             this.toolButton_UpdateConnection.Name = "toolButton_UpdateConnection";
-            this.toolButton_UpdateConnection.Size = new System.Drawing.Size(328, 38);
+            this.toolButton_UpdateConnection.Size = new System.Drawing.Size(289, 34);
             this.toolButton_UpdateConnection.Text = "UpdateConnection()";
             this.toolButton_UpdateConnection.Click += new System.EventHandler(this.ToolButtonUpdateConnection_Click);
             // 
             // toolButton_Close
             // 
             this.toolButton_Close.Name = "toolButton_Close";
-            this.toolButton_Close.Size = new System.Drawing.Size(328, 38);
+            this.toolButton_Close.Size = new System.Drawing.Size(289, 34);
             this.toolButton_Close.Text = "Close()";
             this.toolButton_Close.Click += new System.EventHandler(this.ToolButtonClose_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // toolStripLabelFilter
             // 
             this.toolStripLabelFilter.Name = "toolStripLabelFilter";
-            this.toolStripLabelFilter.Size = new System.Drawing.Size(166, 36);
+            this.toolStripLabelFilter.Size = new System.Drawing.Size(144, 34);
             this.toolStripLabelFilter.Text = "Filter ListView:";
             // 
             // toolStripTextFilter
             // 
             this.toolStripTextFilter.Name = "toolStripTextFilter";
-            this.toolStripTextFilter.Size = new System.Drawing.Size(200, 39);
+            this.toolStripTextFilter.Size = new System.Drawing.Size(184, 37);
             this.toolStripTextFilter.TextChanged += new System.EventHandler(this.toolStripTextFilter_TextChanged);
             // 
             // tabControlMain
@@ -342,11 +342,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabControlMain.Controls.Add(this.tabPageXrmViewer);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.ItemSize = new System.Drawing.Size(150, 30);
-            this.tabControlMain.Location = new System.Drawing.Point(0, 39);
+            this.tabControlMain.Location = new System.Drawing.Point(0, 37);
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1830, 1167);
+            this.tabControlMain.Size = new System.Drawing.Size(1678, 1121);
             this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlMain.TabIndex = 7;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
@@ -358,7 +358,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageEntList.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageEntList.Name = "tabPageEntList";
             this.tabPageEntList.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPageEntList.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageEntList.Size = new System.Drawing.Size(1670, 1083);
             this.tabPageEntList.TabIndex = 0;
             this.tabPageEntList.Text = "Entity List Control";
             // 
@@ -376,9 +376,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterEntityList.Panel2
             // 
             this.splitterEntityList.Panel2.Controls.Add(this.tableEntListDetails);
-            this.splitterEntityList.Size = new System.Drawing.Size(1810, 1117);
-            this.splitterEntityList.SplitterDistance = 598;
-            this.splitterEntityList.SplitterWidth = 20;
+            this.splitterEntityList.Size = new System.Drawing.Size(1658, 1071);
+            this.splitterEntityList.SplitterDistance = 547;
+            this.splitterEntityList.SplitterWidth = 18;
             this.splitterEntityList.TabIndex = 0;
             // 
             // EntityListControl
@@ -398,12 +398,12 @@ namespace Sample.XrmToolBox.TestPlugin
         ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs3"))),
         ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("EntityListControl.ListViewColDefs4")))};
             this.EntityListControl.Location = new System.Drawing.Point(0, 0);
-            this.EntityListControl.Margin = new System.Windows.Forms.Padding(12);
+            this.EntityListControl.Margin = new System.Windows.Forms.Padding(11, 12, 11, 12);
             this.EntityListControl.Name = "EntityListControl";
-            this.EntityListControl.Padding = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityListControl.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.EntityListControl.RetrieveAsIfPublished = true;
             this.EntityListControl.Service = null;
-            this.EntityListControl.Size = new System.Drawing.Size(598, 1117);
+            this.EntityListControl.Size = new System.Drawing.Size(547, 1071);
             this.EntityListControl.SolutionFilter = null;
             this.EntityListControl.TabIndex = 13;
             this.EntityListControl.SelectedItemChanged += new System.EventHandler(this.EntitiesListControl_SelectedItemChanged);
@@ -429,8 +429,8 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableEntListDetails.RowCount = 2;
             this.tableEntListDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableEntListDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableEntListDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableEntListDetails.Size = new System.Drawing.Size(1192, 1117);
+            this.tableEntListDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableEntListDetails.Size = new System.Drawing.Size(1093, 1071);
             this.tableEntListDetails.TabIndex = 20;
             // 
             // panel1
@@ -440,20 +440,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.radioEntListShowEnt);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(4, 1009);
+            this.panel1.Location = new System.Drawing.Point(4, 967);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 104);
+            this.panel1.Size = new System.Drawing.Size(1085, 100);
             this.panel1.TabIndex = 16;
             // 
             // radioEntListShowProps
             // 
             this.radioEntListShowProps.AutoSize = true;
             this.radioEntListShowProps.Checked = true;
-            this.radioEntListShowProps.Location = new System.Drawing.Point(20, 52);
-            this.radioEntListShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntListShowProps.Location = new System.Drawing.Point(18, 50);
+            this.radioEntListShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioEntListShowProps.Name = "radioEntListShowProps";
-            this.radioEntListShowProps.Size = new System.Drawing.Size(258, 29);
+            this.radioEntListShowProps.Size = new System.Drawing.Size(231, 29);
             this.radioEntListShowProps.TabIndex = 3;
             this.radioEntListShowProps.TabStop = true;
             this.radioEntListShowProps.Text = "Entity ListView Control";
@@ -466,17 +466,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1184, 44);
+            this.label1.Size = new System.Drawing.Size(1085, 42);
             this.label1.TabIndex = 4;
             this.label1.Text = "Choose what displays in the property control";
             // 
             // radioEntListShowEnt
             // 
             this.radioEntListShowEnt.AutoSize = true;
-            this.radioEntListShowEnt.Location = new System.Drawing.Point(300, 52);
-            this.radioEntListShowEnt.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntListShowEnt.Location = new System.Drawing.Point(275, 50);
+            this.radioEntListShowEnt.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioEntListShowEnt.Name = "radioEntListShowEnt";
-            this.radioEntListShowEnt.Size = new System.Drawing.Size(187, 29);
+            this.radioEntListShowEnt.Size = new System.Drawing.Size(167, 29);
             this.radioEntListShowEnt.TabIndex = 2;
             this.radioEntListShowEnt.TabStop = true;
             this.radioEntListShowEnt.Text = "Selected Entity";
@@ -486,22 +486,22 @@ namespace Sample.XrmToolBox.TestPlugin
             // propGridEntList
             // 
             this.propGridEntList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridEntList.Location = new System.Drawing.Point(8, 6);
-            this.propGridEntList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridEntList.Location = new System.Drawing.Point(7, 6);
+            this.propGridEntList.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridEntList.Name = "propGridEntList";
-            this.propGridEntList.Size = new System.Drawing.Size(580, 993);
+            this.propGridEntList.Size = new System.Drawing.Size(532, 951);
             this.propGridEntList.TabIndex = 8;
             // 
             // textEntListLog
             // 
             this.textEntListLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEntListLog.Location = new System.Drawing.Point(604, 6);
-            this.textEntListLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textEntListLog.Location = new System.Drawing.Point(553, 6);
+            this.textEntListLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textEntListLog.Multiline = true;
             this.textEntListLog.Name = "textEntListLog";
             this.textEntListLog.ReadOnly = true;
             this.textEntListLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textEntListLog.Size = new System.Drawing.Size(580, 993);
+            this.textEntListLog.Size = new System.Drawing.Size(533, 951);
             this.textEntListLog.TabIndex = 7;
             // 
             // tabPageEntDropdown
@@ -511,7 +511,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageEntDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageEntDropdown.Name = "tabPageEntDropdown";
             this.tabPageEntDropdown.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPageEntDropdown.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageEntDropdown.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageEntDropdown.TabIndex = 1;
             this.tabPageEntDropdown.Text = "Entity Dropdown Control";
             this.tabPageEntDropdown.UseVisualStyleBackColor = true;
@@ -530,9 +530,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterEntDropdown.Panel2
             // 
             this.splitterEntDropdown.Panel2.Controls.Add(this.tableEntDropdownDetail);
-            this.splitterEntDropdown.Size = new System.Drawing.Size(1810, 1117);
-            this.splitterEntDropdown.SplitterDistance = 598;
-            this.splitterEntDropdown.SplitterWidth = 20;
+            this.splitterEntDropdown.Size = new System.Drawing.Size(1658, 1070);
+            this.splitterEntDropdown.SplitterDistance = 547;
+            this.splitterEntDropdown.SplitterWidth = 18;
             this.splitterEntDropdown.TabIndex = 18;
             // 
             // tableEntDropdown
@@ -548,21 +548,21 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableEntDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tableEntDropdown.Name = "tableEntDropdown";
             this.tableEntDropdown.RowCount = 4;
-            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableEntDropdown.Size = new System.Drawing.Size(598, 1117);
+            this.tableEntDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableEntDropdown.Size = new System.Drawing.Size(547, 1070);
             this.tableEntDropdown.TabIndex = 19;
             // 
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Location = new System.Drawing.Point(6, 119);
+            this.label7.Location = new System.Drawing.Point(6, 114);
             this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(586, 44);
+            this.label7.Size = new System.Drawing.Size(535, 42);
             this.label7.TabIndex = 21;
             this.label7.Text = "Full list of Entities";
             // 
@@ -571,11 +571,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.EntityDropdown.AutoLoadData = false;
             this.EntityDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EntityDropdown.LanguageCode = 1033;
-            this.EntityDropdown.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdown.Location = new System.Drawing.Point(7, 54);
+            this.EntityDropdown.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.EntityDropdown.Name = "EntityDropdown";
             this.EntityDropdown.Service = null;
-            this.EntityDropdown.Size = new System.Drawing.Size(582, 57);
+            this.EntityDropdown.Size = new System.Drawing.Size(533, 54);
             this.EntityDropdown.SolutionFilter = null;
             this.EntityDropdown.TabIndex = 15;
             this.EntityDropdown.SelectedItemChanged += new System.EventHandler(this.EntityDropdown_SelectedItemChanged);
@@ -591,7 +591,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.labelEntityDropdown.Location = new System.Drawing.Point(4, 0);
             this.labelEntityDropdown.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEntityDropdown.Name = "labelEntityDropdown";
-            this.labelEntityDropdown.Size = new System.Drawing.Size(520, 29);
+            this.labelEntityDropdown.Size = new System.Drawing.Size(477, 28);
             this.labelEntityDropdown.TabIndex = 0;
             this.labelEntityDropdown.Text = "Entity Dropdown Control";
             // 
@@ -599,11 +599,11 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.listBoxEntities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxEntities.FormattingEnabled = true;
-            this.listBoxEntities.ItemHeight = 25;
-            this.listBoxEntities.Location = new System.Drawing.Point(6, 175);
+            this.listBoxEntities.ItemHeight = 24;
+            this.listBoxEntities.Location = new System.Drawing.Point(6, 168);
             this.listBoxEntities.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxEntities.Name = "listBoxEntities";
-            this.listBoxEntities.Size = new System.Drawing.Size(586, 937);
+            this.listBoxEntities.Size = new System.Drawing.Size(535, 900);
             this.listBoxEntities.TabIndex = 16;
             // 
             // tableEntDropdownDetail
@@ -621,28 +621,28 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableEntDropdownDetail.RowCount = 2;
             this.tableEntDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableEntDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableEntDropdownDetail.Size = new System.Drawing.Size(1192, 1117);
+            this.tableEntDropdownDetail.Size = new System.Drawing.Size(1093, 1070);
             this.tableEntDropdownDetail.TabIndex = 21;
             // 
             // propGridEntDropdown
             // 
             this.propGridEntDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridEntDropdown.Location = new System.Drawing.Point(8, 6);
-            this.propGridEntDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridEntDropdown.Location = new System.Drawing.Point(7, 6);
+            this.propGridEntDropdown.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridEntDropdown.Name = "propGridEntDropdown";
-            this.propGridEntDropdown.Size = new System.Drawing.Size(580, 993);
+            this.propGridEntDropdown.Size = new System.Drawing.Size(532, 951);
             this.propGridEntDropdown.TabIndex = 8;
             // 
             // textEntDropdownLog
             // 
             this.textEntDropdownLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEntDropdownLog.Location = new System.Drawing.Point(604, 6);
-            this.textEntDropdownLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textEntDropdownLog.Location = new System.Drawing.Point(553, 6);
+            this.textEntDropdownLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textEntDropdownLog.Multiline = true;
             this.textEntDropdownLog.Name = "textEntDropdownLog";
             this.textEntDropdownLog.ReadOnly = true;
             this.textEntDropdownLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textEntDropdownLog.Size = new System.Drawing.Size(580, 993);
+            this.textEntDropdownLog.Size = new System.Drawing.Size(533, 951);
             this.textEntDropdownLog.TabIndex = 7;
             // 
             // panel3
@@ -652,10 +652,10 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel3.Controls.Add(this.radioEntDropdownShowEnt);
             this.panel3.Controls.Add(this.radioEntDropdownShowProps);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(4, 1009);
+            this.panel3.Location = new System.Drawing.Point(4, 967);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1184, 104);
+            this.panel3.Size = new System.Drawing.Size(1085, 99);
             this.panel3.TabIndex = 16;
             // 
             // label3
@@ -664,16 +664,16 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1184, 48);
+            this.label3.Size = new System.Drawing.Size(1085, 46);
             this.label3.TabIndex = 4;
             this.label3.Text = "Choose what displays in the property control";
             // 
             // radioEntDropdownShowEnt
             // 
-            this.radioEntDropdownShowEnt.Location = new System.Drawing.Point(340, 38);
-            this.radioEntDropdownShowEnt.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntDropdownShowEnt.Location = new System.Drawing.Point(312, 36);
+            this.radioEntDropdownShowEnt.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioEntDropdownShowEnt.Name = "radioEntDropdownShowEnt";
-            this.radioEntDropdownShowEnt.Size = new System.Drawing.Size(270, 44);
+            this.radioEntDropdownShowEnt.Size = new System.Drawing.Size(248, 42);
             this.radioEntDropdownShowEnt.TabIndex = 2;
             this.radioEntDropdownShowEnt.TabStop = true;
             this.radioEntDropdownShowEnt.Text = "Selected Entity";
@@ -683,10 +683,10 @@ namespace Sample.XrmToolBox.TestPlugin
             // radioEntDropdownShowProps
             // 
             this.radioEntDropdownShowProps.Checked = true;
-            this.radioEntDropdownShowProps.Location = new System.Drawing.Point(28, 38);
-            this.radioEntDropdownShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntDropdownShowProps.Location = new System.Drawing.Point(26, 36);
+            this.radioEntDropdownShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioEntDropdownShowProps.Name = "radioEntDropdownShowProps";
-            this.radioEntDropdownShowProps.Size = new System.Drawing.Size(296, 44);
+            this.radioEntDropdownShowProps.Size = new System.Drawing.Size(271, 42);
             this.radioEntDropdownShowProps.TabIndex = 3;
             this.radioEntDropdownShowProps.TabStop = true;
             this.radioEntDropdownShowProps.Text = "Entity Dropdown Control";
@@ -700,7 +700,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageAttrList.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAttrList.Name = "tabPageAttrList";
             this.tabPageAttrList.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageAttrList.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageAttrList.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageAttrList.TabIndex = 4;
             this.tabPageAttrList.Text = "Attribute List Control";
             this.tabPageAttrList.UseVisualStyleBackColor = true;
@@ -719,9 +719,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterAttribList.Panel2
             // 
             this.splitterAttribList.Panel2.Controls.Add(this.tableAttribListDetail);
-            this.splitterAttribList.Size = new System.Drawing.Size(1814, 1121);
-            this.splitterAttribList.SplitterDistance = 598;
-            this.splitterAttribList.SplitterWidth = 20;
+            this.splitterAttribList.Size = new System.Drawing.Size(1662, 1074);
+            this.splitterAttribList.SplitterDistance = 547;
+            this.splitterAttribList.SplitterWidth = 18;
             this.splitterAttribList.TabIndex = 20;
             // 
             // tableAttribList
@@ -737,22 +737,22 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableAttribList.Margin = new System.Windows.Forms.Padding(4);
             this.tableAttribList.Name = "tableAttribList";
             this.tableAttribList.RowCount = 4;
-            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
-            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
-            this.tableAttribList.Size = new System.Drawing.Size(598, 1121);
+            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableAttribList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableAttribList.Size = new System.Drawing.Size(547, 1074);
             this.tableAttribList.TabIndex = 19;
             // 
             // label10
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(4, 119);
+            this.label10.Location = new System.Drawing.Point(4, 114);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(590, 50);
+            this.label10.Size = new System.Drawing.Size(539, 48);
             this.label10.TabIndex = 18;
             this.label10.Text = "Attributes List";
             // 
@@ -761,11 +761,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.EntityDropdownAttribList.AutoLoadData = false;
             this.EntityDropdownAttribList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EntityDropdownAttribList.LanguageCode = 1033;
-            this.EntityDropdownAttribList.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdownAttribList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdownAttribList.Location = new System.Drawing.Point(7, 54);
+            this.EntityDropdownAttribList.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.EntityDropdownAttribList.Name = "EntityDropdownAttribList";
             this.EntityDropdownAttribList.Service = null;
-            this.EntityDropdownAttribList.Size = new System.Drawing.Size(582, 57);
+            this.EntityDropdownAttribList.Size = new System.Drawing.Size(533, 54);
             this.EntityDropdownAttribList.SolutionFilter = null;
             this.EntityDropdownAttribList.TabIndex = 15;
             this.EntityDropdownAttribList.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribList_SelectedItemChanged);
@@ -776,7 +776,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label11.Location = new System.Drawing.Point(4, 0);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(590, 50);
+            this.label11.Size = new System.Drawing.Size(539, 48);
             this.label11.TabIndex = 0;
             this.label11.Text = "Entity Dropdown Control";
             // 
@@ -796,13 +796,13 @@ namespace Sample.XrmToolBox.TestPlugin
         ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs4"))),
         ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs5"))),
         ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("AttribListControl.ListViewColDefs6")))};
-            this.AttribListControl.Location = new System.Drawing.Point(0, 171);
+            this.AttribListControl.Location = new System.Drawing.Point(0, 164);
             this.AttribListControl.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.AttribListControl.Name = "AttribListControl";
             this.AttribListControl.ParentEntity = null;
             this.AttribListControl.ParentEntityLogicalName = null;
             this.AttribListControl.Service = null;
-            this.AttribListControl.Size = new System.Drawing.Size(598, 952);
+            this.AttribListControl.Size = new System.Drawing.Size(547, 914);
             this.AttribListControl.TabIndex = 19;
             this.AttribListControl.SelectedItemChanged += new System.EventHandler(this.AttribListControl_SelectedItemChanged);
             this.AttribListControl.CheckedItemsChanged += new System.EventHandler(this.AttribListControl_CheckedItemsChanged);
@@ -826,29 +826,29 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableAttribListDetail.RowCount = 2;
             this.tableAttribListDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableAttribListDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableAttribListDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableAttribListDetail.Size = new System.Drawing.Size(1196, 1121);
+            this.tableAttribListDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableAttribListDetail.Size = new System.Drawing.Size(1097, 1074);
             this.tableAttribListDetail.TabIndex = 21;
             // 
             // propGridAttrList
             // 
             this.propGridAttrList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridAttrList.Location = new System.Drawing.Point(8, 6);
-            this.propGridAttrList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridAttrList.Location = new System.Drawing.Point(7, 6);
+            this.propGridAttrList.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridAttrList.Name = "propGridAttrList";
-            this.propGridAttrList.Size = new System.Drawing.Size(582, 996);
+            this.propGridAttrList.Size = new System.Drawing.Size(534, 954);
             this.propGridAttrList.TabIndex = 8;
             // 
             // textAttribListLog
             // 
             this.textAttribListLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textAttribListLog.Location = new System.Drawing.Point(606, 6);
-            this.textAttribListLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textAttribListLog.Location = new System.Drawing.Point(555, 6);
+            this.textAttribListLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textAttribListLog.Multiline = true;
             this.textAttribListLog.Name = "textAttribListLog";
             this.textAttribListLog.ReadOnly = true;
             this.textAttribListLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textAttribListLog.Size = new System.Drawing.Size(582, 996);
+            this.textAttribListLog.Size = new System.Drawing.Size(535, 954);
             this.textAttribListLog.TabIndex = 7;
             // 
             // panel5
@@ -858,20 +858,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel5.Controls.Add(this.label13);
             this.panel5.Controls.Add(this.radioAttribListShowAttrib);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(4, 1012);
+            this.panel5.Location = new System.Drawing.Point(4, 970);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1188, 105);
+            this.panel5.Size = new System.Drawing.Size(1089, 100);
             this.panel5.TabIndex = 16;
             // 
             // radioAttribListShowProps
             // 
             this.radioAttribListShowProps.AutoSize = true;
             this.radioAttribListShowProps.Checked = true;
-            this.radioAttribListShowProps.Location = new System.Drawing.Point(28, 38);
-            this.radioAttribListShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioAttribListShowProps.Location = new System.Drawing.Point(26, 36);
+            this.radioAttribListShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioAttribListShowProps.Name = "radioAttribListShowProps";
-            this.radioAttribListShowProps.Size = new System.Drawing.Size(238, 29);
+            this.radioAttribListShowProps.Size = new System.Drawing.Size(212, 29);
             this.radioAttribListShowProps.TabIndex = 3;
             this.radioAttribListShowProps.TabStop = true;
             this.radioAttribListShowProps.Text = "Attribute List Control";
@@ -884,17 +884,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label13.Location = new System.Drawing.Point(0, 0);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(1188, 35);
+            this.label13.Size = new System.Drawing.Size(1089, 34);
             this.label13.TabIndex = 4;
             this.label13.Text = "Choose what displays in the property control";
             // 
             // radioAttribListShowAttrib
             // 
             this.radioAttribListShowAttrib.AutoSize = true;
-            this.radioAttribListShowAttrib.Location = new System.Drawing.Point(340, 38);
-            this.radioAttribListShowAttrib.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioAttribListShowAttrib.Location = new System.Drawing.Point(312, 36);
+            this.radioAttribListShowAttrib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioAttribListShowAttrib.Name = "radioAttribListShowAttrib";
-            this.radioAttribListShowAttrib.Size = new System.Drawing.Size(213, 29);
+            this.radioAttribListShowAttrib.Size = new System.Drawing.Size(191, 29);
             this.radioAttribListShowAttrib.TabIndex = 2;
             this.radioAttribListShowAttrib.TabStop = true;
             this.radioAttribListShowAttrib.Text = "Selected Attribute";
@@ -908,7 +908,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageAttrDropDown.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAttrDropDown.Name = "tabPageAttrDropDown";
             this.tabPageAttrDropDown.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPageAttrDropDown.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageAttrDropDown.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageAttrDropDown.TabIndex = 2;
             this.tabPageAttrDropDown.Text = "Attributes Dropdown";
             this.tabPageAttrDropDown.UseVisualStyleBackColor = true;
@@ -927,9 +927,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterAttribDropdown.Panel2
             // 
             this.splitterAttribDropdown.Panel2.Controls.Add(this.tableAttribDropdownDetail);
-            this.splitterAttribDropdown.Size = new System.Drawing.Size(1810, 1117);
-            this.splitterAttribDropdown.SplitterDistance = 598;
-            this.splitterAttribDropdown.SplitterWidth = 20;
+            this.splitterAttribDropdown.Size = new System.Drawing.Size(1658, 1070);
+            this.splitterAttribDropdown.SplitterDistance = 547;
+            this.splitterAttribDropdown.SplitterWidth = 18;
             this.splitterAttribDropdown.TabIndex = 19;
             // 
             // tableAttribDropdown
@@ -947,13 +947,13 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableAttribDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tableAttribDropdown.Name = "tableAttribDropdown";
             this.tableAttribDropdown.RowCount = 6;
-            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableAttribDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableAttribDropdown.Size = new System.Drawing.Size(598, 1117);
+            this.tableAttribDropdown.Size = new System.Drawing.Size(547, 1070);
             this.tableAttribDropdown.TabIndex = 19;
             // 
             // AttributeDropdown
@@ -961,13 +961,13 @@ namespace Sample.XrmToolBox.TestPlugin
             this.AttributeDropdown.AutoLoadData = false;
             this.AttributeDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AttributeDropdown.LanguageCode = 1033;
-            this.AttributeDropdown.Location = new System.Drawing.Point(0, 171);
+            this.AttributeDropdown.Location = new System.Drawing.Point(0, 164);
             this.AttributeDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.AttributeDropdown.Name = "AttributeDropdown";
             this.AttributeDropdown.ParentEntity = null;
             this.AttributeDropdown.ParentEntityLogicalName = null;
             this.AttributeDropdown.Service = null;
-            this.AttributeDropdown.Size = new System.Drawing.Size(598, 65);
+            this.AttributeDropdown.Size = new System.Drawing.Size(547, 62);
             this.AttributeDropdown.TabIndex = 17;
             this.AttributeDropdown.SelectedItemChanged += new System.EventHandler(this.AttributeDropdown_SelectedItemChanged);
             this.AttributeDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.AttributeDropdown_ProgressChanged);
@@ -980,10 +980,10 @@ namespace Sample.XrmToolBox.TestPlugin
             // labelAttributes
             // 
             this.labelAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAttributes.Location = new System.Drawing.Point(4, 119);
+            this.labelAttributes.Location = new System.Drawing.Point(4, 114);
             this.labelAttributes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAttributes.Name = "labelAttributes";
-            this.labelAttributes.Size = new System.Drawing.Size(590, 50);
+            this.labelAttributes.Size = new System.Drawing.Size(539, 48);
             this.labelAttributes.TabIndex = 18;
             this.labelAttributes.Text = "Attributes Dropdown";
             // 
@@ -992,11 +992,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.EntityDropdownAttribs.AutoLoadData = false;
             this.EntityDropdownAttribs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EntityDropdownAttribs.LanguageCode = 1033;
-            this.EntityDropdownAttribs.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdownAttribs.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdownAttribs.Location = new System.Drawing.Point(7, 54);
+            this.EntityDropdownAttribs.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.EntityDropdownAttribs.Name = "EntityDropdownAttribs";
             this.EntityDropdownAttribs.Service = null;
-            this.EntityDropdownAttribs.Size = new System.Drawing.Size(582, 57);
+            this.EntityDropdownAttribs.Size = new System.Drawing.Size(533, 54);
             this.EntityDropdownAttribs.SolutionFilter = null;
             this.EntityDropdownAttribs.TabIndex = 15;
             this.EntityDropdownAttribs.SelectedItemChanged += new System.EventHandler(this.EntityDropdownAttribs_SelectedItemChanged);
@@ -1011,7 +1011,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label4.Location = new System.Drawing.Point(4, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(590, 50);
+            this.label4.Size = new System.Drawing.Size(539, 48);
             this.label4.TabIndex = 0;
             this.label4.Text = "Entity Dropdown Control";
             // 
@@ -1019,20 +1019,20 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.listBoxAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxAttributes.FormattingEnabled = true;
-            this.listBoxAttributes.ItemHeight = 25;
-            this.listBoxAttributes.Location = new System.Drawing.Point(6, 294);
+            this.listBoxAttributes.ItemHeight = 24;
+            this.listBoxAttributes.Location = new System.Drawing.Point(6, 282);
             this.listBoxAttributes.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxAttributes.Name = "listBoxAttributes";
-            this.listBoxAttributes.Size = new System.Drawing.Size(586, 817);
+            this.listBoxAttributes.Size = new System.Drawing.Size(535, 784);
             this.listBoxAttributes.TabIndex = 19;
             // 
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Location = new System.Drawing.Point(6, 238);
+            this.label6.Location = new System.Drawing.Point(6, 228);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(586, 44);
+            this.label6.Size = new System.Drawing.Size(535, 42);
             this.label6.TabIndex = 20;
             this.label6.Text = "Full list of Attributes";
             // 
@@ -1051,29 +1051,29 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableAttribDropdownDetail.RowCount = 2;
             this.tableAttribDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableAttribDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableAttribDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableAttribDropdownDetail.Size = new System.Drawing.Size(1192, 1117);
+            this.tableAttribDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableAttribDropdownDetail.Size = new System.Drawing.Size(1093, 1070);
             this.tableAttribDropdownDetail.TabIndex = 21;
             // 
             // propGridAttribDropdown
             // 
             this.propGridAttribDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridAttribDropdown.Location = new System.Drawing.Point(8, 6);
-            this.propGridAttribDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridAttribDropdown.Location = new System.Drawing.Point(7, 6);
+            this.propGridAttribDropdown.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridAttribDropdown.Name = "propGridAttribDropdown";
-            this.propGridAttribDropdown.Size = new System.Drawing.Size(580, 993);
+            this.propGridAttribDropdown.Size = new System.Drawing.Size(532, 951);
             this.propGridAttribDropdown.TabIndex = 8;
             // 
             // textAttribDropdownLog
             // 
             this.textAttribDropdownLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textAttribDropdownLog.Location = new System.Drawing.Point(604, 6);
-            this.textAttribDropdownLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textAttribDropdownLog.Location = new System.Drawing.Point(553, 6);
+            this.textAttribDropdownLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textAttribDropdownLog.Multiline = true;
             this.textAttribDropdownLog.Name = "textAttribDropdownLog";
             this.textAttribDropdownLog.ReadOnly = true;
             this.textAttribDropdownLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textAttribDropdownLog.Size = new System.Drawing.Size(580, 993);
+            this.textAttribDropdownLog.Size = new System.Drawing.Size(533, 951);
             this.textAttribDropdownLog.TabIndex = 7;
             // 
             // panel2
@@ -1083,20 +1083,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.radioAttribDropdownShowAttrib);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(4, 1009);
+            this.panel2.Location = new System.Drawing.Point(4, 967);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1184, 104);
+            this.panel2.Size = new System.Drawing.Size(1085, 99);
             this.panel2.TabIndex = 16;
             // 
             // radioAttribDropdownShowProps
             // 
             this.radioAttribDropdownShowProps.AutoSize = true;
             this.radioAttribDropdownShowProps.Checked = true;
-            this.radioAttribDropdownShowProps.Location = new System.Drawing.Point(28, 38);
-            this.radioAttribDropdownShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioAttribDropdownShowProps.Location = new System.Drawing.Point(26, 36);
+            this.radioAttribDropdownShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioAttribDropdownShowProps.Name = "radioAttribDropdownShowProps";
-            this.radioAttribDropdownShowProps.Size = new System.Drawing.Size(301, 29);
+            this.radioAttribDropdownShowProps.Size = new System.Drawing.Size(271, 29);
             this.radioAttribDropdownShowProps.TabIndex = 3;
             this.radioAttribDropdownShowProps.TabStop = true;
             this.radioAttribDropdownShowProps.Text = "Attribute Dropdown Control";
@@ -1109,17 +1109,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1184, 35);
+            this.label5.Size = new System.Drawing.Size(1085, 34);
             this.label5.TabIndex = 4;
             this.label5.Text = "Choose what displays in the property control";
             // 
             // radioAttribDropdownShowAttrib
             // 
             this.radioAttribDropdownShowAttrib.AutoSize = true;
-            this.radioAttribDropdownShowAttrib.Location = new System.Drawing.Point(340, 38);
-            this.radioAttribDropdownShowAttrib.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioAttribDropdownShowAttrib.Location = new System.Drawing.Point(312, 36);
+            this.radioAttribDropdownShowAttrib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioAttribDropdownShowAttrib.Name = "radioAttribDropdownShowAttrib";
-            this.radioAttribDropdownShowAttrib.Size = new System.Drawing.Size(213, 29);
+            this.radioAttribDropdownShowAttrib.Size = new System.Drawing.Size(191, 29);
             this.radioAttribDropdownShowAttrib.TabIndex = 2;
             this.radioAttribDropdownShowAttrib.TabStop = true;
             this.radioAttribDropdownShowAttrib.Text = "Selected Attribute";
@@ -1132,7 +1132,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageSolution.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSolution.Name = "tabPageSolution";
             this.tabPageSolution.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPageSolution.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageSolution.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageSolution.TabIndex = 3;
             this.tabPageSolution.Text = "Solutions Dropdown";
             this.tabPageSolution.UseVisualStyleBackColor = true;
@@ -1151,9 +1151,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterSolnDropdown.Panel2
             // 
             this.splitterSolnDropdown.Panel2.Controls.Add(this.tableSolnDropdownDetail);
-            this.splitterSolnDropdown.Size = new System.Drawing.Size(1810, 1117);
-            this.splitterSolnDropdown.SplitterDistance = 598;
-            this.splitterSolnDropdown.SplitterWidth = 20;
+            this.splitterSolnDropdown.Size = new System.Drawing.Size(1658, 1070);
+            this.splitterSolnDropdown.SplitterDistance = 547;
+            this.splitterSolnDropdown.SplitterWidth = 18;
             this.splitterSolnDropdown.TabIndex = 20;
             // 
             // tableSolnDropdown
@@ -1169,12 +1169,12 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableSolnDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tableSolnDropdown.Name = "tableSolnDropdown";
             this.tableSolnDropdown.RowCount = 4;
-            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableSolnDropdown.Size = new System.Drawing.Size(598, 1117);
+            this.tableSolnDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableSolnDropdown.Size = new System.Drawing.Size(547, 1070);
             this.tableSolnDropdown.TabIndex = 18;
             // 
             // label9
@@ -1182,10 +1182,10 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.Location = new System.Drawing.Point(4, 119);
+            this.label9.Location = new System.Drawing.Point(4, 114);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(590, 50);
+            this.label9.Size = new System.Drawing.Size(539, 48);
             this.label9.TabIndex = 21;
             this.label9.Text = "Solutions Dropdown Control";
             // 
@@ -1196,12 +1196,12 @@ namespace Sample.XrmToolBox.TestPlugin
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SolutionDropdown.AutoLoadData = false;
             this.SolutionDropdown.LanguageCode = 1033;
-            this.SolutionDropdown.Location = new System.Drawing.Point(0, 52);
+            this.SolutionDropdown.Location = new System.Drawing.Point(0, 50);
             this.SolutionDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.SolutionDropdown.Name = "SolutionDropdown";
             this.SolutionDropdown.PublisherPrefixes = ((System.Collections.Generic.List<string>)(resources.GetObject("SolutionDropdown.PublisherPrefixes")));
             this.SolutionDropdown.Service = null;
-            this.SolutionDropdown.Size = new System.Drawing.Size(598, 65);
+            this.SolutionDropdown.Size = new System.Drawing.Size(547, 62);
             this.SolutionDropdown.TabIndex = 19;
             this.SolutionDropdown.SelectedItemChanged += new System.EventHandler(this.SolutionDropdown_SelectedItemChanged);
             this.SolutionDropdown.ProgressChanged += new System.EventHandler<System.ComponentModel.ProgressChangedEventArgs>(this.SolutionDropdown_ProgressChanged);
@@ -1217,7 +1217,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label2.Location = new System.Drawing.Point(4, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(590, 50);
+            this.label2.Size = new System.Drawing.Size(539, 48);
             this.label2.TabIndex = 0;
             this.label2.Text = "Solutions Dropdown Control";
             // 
@@ -1225,11 +1225,11 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.listBoxSolutions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxSolutions.FormattingEnabled = true;
-            this.listBoxSolutions.ItemHeight = 25;
-            this.listBoxSolutions.Location = new System.Drawing.Point(6, 175);
+            this.listBoxSolutions.ItemHeight = 24;
+            this.listBoxSolutions.Location = new System.Drawing.Point(6, 168);
             this.listBoxSolutions.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxSolutions.Name = "listBoxSolutions";
-            this.listBoxSolutions.Size = new System.Drawing.Size(586, 937);
+            this.listBoxSolutions.Size = new System.Drawing.Size(535, 900);
             this.listBoxSolutions.TabIndex = 20;
             // 
             // tableSolnDropdownDetail
@@ -1247,29 +1247,29 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableSolnDropdownDetail.RowCount = 2;
             this.tableSolnDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableSolnDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableSolnDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableSolnDropdownDetail.Size = new System.Drawing.Size(1192, 1117);
+            this.tableSolnDropdownDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableSolnDropdownDetail.Size = new System.Drawing.Size(1093, 1070);
             this.tableSolnDropdownDetail.TabIndex = 20;
             // 
             // propGridSolutions
             // 
             this.propGridSolutions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridSolutions.Location = new System.Drawing.Point(8, 6);
-            this.propGridSolutions.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridSolutions.Location = new System.Drawing.Point(7, 6);
+            this.propGridSolutions.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridSolutions.Name = "propGridSolutions";
-            this.propGridSolutions.Size = new System.Drawing.Size(580, 993);
+            this.propGridSolutions.Size = new System.Drawing.Size(532, 951);
             this.propGridSolutions.TabIndex = 8;
             // 
             // textSolnDropdownLog
             // 
             this.textSolnDropdownLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textSolnDropdownLog.Location = new System.Drawing.Point(604, 6);
-            this.textSolnDropdownLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textSolnDropdownLog.Location = new System.Drawing.Point(553, 6);
+            this.textSolnDropdownLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textSolnDropdownLog.Multiline = true;
             this.textSolnDropdownLog.Name = "textSolnDropdownLog";
             this.textSolnDropdownLog.ReadOnly = true;
             this.textSolnDropdownLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textSolnDropdownLog.Size = new System.Drawing.Size(580, 993);
+            this.textSolnDropdownLog.Size = new System.Drawing.Size(533, 951);
             this.textSolnDropdownLog.TabIndex = 7;
             // 
             // panel4
@@ -1279,20 +1279,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.radioSolnDropdownShowSoln);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(4, 1009);
+            this.panel4.Location = new System.Drawing.Point(4, 967);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1184, 104);
+            this.panel4.Size = new System.Drawing.Size(1085, 99);
             this.panel4.TabIndex = 16;
             // 
             // radioSolnDropdownShowProps
             // 
             this.radioSolnDropdownShowProps.AutoSize = true;
             this.radioSolnDropdownShowProps.Checked = true;
-            this.radioSolnDropdownShowProps.Location = new System.Drawing.Point(28, 38);
-            this.radioSolnDropdownShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioSolnDropdownShowProps.Location = new System.Drawing.Point(26, 36);
+            this.radioSolnDropdownShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioSolnDropdownShowProps.Name = "radioSolnDropdownShowProps";
-            this.radioSolnDropdownShowProps.Size = new System.Drawing.Size(301, 29);
+            this.radioSolnDropdownShowProps.Size = new System.Drawing.Size(271, 29);
             this.radioSolnDropdownShowProps.TabIndex = 3;
             this.radioSolnDropdownShowProps.TabStop = true;
             this.radioSolnDropdownShowProps.Text = "Attribute Dropdown Control";
@@ -1306,17 +1306,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label8.Location = new System.Drawing.Point(0, 0);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(1184, 35);
+            this.label8.Size = new System.Drawing.Size(1085, 34);
             this.label8.TabIndex = 4;
             this.label8.Text = "Choose what displays in the property control";
             // 
             // radioSolnDropdownShowSoln
             // 
             this.radioSolnDropdownShowSoln.AutoSize = true;
-            this.radioSolnDropdownShowSoln.Location = new System.Drawing.Point(340, 38);
-            this.radioSolnDropdownShowSoln.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioSolnDropdownShowSoln.Location = new System.Drawing.Point(312, 36);
+            this.radioSolnDropdownShowSoln.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioSolnDropdownShowSoln.Name = "radioSolnDropdownShowSoln";
-            this.radioSolnDropdownShowSoln.Size = new System.Drawing.Size(187, 29);
+            this.radioSolnDropdownShowSoln.Size = new System.Drawing.Size(167, 29);
             this.radioSolnDropdownShowSoln.TabIndex = 2;
             this.radioSolnDropdownShowSoln.TabStop = true;
             this.radioSolnDropdownShowSoln.Text = "Selected Entity";
@@ -1329,7 +1329,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageViewsDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageViewsDropdown.Name = "tabPageViewsDropdown";
             this.tabPageViewsDropdown.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageViewsDropdown.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageViewsDropdown.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageViewsDropdown.TabIndex = 5;
             this.tabPageViewsDropdown.Text = "Views Dropdown";
             this.tabPageViewsDropdown.UseVisualStyleBackColor = true;
@@ -1348,9 +1348,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterViewDropdown.Panel2
             // 
             this.splitterViewDropdown.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitterViewDropdown.Size = new System.Drawing.Size(1814, 1121);
-            this.splitterViewDropdown.SplitterDistance = 600;
-            this.splitterViewDropdown.SplitterWidth = 20;
+            this.splitterViewDropdown.Size = new System.Drawing.Size(1662, 1074);
+            this.splitterViewDropdown.SplitterDistance = 549;
+            this.splitterViewDropdown.SplitterWidth = 18;
             this.splitterViewDropdown.TabIndex = 20;
             // 
             // tableViewDropdown
@@ -1368,22 +1368,22 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableViewDropdown.Margin = new System.Windows.Forms.Padding(4);
             this.tableViewDropdown.Name = "tableViewDropdown";
             this.tableViewDropdown.RowCount = 6;
-            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableViewDropdown.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableViewDropdown.Size = new System.Drawing.Size(600, 1121);
+            this.tableViewDropdown.Size = new System.Drawing.Size(549, 1074);
             this.tableViewDropdown.TabIndex = 19;
             // 
             // label12
             // 
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(4, 119);
+            this.label12.Location = new System.Drawing.Point(4, 114);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(592, 50);
+            this.label12.Size = new System.Drawing.Size(541, 48);
             this.label12.TabIndex = 18;
             this.label12.Text = "Views Dropdown";
             // 
@@ -1392,11 +1392,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.EntityDropdownViews.AutoLoadData = false;
             this.EntityDropdownViews.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EntityDropdownViews.LanguageCode = 1033;
-            this.EntityDropdownViews.Location = new System.Drawing.Point(8, 56);
-            this.EntityDropdownViews.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.EntityDropdownViews.Location = new System.Drawing.Point(7, 54);
+            this.EntityDropdownViews.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.EntityDropdownViews.Name = "EntityDropdownViews";
             this.EntityDropdownViews.Service = null;
-            this.EntityDropdownViews.Size = new System.Drawing.Size(584, 57);
+            this.EntityDropdownViews.Size = new System.Drawing.Size(535, 54);
             this.EntityDropdownViews.SolutionFilter = null;
             this.EntityDropdownViews.TabIndex = 15;
             this.EntityDropdownViews.SelectedItemChanged += new System.EventHandler(this.EntityDropdownViews_SelectedItemChanged);
@@ -1407,7 +1407,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label14.Location = new System.Drawing.Point(4, 0);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(592, 50);
+            this.label14.Size = new System.Drawing.Size(541, 48);
             this.label14.TabIndex = 0;
             this.label14.Text = "Entity Dropdown Control";
             // 
@@ -1415,20 +1415,20 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.listBoxViews.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxViews.FormattingEnabled = true;
-            this.listBoxViews.ItemHeight = 25;
-            this.listBoxViews.Location = new System.Drawing.Point(6, 294);
+            this.listBoxViews.ItemHeight = 24;
+            this.listBoxViews.Location = new System.Drawing.Point(6, 282);
             this.listBoxViews.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxViews.Name = "listBoxViews";
-            this.listBoxViews.Size = new System.Drawing.Size(588, 823);
+            this.listBoxViews.Size = new System.Drawing.Size(537, 790);
             this.listBoxViews.TabIndex = 19;
             // 
             // label15
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label15.Location = new System.Drawing.Point(6, 238);
+            this.label15.Location = new System.Drawing.Point(6, 228);
             this.label15.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(588, 44);
+            this.label15.Size = new System.Drawing.Size(537, 42);
             this.label15.TabIndex = 20;
             this.label15.Text = "Full list of Views";
             // 
@@ -1438,13 +1438,13 @@ namespace Sample.XrmToolBox.TestPlugin
             this.ViewDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ViewDropdown.IncludePersonalViews = false;
             this.ViewDropdown.LanguageCode = 1033;
-            this.ViewDropdown.Location = new System.Drawing.Point(0, 171);
+            this.ViewDropdown.Location = new System.Drawing.Point(0, 164);
             this.ViewDropdown.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.ViewDropdown.Name = "ViewDropdown";
             this.ViewDropdown.ParentEntity = null;
             this.ViewDropdown.ParentEntityLogicalName = null;
             this.ViewDropdown.Service = null;
-            this.ViewDropdown.Size = new System.Drawing.Size(600, 65);
+            this.ViewDropdown.Size = new System.Drawing.Size(549, 62);
             this.ViewDropdown.TabIndex = 21;
             this.ViewDropdown.SelectedItemChanged += new System.EventHandler(this.ViewDropdown_SelectedItemChanged);
             this.ViewDropdown.BeginLoadData += new System.EventHandler(this.ViewDropdown_BeginLoadData);
@@ -1468,29 +1468,29 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1194, 1121);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1095, 1074);
             this.tableLayoutPanel2.TabIndex = 21;
             // 
             // propGridViewDropdown
             // 
             this.propGridViewDropdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridViewDropdown.Location = new System.Drawing.Point(8, 6);
-            this.propGridViewDropdown.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridViewDropdown.Location = new System.Drawing.Point(7, 6);
+            this.propGridViewDropdown.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridViewDropdown.Name = "propGridViewDropdown";
-            this.propGridViewDropdown.Size = new System.Drawing.Size(581, 996);
+            this.propGridViewDropdown.Size = new System.Drawing.Size(533, 954);
             this.propGridViewDropdown.TabIndex = 8;
             // 
             // textViewsDropdownLog
             // 
             this.textViewsDropdownLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textViewsDropdownLog.Location = new System.Drawing.Point(605, 6);
-            this.textViewsDropdownLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textViewsDropdownLog.Location = new System.Drawing.Point(554, 6);
+            this.textViewsDropdownLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textViewsDropdownLog.Multiline = true;
             this.textViewsDropdownLog.Name = "textViewsDropdownLog";
             this.textViewsDropdownLog.ReadOnly = true;
             this.textViewsDropdownLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textViewsDropdownLog.Size = new System.Drawing.Size(581, 996);
+            this.textViewsDropdownLog.Size = new System.Drawing.Size(534, 954);
             this.textViewsDropdownLog.TabIndex = 7;
             // 
             // panel6
@@ -1500,20 +1500,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.radioAttribDropdownShowView);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(4, 1012);
+            this.panel6.Location = new System.Drawing.Point(4, 970);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1186, 105);
+            this.panel6.Size = new System.Drawing.Size(1087, 100);
             this.panel6.TabIndex = 16;
             // 
             // radioViewDropdownShowProps
             // 
             this.radioViewDropdownShowProps.AutoSize = true;
             this.radioViewDropdownShowProps.Checked = true;
-            this.radioViewDropdownShowProps.Location = new System.Drawing.Point(28, 38);
-            this.radioViewDropdownShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioViewDropdownShowProps.Location = new System.Drawing.Point(26, 36);
+            this.radioViewDropdownShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioViewDropdownShowProps.Name = "radioViewDropdownShowProps";
-            this.radioViewDropdownShowProps.Size = new System.Drawing.Size(267, 29);
+            this.radioViewDropdownShowProps.Size = new System.Drawing.Size(242, 29);
             this.radioViewDropdownShowProps.TabIndex = 3;
             this.radioViewDropdownShowProps.TabStop = true;
             this.radioViewDropdownShowProps.Text = "View Dropdown Control";
@@ -1526,17 +1526,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label16.Location = new System.Drawing.Point(0, 0);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(1186, 35);
+            this.label16.Size = new System.Drawing.Size(1087, 34);
             this.label16.TabIndex = 4;
             this.label16.Text = "Choose what displays in the property control";
             // 
             // radioAttribDropdownShowView
             // 
             this.radioAttribDropdownShowView.AutoSize = true;
-            this.radioAttribDropdownShowView.Location = new System.Drawing.Point(340, 38);
-            this.radioAttribDropdownShowView.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioAttribDropdownShowView.Location = new System.Drawing.Point(312, 36);
+            this.radioAttribDropdownShowView.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioAttribDropdownShowView.Name = "radioAttribDropdownShowView";
-            this.radioAttribDropdownShowView.Size = new System.Drawing.Size(179, 29);
+            this.radioAttribDropdownShowView.Size = new System.Drawing.Size(162, 29);
             this.radioAttribDropdownShowView.TabIndex = 2;
             this.radioAttribDropdownShowView.TabStop = true;
             this.radioAttribDropdownShowView.Text = "Selected View";
@@ -1550,7 +1550,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageGlobalOptSets.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageGlobalOptSets.Name = "tabPageGlobalOptSets";
             this.tabPageGlobalOptSets.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageGlobalOptSets.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageGlobalOptSets.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageGlobalOptSets.TabIndex = 6;
             this.tabPageGlobalOptSets.Text = "Global OptionSet ListView";
             this.tabPageGlobalOptSets.UseVisualStyleBackColor = true;
@@ -1569,9 +1569,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterGlobalOptsList.Panel2
             // 
             this.splitterGlobalOptsList.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitterGlobalOptsList.Size = new System.Drawing.Size(1814, 1121);
-            this.splitterGlobalOptsList.SplitterDistance = 600;
-            this.splitterGlobalOptsList.SplitterWidth = 20;
+            this.splitterGlobalOptsList.Size = new System.Drawing.Size(1662, 1074);
+            this.splitterGlobalOptsList.SplitterDistance = 549;
+            this.splitterGlobalOptsList.SplitterWidth = 18;
             this.splitterGlobalOptsList.TabIndex = 1;
             // 
             // GlobalOptionSetList
@@ -1593,7 +1593,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.GlobalOptionSetList.Name = "GlobalOptionSetList";
             this.GlobalOptionSetList.RetrieveAsIfPublished = false;
             this.GlobalOptionSetList.Service = null;
-            this.GlobalOptionSetList.Size = new System.Drawing.Size(600, 1121);
+            this.GlobalOptionSetList.Size = new System.Drawing.Size(549, 1074);
             this.GlobalOptionSetList.TabIndex = 0;
             this.GlobalOptionSetList.SelectedItemChanged += new System.EventHandler(this.GlobalOptionSetList_SelectedItemChanged);
             this.GlobalOptionSetList.CheckedItemsChanged += new System.EventHandler(this.GlobalOptionSetList_CheckedItemsChanged);
@@ -1619,8 +1619,8 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1194, 1121);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1095, 1074);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
             // panel7
@@ -1630,20 +1630,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel7.Controls.Add(this.label17);
             this.panel7.Controls.Add(this.radioEntDropdownShowOptionSet);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(4, 1012);
+            this.panel7.Location = new System.Drawing.Point(4, 970);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1186, 105);
+            this.panel7.Size = new System.Drawing.Size(1087, 100);
             this.panel7.TabIndex = 16;
             // 
             // radioGlobalOptsListShowProps
             // 
             this.radioGlobalOptsListShowProps.AutoSize = true;
             this.radioGlobalOptsListShowProps.Checked = true;
-            this.radioGlobalOptsListShowProps.Location = new System.Drawing.Point(20, 52);
-            this.radioGlobalOptsListShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioGlobalOptsListShowProps.Location = new System.Drawing.Point(18, 50);
+            this.radioGlobalOptsListShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioGlobalOptsListShowProps.Name = "radioGlobalOptsListShowProps";
-            this.radioGlobalOptsListShowProps.Size = new System.Drawing.Size(367, 29);
+            this.radioGlobalOptsListShowProps.Size = new System.Drawing.Size(332, 29);
             this.radioGlobalOptsListShowProps.TabIndex = 3;
             this.radioGlobalOptsListShowProps.TabStop = true;
             this.radioGlobalOptsListShowProps.Text = "Global OptionSet ListView Control";
@@ -1656,17 +1656,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label17.Location = new System.Drawing.Point(0, 0);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(1186, 44);
+            this.label17.Size = new System.Drawing.Size(1087, 42);
             this.label17.TabIndex = 4;
             this.label17.Text = "Choose what displays in the property control";
             // 
             // radioEntDropdownShowOptionSet
             // 
             this.radioEntDropdownShowOptionSet.AutoSize = true;
-            this.radioEntDropdownShowOptionSet.Location = new System.Drawing.Point(408, 52);
-            this.radioEntDropdownShowOptionSet.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioEntDropdownShowOptionSet.Location = new System.Drawing.Point(374, 50);
+            this.radioEntDropdownShowOptionSet.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioEntDropdownShowOptionSet.Name = "radioEntDropdownShowOptionSet";
-            this.radioEntDropdownShowOptionSet.Size = new System.Drawing.Size(296, 29);
+            this.radioEntDropdownShowOptionSet.Size = new System.Drawing.Size(268, 29);
             this.radioEntDropdownShowOptionSet.TabIndex = 2;
             this.radioEntDropdownShowOptionSet.TabStop = true;
             this.radioEntDropdownShowOptionSet.Text = "Selected Global OptionSet";
@@ -1676,22 +1676,22 @@ namespace Sample.XrmToolBox.TestPlugin
             // propGridGlobalOptsList
             // 
             this.propGridGlobalOptsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propGridGlobalOptsList.Location = new System.Drawing.Point(8, 6);
-            this.propGridGlobalOptsList.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propGridGlobalOptsList.Location = new System.Drawing.Point(7, 6);
+            this.propGridGlobalOptsList.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propGridGlobalOptsList.Name = "propGridGlobalOptsList";
-            this.propGridGlobalOptsList.Size = new System.Drawing.Size(581, 996);
+            this.propGridGlobalOptsList.Size = new System.Drawing.Size(533, 954);
             this.propGridGlobalOptsList.TabIndex = 8;
             // 
             // textGlobalOptsListLog
             // 
             this.textGlobalOptsListLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textGlobalOptsListLog.Location = new System.Drawing.Point(605, 6);
-            this.textGlobalOptsListLog.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textGlobalOptsListLog.Location = new System.Drawing.Point(554, 6);
+            this.textGlobalOptsListLog.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textGlobalOptsListLog.Multiline = true;
             this.textGlobalOptsListLog.Name = "textGlobalOptsListLog";
             this.textGlobalOptsListLog.ReadOnly = true;
             this.textGlobalOptsListLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textGlobalOptsListLog.Size = new System.Drawing.Size(581, 996);
+            this.textGlobalOptsListLog.Size = new System.Drawing.Size(534, 954);
             this.textGlobalOptsListLog.TabIndex = 7;
             // 
             // tabPageCRMGridView
@@ -1701,7 +1701,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageCRMGridView.Margin = new System.Windows.Forms.Padding(6);
             this.tabPageCRMGridView.Name = "tabPageCRMGridView";
             this.tabPageCRMGridView.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPageCRMGridView.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageCRMGridView.Size = new System.Drawing.Size(1670, 1082);
             this.tabPageCRMGridView.TabIndex = 7;
             this.tabPageCRMGridView.Text = "CRM GridView";
             this.tabPageCRMGridView.UseVisualStyleBackColor = true;
@@ -1720,9 +1720,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterCRMGridView.Panel2
             // 
             this.splitterCRMGridView.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.splitterCRMGridView.Size = new System.Drawing.Size(1810, 1117);
-            this.splitterCRMGridView.SplitterDistance = 598;
-            this.splitterCRMGridView.SplitterWidth = 20;
+            this.splitterCRMGridView.Size = new System.Drawing.Size(1658, 1070);
+            this.splitterCRMGridView.SplitterDistance = 547;
+            this.splitterCRMGridView.SplitterWidth = 18;
             this.splitterCRMGridView.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -1736,10 +1736,10 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(598, 1117);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(547, 1070);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label19
@@ -1748,7 +1748,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label19.Location = new System.Drawing.Point(4, 0);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(590, 50);
+            this.label19.Size = new System.Drawing.Size(539, 48);
             this.label19.TabIndex = 3;
             this.label19.Text = "Solutions Dropdown Control";
             // 
@@ -1761,11 +1761,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.crmGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.crmGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crmGridView1.FilterColumns = "";
-            this.crmGridView1.Location = new System.Drawing.Point(6, 125);
+            this.crmGridView1.Location = new System.Drawing.Point(6, 120);
             this.crmGridView1.Margin = new System.Windows.Forms.Padding(6);
             this.crmGridView1.Name = "crmGridView1";
             this.crmGridView1.ReadOnly = true;
-            this.crmGridView1.Size = new System.Drawing.Size(586, 986);
+            this.crmGridView1.Size = new System.Drawing.Size(535, 944);
             this.crmGridView1.TabIndex = 2;
             this.crmGridView1.RecordClick += new xrmtb.XrmToolBox.Controls.CRMRecordEventHandler(this.crmGridView1_RecordClick);
             // 
@@ -1774,12 +1774,12 @@ namespace Sample.XrmToolBox.TestPlugin
             this.SolutionDropdownGridView.AutoLoadData = false;
             this.SolutionDropdownGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SolutionDropdownGridView.LanguageCode = 1033;
-            this.SolutionDropdownGridView.Location = new System.Drawing.Point(2, 52);
+            this.SolutionDropdownGridView.Location = new System.Drawing.Point(2, 50);
             this.SolutionDropdownGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SolutionDropdownGridView.Name = "SolutionDropdownGridView";
             this.SolutionDropdownGridView.PublisherPrefixes = ((System.Collections.Generic.List<string>)(resources.GetObject("SolutionDropdownGridView.PublisherPrefixes")));
             this.SolutionDropdownGridView.Service = null;
-            this.SolutionDropdownGridView.Size = new System.Drawing.Size(594, 65);
+            this.SolutionDropdownGridView.Size = new System.Drawing.Size(543, 62);
             this.SolutionDropdownGridView.TabIndex = 4;
             this.SolutionDropdownGridView.LoadDataComplete += new System.EventHandler(this.SolutionDropdownGridView_LoadDataComplete);
             // 
@@ -1798,8 +1798,8 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1192, 1117);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1093, 1070);
             this.tableLayoutPanel3.TabIndex = 20;
             // 
             // panel8
@@ -1809,20 +1809,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel8.Controls.Add(this.label18);
             this.panel8.Controls.Add(this.radioCRMGridViewSelEntity);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(4, 1009);
+            this.panel8.Location = new System.Drawing.Point(4, 967);
             this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1184, 104);
+            this.panel8.Size = new System.Drawing.Size(1085, 99);
             this.panel8.TabIndex = 16;
             // 
             // radioCRMGridViewShowProps
             // 
             this.radioCRMGridViewShowProps.AutoSize = true;
             this.radioCRMGridViewShowProps.Checked = true;
-            this.radioCRMGridViewShowProps.Location = new System.Drawing.Point(20, 52);
-            this.radioCRMGridViewShowProps.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioCRMGridViewShowProps.Location = new System.Drawing.Point(18, 50);
+            this.radioCRMGridViewShowProps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioCRMGridViewShowProps.Name = "radioCRMGridViewShowProps";
-            this.radioCRMGridViewShowProps.Size = new System.Drawing.Size(252, 29);
+            this.radioCRMGridViewShowProps.Size = new System.Drawing.Size(229, 29);
             this.radioCRMGridViewShowProps.TabIndex = 3;
             this.radioCRMGridViewShowProps.TabStop = true;
             this.radioCRMGridViewShowProps.Text = "CRMGridView Control";
@@ -1835,17 +1835,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label18.Location = new System.Drawing.Point(0, 0);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(1184, 44);
+            this.label18.Size = new System.Drawing.Size(1085, 42);
             this.label18.TabIndex = 4;
             this.label18.Text = "Choose what displays in the property control";
             // 
             // radioCRMGridViewSelEntity
             // 
             this.radioCRMGridViewSelEntity.AutoSize = true;
-            this.radioCRMGridViewSelEntity.Location = new System.Drawing.Point(408, 52);
-            this.radioCRMGridViewSelEntity.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.radioCRMGridViewSelEntity.Location = new System.Drawing.Point(374, 50);
+            this.radioCRMGridViewSelEntity.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.radioCRMGridViewSelEntity.Name = "radioCRMGridViewSelEntity";
-            this.radioCRMGridViewSelEntity.Size = new System.Drawing.Size(187, 29);
+            this.radioCRMGridViewSelEntity.Size = new System.Drawing.Size(167, 29);
             this.radioCRMGridViewSelEntity.TabIndex = 2;
             this.radioCRMGridViewSelEntity.TabStop = true;
             this.radioCRMGridViewSelEntity.Text = "Selected Entity";
@@ -1854,22 +1854,22 @@ namespace Sample.XrmToolBox.TestPlugin
             // propCRMGridView
             // 
             this.propCRMGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propCRMGridView.Location = new System.Drawing.Point(8, 6);
-            this.propCRMGridView.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.propCRMGridView.Location = new System.Drawing.Point(7, 6);
+            this.propCRMGridView.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.propCRMGridView.Name = "propCRMGridView";
-            this.propCRMGridView.Size = new System.Drawing.Size(580, 993);
+            this.propCRMGridView.Size = new System.Drawing.Size(532, 951);
             this.propCRMGridView.TabIndex = 8;
             // 
             // textCRMGridView
             // 
             this.textCRMGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textCRMGridView.Location = new System.Drawing.Point(604, 6);
-            this.textCRMGridView.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.textCRMGridView.Location = new System.Drawing.Point(553, 6);
+            this.textCRMGridView.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textCRMGridView.Multiline = true;
             this.textCRMGridView.Name = "textCRMGridView";
             this.textCRMGridView.ReadOnly = true;
             this.textCRMGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textCRMGridView.Size = new System.Drawing.Size(580, 993);
+            this.textCRMGridView.Size = new System.Drawing.Size(533, 951);
             this.textCRMGridView.TabIndex = 7;
             // 
             // tabPageXrmViewer
@@ -1878,7 +1878,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageXrmViewer.Location = new System.Drawing.Point(4, 34);
             this.tabPageXrmViewer.Name = "tabPageXrmViewer";
             this.tabPageXrmViewer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageXrmViewer.Size = new System.Drawing.Size(1822, 1129);
+            this.tabPageXrmViewer.Size = new System.Drawing.Size(1670, 1083);
             this.tabPageXrmViewer.TabIndex = 8;
             this.tabPageXrmViewer.Text = "XrmViewer";
             this.tabPageXrmViewer.UseVisualStyleBackColor = true;
@@ -1895,17 +1895,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.TableXmlViewers.Location = new System.Drawing.Point(3, 3);
             this.TableXmlViewers.Name = "TableXmlViewers";
             this.TableXmlViewers.RowCount = 4;
-            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.TableXmlViewers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TableXmlViewers.Size = new System.Drawing.Size(1816, 1123);
+            this.TableXmlViewers.Size = new System.Drawing.Size(1664, 1077);
             this.TableXmlViewers.TabIndex = 2;
             // 
             // splitterXmlViewerControl
             // 
             this.splitterXmlViewerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitterXmlViewerControl.Location = new System.Drawing.Point(3, 48);
+            this.splitterXmlViewerControl.Location = new System.Drawing.Point(3, 46);
             this.splitterXmlViewerControl.Name = "splitterXmlViewerControl";
             // 
             // splitterXmlViewerControl.Panel1
@@ -1915,9 +1915,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterXmlViewerControl.Panel2
             // 
             this.splitterXmlViewerControl.Panel2.Controls.Add(this.propGridXmlViewerControl);
-            this.splitterXmlViewerControl.Size = new System.Drawing.Size(1810, 510);
-            this.splitterXmlViewerControl.SplitterDistance = 919;
-            this.splitterXmlViewerControl.SplitterWidth = 15;
+            this.splitterXmlViewerControl.Size = new System.Drawing.Size(1658, 489);
+            this.splitterXmlViewerControl.SplitterDistance = 841;
+            this.splitterXmlViewerControl.SplitterWidth = 14;
             this.splitterXmlViewerControl.TabIndex = 1;
             // 
             // XmlViewerControl
@@ -1951,7 +1951,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.XmlViewerControl.Settings = xmlViewerSettings1;
             this.XmlViewerControl.ShortcutsEnabled = true;
             this.XmlViewerControl.ShowSelectionMargin = false;
-            this.XmlViewerControl.Size = new System.Drawing.Size(919, 510);
+            this.XmlViewerControl.Size = new System.Drawing.Size(841, 489);
             this.XmlViewerControl.TabIndex = 0;
             this.XmlViewerControl.WordWrap = true;
             this.XmlViewerControl.ZoomFactor = 1F;
@@ -1962,13 +1962,13 @@ namespace Sample.XrmToolBox.TestPlugin
             this.propGridXmlViewerControl.Location = new System.Drawing.Point(0, 0);
             this.propGridXmlViewerControl.Name = "propGridXmlViewerControl";
             this.propGridXmlViewerControl.SelectedObject = this.XmlViewerControl;
-            this.propGridXmlViewerControl.Size = new System.Drawing.Size(876, 510);
+            this.propGridXmlViewerControl.Size = new System.Drawing.Size(803, 489);
             this.propGridXmlViewerControl.TabIndex = 0;
             // 
             // splitterXmlViewer
             // 
             this.splitterXmlViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitterXmlViewer.Location = new System.Drawing.Point(3, 609);
+            this.splitterXmlViewer.Location = new System.Drawing.Point(3, 584);
             this.splitterXmlViewer.Name = "splitterXmlViewer";
             // 
             // splitterXmlViewer.Panel1
@@ -1978,9 +1978,9 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterXmlViewer.Panel2
             // 
             this.splitterXmlViewer.Panel2.Controls.Add(this.propGridXmlViewer);
-            this.splitterXmlViewer.Size = new System.Drawing.Size(1810, 511);
-            this.splitterXmlViewer.SplitterDistance = 932;
-            this.splitterXmlViewer.SplitterWidth = 15;
+            this.splitterXmlViewer.Size = new System.Drawing.Size(1658, 490);
+            this.splitterXmlViewer.SplitterDistance = 853;
+            this.splitterXmlViewer.SplitterWidth = 14;
             this.splitterXmlViewer.TabIndex = 2;
             // 
             // XmlViewer
@@ -2000,7 +2000,7 @@ namespace Sample.XrmToolBox.TestPlugin
             xmlViewerSettings2.Tag = System.Drawing.Color.ForestGreen;
             xmlViewerSettings2.Value = System.Drawing.Color.Black;
             this.XmlViewer.Settings = xmlViewerSettings2;
-            this.XmlViewer.Size = new System.Drawing.Size(932, 511);
+            this.XmlViewer.Size = new System.Drawing.Size(853, 490);
             this.XmlViewer.TabIndex = 0;
             this.XmlViewer.Text = "";
             // 
@@ -2010,7 +2010,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.propGridXmlViewer.Location = new System.Drawing.Point(0, 0);
             this.propGridXmlViewer.Name = "propGridXmlViewer";
             this.propGridXmlViewer.SelectedObject = this.XmlViewer;
-            this.propGridXmlViewer.Size = new System.Drawing.Size(863, 511);
+            this.propGridXmlViewer.Size = new System.Drawing.Size(791, 490);
             this.propGridXmlViewer.TabIndex = 0;
             // 
             // labelXmlViewerControlTitle
@@ -2020,7 +2020,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.labelXmlViewerControlTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXmlViewerControlTitle.Location = new System.Drawing.Point(3, 0);
             this.labelXmlViewerControlTitle.Name = "labelXmlViewerControlTitle";
-            this.labelXmlViewerControlTitle.Size = new System.Drawing.Size(1810, 45);
+            this.labelXmlViewerControlTitle.Size = new System.Drawing.Size(1658, 43);
             this.labelXmlViewerControlTitle.TabIndex = 3;
             this.labelXmlViewerControlTitle.Text = "XmlViewerControl";
             this.labelXmlViewerControlTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2030,22 +2030,22 @@ namespace Sample.XrmToolBox.TestPlugin
             this.labelXmlViewerTitle.AutoSize = true;
             this.labelXmlViewerTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelXmlViewerTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelXmlViewerTitle.Location = new System.Drawing.Point(3, 561);
+            this.labelXmlViewerTitle.Location = new System.Drawing.Point(3, 538);
             this.labelXmlViewerTitle.Name = "labelXmlViewerTitle";
-            this.labelXmlViewerTitle.Size = new System.Drawing.Size(1810, 45);
+            this.labelXmlViewerTitle.Size = new System.Drawing.Size(1658, 43);
             this.labelXmlViewerTitle.TabIndex = 4;
             this.labelXmlViewerTitle.Text = "XmlViewer";
             this.labelXmlViewerTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ControlTesterPluginControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolStripMenu);
-            this.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "ControlTesterPluginControl";
-            this.Size = new System.Drawing.Size(1830, 1206);
+            this.Size = new System.Drawing.Size(1678, 1158);
             this.Load += new System.EventHandler(this.MyPluginControl_Load);
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();

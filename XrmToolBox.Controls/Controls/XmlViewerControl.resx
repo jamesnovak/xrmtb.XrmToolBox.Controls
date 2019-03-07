@@ -124,7 +124,7 @@
   <data name="ToolButtonFormat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAGmSURBVDhPlZM9SwNBEIbPxi/UQo0itxsRUglWItgFQUKS
+        YQUAAAAJcEhZcwAAGdYAABnWARjRyu0AAAGmSURBVDhPlZM9SwNBEIbPxi/UQo0itxsRUglWItgFQUKS
         240iSW2jIIJ/wbndJIWFRQolYqlgJSIigoWFYEoLrSy1shARFcHCxNm7SSRw+fCB427feXduZ3bXaoQd
         B8aFvgploI+k9mFCL/IEvHCpK0OprX6SWzMmoJdJVTQT/x51zqQuhKUWkxnoJGswTKh1LqFcn6DueQw7
         Ok32YGyhElj/c3WSLVWOC/eIJ/VHVcMS82QPZkLmR7lQF8Zc7QGWN4zjw2oSjK955sZUOpjMboxHoZsE
@@ -137,12 +137,12 @@
   <data name="ToolButtonSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAEySURBVDhPrVTLcQIxDN1jamA/VMExyYVLWHtr4JI6iM0V
-        ko7CMROaoAAO0AHR80oOlheYZHgznpGlp7e2JG9xDZVxk9r6ExZsdt/G+HnxwGYACcxFCDa7AzQ3oumW
-        UyLvy/btFfuqWz7V1m1+hdwGPsTAARc52EdAHQFJKlu/E1svFdtnJ+OvJEl1674q696xYOu4nD6DfG00
-        84fSuBd2R1B8NjKLYy/id+xO0deEvzQgImg61wqPTvnI7thi6g4Xlq7AoYsg7ncvFnLmYTR6x9kybsX8
-        iyitX+u8fwmF4qu8+11NkBSbusPuDI31RnhJsc8R208tRnfYHQGRm+0fHEi6QhhI4z9ov9XxbCDv+kT0
-        o8X9a+M/YxJsrgmfPn+0Aq1O5L//RobAoxGEkhZnKIofvlkg6DsN758AAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAAGdYAABnWARjRyu0AAAEzSURBVDhPrVRLbgIxDJ0lV0Dz6Sm6BDbd0EnmDGw4ByRs
+        +7lRWVbtJTgAC7hB8cvYgThDUSueFMmxn98ktjPFb6iMe6yt/8GCze7beJitRmwGkMBChGCzO0BzI5pu
+        80Tkfdmul9hX3WZaW7c9C7ktfIiBAy5ysI+AOgKSVLZ+J7ZeKrbPTsZfSZLq1n1W1r1hwdZxOX0G+dp4
+        7g+lcXN2R1D8eWxWx17E79idoq8Jf2lARNB0rhUenXLC7thi6g4Xlq7Aoasg7lcvFnIWYTR6x8Uy7oX5
+        V1Fa/6rz/iUUiq/y7nc1QVJs6g67MzTWG+Elxb5EbD+1GN1hdwREbrZ/cCDpCmEgjX+n/beOZwN51yei
+        Hy3uXxv/EZNgc0349PmjFWh1Iv/9NzIEHo0glLQ4Q1GcALBwIONuyvHRAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="StatusStripErrors.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

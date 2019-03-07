@@ -30,7 +30,7 @@ namespace xrmtb.XrmToolBox.Controls
     public class XMLViewer : RichTextBox
     {
         private XMLViewerSettings _settings = new XMLViewerSettings();
-        private bool _handleKeyPress = false;
+        private bool _handleKeyPress = true;
         private bool _inProcessing = false;
 
         /// <summary>
@@ -46,11 +46,17 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("XrmToolBox")]
         public event EventHandler<NotificationEventArgs> NotificationMessage;
 
+        /// <summary>
+        /// Attempt to format and apply styles to the Xml as you type.  Default to 'true'
+        /// </summary>
         [Category("XrmToolBox")]
         [Browsable(true)]
         [Description("Attempt to format and apply styles to the Xml as you type.  Default to 'true'")]
         public bool FormatAsYouType { get; set; } = true;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public XMLViewer()
         {
             InitializeComponent();
@@ -69,6 +75,11 @@ namespace xrmtb.XrmToolBox.Controls
             this.ResumeLayout(false);
         }
 
+        /// <summary>
+        /// Handle the control property events so we can pass through to the RTF control 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void OnSettingsPropertyChange(object sender, PropertyChangedEventArgs args) {
             Process();
         }
@@ -167,6 +178,9 @@ namespace xrmtb.XrmToolBox.Controls
                 NotificationMessage?.Invoke(this,
                     new NotificationEventArgs($@"Input Xml processed: {xmlDoc.DocumentElement.ToString()}",
                     MessageLevel.Information));
+
+                // allow the Text property change to call proces
+                _handleKeyPress = true;
 
             }
             catch (XmlException xmlException)
@@ -372,10 +386,12 @@ namespace xrmtb.XrmToolBox.Controls
         /// <param name="e"></param>
         private void XmlViewer_TextChanged(object sender, EventArgs e)
         {
-            if (_handleKeyPress && !_inProcessing)
+            if ((_handleKeyPress || ReadOnly) && !_inProcessing )
             {
                 Process();
             }
+            // reset the handle key press so we can process on external Text changed events
+            _handleKeyPress = true;
         }
         #endregion
     }

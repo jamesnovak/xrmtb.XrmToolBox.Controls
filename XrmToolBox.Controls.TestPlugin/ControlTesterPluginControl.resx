@@ -191,6 +191,74 @@
         aW9uCQMAAAADAAAAAAD6AAAACw==
 </value>
   </data>
+  <data name="EntityListViewBase.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
+        MjAxOC4xMi4xLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTM0ZGVmMmM0MDUwMGM2MmMF
+        AQAAACt4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLkxpc3RWaWV3Q29sdW1uRGVmBgAAABU8TmFtZT5r
+        X19CYWNraW5nRmllbGQcPERpc3BsYXlOYW1lPmtfX0JhY2tpbmdGaWVsZBY8T3JkZXI+a19fQmFja2lu
+        Z0ZpZWxkHjxJc0dyb3VwQ29sdW1uPmtfX0JhY2tpbmdGaWVsZB88SXNGaWx0ZXJDb2x1bW4+a19fQmFj
+        a2luZ0ZpZWxkFjxXaWR0aD5rX19CYWNraW5nRmllbGQBAQAAAAAIAQEIAgAAAAYDAAAAC0Rpc3BsYXlO
+        YW1lBgQAAAAMRGlzcGxheSBOYW1lAQAAAAAA+gAAAAs=
+</value>
+  </data>
+  <data name="EntityListViewBase.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
+        MjAxOC4xMi4xLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTM0ZGVmMmM0MDUwMGM2MmMF
+        AQAAACt4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLkxpc3RWaWV3Q29sdW1uRGVmBgAAABU8TmFtZT5r
+        X19CYWNraW5nRmllbGQcPERpc3BsYXlOYW1lPmtfX0JhY2tpbmdGaWVsZBY8T3JkZXI+a19fQmFja2lu
+        Z0ZpZWxkHjxJc0dyb3VwQ29sdW1uPmtfX0JhY2tpbmdGaWVsZB88SXNGaWx0ZXJDb2x1bW4+a19fQmFj
+        a2luZ0ZpZWxkFjxXaWR0aD5rX19CYWNraW5nRmllbGQBAQAAAAAIAQEIAgAAAAYDAAAAC0xvZ2ljYWxO
+        YW1lBgQAAAAMTG9naWNhbCBOYW1lAgAAAAABZAAAAAs=
+</value>
+  </data>
+  <data name="EntityListViewBase.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
+        MjAxOC4xMi4xLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTM0ZGVmMmM0MDUwMGM2MmMF
+        AQAAACt4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLkxpc3RWaWV3Q29sdW1uRGVmBgAAABU8TmFtZT5r
+        X19CYWNraW5nRmllbGQcPERpc3BsYXlOYW1lPmtfX0JhY2tpbmdGaWVsZBY8T3JkZXI+a19fQmFja2lu
+        Z0ZpZWxkHjxJc0dyb3VwQ29sdW1uPmtfX0JhY2tpbmdGaWVsZB88SXNGaWx0ZXJDb2x1bW4+a19fQmFj
+        a2luZ0ZpZWxkFjxXaWR0aD5rX19CYWNraW5nRmllbGQBAQAAAAAIAQEIAgAAAAYDAAAAClNjaGVtYU5h
+        bWUGBAAAAAtTY2hlbWEgTmFtZQAAAAAAAJYAAAAL
+</value>
+  </data>
+  <data name="EntityListViewBase.ListViewColDefs3" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
+        MjAxOC4xMi4xLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTM0ZGVmMmM0MDUwMGM2MmMF
+        AQAAACt4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLkxpc3RWaWV3Q29sdW1uRGVmBgAAABU8TmFtZT5r
+        X19CYWNraW5nRmllbGQcPERpc3BsYXlOYW1lPmtfX0JhY2tpbmdGaWVsZBY8T3JkZXI+a19fQmFja2lu
+        Z0ZpZWxkHjxJc0dyb3VwQ29sdW1uPmtfX0JhY2tpbmdGaWVsZB88SXNGaWx0ZXJDb2x1bW4+a19fQmFj
+        a2luZ0ZpZWxkFjxXaWR0aD5rX19CYWNraW5nRmllbGQBAQAAAAAIAQEIAgAAAAYDAAAACUlzTWFuYWdl
+        ZAYEAAAADU1hbmFnZWQgU3RhdGUEAAAAAQBkAAAACw==
+</value>
+  </data>
+  <data name="EntityListViewBase.ListViewColDefs4" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
+        MjAxOC4xMi4xLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTM0ZGVmMmM0MDUwMGM2MmMF
+        AQAAACt4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLkxpc3RWaWV3Q29sdW1uRGVmBgAAABU8TmFtZT5r
+        X19CYWNraW5nRmllbGQcPERpc3BsYXlOYW1lPmtfX0JhY2tpbmdGaWVsZBY8T3JkZXI+a19fQmFja2lu
+        Z0ZpZWxkHjxJc0dyb3VwQ29sdW1uPmtfX0JhY2tpbmdGaWVsZB88SXNGaWx0ZXJDb2x1bW4+a19fQmFj
+        a2luZ0ZpZWxkFjxXaWR0aD5rX19CYWNraW5nRmllbGQBAQAAAAAIAQEIAgAAAAYDAAAAC0Rlc2NyaXB0
+        aW9uCQMAAAADAAAAAAD6AAAACw==
+</value>
+  </data>
+  <data name="buttonLoadItems.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
+        2AAAAtgByfICtgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGVSURBVDhPlVM9
+        SwNBEE0av1ALiQjm7lRIJ1YiWGqjHrldRUxtoyCCf0Fu95LCRoigRCwVrERERLCwELS00MpSKwsRUREs
+        zPnmnHwgl1zyYLjbN2/ezu7cxWohabuGJfRlb8btZKpxmMKbM4V+QfgJudHFdDT6hdthClWgwlKgizND
+        6LwlPGc447awNBwoWEUUqw3+xaPleAssD4chlA3hc6VIZU1HH+L9o8LpHMvDMSRzfRCdk7h0BzhewpLe
+        QdnE0SuBuDb8uCG8tcEJt40JwI9X3dEXbcSJxpGyt1pR/EQmuGDFdHPAVNbZ4Iap5mBIb4aP8YbRqQIc
+        T6k1zkciKdUkd/BOs3+lBVznOR8J6Ol78U2pH2hxHCyEPuJ8JOjsVIPOd2HgTbFBcUCqNGtqwnDUcklv
+        pfVoQOKjOGHyk36kgAwBdlyC5pu06GKPaSSm3R4kb9mE4sKSahHPsaTIjtOuiOtyXuorI7PZzuV/SNlu
+        N1z3Iaj3M/0gtutOjM6F0e7gKPcQ04Qo7tBh3pjVIyxjxGK/9wrPXPMpnOQAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="AttribListControl.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAGB4cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
@@ -332,7 +400,33 @@
         aW9uCQMAAAAFAAAAAAD6AAAACw==
 </value>
   </data>
-  <data name="SolutionDropdownGridView.PublisherPrefixes" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="XmlViewerCRMDataGrid.CurrentParseError" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAE1TeXN0ZW0uWG1sLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9
+        bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUBAAAAF1N5c3RlbS5YbWwuWG1s
+        RXhjZXB0aW9uEgAAAAlDbGFzc05hbWUHTWVzc2FnZQREYXRhDklubmVyRXhjZXB0aW9uB0hlbHBVUkwQ
+        U3RhY2tUcmFjZVN0cmluZxZSZW1vdGVTdGFja1RyYWNlU3RyaW5nEFJlbW90ZVN0YWNrSW5kZXgPRXhj
+        ZXB0aW9uTWV0aG9kB0hSZXN1bHQGU291cmNlDVdhdHNvbkJ1Y2tldHMDcmVzBGFyZ3MKbGluZU51bWJl
+        cgxsaW5lUG9zaXRpb24Jc291cmNlVXJpB3ZlcnNpb24BAQMDAQEBAAEAAQcBBgAAAQEeU3lzdGVtLkNv
+        bGxlY3Rpb25zLklEaWN0aW9uYXJ5EFN5c3RlbS5FeGNlcHRpb24ICAIICAIAAAAGAwAAABdTeXN0ZW0u
+        WG1sLlhtbEV4Y2VwdGlvbgYEAAAANkRhdGEgYXQgdGhlIHJvb3QgbGV2ZWwgaXMgaW52YWxpZC4gTGlu
+        ZSAxLCBwb3NpdGlvbiAxLgoKCgYFAAAApQUgICBhdCBTeXN0ZW0uWG1sLlhtbFRleHRSZWFkZXJJbXBs
+        LlRocm93KEV4Y2VwdGlvbiBlKQ0KICAgYXQgU3lzdGVtLlhtbC5YbWxUZXh0UmVhZGVySW1wbC5UaHJv
+        dyhTdHJpbmcgcmVzLCBTdHJpbmcgYXJnKQ0KICAgYXQgU3lzdGVtLlhtbC5YbWxUZXh0UmVhZGVySW1w
+        bC5QYXJzZVJvb3RMZXZlbFdoaXRlc3BhY2UoKQ0KICAgYXQgU3lzdGVtLlhtbC5YbWxUZXh0UmVhZGVy
+        SW1wbC5QYXJzZURvY3VtZW50Q29udGVudCgpDQogICBhdCBTeXN0ZW0uWG1sLlhtbFRleHRSZWFkZXJJ
+        bXBsLlJlYWQoKQ0KICAgYXQgU3lzdGVtLlhtbC5YbWxMb2FkZXIuTG9hZChYbWxEb2N1bWVudCBkb2Ms
+        IFhtbFJlYWRlciByZWFkZXIsIEJvb2xlYW4gcHJlc2VydmVXaGl0ZXNwYWNlKQ0KICAgYXQgU3lzdGVt
+        LlhtbC5YbWxEb2N1bWVudC5Mb2FkKFhtbFJlYWRlciByZWFkZXIpDQogICBhdCBTeXN0ZW0uWG1sLlht
+        bERvY3VtZW50LkxvYWRYbWwoU3RyaW5nIHhtbCkNCiAgIGF0IHhybXRiLlhybVRvb2xCb3guQ29udHJv
+        bHMuWE1MVmlld2VyLlByb2Nlc3MoKSBpbiBDOlxVc2Vyc1xqaW1hZG1pblxPbmVEcml2ZSAtIEZ1dHVy
+        ZXogQ29uc3VsdGluZ1xDUk0gUHJvamVjdHNceHJtdGIuWHJtVG9vbEJveC5Db250cm9sc1xYcm1Ub29s
+        Qm94LkNvbnRyb2xzXENvbnRyb2xzXFhNTFZpZXdlci5jczpsaW5lIDE2MgoAAAAACkAZE4AGBgAAAApT
+        eXN0ZW0uWG1sCgYHAAAAE1htbF9JbnZhbGlkUm9vdERhdGEJCAAAAAEAAAABAAAABgkAAAAABgoAAAAD
+        Mi4wEQgAAAABAAAACQkAAAAL
+</value>
+  </data>
+  <data name="solutionsDropdownControl1.PublisherPrefixes" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
         ZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0sIG1zY29ybGliLCBWZXJzaW9u

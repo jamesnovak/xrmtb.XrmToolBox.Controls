@@ -39,13 +39,18 @@
         public object Object { get; set; }
 
         /// <summary>
+        /// Mask for the To String display value
+        /// </summary>
+        public string ToStringMask { get; set; } = "{0} ({1})";
+
+        /// <summary>
         /// ToString representation of the item details
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            var str = (DisplayName == null) ? Name : $"{DisplayName} ({Name})";
-            return str;
+            // var str = (DisplayName == null) ? Name : $"{DisplayName} ({Name})";
+            return string.Format(ToStringMask, DisplayName, Name);
         }
     }
 }

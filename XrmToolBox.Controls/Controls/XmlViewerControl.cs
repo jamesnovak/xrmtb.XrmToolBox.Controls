@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace xrmtb.XrmToolBox.Controls
 {
+    /// <summary>
+    /// Wraps the XmlViewer Control functionality with some helper UI elements
+    /// </summary>
     public partial class XmlViewerControl : UserControl
     {
         /// <summary>
@@ -24,6 +27,9 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         #region Public properties for the RichText control
+        /// <summary>
+        /// The text only content of the RichText Control
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public string Text
@@ -32,62 +38,107 @@ namespace xrmtb.XrmToolBox.Controls
             set { XmlViewer.Text = value; }
         }
 
+        /// <summary>
+        /// ScrollBars RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public RichTextBoxScrollBars ScrollBars { get => XmlViewer.ScrollBars; set => XmlViewer.ScrollBars = value; }
 
+        /// <summary>
+        /// AcceptsTab RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool AcceptsTab { get => XmlViewer.AcceptsTab; set => XmlViewer.AcceptsTab = value; }
 
+        /// <summary>
+        /// AutoWordSelection RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool AutoWordSelection { get => XmlViewer.AutoWordSelection; set => XmlViewer.AutoWordSelection = value; }
 
+        /// <summary>
+        /// RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public int BulletIndent { get => XmlViewer.BulletIndent; set => XmlViewer.BulletIndent = value; }
 
+        /// <summary>
+        /// DetectUrls RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool DetectUrls { get => XmlViewer.DetectUrls; set => XmlViewer.DetectUrls = value; }
 
+        /// <summary>
+        /// EnableAutoDragDrop RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool EnableAutoDragDrop { get => XmlViewer.EnableAutoDragDrop; set => XmlViewer.EnableAutoDragDrop = value; }
 
+        /// <summary>
+        /// HideSelection RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool HideSelection { get => XmlViewer.HideSelection; set => XmlViewer.HideSelection = value; }
 
+        /// <summary>
+        /// MaxLength RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public int MaxLength { get => XmlViewer.MaxLength; set => XmlViewer.MaxLength = value; }
 
+        /// <summary>
+        /// Multiline RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool Multiline { get => XmlViewer.Multiline; set => XmlViewer.Multiline = value; }
 
+        /// <summary>
+        /// ReadOnly RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool ReadOnly { get => XmlViewer.ReadOnly; set => XmlViewer.ReadOnly = value; }
 
+        /// <summary>
+        /// RightMargin RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public int RightMargin { get => XmlViewer.RightMargin; set => XmlViewer.RightMargin = value; }
 
+        /// <summary>
+        /// ShortcutsEnabled RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool ShortcutsEnabled { get => XmlViewer.ShortcutsEnabled; set => XmlViewer.ShortcutsEnabled = value; }
 
+        /// <summary>
+        /// ShowSelectionMargin RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool ShowSelectionMargin { get => XmlViewer.ShowSelectionMargin; set => XmlViewer.ShowSelectionMargin = value; }
 
+        /// <summary>
+        /// WordWrap RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public bool WordWrap { get => XmlViewer.WordWrap; set => XmlViewer.WordWrap = value; }
 
+        /// <summary>
+        /// ZoomFactor RichText control property
+        /// </summary>
         [Category("Code Editor")]
         [Browsable(true)]
         public float ZoomFactor { get => XmlViewer.ZoomFactor; set => XmlViewer.ZoomFactor = value; }

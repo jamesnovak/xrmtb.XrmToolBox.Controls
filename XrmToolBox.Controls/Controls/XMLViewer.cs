@@ -24,6 +24,7 @@ using System.Text;
 using System.Xml;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -53,6 +54,18 @@ namespace xrmtb.XrmToolBox.Controls
         [Browsable(true)]
         [Description("Attempt to format and apply styles to the Xml as you type.  Default to 'true'")]
         public bool FormatAsYouType { get; set; } = true;
+
+        /// <summary>
+        /// Check to see if the Xml is valid 
+        /// </summary>
+        [Browsable(false)]
+        [Description("Verify that the Xml is well formed in its current state")]
+        public bool IsValidXml
+        {
+            get {
+                return Utility.IsValidXml(Text);
+            }
+        }
 
         /// <summary>
         /// Constructor

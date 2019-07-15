@@ -309,7 +309,7 @@ namespace xrmtb.XrmToolBox.Controls
                 return attribute;
         }
 
-        public static string AttributeToString(object attribute, AttributeMetadata meta)
+        public static string AttributeToString(object attribute, AttributeMetadata meta, string format)
         {
             if (attribute == null)
             {
@@ -317,7 +317,7 @@ namespace xrmtb.XrmToolBox.Controls
             }
             if (attribute is AliasedValue aliasedValue)
             {
-                return AttributeToString(aliasedValue.Value, meta);
+                return AttributeToString(aliasedValue.Value, meta, format);
             }
             else if (attribute is EntityReference entityReference)
             {
@@ -376,7 +376,7 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 return (GetBooleanLabel(meta, boolValue));
             }
-            return attribute.ToString();
+            return string.Format("{0:" + format + "}", attribute);
         }
 
         private static string GetOptionSetLabel(AttributeMetadata meta, int value)

@@ -505,9 +505,22 @@ namespace xrmtb.XrmToolBox.Controls
                 dataColumn.Caption = viewcol.HeaderText;
                 var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, value);
                 dataColumn.ExtendedProperties.Add("Metadata", meta);
-                dataColumn.ExtendedProperties.Add("OriginalType", value != null ? value.GetType() : null);
+                dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
+                if (!string.IsNullOrEmpty(viewcol.DefaultCellStyle.Format))
+                {
+                    dataColumn.ExtendedProperties.Add("Format", viewcol.DefaultCellStyle.Format);
+                }
                 columns.Add(dataColumn);
             }
+        }
+
+        private static Type GetInnerValueType(object value)
+        {
+            if (value is AliasedValue aliasedValue)
+            {
+                return GetInnerValueType(aliasedValue.Value);
+            }
+            return value != null ? value.GetType() : null;
         }
 
         private Type GetValueType(object value)
@@ -561,13 +574,27 @@ namespace xrmtb.XrmToolBox.Controls
                     var type = GetValueType(value);
                     var dataColumn = new DataColumn(attribute, type);
                     var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, entity[attribute]);
-                    dataColumn.Caption =
-                        showFriendlyNames &&
-                        meta != null &&
-                        meta.DisplayName != null &&
-                        meta.DisplayName.UserLocalizedLabel != null ? meta.DisplayName.UserLocalizedLabel.Label : attribute;
+                    if (showFriendlyNames &&
+                       meta != null &&
+                       meta.DisplayName != null &&
+                       meta.DisplayName.UserLocalizedLabel != null)
+                    {
+                        dataColumn.Caption = meta.DisplayName.UserLocalizedLabel.Label;
+                        if (attribute.Contains("."))
+                        {
+                            dataColumn.Caption = attribute.Split('.')[0] + " " + dataColumn.Caption;
+                        }
+                    }
+                    else
+                    {
+                        dataColumn.Caption = attribute;
+                    }
                     dataColumn.ExtendedProperties.Add("Metadata", meta);
-                    dataColumn.ExtendedProperties.Add("OriginalType", value.GetType());
+                    dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
+                    if (meta is DateTimeAttributeMetadata && entities.Entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
+                    {
+                        dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
+                    }
                     columns.Add(dataColumn);
                     addedColumns.Add(attribute);
                 }
@@ -618,13 +645,13 @@ namespace xrmtb.XrmToolBox.Controls
                             value = entity[col];
                             if (showFriendlyNames)
                             {
-                                if (value is DateTime && showLocalTimes && ((DateTime)value).Kind == DateTimeKind.Utc)
+                                if (EntitySerializer.AttributeToBaseType(value) is DateTime dtvalue && showLocalTimes && (dtvalue).Kind == DateTimeKind.Utc)
                                 {
-                                    value = ((DateTime)value).ToLocalTime();
+                                    value = dtvalue.ToLocalTime();
                                 }
                                 if (!ValueTypeIsFriendly(value) && column.ExtendedProperties.ContainsKey("Metadata"))
                                 {
-                                    value = EntitySerializer.AttributeToString(value, column.ExtendedProperties["Metadata"] as AttributeMetadata);
+                                    value = EntitySerializer.AttributeToString(value, column.ExtendedProperties["Metadata"] as AttributeMetadata, column.ExtendedProperties["Format"] as string);
                                 }
                                 else
                                 {
@@ -685,9 +712,13 @@ namespace xrmtb.XrmToolBox.Controls
                 {
                     type = datacolumn.ExtendedProperties["OriginalType"] as Type;
                 }
-                if (type == typeof(int) || type == typeof(decimal) || type == typeof(double) || type == typeof(Money))
+                if (type == typeof(int) || type == typeof(decimal) || type == typeof(double) || type == typeof(Money) || (type == typeof(OptionSetValue) && !showFriendlyNames))
                 {
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+                if (datacolumn.ExtendedProperties.ContainsKey("Format"))
+                {
+                    col.DefaultCellStyle.Format = datacolumn.ExtendedProperties["Format"] as string;
                 }
                 if (datacolumn.ColumnName == "#no")
                 {

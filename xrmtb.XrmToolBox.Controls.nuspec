@@ -5,16 +5,30 @@
     <version>1.2019.3.2</version>
     <title>Shared XrmToolBox Controls for building your own Tools</title>
     <authors>jamesnovak, rappen</authors>
-    <owners>jamesnovak, rappen</owners>
-	<projectUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls</projectUrl>
-    <iconUrl>https://futurezconsulting.com/wp-content/uploads/2018/12/settings.png</iconUrl>
+    <owners>Jim Novak, Jonas Rapp</owners>
+    <projectUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls</projectUrl>
+    <iconUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/raw/master/Images/icon_80.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Shared User controls for developing XrmToolBox Tools</description>
-	<releaseNotes>Additional contros:Addition of DataGridViewGrouper, adding group capabilities to the DataGrid controls </releaseNotes>
+    <releaseNotes>
+This release:
+      New control: 
+      - DataGridViewGrouper, adding group capabilities to the DataGrid controls
+      Updates:
+      - CRMGridView display milliseconds, Alias for friendly names, LocalTime for aliased values etc.
+
+Version 1.2019.3.1:
+      New controls:
+      - CRMGridView
+      - XMLViewer
+      - XMLViewerControl
+      Updates:
+      - Additional fixes for base controls and removal of XrmToolBox dependency
+    </releaseNotes>
     <copyright></copyright>
-    <tags>MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
+    <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
     <dependencies />
     <language>en-US</language>
-	<license type="file">license\license.txt</license>
+    <license type="file">license\license.txt</license>
   </metadata>
 </package>

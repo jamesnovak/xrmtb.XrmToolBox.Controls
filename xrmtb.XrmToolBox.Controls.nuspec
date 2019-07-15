@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>xrmtb.XrmToolBox.Controls</id>
     <version>1.2019.3.2</version>
@@ -8,7 +8,7 @@
     <owners>Jim Novak, Jonas Rapp</owners>
     <projectUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls</projectUrl>
     <iconUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/raw/master/Images/icon_80.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
@@ -25,10 +25,11 @@ Version 1.2019.3.1:
       Updates:
       - Additional fixes for base controls and removal of XrmToolBox dependency
     </releaseNotes>
-    <copyright></copyright>
+    <copyright>©2019 Jim Novak, Jonas Rapp</copyright>
     <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
     <dependencies />
     <language>en-US</language>
-    <license type="file">license\license.txt</license>
+    <!--<license type="expression">MIT</license>-->
+    <licenseUrl>https://raw.githubusercontent.com/jamesnovak/xrmtb.XrmToolBox.Controls/master/LICENSE</licenseUrl>
   </metadata>
 </package>

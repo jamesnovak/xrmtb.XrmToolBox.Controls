@@ -32,4 +32,7 @@ Version 1.2019.3.1:
     <!--<license type="expression">MIT</license>-->
     <licenseUrl>https://raw.githubusercontent.com/jamesnovak/xrmtb.XrmToolBox.Controls/master/LICENSE</licenseUrl>
   </metadata>
+  <files>
+    <file src="bin\Release\xrmtb.XrmToolBox.Controls.dll" target="lib\net47" />
+  </files>
 </package>

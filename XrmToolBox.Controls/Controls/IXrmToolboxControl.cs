@@ -11,7 +11,7 @@ namespace xrmtb.XrmToolBox.Controls
     {
         IOrganizationService Service { get; set; }
         int LanguageCode { get; set; }
-        bool AutoLoadData { get; set; }
+        // bool AutoLoadData { get; set; }
 
         event EventHandler<ProgressChangedEventArgs> ProgressChanged;
         event EventHandler<NotificationEventArgs> NotificationMessage;

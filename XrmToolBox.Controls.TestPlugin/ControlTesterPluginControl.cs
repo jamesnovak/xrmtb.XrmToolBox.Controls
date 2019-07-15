@@ -10,6 +10,9 @@ using Microsoft.Xrm.Sdk.Metadata;
 using McTools.Xrm.Connection;
 using XrmToolBox.Extensibility;
 using xrmtb.XrmToolBox.Controls;
+using Subro.Controls;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace Sample.XrmToolBox.TestPlugin
 {
@@ -32,25 +35,38 @@ namespace Sample.XrmToolBox.TestPlugin
                 splitterAttribList.SplitterDistance =
                 splitterEntDropdown.SplitterDistance =
                 splitterEntityList.SplitterDistance =
-                splitterSolnDropdown.SplitterDistance = width =
-                splitterViewDropdown.SplitterDistance = width =
-                splitterGlobalOptsList.SplitterDistance = width =
-                splitterCRMGridView.SplitterDistance = width =
-                splitterXmlViewerControl.SplitterDistance = width =
-                splitterXmlViewer.SplitterDistance = width;
+                splitterSolnDropdown.SplitterDistance =
+                splitterViewDropdown.SplitterDistance =
+                splitterGlobalOptsList.SplitterDistance =
+                splitterCRMGridView.SplitterDistance = 
+                splitterXmlViewerControl.SplitterDistance =
+                splitterXmlViewer.SplitterDistance = width =
+                splitterBoundListView.SplitterDistance = width;
 
             // set up the properties detail
             SetPropertySelectedObject(radioEntListShowProps, propGridEntList, EntityListControl, null);
             SetPropertySelectedObject(radioEntDropdownShowProps, propGridEntDropdown, EntityDropdown, null);
-            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, null);
+            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdownBase, null);
             SetPropertySelectedObject(radioSolnDropdownShowProps, propGridSolutions, SolutionDropdown, null);
             SetPropertySelectedObject(radioAttribListShowProps, propGridAttrList, AttribListControl, null);
             SetPropertySelectedObject(radioViewDropdownShowProps, propGridViewDropdown, ViewDropdown, null);
             SetPropertySelectedObject(radioGlobalOptsListShowProps, propGridGlobalOptsList, GlobalOptionSetList, null);
-            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, null);
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, null);
+            SetPropertySelectedObject(radioEntLVBaseShowProps, propGridEntLVBase, EntityListViewBase, null);
+
 
             // set up service references
             UpdateAllServices(Service);
+
+            //var items = new List<FilterInfo>()
+            //{
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="One" },
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="Two" },
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="Three" },
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="Four" },
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="Five" },
+            //    new FilterInfo(){ FilterMatchType=EnumFilterMatchType.RegEx, FilterString="Six" }
+            //};
         }
 
         private void AllControls_NotificationMessage(object sender, NotificationEventArgs e)
@@ -88,7 +104,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
                     break;
                 case "tabPageAttrDropDown":
-                    AttributeDropdown.ClearData();
+                    AttributeDropdownBase.ClearData();
                     EntityDropdownAttribs.LoadData();
 
                     break;
@@ -124,7 +140,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
                     break;
                 case "tabPageAttrDropDown":
-                    AttributeDropdown.ClearData();
+                    AttributeDropdownBase.ClearData();
                     EntityDropdownAttribs.ClearData();
 
                     break;
@@ -159,7 +175,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
                     break;
                 case "tabPageAttrDropDown":
-                    AttributeDropdown.UpdateConnection(Service);
+                    AttributeDropdownBase.UpdateConnection(Service);
                     EntityDropdownAttribs.UpdateConnection(Service);
                     break;
                 case "tabPageSolution":
@@ -191,7 +207,7 @@ namespace Sample.XrmToolBox.TestPlugin
                     break;
 
                 case "tabPageAttrDropDown":
-                    AttributeDropdown.Close();
+                    AttributeDropdownBase.Close();
                     EntityDropdownAttribs.Close();
                     break;
                 case "tabPageSolution":
@@ -255,7 +271,7 @@ namespace Sample.XrmToolBox.TestPlugin
             // ENTITIES LIST - update the connection 
             EntityListControl.UpdateConnection(newService);
             EntityDropdown.UpdateConnection(newService);
-            AttributeDropdown.UpdateConnection(newService);
+            AttributeDropdownBase.UpdateConnection(newService);
             EntityDropdownAttribs.UpdateConnection(newService);
             SolutionDropdown.UpdateConnection(newService);
 
@@ -267,8 +283,13 @@ namespace Sample.XrmToolBox.TestPlugin
 
             GlobalOptionSetList.UpdateConnection(newService);
 
-            SolutionDropdownGridView.UpdateConnection(newService);
-            crmGridView1.OrganizationService = newService;
+            // SolutionDropdownGridView.UpdateConnection(newService);
+            CrmGridView.OrganizationService = newService;
+
+            EntityListViewBase.UpdateConnection(newService);
+
+            solutionsDropdownControl1.UpdateConnection(newService);
+
         }
 
         #region Entity Listview Control event handlers
@@ -395,12 +416,12 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void RadioAttribDropdown_CheckedChanged(object sender, EventArgs e)
         {
-            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, AttributeDropdown.SelectedAttribute);
+            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdownBase, AttributeDropdownBase.SelectedAttribute);
         }
 
         private void EntityDropdownAttribs_SelectedItemChanged(object sender, EventArgs e)
         {
-            AttributeDropdown.ParentEntity = EntityDropdownAttribs.SelectedEntity;
+            AttributeDropdownBase.ParentEntity = EntityDropdownAttribs.SelectedEntity;
             UpdateControlLogger(textAttribDropdownLog, $"SelectedItemChanged (Entity): {EntityDropdownAttribs.SelectedEntity?.LogicalName}");
         }
 
@@ -411,26 +432,26 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void AttributeDropdown_SelectedItemChanged(object sender, EventArgs e)
         {
-            UpdateControlLogger(textAttribDropdownLog, $"SelectedItemChanged (Attribute): {AttributeDropdown.SelectedAttribute?.LogicalName}");
-            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, AttributeDropdown.SelectedAttribute);
+            UpdateControlLogger(textAttribDropdownLog, $"SelectedItemChanged (Attribute): {AttributeDropdownBase.SelectedAttribute?.LogicalName}");
+            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdownBase, AttributeDropdownBase.SelectedAttribute);
         }
 
         private void AttributeDropdown_LoadDataComplete(object sender, EventArgs e)
         {
-            UpdateControlLogger(textAttribDropdownLog, $"LoadDataComplete (Attribute), Count: {AttributeDropdown.AllAttributes.Count}");
+            UpdateControlLogger(textAttribDropdownLog, $"LoadDataComplete (Attribute), Count: {AttributeDropdownBase.AllAttributes.Count}");
 
             listBoxAttributes.DataSource = null;
             listBoxAttributes.Items.Clear();
-            listBoxAttributes.DataSource = AttributeDropdown.AllAttributesBindable;
+            listBoxAttributes.DataSource = AttributeDropdownBase.AllAttributesBindable;
             listBoxAttributes.DisplayMember = "DisplayName";
             listBoxAttributes.ValueMember = "Object";
 
-            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdown, AttributeDropdown.SelectedAttribute);
+            SetPropertySelectedObject(radioAttribDropdownShowProps, propGridAttribDropdown, AttributeDropdownBase, AttributeDropdownBase.SelectedAttribute);
         }
 
         private void AttributeDropdown_ClearDataComplete(object sender, EventArgs e)
         {
-            UpdateControlLogger(textAttribDropdownLog, $"ClearDataComplete (Attribute) - Count: {AttributeDropdown.AllAttributes.Count}");
+            UpdateControlLogger(textAttribDropdownLog, $"ClearDataComplete (Attribute) - Count: {AttributeDropdownBase.AllAttributes.Count}");
         }
 
         private void AttributeDropdown_BeginLoadData(object sender, EventArgs e)
@@ -743,28 +764,79 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void RadioCRMGridViewShowProps_CheckedChanged(object sender, EventArgs e)
         {
-            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, crmGridView1.SelectedCellRecords?.Entities?.FirstOrDefault());
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, CrmGridView.SelectedCellRecords?.Entities?.FirstOrDefault());
         }
 
         #endregion CRMGridView event handlers
-
-        private void SolutionDropdownGridView_SelectedItemChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void SolutionDropdownGridView_LoadDataComplete(object sender, EventArgs e)
-        {
-            var coll = new EntityCollection(SolutionDropdownGridView.AllSolutions)
-            {
-                EntityName = "solution"
-            };
-            crmGridView1.DataSource = coll;
-            crmGridView1.Refresh();
-        }
-
+        
         private void crmGridView1_RecordClick(object sender, CRMRecordEventArgs e)
         {
-            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, crmGridView1, e.Entity);
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, e.Entity);
+        }
+
+        private void buttonExecFetch_Click(object sender, EventArgs e)
+        {
+            // exec the fetch and bind to the grid
+            if (XmlViewerCRMDataGrid.IsValidXml)
+            {
+                var fetchReq = new RetrieveMultipleRequest
+                {
+                    Query = new FetchExpression(XmlViewerCRMDataGrid.Text)
+                };
+
+                var fetchResult = Service.Execute(fetchReq) as RetrieveMultipleResponse;
+
+                CrmGridView.DataSource = fetchResult.EntityCollection;
+
+                MessageBox.Show(fetchResult.EntityCollection.EntityName);
+            }
+        }
+
+        private void XmlViewerCRMDataGrid_TextChanged(object sender, EventArgs e)
+        {
+            buttonExecFetch.Enabled = XmlViewerCRMDataGrid.IsValidXml;
+        }
+
+        private void RadioBoundListShowProps_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioBoundListShowProps, propGridBoundListView, entitiesCollectionListView1, null);
+        }
+
+        private void EntLVBaseLoadItems_Click(object sender, EventArgs e)
+        {
+            EntityListViewBase.LoadData();
+        }
+
+        private void EntityListViewBase_SelectedItemChanged(object sender, EventArgs e)
+        {
+            SetPropertySelectedObject(radioEntLVBaseShowProps, propGridEntLVBase, EntityListViewBase, EntityListViewBase.SelectedEntity);
+        }
+
+        private void solutionsDropdownControl1_LoadDataComplete(object sender, EventArgs e)
+        {
+            //BoundListView.ClearData();
+            var defs = new ListViewColumnDef[] {
+                new ListViewColumnDef("DisplayName", 1, "Display Name") { Width = 250 },
+                new ListViewColumnDef("LogicalName", 2, "Logical Name") { IsFilterColumn = true },
+                new ListViewColumnDef( "SchemaName", 0, "Schema Name") { Width = 150 },
+                new ListViewColumnDef( "IsManaged", 4, "Managed State") { IsGroupColumn = true },
+                new ListViewColumnDef("Description", 3) { Width = 250 }
+            };
+
+            defs = new ListViewColumnDef[] {
+                new ListViewColumnDef("uniquename", 1, "Unique Name") { Width = 250 },
+                new ListViewColumnDef("friendlyname", 2, "Friendly Name") { IsFilterColumn = true },
+                new ListViewColumnDef( "description", 3, "Description") { Width = 150 }
+            };
+
+            entitiesCollectionListView1.ListViewColDefs = defs;
+            entitiesCollectionListView1.LoadData<Entity>(solutionsDropdownControl1.AllSolutions);
+
+        }
+
+        private void buttonReload_Click(object sender, EventArgs e)
+        {
+            AttributeDropdownBase.LoadData();
         }
     }
 }

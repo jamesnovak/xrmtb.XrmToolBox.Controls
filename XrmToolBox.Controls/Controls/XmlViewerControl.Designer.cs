@@ -55,7 +55,7 @@
             this.ToolButtonSettings});
             this.ToolStripTools.Location = new System.Drawing.Point(0, 0);
             this.ToolStripTools.Name = "ToolStripTools";
-            this.ToolStripTools.Size = new System.Drawing.Size(1247, 39);
+            this.ToolStripTools.Size = new System.Drawing.Size(786, 37);
             this.ToolStripTools.TabIndex = 3;
             // 
             // ToolButtonFormat
@@ -64,7 +64,7 @@
             this.ToolButtonFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolButtonFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolButtonFormat.Name = "ToolButtonFormat";
-            this.ToolButtonFormat.Size = new System.Drawing.Size(158, 36);
+            this.ToolButtonFormat.Size = new System.Drawing.Size(139, 34);
             this.ToolButtonFormat.Text = "Format Xml";
             this.ToolButtonFormat.ToolTipText = "Format Xml (Ctrl+S)";
             this.ToolButtonFormat.Click += new System.EventHandler(this.ToolButtonFormat_Click);
@@ -75,7 +75,7 @@
             this.ToolButtonSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolButtonSettings.Name = "ToolButtonSettings";
-            this.ToolButtonSettings.Size = new System.Drawing.Size(123, 36);
+            this.ToolButtonSettings.Size = new System.Drawing.Size(109, 34);
             this.ToolButtonSettings.Text = "Settings";
             this.ToolButtonSettings.Click += new System.EventHandler(this.ToolButtonSettings_Click);
             // 
@@ -138,10 +138,10 @@
             this.StatusStripErrors.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripLabelErrorMessage});
             this.StatusStripErrors.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.StatusStripErrors.Location = new System.Drawing.Point(0, 874);
+            this.StatusStripErrors.Location = new System.Drawing.Point(0, 629);
             this.StatusStripErrors.Name = "StatusStripErrors";
             this.StatusStripErrors.ShowItemToolTips = true;
-            this.StatusStripErrors.Size = new System.Drawing.Size(1247, 37);
+            this.StatusStripErrors.Size = new System.Drawing.Size(786, 35);
             this.StatusStripErrors.TabIndex = 6;
             // 
             // ToolStripLabelErrorMessage
@@ -152,7 +152,7 @@
             this.ToolStripLabelErrorMessage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolStripLabelErrorMessage.Name = "ToolStripLabelErrorMessage";
             this.ToolStripLabelErrorMessage.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.ToolStripLabelErrorMessage.Size = new System.Drawing.Size(157, 32);
+            this.ToolStripLabelErrorMessage.Size = new System.Drawing.Size(141, 30);
             this.ToolStripLabelErrorMessage.Text = "Parse Error: ";
             this.ToolStripLabelErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -162,7 +162,7 @@
             this.XmlViewer.CurrentParseError = null;
             this.XmlViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.XmlViewer.FormatAsYouType = true;
-            this.XmlViewer.Location = new System.Drawing.Point(0, 39);
+            this.XmlViewer.Location = new System.Drawing.Point(0, 37);
             this.XmlViewer.Name = "XmlViewer";
             xmlViewerSettings1.AttributeKey = System.Drawing.Color.Blue;
             xmlViewerSettings1.AttributeValue = System.Drawing.Color.DarkRed;
@@ -174,7 +174,7 @@
             xmlViewerSettings1.Tag = System.Drawing.Color.ForestGreen;
             xmlViewerSettings1.Value = System.Drawing.Color.Black;
             this.XmlViewer.Settings = xmlViewerSettings1;
-            this.XmlViewer.Size = new System.Drawing.Size(1247, 835);
+            this.XmlViewer.Size = new System.Drawing.Size(786, 592);
             this.XmlViewer.TabIndex = 2;
             this.XmlViewer.Text = "";
             this.XmlViewer.NotificationMessage += new System.EventHandler<xrmtb.XrmToolBox.Controls.NotificationEventArgs>(this.xmlViewer_NotificationMessage);
@@ -186,7 +186,7 @@
             this.Controls.Add(this.PanelSettingsModal);
             this.Controls.Add(this.ToolStripTools);
             this.Name = "XmlViewerControl";
-            this.Size = new System.Drawing.Size(1247, 911);
+            this.Size = new System.Drawing.Size(786, 664);
             this.Load += new System.EventHandler(this.XmlViewerControl_Load);
             this.BackColorChanged += new System.EventHandler(this.XmlViewerControl_PropertyChanged);
             this.CursorChanged += new System.EventHandler(this.XmlViewerControl_PropertyChanged);

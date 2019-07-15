@@ -108,7 +108,7 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         /// <summary>
-        /// The color of the tags and operators like "<,/> and =".
+        /// The color of the tags and operators
         /// </summary>
         [Description("The color of the tags and operators like \"<,/> and = \".")]
         public Color Tag { get => _tag;

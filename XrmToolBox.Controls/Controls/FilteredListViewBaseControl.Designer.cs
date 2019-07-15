@@ -38,7 +38,7 @@
             this.colState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanelToolbar = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonLoadItems = new System.Windows.Forms.Button();
+            this.buttonELVBaseLoadItems = new System.Windows.Forms.Button();
             this.checkBoxCheckAllNone = new System.Windows.Forms.CheckBox();
             this.labelFilter = new System.Windows.Forms.Label();
             this.textFilterList = new System.Windows.Forms.TextBox();
@@ -70,10 +70,11 @@
             this.ListViewMain.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.ListViewMain.Location = new System.Drawing.Point(0, 30);
+            this.ListViewMain.Location = new System.Drawing.Point(0, 55);
+            this.ListViewMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ListViewMain.MultiSelect = false;
             this.ListViewMain.Name = "ListViewMain";
-            this.ListViewMain.Size = new System.Drawing.Size(822, 473);
+            this.ListViewMain.Size = new System.Drawing.Size(1507, 874);
             this.ListViewMain.TabIndex = 5;
             this.ListViewMain.Tag = "0";
             this.ListViewMain.UseCompatibleStateImageBehavior = false;
@@ -117,7 +118,7 @@
             // 
             // flowLayoutPanelToolbar
             // 
-            this.flowLayoutPanelToolbar.Controls.Add(this.buttonLoadItems);
+            this.flowLayoutPanelToolbar.Controls.Add(this.buttonELVBaseLoadItems);
             this.flowLayoutPanelToolbar.Controls.Add(this.checkBoxCheckAllNone);
             this.flowLayoutPanelToolbar.Controls.Add(this.labelFilter);
             this.flowLayoutPanelToolbar.Controls.Add(this.textFilterList);
@@ -126,34 +127,34 @@
             this.flowLayoutPanelToolbar.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelToolbar.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelToolbar.Name = "flowLayoutPanelToolbar";
-            this.flowLayoutPanelToolbar.Size = new System.Drawing.Size(594, 30);
+            this.flowLayoutPanelToolbar.Size = new System.Drawing.Size(1089, 55);
             this.flowLayoutPanelToolbar.TabIndex = 8;
             this.flowLayoutPanelToolbar.WrapContents = false;
             // 
-            // buttonLoadItems
+            // buttonELVBaseLoadItems
             // 
-            this.buttonLoadItems.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("buttonLoadItems.Image")));
-            this.buttonLoadItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLoadItems.Location = new System.Drawing.Point(0, 0);
-            this.buttonLoadItems.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonLoadItems.MinimumSize = new System.Drawing.Size(75, 14);
-            this.buttonLoadItems.Name = "buttonLoadItems";
-            this.buttonLoadItems.Size = new System.Drawing.Size(87, 27);
-            this.buttonLoadItems.TabIndex = 0;
-            this.buttonLoadItems.Text = "Load Items";
-            this.buttonLoadItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonLoadItems.UseVisualStyleBackColor = true;
-            this.buttonLoadItems.Click += new System.EventHandler(this.ToolButtonLoadItems_Click);
+            this.buttonELVBaseLoadItems.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonELVBaseLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("buttonELVBaseLoadItems.Image")));
+            this.buttonELVBaseLoadItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonELVBaseLoadItems.Location = new System.Drawing.Point(0, 0);
+            this.buttonELVBaseLoadItems.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonELVBaseLoadItems.MinimumSize = new System.Drawing.Size(138, 26);
+            this.buttonELVBaseLoadItems.Name = "buttonELVBaseLoadItems";
+            this.buttonELVBaseLoadItems.Size = new System.Drawing.Size(160, 50);
+            this.buttonELVBaseLoadItems.TabIndex = 0;
+            this.buttonELVBaseLoadItems.Text = "Load Items";
+            this.buttonELVBaseLoadItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonELVBaseLoadItems.UseVisualStyleBackColor = true;
+            this.buttonELVBaseLoadItems.Click += new System.EventHandler(this.ToolButtonLoadItems_Click);
             // 
             // checkBoxCheckAllNone
             // 
             this.checkBoxCheckAllNone.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
             this.checkBoxCheckAllNone.FlatAppearance.BorderSize = 0;
-            this.checkBoxCheckAllNone.Location = new System.Drawing.Point(97, 2);
-            this.checkBoxCheckAllNone.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
+            this.checkBoxCheckAllNone.Location = new System.Drawing.Point(178, 4);
+            this.checkBoxCheckAllNone.Margin = new System.Windows.Forms.Padding(18, 4, 4, 4);
             this.checkBoxCheckAllNone.Name = "checkBoxCheckAllNone";
-            this.checkBoxCheckAllNone.Size = new System.Drawing.Size(103, 23);
+            this.checkBoxCheckAllNone.Size = new System.Drawing.Size(189, 42);
             this.checkBoxCheckAllNone.TabIndex = 6;
             this.checkBoxCheckAllNone.Text = "Check All/None";
             this.checkBoxCheckAllNone.UseVisualStyleBackColor = true;
@@ -162,10 +163,10 @@
             // 
             // labelFilter
             // 
-            this.labelFilter.Location = new System.Drawing.Point(212, 0);
-            this.labelFilter.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
+            this.labelFilter.Location = new System.Drawing.Point(389, 0);
+            this.labelFilter.Margin = new System.Windows.Forms.Padding(18, 0, 6, 0);
             this.labelFilter.Name = "labelFilter";
-            this.labelFilter.Size = new System.Drawing.Size(38, 27);
+            this.labelFilter.Size = new System.Drawing.Size(70, 50);
             this.labelFilter.TabIndex = 3;
             this.labelFilter.Text = "Filter:";
             this.labelFilter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,13 +174,13 @@
             // textFilterList
             // 
             this.textFilterList.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textFilterList.Location = new System.Drawing.Point(253, 0);
+            this.textFilterList.Location = new System.Drawing.Point(465, 12);
             this.textFilterList.Margin = new System.Windows.Forms.Padding(0);
             this.textFilterList.MaxLength = 100;
-            this.textFilterList.MinimumSize = new System.Drawing.Size(90, 27);
+            this.textFilterList.MinimumSize = new System.Drawing.Size(162, 46);
             this.textFilterList.Multiline = true;
             this.textFilterList.Name = "textFilterList";
-            this.textFilterList.Size = new System.Drawing.Size(121, 27);
+            this.textFilterList.Size = new System.Drawing.Size(219, 46);
             this.textFilterList.TabIndex = 4;
             this.textFilterList.WordWrap = false;
             this.textFilterList.TextChanged += new System.EventHandler(this.ToolStripTextFilter_TextChanged);
@@ -190,10 +191,10 @@
             this.buttonClearFilter.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonClearFilter.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.125F);
             this.buttonClearFilter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.buttonClearFilter.Location = new System.Drawing.Point(374, 0);
+            this.buttonClearFilter.Location = new System.Drawing.Point(684, 0);
             this.buttonClearFilter.Margin = new System.Windows.Forms.Padding(0);
             this.buttonClearFilter.Name = "buttonClearFilter";
-            this.buttonClearFilter.Size = new System.Drawing.Size(28, 27);
+            this.buttonClearFilter.Size = new System.Drawing.Size(64, 70);
             this.buttonClearFilter.TabIndex = 5;
             this.buttonClearFilter.Text = "x";
             this.buttonClearFilter.UseVisualStyleBackColor = true;
@@ -204,6 +205,7 @@
             this.splitContainerToolbar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.splitContainerToolbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainerToolbar.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerToolbar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerToolbar.Name = "splitContainerToolbar";
             // 
             // splitContainerToolbar.Panel1
@@ -214,20 +216,20 @@
             // splitContainerToolbar.Panel2
             // 
             this.splitContainerToolbar.Panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.splitContainerToolbar.Size = new System.Drawing.Size(822, 30);
-            this.splitContainerToolbar.SplitterDistance = 594;
-            this.splitContainerToolbar.SplitterWidth = 5;
+            this.splitContainerToolbar.Size = new System.Drawing.Size(1507, 55);
+            this.splitContainerToolbar.SplitterDistance = 1089;
+            this.splitContainerToolbar.SplitterWidth = 9;
             this.splitContainerToolbar.TabIndex = 1;
             // 
             // FilteredListViewBaseControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ListViewMain);
             this.Controls.Add(this.splitContainerToolbar);
-            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FilteredListViewBaseControl";
-            this.Size = new System.Drawing.Size(822, 503);
+            this.Size = new System.Drawing.Size(1507, 929);
             this.flowLayoutPanelToolbar.ResumeLayout(false);
             this.flowLayoutPanelToolbar.PerformLayout();
             this.splitContainerToolbar.Panel1.ResumeLayout(false);
@@ -240,7 +242,7 @@
         #endregion
         protected System.Windows.Forms.ListView ListViewMain;
         protected System.Windows.Forms.FlowLayoutPanel flowLayoutPanelToolbar;
-        protected System.Windows.Forms.Button buttonLoadItems;
+        protected System.Windows.Forms.Button buttonELVBaseLoadItems;
         protected System.Windows.Forms.Label labelFilter;
         protected System.Windows.Forms.TextBox textFilterList;
         protected System.Windows.Forms.Button buttonClearFilter;

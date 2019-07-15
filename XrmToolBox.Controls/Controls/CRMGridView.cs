@@ -7,6 +7,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using System.Drawing;
 using System.Linq;
+using System.Diagnostics;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -548,12 +549,23 @@ namespace xrmtb.XrmToolBox.Controls
 
         private void PopulateColumnsFromEntities(EntityCollection entities, List<DataColumn> columns)
         {
+            //Stopwatch stopWatch = new Stopwatch();
+            //stopWatch.Start();
+
+            // get a unique list of the Attributes returned for all records
+            var attribKeys = entities.Entities
+                .SelectMany(e => e.Attributes)
+                .Select(a => a.Key)
+                .Distinct().ToList();
+
             var addedColumns = new List<string>();
             foreach (var entity in entities.Entities)
             {
-                foreach (var attribute in entity.Attributes.Keys)
+                //foreach (var attribute in entity.Attributes.Keys)
+                foreach (var attribute in attribKeys)
                 {
-                    if (entity[attribute] == null)
+                    //if (entity[attribute] == null)
+                    if (!entity.Attributes.ContainsKey(attribute))
                     {
                         continue;
                     }
@@ -598,7 +610,23 @@ namespace xrmtb.XrmToolBox.Controls
                     columns.Add(dataColumn);
                     addedColumns.Add(attribute);
                 }
+
+                // if we have added all of the distinct cols, exit the loop;
+                if (addedColumns.Count == attribKeys.Count)
+                {
+                    break;
+                }
             }
+
+            //stopWatch.Stop();
+            //// Get the elapsed time as a TimeSpan value.
+            //TimeSpan ts = stopWatch.Elapsed;
+
+            //// Format and display the TimeSpan value.
+            //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            //    ts.Hours, ts.Minutes, ts.Seconds,
+            //    ts.Milliseconds / 10);
+            //MessageBox.Show(elapsedTime);
         }
 
         private object GetFirstValueForAttribute(EntityCollection entities, string attribute)

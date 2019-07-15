@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>24163e91-269d-4e6b-b97b-0addb494de6b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DataGridViewGrouper</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DataGridViewGrouper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataGridViewGrouperContextMenuStrip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataGridViewGrouperControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataGridViewGrouperControl.designer.cs">
+      <DependentUpon>DataGridViewGrouperControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GroupingInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GroupingOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GroupingSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GroupList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchBox.designer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SearchBox.resx" />
+  </ItemGroup>
+</Project>

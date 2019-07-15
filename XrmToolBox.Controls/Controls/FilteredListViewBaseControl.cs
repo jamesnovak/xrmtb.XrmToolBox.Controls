@@ -235,7 +235,7 @@ namespace xrmtb.XrmToolBox.Controls
         /// <param name="items"></param>
         protected internal void SetAllItems<T>(List<T> items)
         {
-            _allItems = items.ConvertAll<object>(new Converter<T, object>( (item)=> { return item as object; }));
+            _allItems = items.Select(i=> i as object).ToList();
 
             ListItemType = typeof(T);
 
@@ -761,7 +761,7 @@ namespace xrmtb.XrmToolBox.Controls
                 // buttonCheckNone.Enabled
                 checkBoxCheckAllNone.Enabled = (count > 0);
                 splitContainerToolbar.Enabled =
-                buttonLoadItems.Enabled = true;
+                buttonELVBaseLoadItems.Enabled = true;
             }
             else
             {

@@ -7,6 +7,8 @@ using System.Threading;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -118,6 +120,25 @@ namespace xrmtb.XrmToolBox.Controls
                 propType = typeof(bool);
             }
             return propType;
+        }
+
+        /// <summary>
+        /// Helper method to validate Xml as well formed 
+        /// </summary>
+        /// <param name="xmlString"></param>
+        /// <returns></returns>
+        public static bool IsValidXml(string xmlString)
+        {
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(xmlString);
+                return true;
+            }
+            catch (XmlException)
+            {
+                return false;
+            }
         }
     }
 

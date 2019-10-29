@@ -12,6 +12,10 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+      New control:
+      - CDSDataComboBox, set an EntityCollection as DataSource on this ComboBox. Display Format may be entered to specify data to show. SelectedEntity exposed for easy access to the selected record.
+
+Version 1.2019.7.6:
       New control: 
       - DataGridViewGrouper, adding group capabilities to the DataGrid controls
       Updates:

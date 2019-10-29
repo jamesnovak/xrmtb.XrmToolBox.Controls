@@ -336,3 +336,4 @@ nuget/
 .vs/Futurez.Xrm.XrmToolbox.Controls/DesignTimeBuild/.dtbcache
 /.vs
 
+/codealike.json

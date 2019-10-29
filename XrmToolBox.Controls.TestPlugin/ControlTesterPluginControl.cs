@@ -285,6 +285,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
             // SolutionDropdownGridView.UpdateConnection(newService);
             CrmGridView.OrganizationService = newService;
+            cdsDataComboBox.OrganizationService = newService;
 
             EntityListViewBase.UpdateConnection(newService);
 
@@ -787,6 +788,8 @@ namespace Sample.XrmToolBox.TestPlugin
                 var fetchResult = Service.Execute(fetchReq) as RetrieveMultipleResponse;
 
                 CrmGridView.DataSource = fetchResult.EntityCollection;
+                cdsDataComboBox.DataSource = fetchResult.EntityCollection;
+                cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
 
                 MessageBox.Show(fetchResult.EntityCollection.EntityName);
             }
@@ -837,6 +840,17 @@ namespace Sample.XrmToolBox.TestPlugin
         private void buttonReload_Click(object sender, EventArgs e)
         {
             AttributeDropdownBase.LoadData();
+        }
+
+        private void textCdsDataComboBoxFormat_TextChanged(object sender, EventArgs e)
+        {
+            cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
+        }
+
+        private void cdsDataComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var entity = cdsDataComboBox.SelectedEntity;
+            //MessageBox.Show(entity.Id.ToString());
         }
     }
 }

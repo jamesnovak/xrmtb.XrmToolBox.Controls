@@ -129,6 +129,10 @@
     <Compile Include="Controls\BoundListViewControl.Designer.cs">
       <DependentUpon>BoundListViewControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CDSDataComboBox.cs" />
+    <Compile Include="Controls\CDSDataComboBox.Designer.cs">
+      <DependentUpon>CDSDataComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CRMGridView.cs">
       <SubType>Component</SubType>
     </Compile>

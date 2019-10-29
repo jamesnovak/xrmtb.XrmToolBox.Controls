@@ -14,7 +14,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         public static String[] entityProperties = { "LogicalName", "DisplayName", "ObjectTypeCode", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind" };
         public static String[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "PrimaryIdAttribute" };
-        public static String[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "OptionSet", "SchemaName", "Targets" };
+        public static String[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "IsPrimaryName", "OptionSet", "SchemaName", "Targets" };
 
         public static AttributeMetadata GetAttribute(IOrganizationService service, string entity, string attribute, object value)
         {
@@ -29,6 +29,25 @@ namespace xrmtb.XrmToolBox.Controls
 
         public static AttributeMetadata GetAttribute(IOrganizationService service, string entity, string attribute)
         {
+            var entitymeta = GetEntity(service, entity);
+            if (entitymeta != null)
+            {
+                if (entitymeta.Attributes != null)
+                {
+                    foreach (var metaattribute in entitymeta.Attributes)
+                    {
+                        if (metaattribute.LogicalName == attribute)
+                        {
+                            return metaattribute;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private static EntityMetadata GetEntity(IOrganizationService service, string entity)
+        {
             if (!entities.ContainsKey(entity))
             {
                 var response = LoadEntityDetails(service, entity);
@@ -37,13 +56,19 @@ namespace xrmtb.XrmToolBox.Controls
                     entities.Add(entity, response.EntityMetadata[0]);
                 }
             }
-            if (entities != null && entities.ContainsKey(entity))
+            return entities[entity];
+        }
+
+        public static AttributeMetadata GetPrimaryAttribute(IOrganizationService service, string entity)
+        {
+            var entitymeta = GetEntity(service, entity);
+            if (entitymeta != null)
             {
-                if (entities[entity].Attributes != null)
+                if (entitymeta.Attributes != null)
                 {
-                    foreach (var metaattribute in entities[entity].Attributes)
+                    foreach (var metaattribute in entitymeta.Attributes)
                     {
-                        if (metaattribute.LogicalName == attribute)
+                        if (metaattribute.IsPrimaryName == true)
                         {
                             return metaattribute;
                         }

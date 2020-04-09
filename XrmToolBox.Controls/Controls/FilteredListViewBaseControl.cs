@@ -89,7 +89,7 @@ namespace xrmtb.XrmToolBox.Controls
             get { return _listViewColDefs; }
             set {
                 // only allowed to define one group column... otherwise, mayhem 
-                if (value.Where(c => c.IsGroupColumn).ToList().Count > 1)
+                if (value?.Where(c => c.IsGroupColumn).ToList().Count > 1)
                 {
                     throw new ArgumentException("Only one column can be specified as a Group By column");
                 }

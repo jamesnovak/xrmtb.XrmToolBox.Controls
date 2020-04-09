@@ -5,7 +5,21 @@
     /// </summary>
     public class ListDisplayItem
     {
-        internal ListDisplayItem(string name, string displayName, string description, object boundObject)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ListDisplayItem() 
+        { 
+        }
+        
+        /// <summary>
+        /// Constructor with Params
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="description"></param>
+        /// <param name="boundObject"></param>
+        public ListDisplayItem(string name, string displayName, string description, object boundObject)
         {
             Name = name;
             DisplayName = displayName;

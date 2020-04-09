@@ -97,9 +97,15 @@ namespace xrmtb.XrmToolBox.Controls
                 LogicalName = entityLogicalName
             };
 
-            var resp = (RetrieveEntityResponse)service.Execute(req);
-
-            return resp.EntityMetadata;
+            try
+            {
+                var resp = (RetrieveEntityResponse)service.Execute(req);
+                return resp.EntityMetadata;
+            }
+            catch (System.ServiceModel.FaultException ex)
+            {
+                return null;
+            } 
         }
 
         /// <summary>

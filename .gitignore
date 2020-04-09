@@ -332,7 +332,8 @@ packages/
 bin/
 obj/
 v15/
-nuget/
+nuget/Package/lib/
+XrmToolBox.Controls.TestPlugin/NuGet/
 .vs/Futurez.Xrm.XrmToolbox.Controls/DesignTimeBuild/.dtbcache
 /.vs
 

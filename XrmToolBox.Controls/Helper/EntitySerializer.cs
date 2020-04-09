@@ -379,6 +379,76 @@ namespace xrmtb.XrmToolBox.Controls
             return string.Format("{0:" + format + "}", attribute);
         }
 
+        public static string AttributeToString(object attribute, AttributeMetadata meta)
+        {
+            if (attribute == null)
+            {
+                return "";
+            }
+            if (attribute is AliasedValue aliasedValue)
+            {
+                return AttributeToString(aliasedValue.Value, meta);
+            }
+            else if (attribute is EntityReference entityReference)
+            {
+                if (!string.IsNullOrEmpty(entityReference.Name))
+                {
+                    return entityReference.Name;
+                }
+                return entityReference.Id.ToString();
+            }
+            else if (attribute is EntityCollection entityCollection && entityCollection.EntityName == "activityparty")
+            {
+                var result = "";
+                if (entityCollection.Entities.Count > 0)
+                {
+                    foreach (var entity in entityCollection.Entities)
+                    {
+                        var party = "";
+                        if (entity.Contains("partyid") && entity["partyid"] is EntityReference)
+                        {
+                            party = ((EntityReference)entity["partyid"]).Name;
+                        }
+                        if (string.IsNullOrEmpty(party) && entity.Contains("addressused"))
+                        {
+                            party = entity["addressused"].ToString();
+                        }
+                        if (string.IsNullOrEmpty(party))
+                        {
+                            party = entity.Id.ToString();
+                        }
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            result += ", ";
+                        }
+                        result += party;
+                    }
+                }
+                return result;
+            }
+            else if (attribute is OptionSetValue optionSetValue)
+            {
+                return GetOptionSetLabel(meta, optionSetValue.Value);
+            }
+            else if (attribute is OptionSetValueCollection optionSetValues)
+            {
+                return string.Join("; ", optionSetValues.Select(v => GetOptionSetLabel(meta, v.Value)));
+            }
+            else if (attribute is Money money)
+            {
+                return money.Value.ToString();
+            }
+            else if (attribute is BooleanManagedProperty booleanManagedProperty)
+            {
+                return booleanManagedProperty.Value.ToString();
+            }
+            else if (attribute is bool boolValue)
+            {
+                return (GetBooleanLabel(meta, boolValue));
+            }
+            return attribute.ToString();
+        }
+
         private static string GetOptionSetLabel(AttributeMetadata meta, int value)
         {
             if (meta != null && meta is EnumAttributeMetadata)

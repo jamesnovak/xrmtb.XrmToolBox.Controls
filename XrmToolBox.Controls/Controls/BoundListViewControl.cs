@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Xrm.Sdk;
 using System.Reflection;
+using Microsoft.Xrm.Sdk.Messages;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -114,8 +115,6 @@ namespace xrmtb.XrmToolBox.Controls
             get { return _listViewColDefs; }
             set
             {
-                ListItemType = null;
-
                 // only allowed to define one group column... otherwise, mayhem 
                 if (value.Where(c => c.IsGroupColumn).ToList().Count > 1)
                 {
@@ -231,8 +230,10 @@ namespace xrmtb.XrmToolBox.Controls
         protected internal Type ListItemType
         {
             get { return _listItemType; }
-            private set {
+            internal set 
+            {
                 _listItemType = value;
+
                 // only set up columns col defs not defined
                 if (ListViewColDefs.Length == 0)
                 {
@@ -249,6 +250,9 @@ namespace xrmtb.XrmToolBox.Controls
         /// <param name="items"></param>
         public virtual void LoadData<T>(List<T> items)
         {
+            // before we load new, be sure to clear
+            ClearData();
+
             _allItems = items.ConvertAll<object>(new Converter<T, object>((item) => { return item as object; }));
 
             ListItemType = typeof(T);
@@ -268,6 +272,22 @@ namespace xrmtb.XrmToolBox.Controls
         protected internal List<object> AllItems
         {
             get { return _allItems; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetSelectedItem<T>() {
+
+            if (SelectedItem != null)
+            {
+                return (T)SelectedItem;
+            }
+            else {
+                return default; 
+            }
         }
 
         /// <summary>
@@ -319,7 +339,7 @@ namespace xrmtb.XrmToolBox.Controls
         public virtual event EventHandler BeginLoadData;
 
         /// <summary>
-        /// Event that fires when <see cref="LoadData"/>() completes
+        /// Event that fires when <see cref="BoundListViewControl.LoadData"/>() completes
         /// </summary>
         [Category("XrmToolBox")]
         [Description("Event that fires when LoadData() completes")]
@@ -416,7 +436,7 @@ namespace xrmtb.XrmToolBox.Controls
             _allItems = new List<object>();
 
             Items.Clear();
-
+            SelectedItem = null;
             SelectedItemChanged?.Invoke(this, new EventArgs());
         }
 
@@ -683,7 +703,7 @@ namespace xrmtb.XrmToolBox.Controls
                 CheckedObjects = new List<object>();
             }
 
-            if (CheckedObjects.Count == 0)
+            if (CheckedItems.Count == 0)
             {
                 CheckedObjects.Clear();
             }

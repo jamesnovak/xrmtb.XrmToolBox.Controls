@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>xrmtb.XrmToolBox.Controls</id>
+    <version>1.2020.4.9</version>
+    <title>Shared XrmToolBox Controls for building your own Tools</title>
+    <authors>jamesnovak, rappen</authors>
+    <owners>jamesnovak, rappen</owners>
+	<projectUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls</projectUrl>
+    <iconUrl>https://futurezconsulting.com/wp-content/uploads/2018/12/settings.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Shared User controls for developing XrmToolBox Tools</description>
+	<releaseNotes>Various updates:
+	Update references to latest SDK packages
+	Fixes to BoundEntities control for LoadData and ClearData
+	Fixes to EntityCollectionListView control for overloaded LoadData methods for collections and FetchXml
+	ListDisplayItem is now public to allow loading data externally
+	</releaseNotes>
+    <copyright></copyright>
+    <tags>MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
+    <dependencies />
+    <language>en-US</language>
+	<license type="file">license\license.txt</license>
+  </metadata>
+</package>

@@ -48,6 +48,14 @@ namespace xrmtb.XrmToolBox.Controls
             return path;
         }
 
+        /// <summary>
+        /// Helper method to retrieve the Property Value from the reflected object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="p"></param>
+        /// <param name="languageCode"></param>
+        /// <returns></returns>
         public static T GetPropertyValue<T>(object data, PropertyInfo p, int languageCode = 1033)
         {
             T propValue = default(T);
@@ -110,6 +118,11 @@ namespace xrmtb.XrmToolBox.Controls
             return propValue;
         }
 
+        /// <summary>
+        /// Helper method to get the Type from the PropInfo
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public static Type GetPropertyType(PropertyInfo p)
         {
             Type propType = typeof(string);
@@ -139,6 +152,39 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 return false;
             }
+        }
+        /// <summary>
+        /// Helper method to return the Type of a value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="showFriendlyNames"></param>
+        /// <returns></returns>
+        public static Type GetValueType(object value, bool showFriendlyNames)
+        {
+            if (value == null)
+            {
+                return typeof(string);
+            }
+            if (showFriendlyNames && !ValueTypeIsFriendly(value))
+            {
+                return typeof(string);
+            }
+            var basevalue = EntitySerializer.AttributeToBaseType(value);
+            if (basevalue == null)
+            {
+                return typeof(string);
+            }
+            return basevalue.GetType();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal static bool ValueTypeIsFriendly(object value)
+        {
+            return value is Int32 || value is decimal || value is double || value is string || value is Money;
         }
     }
 

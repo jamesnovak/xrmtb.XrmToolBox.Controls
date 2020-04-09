@@ -289,8 +289,9 @@ namespace Sample.XrmToolBox.TestPlugin
 
             EntityListViewBase.UpdateConnection(newService);
 
-            solutionsDropdownControl1.UpdateConnection(newService);
+            listViewEntCollection.UpdateConnection(newService);
 
+            // solutionsDropdownControl1.UpdateConnection(newService);
         }
 
         #region Entity Listview Control event handlers
@@ -791,7 +792,7 @@ namespace Sample.XrmToolBox.TestPlugin
                 cdsDataComboBox.DataSource = fetchResult.EntityCollection;
                 cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
 
-                MessageBox.Show(fetchResult.EntityCollection.EntityName);
+                // MessageBox.Show(fetchResult.EntityCollection.EntityName);
             }
         }
 
@@ -802,7 +803,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void RadioBoundListShowProps_CheckedChanged(object sender, EventArgs e)
         {
-            SetPropertySelectedObject(radioBoundListShowProps, propGridBoundListView, entitiesCollectionListView1, null);
+            SetPropertySelectedObject(radioBoundListShowProps, propGridBoundListView, listViewEntCollection, null);
         }
 
         private void EntLVBaseLoadItems_Click(object sender, EventArgs e)
@@ -832,8 +833,8 @@ namespace Sample.XrmToolBox.TestPlugin
                 new ListViewColumnDef( "description", 3, "Description") { Width = 150 }
             };
 
-            entitiesCollectionListView1.ListViewColDefs = defs;
-            entitiesCollectionListView1.LoadData<Entity>(solutionsDropdownControl1.AllSolutions);
+            // listViewEntCollection.ListViewColDefs = defs;
+            // listViewEntCollection.LoadData<Entity>(solutionsDropdownControl1.AllSolutions);
 
         }
 
@@ -851,6 +852,28 @@ namespace Sample.XrmToolBox.TestPlugin
         {
             var entity = cdsDataComboBox.SelectedEntity;
             //MessageBox.Show(entity.Id.ToString());
+        }
+
+        private void buttonExecFetchBoundList_Click(object sender, EventArgs e)
+        {
+            // exec the fetch and bind to the grid
+            if (xmlViewerEntColl.IsValidXml)
+            {
+                var fetchReq = new RetrieveMultipleRequest
+                {
+                    Query = new FetchExpression(xmlViewerEntColl.Text)
+                };
+
+                var fetchResult = Service.Execute(fetchReq) as RetrieveMultipleResponse;
+
+                listViewEntCollection.LoadData(fetchResult.EntityCollection.Entities.ToList());
+
+                // CrmGridView.DataSource = fetchResult.EntityCollection;
+                // cdsDataComboBox.DataSource = fetchResult.EntityCollection;
+                // cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
+
+                // MessageBox.Show(fetchResult.EntityCollection.EntityName);
+            }
         }
     }
 }

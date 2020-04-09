@@ -70,11 +70,12 @@
             this.ListViewMain.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
+            this.ListViewMain.HideSelection = false;
             this.ListViewMain.Location = new System.Drawing.Point(0, 55);
-            this.ListViewMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ListViewMain.Margin = new System.Windows.Forms.Padding(6);
             this.ListViewMain.MultiSelect = false;
             this.ListViewMain.Name = "ListViewMain";
-            this.ListViewMain.Size = new System.Drawing.Size(1507, 874);
+            this.ListViewMain.Size = new System.Drawing.Size(1455, 874);
             this.ListViewMain.TabIndex = 5;
             this.ListViewMain.Tag = "0";
             this.ListViewMain.UseCompatibleStateImageBehavior = false;
@@ -127,12 +128,13 @@
             this.flowLayoutPanelToolbar.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelToolbar.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelToolbar.Name = "flowLayoutPanelToolbar";
-            this.flowLayoutPanelToolbar.Size = new System.Drawing.Size(1089, 55);
+            this.flowLayoutPanelToolbar.Size = new System.Drawing.Size(1051, 55);
             this.flowLayoutPanelToolbar.TabIndex = 8;
             this.flowLayoutPanelToolbar.WrapContents = false;
             // 
             // buttonELVBaseLoadItems
             // 
+            this.buttonELVBaseLoadItems.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonELVBaseLoadItems.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonELVBaseLoadItems.Image = ((System.Drawing.Image)(resources.GetObject("buttonELVBaseLoadItems.Image")));
             this.buttonELVBaseLoadItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -140,7 +142,7 @@
             this.buttonELVBaseLoadItems.Margin = new System.Windows.Forms.Padding(0);
             this.buttonELVBaseLoadItems.MinimumSize = new System.Drawing.Size(138, 26);
             this.buttonELVBaseLoadItems.Name = "buttonELVBaseLoadItems";
-            this.buttonELVBaseLoadItems.Size = new System.Drawing.Size(160, 50);
+            this.buttonELVBaseLoadItems.Size = new System.Drawing.Size(160, 54);
             this.buttonELVBaseLoadItems.TabIndex = 0;
             this.buttonELVBaseLoadItems.Text = "Load Items";
             this.buttonELVBaseLoadItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -149,12 +151,13 @@
             // 
             // checkBoxCheckAllNone
             // 
+            this.checkBoxCheckAllNone.Dock = System.Windows.Forms.DockStyle.Left;
             this.checkBoxCheckAllNone.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
             this.checkBoxCheckAllNone.FlatAppearance.BorderSize = 0;
             this.checkBoxCheckAllNone.Location = new System.Drawing.Point(178, 4);
             this.checkBoxCheckAllNone.Margin = new System.Windows.Forms.Padding(18, 4, 4, 4);
             this.checkBoxCheckAllNone.Name = "checkBoxCheckAllNone";
-            this.checkBoxCheckAllNone.Size = new System.Drawing.Size(189, 42);
+            this.checkBoxCheckAllNone.Size = new System.Drawing.Size(189, 46);
             this.checkBoxCheckAllNone.TabIndex = 6;
             this.checkBoxCheckAllNone.Text = "Check All/None";
             this.checkBoxCheckAllNone.UseVisualStyleBackColor = true;
@@ -163,24 +166,25 @@
             // 
             // labelFilter
             // 
+            this.labelFilter.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelFilter.Location = new System.Drawing.Point(389, 0);
             this.labelFilter.Margin = new System.Windows.Forms.Padding(18, 0, 6, 0);
             this.labelFilter.Name = "labelFilter";
-            this.labelFilter.Size = new System.Drawing.Size(70, 50);
+            this.labelFilter.Size = new System.Drawing.Size(70, 54);
             this.labelFilter.TabIndex = 3;
             this.labelFilter.Text = "Filter:";
             this.labelFilter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textFilterList
             // 
-            this.textFilterList.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textFilterList.Location = new System.Drawing.Point(465, 12);
+            this.textFilterList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textFilterList.Location = new System.Drawing.Point(465, 0);
             this.textFilterList.Margin = new System.Windows.Forms.Padding(0);
             this.textFilterList.MaxLength = 100;
             this.textFilterList.MinimumSize = new System.Drawing.Size(162, 46);
             this.textFilterList.Multiline = true;
             this.textFilterList.Name = "textFilterList";
-            this.textFilterList.Size = new System.Drawing.Size(219, 46);
+            this.textFilterList.Size = new System.Drawing.Size(219, 54);
             this.textFilterList.TabIndex = 4;
             this.textFilterList.WordWrap = false;
             this.textFilterList.TextChanged += new System.EventHandler(this.ToolStripTextFilter_TextChanged);
@@ -188,13 +192,14 @@
             // buttonClearFilter
             // 
             this.buttonClearFilter.AutoSize = true;
+            this.buttonClearFilter.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonClearFilter.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonClearFilter.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.125F);
             this.buttonClearFilter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.buttonClearFilter.Location = new System.Drawing.Point(684, 0);
             this.buttonClearFilter.Margin = new System.Windows.Forms.Padding(0);
             this.buttonClearFilter.Name = "buttonClearFilter";
-            this.buttonClearFilter.Size = new System.Drawing.Size(64, 70);
+            this.buttonClearFilter.Size = new System.Drawing.Size(57, 54);
             this.buttonClearFilter.TabIndex = 5;
             this.buttonClearFilter.Text = "x";
             this.buttonClearFilter.UseVisualStyleBackColor = true;
@@ -205,7 +210,7 @@
             this.splitContainerToolbar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.splitContainerToolbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainerToolbar.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerToolbar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerToolbar.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerToolbar.Name = "splitContainerToolbar";
             // 
             // splitContainerToolbar.Panel1
@@ -216,8 +221,8 @@
             // splitContainerToolbar.Panel2
             // 
             this.splitContainerToolbar.Panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.splitContainerToolbar.Size = new System.Drawing.Size(1507, 55);
-            this.splitContainerToolbar.SplitterDistance = 1089;
+            this.splitContainerToolbar.Size = new System.Drawing.Size(1455, 55);
+            this.splitContainerToolbar.SplitterDistance = 1051;
             this.splitContainerToolbar.SplitterWidth = 9;
             this.splitContainerToolbar.TabIndex = 1;
             // 
@@ -227,9 +232,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ListViewMain);
             this.Controls.Add(this.splitContainerToolbar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FilteredListViewBaseControl";
-            this.Size = new System.Drawing.Size(1507, 929);
+            this.Size = new System.Drawing.Size(1455, 929);
             this.flowLayoutPanelToolbar.ResumeLayout(false);
             this.flowLayoutPanelToolbar.PerformLayout();
             this.splitContainerToolbar.Panel1.ResumeLayout(false);

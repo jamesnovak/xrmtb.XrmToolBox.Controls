@@ -1,13 +1,14 @@
-<?xml version="1.0"?>
-<package >
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>xrmtb.XrmToolBox.Controls</id>
     <version>1.2020.4.9</version>
     <title>Shared XrmToolBox Controls for building your own Tools</title>
     <authors>jamesnovak, rappen</authors>
     <owners>jamesnovak, rappen</owners>
+	<icon>images\logo.png</icon>
+	<license type="expression">MIT</license>
 	<projectUrl>https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls</projectUrl>
-    <iconUrl>https://futurezconsulting.com/wp-content/uploads/2018/12/settings.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Shared User controls for developing XrmToolBox Tools</description>
 	<releaseNotes>Various updates:
@@ -18,8 +19,11 @@
 	</releaseNotes>
     <copyright></copyright>
     <tags>MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
-    <dependencies />
+	<dependencies/>
     <language>en-US</language>
-	<license type="file">license\license.txt</license>
   </metadata>
+	<files>
+		<file src="images\logo.png" target="images\" />
+		<file src="lib\net47\xrmtb.XrmToolBox.Controls.dll" target="lib\net47\Plugins" />
+	</files>
 </package>

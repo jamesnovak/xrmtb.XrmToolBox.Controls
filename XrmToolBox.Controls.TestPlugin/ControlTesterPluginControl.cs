@@ -875,5 +875,10 @@ namespace Sample.XrmToolBox.TestPlugin
                 // MessageBox.Show(fetchResult.EntityCollection.EntityName);
             }
         }
+
+        private void textArrCols_TextChanged(object sender, EventArgs e)
+        {
+            CrmGridView.ColumnOrder = textArrCols.Text;
+        }
     }
 }

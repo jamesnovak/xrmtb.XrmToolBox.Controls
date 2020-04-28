@@ -26,6 +26,7 @@ namespace xrmtb.XrmToolBox.Controls
         private bool designedColumnsUsed = false;
         private List<string> filterColumns = null;
         private string filterText = null;
+        private string[] columnOrder = null;
         private DataGridViewColumn[] designedColumns;
         #endregion
 
@@ -150,6 +151,19 @@ namespace xrmtb.XrmToolBox.Controls
                 {
                     Refresh();
                 }
+            }
+        }
+
+        [Category("Data")]
+        [DefaultValue(null)]
+        [Description("Comma separated list of column names to arrange column order by. Valid only for generic column layout.")]
+        public string ColumnOrder
+        {
+            get => columnOrder == null ? string.Empty : string.Join(", ", columnOrder);
+            set
+            {
+                columnOrder = value?.Split(',').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray();
+                ArrangeColumns();
             }
         }
 
@@ -766,6 +780,23 @@ namespace xrmtb.XrmToolBox.Controls
                 AutoResizeColumns(AutoSizeColumnsMode);
             }
             ResumeLayout();
+        }
+
+        private void ArrangeColumns()
+        {
+            if (columnOrder == null || designedColumnsUsed)
+            {
+                return;
+            }
+            var pos = 2;
+            foreach (var attribute in columnOrder)
+            {
+                if (Columns.Contains(attribute))
+                {
+                    Columns[attribute].DisplayIndex = pos;
+                    pos++;
+                }
+            }
         }
         #endregion
     }

@@ -12,6 +12,13 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+      Added property ColumnOrder to CRMGridView control
+	    Update references to latest SDK packages
+	    Fixes to BoundEntities control for LoadData and ClearData
+	    Fixes to EntityCollectionListView control for overloaded LoadData methods for collections and FetchXml
+	    ListDisplayItem is now public to allow loading data externally
+  
+Version 1.2019.12.1:
       New control:
       - CDSDataComboBox, set an EntityCollection as DataSource on this ComboBox. Display Format may be entered to specify data to show. SelectedEntity exposed for easy access to the selected record.
 
@@ -29,7 +36,7 @@ Version 1.2019.3.1:
       Updates:
       - Additional fixes for base controls and removal of XrmToolBox dependency
     </releaseNotes>
-    <copyright>©2019 Jim Novak, Jonas Rapp</copyright>
+    <copyright>©2019-2020 Jim Novak, Jonas Rapp</copyright>
     <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
     <dependencies />
     <language>en-US</language>

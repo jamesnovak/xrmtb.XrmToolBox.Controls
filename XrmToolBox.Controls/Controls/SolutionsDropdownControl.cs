@@ -170,6 +170,7 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         #endregion
+
         #region Private helper methods
         /// <summary>
         /// Load the list of Entities into the Combo control

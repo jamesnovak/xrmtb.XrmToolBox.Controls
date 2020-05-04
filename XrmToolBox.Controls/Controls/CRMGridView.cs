@@ -27,6 +27,8 @@ namespace xrmtb.XrmToolBox.Controls
         private List<string> filterColumns = null;
         private string filterText = null;
         private string[] columnOrder = null;
+        private bool showAllColumnsInColumnOrder = false;
+        private bool showColumnsNotInColumnOrder = true;
         private DataGridViewColumn[] designedColumns;
         #endregion
 
@@ -164,6 +166,38 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 columnOrder = value?.Split(',').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray();
                 ArrangeColumns();
+            }
+        }
+
+        [Category("Data")]
+        [DefaultValue(false)]
+        [Description("True to show all columns that are listed in ColumnOrder, false to only show populated columns.")]
+        public bool ShowAllColumnsInColumnOrder
+        {
+            get => showAllColumnsInColumnOrder;
+            set
+            {
+                showAllColumnsInColumnOrder = value;
+                if (autoRefresh)
+                {
+                    Refresh();
+                }
+            }
+        }
+
+        [Category("Data")]
+        [DefaultValue(true)]
+        [Description("True to show columns that are in the data but not listed in ColumnOrder, false to ignore them.")]
+        public bool ShowColumnsNotInColumnOrder
+        {
+            get => showColumnsNotInColumnOrder;
+            set
+            {
+                showColumnsNotInColumnOrder = value;
+                if (autoRefresh)
+                {
+                    Refresh();
+                }
             }
         }
 
@@ -359,6 +393,7 @@ namespace xrmtb.XrmToolBox.Controls
                 var cols = GetTableColumns(entityCollection);
                 var data = GetDataTable(entityCollection, cols);
                 BindData(data);
+                ArrangeColumns();
             }
             base.Refresh();
         }
@@ -495,7 +530,16 @@ namespace xrmtb.XrmToolBox.Controls
                 Columns.Clear();
                 columns.Add(new DataColumn("#no", typeof(int)) { Caption = "#", AutoIncrement = true, AutoIncrementSeed = 1 });
                 columns.Add(new DataColumn("#id", typeof(Guid)) { Caption = "Id" });
-                PopulateColumnsFromEntities(entities, columns);
+
+                if (columnOrder != null && showAllColumnsInColumnOrder)
+                {
+                    PopulateColumnsFromColumnOrder(entities, columns);
+                }
+
+                if (columnOrder == null || !showAllColumnsInColumnOrder || showColumnsNotInColumnOrder)
+                {
+                    PopulateColumnsFromEntities(entities, columns);
+                }
             }
             columns.Add(new DataColumn("#entity", typeof(Entity)));
             return columns;
@@ -561,6 +605,63 @@ namespace xrmtb.XrmToolBox.Controls
             return value is Int32 || value is decimal || value is double || value is string || value is Money;
         }
 
+        private void PopulateColumnsFromColumnOrder(EntityCollection entities, List<DataColumn> columns)
+        {
+            foreach (var attribute in columnOrder)
+            {
+                var added = false;
+
+                foreach (var entity in entities.Entities)
+                {
+                    if (!entity.Contains(attribute))
+                    {
+                        continue;
+                    }
+
+                    var value = entity[attribute];
+                    if (value == null)
+                    {
+                        continue;
+                    }
+
+                    var type = GetValueType(value);
+                    var dataColumn = new DataColumn(attribute, type);
+                    var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, entity[attribute]);
+                    if (showFriendlyNames &&
+                       meta != null &&
+                       meta.DisplayName != null &&
+                       meta.DisplayName.UserLocalizedLabel != null)
+                    {
+                        dataColumn.Caption = meta.DisplayName.UserLocalizedLabel.Label;
+                        if (attribute.Contains("."))
+                        {
+                            dataColumn.Caption = attribute.Split('.')[0] + " " + dataColumn.Caption;
+                        }
+                    }
+                    else
+                    {
+                        dataColumn.Caption = attribute;
+                    }
+                    dataColumn.ExtendedProperties.Add("Metadata", meta);
+                    dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
+                    if (meta is DateTimeAttributeMetadata && entities.Entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
+                    {
+                        dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
+                    }
+                    columns.Add(dataColumn);
+                    added = true;
+                    break;
+                }
+
+                if (!added)
+                {
+                    var dataColumn = new DataColumn(attribute);
+                    dataColumn.Caption = attribute;
+                    columns.Add(dataColumn);
+                }
+            }
+        }
+
         private void PopulateColumnsFromEntities(EntityCollection entities, List<DataColumn> columns)
         {
             //Stopwatch stopWatch = new Stopwatch();
@@ -571,6 +672,11 @@ namespace xrmtb.XrmToolBox.Controls
                 .SelectMany(e => e.Attributes)
                 .Select(a => a.Key)
                 .Distinct().ToList();
+
+            if (columnOrder != null && !showColumnsNotInColumnOrder)
+            {
+                attribKeys = attribKeys.Intersect(columnOrder).ToList();
+            }
 
             var addedColumns = new List<string>();
             foreach (var entity in entities.Entities)
@@ -589,6 +695,11 @@ namespace xrmtb.XrmToolBox.Controls
                     }
                     if (addedColumns.Contains(attribute))
                     {
+                        continue;
+                    }
+                    if (columns.Any(col => col.ColumnName == attribute))
+                    {
+                        addedColumns.Add(attribute);
                         continue;
                     }
                     var value = entity[attribute];

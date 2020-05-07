@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -118,7 +118,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
     {
         #region Private properties
         private string displayFormat = string.Empty;
-        private EntityCollection entityCollection;
+        private IEnumerable<Entity> entities;
         private IOrganizationService organizationService;
         #endregion
 
@@ -139,17 +139,26 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         {
             get
             {
-                if (entityCollection != null)
+                if (entities != null)
                 {
-                    return entityCollection;
+                    return entities;
                 }
                 return base.DataSource;
             }
             set
             {
-                entityCollection = value as EntityCollection;
-                if (entityCollection != null)
+                IEnumerable<Entity> newEntities = null;
+                if (value is EntityCollection entityCollection)
                 {
+                    newEntities = entityCollection.Entities;
+                }
+                else if (value is IEnumerable<Entity> entities)
+                {
+                    newEntities = entities;
+                }
+                if (newEntities != null)
+                {
+                    entities = newEntities;
                     Refresh();
                 }
             }
@@ -191,13 +200,8 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         public override void Refresh()
         {
-            // base.DataSource = entityCollection?.Entities.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
-            UpdateDataSource(entityCollection);
+            base.DataSource = entities?.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
             base.Refresh();
-        }
-
-        private void UpdateDataSource(EntityCollection entityCollection) {
-            base.DataSource = entityCollection?.Entities.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
         }
 
         public void RetrieveMultiple(QueryBase query, ProgressUpdate progressCallback, RetrieveComplete completeCallback)
@@ -210,13 +214,14 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             try
             {
                 var worker = new BackgroundWorker();
-                worker.DoWork += (w, e) => 
+                worker.DoWork += (w, e) =>
                 {
                     var queryExp = e.Argument as QueryBase;
 
                     BeginInvoke(progressCallback, "Begin Retrieve Multiple");
 
-                    var fetchReq = new RetrieveMultipleRequest {
+                    var fetchReq = new RetrieveMultipleRequest
+                    {
                         Query = queryExp
                     };
 
@@ -231,12 +236,12 @@ namespace xrmtb.XrmToolBox.Controls.Controls
                 {
                     var records = e.Result as EntityCollection;
 
-                    BeginInvoke(progressCallback,$"Retrieve Multiple - records returned: {records.Entities.Count}");
+                    BeginInvoke(progressCallback, $"Retrieve Multiple - records returned: {records.Entities.Count}");
 
                     DataSource = records;
 
                     // make the final callback
-                    BeginInvoke(completeCallback, entityCollection?.Entities.Count, SelectedEntity);
+                    BeginInvoke(completeCallback, entities?.Count(), SelectedEntity);
                 };
 
                 // kick off the worker thread!

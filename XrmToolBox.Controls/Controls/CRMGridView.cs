@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Metadata;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Windows.Forms;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Metadata;
 using System.Drawing;
 using System.Linq;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace xrmtb.XrmToolBox.Controls
 {
@@ -15,7 +14,7 @@ namespace xrmtb.XrmToolBox.Controls
     {
         #region Private properties
         private IOrganizationService organizationService;
-        private EntityCollection entityCollection;
+        private IEnumerable<Entity> entities;
         private bool autoRefresh = true;
         private bool showFriendlyNames = false;
         private bool showIdColumn = true;
@@ -69,14 +68,14 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         [Category("Data")]
-        [Description("Indicates the source of data (EntityCollection) for the CRMGridView control.")]
+        [Description("Indicates the source of data (IEnumerable<Entity> or EntityCollection) for the CRMGridView control.")]
         public new object DataSource
         {
             get
             {
-                if (entityCollection != null)
+                if (entities != null)
                 {
-                    return entityCollection;
+                    return entities;
                 }
                 return base.DataSource;
             }
@@ -85,7 +84,25 @@ namespace xrmtb.XrmToolBox.Controls
                 designedColumns = new DataGridViewColumn[Columns.Count];
                 Columns.CopyTo(designedColumns, 0);
                 base.DataSource = value;
-                entityCollection = value as EntityCollection;
+
+                if (value is EntityCollection entityCollection)
+                {
+                    entities = entityCollection.Entities;
+                }
+                else if (value is IEnumerable<Entity> entitylist)
+                {
+                    entities = entitylist;
+                }
+                else
+                {
+                    entities = null;
+                }
+                if (entities?.Where(e => !string.IsNullOrEmpty(e.LogicalName)).Select(e => e.LogicalName).Distinct().Count() > 1)
+                {
+                    throw new ArgumentException("DataSource can only contain entities of the same type.");
+                }
+                EntityName = entities?.FirstOrDefault(e => !string.IsNullOrEmpty(e.LogicalName))?.LogicalName;
+
                 if (designedColumnsDetermined && designedColumnsUsed && designedColumns != null)
                 {
                     foreach (DataGridViewColumn col in designedColumns)
@@ -97,7 +114,7 @@ namespace xrmtb.XrmToolBox.Controls
                         }
                     }
                 }
-                if (entityCollection != null && autoRefresh)
+                if (entities != null && autoRefresh)
                 {
                     Refresh();
                 }
@@ -106,7 +123,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         [Category("Data")]
         [DefaultValue(true)]
-        [Description("Specify if content shall be automatically refreshed when entitycollection, service, flags etc are changed.")]
+        [Description("Specify if content shall be automatically refreshed when datasource, service, flags etc are changed.")]
         public bool AutoRefresh
         {
             get { return autoRefresh; }
@@ -312,25 +329,26 @@ namespace xrmtb.XrmToolBox.Controls
         #endregion
 
         #region Public properties
+
+        public string EntityName { get; private set; }
         /// <summary>
-        /// EntityCollection representing currently selected rows
+        /// IEnumerable<Entity> representing currently selected rows
         /// </summary>
-        public EntityCollection SelectedRowRecords
+        public IEnumerable<Entity> SelectedRowRecords
         {
             get
             {
-                if (entityCollection == null)
+                if (entities == null)
                 {
                     return null;
                 }
-                var result = new EntityCollection();
-                result.EntityName = entityCollection.EntityName;
+                var result = new List<Entity>();
                 foreach (DataGridViewRow row in SelectedRows)
                 {
                     var entity = row.Cells["#entity"].Value as Entity;
                     if (entity != null)
                     {
-                        result.Entities.Add(entity);
+                        result.Add(entity);
                     }
                 }
                 return result;
@@ -338,27 +356,26 @@ namespace xrmtb.XrmToolBox.Controls
         }
 
         /// <summary>
-        /// EntityCollection representing all currently selected cells
+        /// IEnumerable<Entity> representing all currently selected cells
         /// </summary>
-        public EntityCollection SelectedCellRecords
+        public IEnumerable<Entity> SelectedCellRecords
         {
             get
             {
-                if (entityCollection == null)
+                if (entities == null)
                 {
                     return null;
                 }
-                var result = new EntityCollection();
-                result.EntityName = entityCollection.EntityName;
+                var result = new List<Entity>();
                 foreach (DataGridViewCell cell in SelectedCells)
                 {
                     if (cell.RowIndex >= 0 && cell.RowIndex < Rows.Count)
                     {
                         var row = Rows[cell.RowIndex];
                         var entity = row.Cells["#entity"].Value as Entity;
-                        if (entity != null && !result.Entities.Contains(entity))
+                        if (entity != null && !result.Contains(entity))
                         {
-                            result.Entities.Add(entity);
+                            result.Add(entity);
                         }
                     }
                 }
@@ -370,7 +387,7 @@ namespace xrmtb.XrmToolBox.Controls
         #region Public methods
         /// <summary>
         /// Gets the DataSource object as requested type.
-        /// For the CRMGridView the primary expected types T are EntityCollection or DataTable.
+        /// For the CRMGridView the primary expected types T are IEnumerable&lt;Entity&gt; or EntityCollection or DataTable.
         /// </summary>
         /// <typeparam name="T">Type of the DataSource to return.</typeparam>
         /// <returns>DataSource of type T if available, otherwise null.</returns>
@@ -378,8 +395,15 @@ namespace xrmtb.XrmToolBox.Controls
         {
             if (typeof(T) == typeof(EntityCollection))
             {
-                return (T)(object)entityCollection;
+                var ec = new EntityCollection { EntityName = EntityName };
+                ec.Entities.AddRange(entities);
+                return (T)(object)ec;
             }
+            else if (typeof(T) == typeof(IEnumerable<Entity>))
+            {
+                return (T)(object)entities;
+            }
+
             return (T)base.DataSource;
         }
 
@@ -388,10 +412,10 @@ namespace xrmtb.XrmToolBox.Controls
         /// </summary>
         public override void Refresh()
         {
-            if (entityCollection != null)
+            if (entities != null)
             {
-                var cols = GetTableColumns(entityCollection);
-                var data = GetDataTable(entityCollection, cols);
+                var cols = GetTableColumns(entities);
+                var data = GetDataTable(entities, cols);
                 BindData(data);
                 ArrangeColumns();
             }
@@ -508,7 +532,7 @@ namespace xrmtb.XrmToolBox.Controls
             return entity;
         }
 
-        private List<DataColumn> GetTableColumns(EntityCollection entities)
+        private List<DataColumn> GetTableColumns(IEnumerable<Entity> entities)
         {
             var columns = new List<DataColumn>();
             if (!designedColumnsDetermined)
@@ -545,7 +569,7 @@ namespace xrmtb.XrmToolBox.Controls
             return columns;
         }
 
-        private void PopulateColumnsFromDesign(EntityCollection entities, List<DataColumn> columns)
+        private void PopulateColumnsFromDesign(IEnumerable<Entity> entities, List<DataColumn> columns)
         {
             foreach (DataGridViewColumn viewcol in Columns)
             {
@@ -562,7 +586,7 @@ namespace xrmtb.XrmToolBox.Controls
                 var type = GetValueType(value);
                 var dataColumn = new DataColumn(attribute, type);
                 dataColumn.Caption = viewcol.HeaderText;
-                var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, value);
+                var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, value);
                 dataColumn.ExtendedProperties.Add("Metadata", meta);
                 dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
                 if (!string.IsNullOrEmpty(viewcol.DefaultCellStyle.Format))
@@ -605,13 +629,13 @@ namespace xrmtb.XrmToolBox.Controls
             return value is Int32 || value is decimal || value is double || value is string || value is Money;
         }
 
-        private void PopulateColumnsFromColumnOrder(EntityCollection entities, List<DataColumn> columns)
+        private void PopulateColumnsFromColumnOrder(IEnumerable<Entity> entities, List<DataColumn> columns)
         {
             foreach (var attribute in columnOrder)
             {
                 var added = false;
 
-                foreach (var entity in entities.Entities)
+                foreach (var entity in entities)
                 {
                     if (!entity.Contains(attribute))
                     {
@@ -626,7 +650,7 @@ namespace xrmtb.XrmToolBox.Controls
 
                     var type = GetValueType(value);
                     var dataColumn = new DataColumn(attribute, type);
-                    var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, entity[attribute]);
+                    var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, entity[attribute]);
                     if (showFriendlyNames &&
                        meta != null &&
                        meta.DisplayName != null &&
@@ -644,7 +668,7 @@ namespace xrmtb.XrmToolBox.Controls
                     }
                     dataColumn.ExtendedProperties.Add("Metadata", meta);
                     dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
-                    if (meta is DateTimeAttributeMetadata && entities.Entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
+                    if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
                     {
                         dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
                     }
@@ -662,13 +686,13 @@ namespace xrmtb.XrmToolBox.Controls
             }
         }
 
-        private void PopulateColumnsFromEntities(EntityCollection entities, List<DataColumn> columns)
+        private void PopulateColumnsFromEntities(IEnumerable<Entity> entities, List<DataColumn> columns)
         {
             //Stopwatch stopWatch = new Stopwatch();
             //stopWatch.Start();
 
             // get a unique list of the Attributes returned for all records
-            var attribKeys = entities.Entities
+            var attribKeys = entities
                 .SelectMany(e => e.Attributes)
                 .Select(a => a.Key)
                 .Distinct().ToList();
@@ -679,7 +703,7 @@ namespace xrmtb.XrmToolBox.Controls
             }
 
             var addedColumns = new List<string>();
-            foreach (var entity in entities.Entities)
+            foreach (var entity in entities)
             {
                 //foreach (var attribute in entity.Attributes.Keys)
                 foreach (var attribute in attribKeys)
@@ -710,7 +734,7 @@ namespace xrmtb.XrmToolBox.Controls
 
                     var type = GetValueType(value);
                     var dataColumn = new DataColumn(attribute, type);
-                    var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute, entity[attribute]);
+                    var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, entity[attribute]);
                     if (showFriendlyNames &&
                        meta != null &&
                        meta.DisplayName != null &&
@@ -728,7 +752,7 @@ namespace xrmtb.XrmToolBox.Controls
                     }
                     dataColumn.ExtendedProperties.Add("Metadata", meta);
                     dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
-                    if (meta is DateTimeAttributeMetadata && entities.Entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
+                    if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
                     {
                         dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
                     }
@@ -754,9 +778,9 @@ namespace xrmtb.XrmToolBox.Controls
             //MessageBox.Show(elapsedTime);
         }
 
-        private object GetFirstValueForAttribute(EntityCollection entities, string attribute)
+        private object GetFirstValueForAttribute(IEnumerable<Entity> entities, string attribute)
         {
-            foreach (var entity in entities.Entities)
+            foreach (var entity in entities)
             {
                 if (entity.Contains(attribute) && entity[attribute] != null)
                 {
@@ -766,13 +790,13 @@ namespace xrmtb.XrmToolBox.Controls
             return null;
         }
 
-        private DataTable GetDataTable(EntityCollection entities, List<DataColumn> columns)
+        private DataTable GetDataTable(IEnumerable<Entity> entities, List<DataColumn> columns)
         {
             var dTable = new DataTable();
             dTable.Columns.AddRange(columns.ToArray());
             var filteredcols = columns.Cast<DataColumn>().Where(c => filterColumns == null || filterColumns.Contains(c.ColumnName.ToLowerInvariant())).ToList();
 
-            foreach (var entity in entities.Entities)
+            foreach (var entity in entities)
             {
                 var dRow = dTable.NewRow();
                 foreach (DataColumn column in dTable.Columns)

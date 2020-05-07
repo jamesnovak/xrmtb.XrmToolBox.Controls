@@ -767,7 +767,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void RadioCRMGridViewShowProps_CheckedChanged(object sender, EventArgs e)
         {
-            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, CrmGridView.SelectedCellRecords?.Entities?.FirstOrDefault());
+            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, CrmGridView.SelectedCellRecords?.FirstOrDefault());
         }
 
         #endregion CRMGridView event handlers

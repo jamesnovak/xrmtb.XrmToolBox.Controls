@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-  <metadata>
+  <metadatax>
     <id>xrmtb.XrmToolBox.Controls</id>
     <version>1.2020.5.7</version>
     <title>Shared XrmToolBox Controls for building your own Tools</title>
@@ -19,7 +19,7 @@
     <tags>MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
 	<dependencies/>
     <language>en-US</language>
-  </metadata>
+  </metadatax>
 	<files>
 		<file src="images\logo.png" target="images\" />
 		<file src="lib\net47\xrmtb.XrmToolBox.Controls.dll" target="lib\net47\Plugins" />

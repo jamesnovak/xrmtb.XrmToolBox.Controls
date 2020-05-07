@@ -12,6 +12,10 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+      Added RetrieveMulitple method to the CDSDataComboBox with callbacks for progress updates and completion
+	    Minor update to EntitiesCollectionListView to display Aliased attribute values correctly when showing friendly names
+
+Version 1.2020.4.10:
       Added property ColumnOrder to CRMGridView control
 	    Update references to latest SDK packages
 	    Fixes to BoundEntities control for LoadData and ClearData

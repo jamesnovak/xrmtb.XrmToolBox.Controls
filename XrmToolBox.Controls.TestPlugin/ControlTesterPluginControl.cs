@@ -860,20 +860,7 @@ namespace Sample.XrmToolBox.TestPlugin
             // exec the fetch and bind to the grid
             if (xmlViewerEntColl.IsValidXml)
             {
-                var fetchReq = new RetrieveMultipleRequest
-                {
-                    Query = new FetchExpression(xmlViewerEntColl.Text)
-                };
-
-                var fetchResult = Service.Execute(fetchReq) as RetrieveMultipleResponse;
-
-                listViewEntCollection.LoadData(fetchResult.EntityCollection.Entities.ToList());
-
-                // CrmGridView.DataSource = fetchResult.EntityCollection;
-                // cdsDataComboBox.DataSource = fetchResult.EntityCollection;
-                // cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
-
-                // MessageBox.Show(fetchResult.EntityCollection.EntityName);
+                listViewEntCollection.LoadData(xmlViewerEntColl.Text);
             }
         }
 

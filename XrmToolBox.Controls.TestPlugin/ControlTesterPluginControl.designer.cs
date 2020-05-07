@@ -2520,10 +2520,10 @@ namespace Sample.XrmToolBox.TestPlugin
             // splitterEntList
             // 
             this.splitterEntList.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterEntList.Location = new System.Drawing.Point(0, 616);
+            this.splitterEntList.Location = new System.Drawing.Point(0, 617);
             this.splitterEntList.Margin = new System.Windows.Forms.Padding(4);
             this.splitterEntList.Name = "splitterEntList";
-            this.splitterEntList.Size = new System.Drawing.Size(544, 7);
+            this.splitterEntList.Size = new System.Drawing.Size(544, 10);
             this.splitterEntList.TabIndex = 10;
             this.splitterEntList.TabStop = false;
             // 
@@ -2538,14 +2538,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.listViewEntCollection.FullRowSelect = true;
             this.listViewEntCollection.HideSelection = false;
             this.listViewEntCollection.LanguageCode = 1033;
-            this.listViewEntCollection.ListViewColDefs = new xrmtb.XrmToolBox.Controls.ListViewColumnDef[0];
-            this.listViewEntCollection.Location = new System.Drawing.Point(0, 616);
+            this.listViewEntCollection.ListViewColDefs = new xrmtb.XrmToolBox.Controls.ListViewColumnDef[] {
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("listViewEntCollection.ListViewColDefs"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("listViewEntCollection.ListViewColDefs1"))),
+        ((xrmtb.XrmToolBox.Controls.ListViewColumnDef)(resources.GetObject("listViewEntCollection.ListViewColDefs2")))};
+            this.listViewEntCollection.Location = new System.Drawing.Point(0, 617);
             this.listViewEntCollection.Margin = new System.Windows.Forms.Padding(4);
             this.listViewEntCollection.Name = "listViewEntCollection";
             this.listViewEntCollection.Service = null;
             this.listViewEntCollection.ShowFriendlyNames = true;
             this.listViewEntCollection.ShowLocalTimes = true;
-            this.listViewEntCollection.Size = new System.Drawing.Size(544, 456);
+            this.listViewEntCollection.Size = new System.Drawing.Size(544, 455);
             this.listViewEntCollection.TabIndex = 1;
             this.listViewEntCollection.UseCompatibleStateImageBehavior = false;
             this.listViewEntCollection.View = System.Windows.Forms.View.Details;
@@ -2555,7 +2558,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.xmlViewerEntColl.CurrentParseError = ((System.Exception)(resources.GetObject("xmlViewerEntColl.CurrentParseError")));
             this.xmlViewerEntColl.Dock = System.Windows.Forms.DockStyle.Top;
             this.xmlViewerEntColl.FormatAsYouType = true;
-            this.xmlViewerEntColl.Location = new System.Drawing.Point(0, 54);
+            this.xmlViewerEntColl.Location = new System.Drawing.Point(0, 63);
             this.xmlViewerEntColl.Margin = new System.Windows.Forms.Padding(4);
             this.xmlViewerEntColl.Name = "xmlViewerEntColl";
             xmlViewerSettings4.AttributeKey = System.Drawing.Color.Blue;
@@ -2568,7 +2571,7 @@ namespace Sample.XrmToolBox.TestPlugin
             xmlViewerSettings4.Tag = System.Drawing.Color.ForestGreen;
             xmlViewerSettings4.Value = System.Drawing.Color.Black;
             this.xmlViewerEntColl.Settings = xmlViewerSettings4;
-            this.xmlViewerEntColl.Size = new System.Drawing.Size(544, 562);
+            this.xmlViewerEntColl.Size = new System.Drawing.Size(544, 554);
             this.xmlViewerEntColl.TabIndex = 8;
             this.xmlViewerEntColl.Text = "";
             // 
@@ -2580,7 +2583,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(544, 54);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(544, 63);
             this.flowLayoutPanel2.TabIndex = 9;
             // 
             // labelExecFetchBoundList
@@ -2589,7 +2592,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.labelExecFetchBoundList.Location = new System.Drawing.Point(4, 0);
             this.labelExecFetchBoundList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelExecFetchBoundList.Name = "labelExecFetchBoundList";
-            this.labelExecFetchBoundList.Size = new System.Drawing.Size(240, 73);
+            this.labelExecFetchBoundList.Size = new System.Drawing.Size(240, 43);
             this.labelExecFetchBoundList.TabIndex = 3;
             this.labelExecFetchBoundList.Text = "Enter FetchXml below: ";
             this.labelExecFetchBoundList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2601,7 +2604,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.buttonExecFetchBoundList.Location = new System.Drawing.Point(252, 4);
             this.buttonExecFetchBoundList.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExecFetchBoundList.Name = "buttonExecFetchBoundList";
-            this.buttonExecFetchBoundList.Size = new System.Drawing.Size(270, 65);
+            this.buttonExecFetchBoundList.Size = new System.Drawing.Size(226, 35);
             this.buttonExecFetchBoundList.TabIndex = 4;
             this.buttonExecFetchBoundList.Text = "Execute Fetch";
             this.buttonExecFetchBoundList.UseVisualStyleBackColor = true;

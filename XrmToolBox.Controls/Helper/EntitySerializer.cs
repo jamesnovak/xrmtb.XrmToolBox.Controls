@@ -241,12 +241,19 @@ namespace xrmtb.XrmToolBox.Controls
             return result;
         }
 
-        public static object AttributeToBaseType(object attribute)
+        public static object AttributeToBaseType(object attribute, bool showFriendlyNames = false)
         {
-            if (attribute is AliasedValue)
-                return AttributeToBaseType(((AliasedValue)attribute).Value);
-            else if (attribute is EntityReference)
-                return ((EntityReference)attribute).Id;
+            if (attribute is AliasedValue) {
+                return AttributeToBaseType(((AliasedValue)attribute).Value, showFriendlyNames);
+            }
+            else if (attribute is EntityReference) {
+                if (showFriendlyNames) {
+                    return ((EntityReference)attribute).Name;
+                }
+                else { 
+                    return ((EntityReference)attribute).Id;
+                }
+            }
             else if (attribute is EntityReferenceCollection)
             {
                 var referencedEntity = "";

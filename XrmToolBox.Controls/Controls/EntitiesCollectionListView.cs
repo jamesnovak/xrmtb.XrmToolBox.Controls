@@ -245,6 +245,8 @@ namespace xrmtb.XrmToolBox.Controls
                 return;
             }
 
+            _allItems = items.Select(i => i as object).ToList();
+
             // retrieve the entity metadata for the entity
             var entity = items.Select(i => i as Entity).FirstOrDefault();
 
@@ -369,12 +371,12 @@ namespace xrmtb.XrmToolBox.Controls
                         }
                         else
                         {
-                            value = EntitySerializer.AttributeToBaseType(value).ToString();
+                            value = EntitySerializer.AttributeToBaseType(value, ShowFriendlyNames).ToString();
                         }
                     }
                     else
                     {
-                        value = EntitySerializer.AttributeToBaseType(value);
+                        value = EntitySerializer.AttributeToBaseType(value, ShowFriendlyNames);
                     }
                 }
             }

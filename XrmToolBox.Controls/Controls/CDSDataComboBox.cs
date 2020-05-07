@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -7,6 +9,9 @@ using System.Windows.Forms;
 
 namespace xrmtb.XrmToolBox.Controls.Controls
 {
+    public delegate void ProgressUpdate(string message);
+    public delegate void RetrieveComplete(int itemCount, Entity FirstItem);
+
     public class CDSComboBoxItem
     {
         #region Private Fields
@@ -186,8 +191,65 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         public override void Refresh()
         {
-            base.DataSource = entityCollection?.Entities.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
+            // base.DataSource = entityCollection?.Entities.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
+            UpdateDataSource(entityCollection);
             base.Refresh();
+        }
+
+        private void UpdateDataSource(EntityCollection entityCollection) {
+            base.DataSource = entityCollection?.Entities.Select(e => new CDSComboBoxItem(e, displayFormat, organizationService)).ToArray();
+        }
+
+        public void RetrieveMultiple(QueryBase query, ProgressUpdate progressCallback, RetrieveComplete completeCallback)
+        {
+            if (this.OrganizationService == null)
+            {
+                throw new InvalidOperationException("The Service reference must be set before calling RetrieveMultiple.");
+            }
+
+            try
+            {
+                var worker = new BackgroundWorker();
+                worker.DoWork += (w, e) => 
+                {
+                    var queryExp = e.Argument as QueryBase;
+
+                    BeginInvoke(progressCallback, "Begin Retrieve Multiple");
+
+                    var fetchReq = new RetrieveMultipleRequest {
+                        Query = queryExp
+                    };
+
+                    var records = OrganizationService.RetrieveMultiple(query);
+
+                    BeginInvoke(progressCallback, "End Retrieve Multiple");
+
+                    e.Result = records;
+                };
+
+                worker.RunWorkerCompleted += (s, e) =>
+                {
+                    var records = e.Result as EntityCollection;
+
+                    BeginInvoke(progressCallback,$"Retrieve Multiple - records returned: {records.Entities.Count}");
+
+                    DataSource = records;
+
+                    // make the final callback
+                    BeginInvoke(completeCallback, entityCollection?.Entities.Count, SelectedEntity);
+                };
+
+                // kick off the worker thread!
+                worker.RunWorkerAsync(query);
+            }
+            catch (System.ServiceModel.FaultException ex)
+            {
+            }
+        }
+
+        public void RetrieveMultiple(string fetchXml, ProgressUpdate progressCallback, RetrieveComplete completeCallback)
+        {
+            RetrieveMultiple(new FetchExpression(fetchXml), progressCallback, completeCallback);
         }
 
         #endregion Public Methods

@@ -12,6 +12,8 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+Changed to semantic versioning.
+
       - CDSDataComboBox now accepts IEnumerable of Entity OR EntityCollection as DataSource.
       - CRMGridView 
       -- Now accepts IEnumerable of Entity OR EntityCollection as DataSource.

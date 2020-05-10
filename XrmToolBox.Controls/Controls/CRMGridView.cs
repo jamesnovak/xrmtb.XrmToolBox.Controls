@@ -594,7 +594,14 @@ namespace xrmtb.XrmToolBox.Controls
                 var dataColumn = CreateColumnForAttribute(entities, attribute, true);
                 if (!string.IsNullOrEmpty(viewcol.DefaultCellStyle.Format))
                 {
-                    dataColumn.ExtendedProperties.Add("Format", viewcol.DefaultCellStyle.Format);
+                    if (dataColumn.ExtendedProperties.Contains("Format"))
+                    {
+                        dataColumn.ExtendedProperties["Format"] = viewcol.DefaultCellStyle.Format;
+                    }
+                    else
+                    {
+                        dataColumn.ExtendedProperties.Add("Format", viewcol.DefaultCellStyle.Format);
+                    }
                 }
                 dataColumn.Caption = viewcol.HeaderText;
                 columns.Add(dataColumn);

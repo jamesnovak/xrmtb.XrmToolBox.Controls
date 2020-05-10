@@ -181,8 +181,14 @@ namespace xrmtb.XrmToolBox.Controls
             get => columnOrder == null ? string.Empty : string.Join(", ", columnOrder);
             set
             {
-                columnOrder = value?.Split(',').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray();
-                ArrangeColumns();
+                var lastvalue = columnOrder != null ? string.Join(",", columnOrder) : string.Empty;
+                columnOrder = value?.Split(',', '\n').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray();
+                showAllColumnsInColumnOrder = showAllColumnsInColumnOrder && columnOrder?.Length > 0;
+                showColumnsNotInColumnOrder = showColumnsNotInColumnOrder || columnOrder?.Length == 0;
+                if (autoRefresh && !lastvalue.Equals(string.Join(",", columnOrder)))
+                {
+                    Refresh();
+                }
             }
         }
 
@@ -194,8 +200,9 @@ namespace xrmtb.XrmToolBox.Controls
             get => showAllColumnsInColumnOrder;
             set
             {
-                showAllColumnsInColumnOrder = value;
-                if (autoRefresh)
+                var lastvalue = showAllColumnsInColumnOrder;
+                showAllColumnsInColumnOrder = value && columnOrder?.Length > 0;
+                if (autoRefresh && !lastvalue.Equals(showAllColumnsInColumnOrder))
                 {
                     Refresh();
                 }
@@ -210,8 +217,9 @@ namespace xrmtb.XrmToolBox.Controls
             get => showColumnsNotInColumnOrder;
             set
             {
-                showColumnsNotInColumnOrder = value;
-                if (autoRefresh)
+                var lastvalue = showColumnsNotInColumnOrder;
+                showColumnsNotInColumnOrder = value || columnOrder?.Length == 0;
+                if (autoRefresh && !lastvalue.Equals(showColumnsNotInColumnOrder))
                 {
                     Refresh();
                 }
@@ -555,15 +563,15 @@ namespace xrmtb.XrmToolBox.Controls
                 columns.Add(new DataColumn("#no", typeof(int)) { Caption = "#", AutoIncrement = true, AutoIncrementSeed = 1 });
                 columns.Add(new DataColumn("#id", typeof(Guid)) { Caption = "Id" });
 
-                if (columnOrder != null && showAllColumnsInColumnOrder)
+                var attributes = new List<string>(columnOrder);
+                if (showColumnsNotInColumnOrder || attributes.Count == 0)
                 {
-                    PopulateColumnsFromColumnOrder(entities, columns);
+                    attributes.AddRange(entities
+                        .SelectMany(e => e.Attributes)
+                        .Select(a => a.Key)
+                        .Distinct());
                 }
-
-                if (columnOrder == null || !showAllColumnsInColumnOrder || showColumnsNotInColumnOrder)
-                {
-                    PopulateColumnsFromEntities(entities, columns);
-                }
+                attributes.Distinct().ToList().ForEach(a => AddColumnForAttribute(entities, columns, a, showAllColumnsInColumnOrder));
             }
             columns.Add(new DataColumn("#entity", typeof(Entity)));
             return columns;
@@ -582,19 +590,33 @@ namespace xrmtb.XrmToolBox.Controls
                     viewcol.DataPropertyName = viewcol.Name;
                 }
                 var attribute = viewcol.DataPropertyName;
-                var value = GetFirstValueForAttribute(entities, attribute);
-                var type = GetValueType(value);
-                var dataColumn = new DataColumn(attribute, type);
-                dataColumn.Caption = viewcol.HeaderText;
-                var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, value);
-                dataColumn.ExtendedProperties.Add("Metadata", meta);
-                dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
+                var dataColumn = CreateColumnForAttribute(entities, attribute, true);
                 if (!string.IsNullOrEmpty(viewcol.DefaultCellStyle.Format))
                 {
                     dataColumn.ExtendedProperties.Add("Format", viewcol.DefaultCellStyle.Format);
                 }
+                dataColumn.Caption = viewcol.HeaderText;
                 columns.Add(dataColumn);
             }
+        }
+
+        private DataColumn CreateColumnForAttribute(IEnumerable<Entity> entities, string attribute, bool force)
+        {
+            var value = GetFirstValueForAttribute(entities, attribute);
+            if (value == null && !force)
+            {
+                return null;
+            }
+            var type = GetValueType(value);
+            var dataColumn = new DataColumn(attribute, type);
+            var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, value);
+            dataColumn.ExtendedProperties.Add("Metadata", meta);
+            dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
+            if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
+            {
+                dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
+            }
+            return dataColumn;
         }
 
         private static Type GetInnerValueType(object value)
@@ -629,160 +651,36 @@ namespace xrmtb.XrmToolBox.Controls
             return value is Int32 || value is decimal || value is double || value is string || value is Money;
         }
 
-        private void PopulateColumnsFromColumnOrder(IEnumerable<Entity> entities, List<DataColumn> columns)
+        private void AddColumnForAttribute(IEnumerable<Entity> entities, List<DataColumn> columns, string attribute, bool force)
         {
-            foreach (var attribute in columnOrder)
+            if (columns.Any(c => c.ColumnName.Equals(attribute)))
+            {   // Column already added for some reason
+                return;
+            }
+            if (CreateColumnForAttribute(entities, attribute, force) is DataColumn dataColumn && dataColumn != null)
             {
-                var added = false;
-
-                foreach (var entity in entities)
-                {
-                    if (!entity.Contains(attribute))
-                    {
-                        continue;
-                    }
-
-                    var value = entity[attribute];
-                    if (value == null)
-                    {
-                        continue;
-                    }
-
-                    var type = GetValueType(value);
-                    var dataColumn = new DataColumn(attribute, type);
-                    var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, entity[attribute]);
-                    if (showFriendlyNames &&
-                       meta != null &&
-                       meta.DisplayName != null &&
-                       meta.DisplayName.UserLocalizedLabel != null)
-                    {
-                        dataColumn.Caption = meta.DisplayName.UserLocalizedLabel.Label;
-                        if (attribute.Contains("."))
-                        {
-                            dataColumn.Caption = attribute.Split('.')[0] + " " + dataColumn.Caption;
-                        }
-                    }
-                    else
-                    {
-                        dataColumn.Caption = attribute;
-                    }
-                    dataColumn.ExtendedProperties.Add("Metadata", meta);
-                    dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
-                    if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
-                    {
-                        dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
-                    }
-                    columns.Add(dataColumn);
-                    added = true;
-                    break;
+                var meta = dataColumn.ExtendedProperties.ContainsKey("Metadata") ? dataColumn.ExtendedProperties["Metadata"] as AttributeMetadata : null;
+                if (meta?.IsPrimaryId == true)
+                {   // Never add column for primary key, it has a dedicated column
+                    return;
                 }
-
-                if (!added)
+                if (showFriendlyNames &&
+                   meta != null &&
+                   meta.DisplayName != null &&
+                   meta.DisplayName.UserLocalizedLabel != null)
                 {
-                    var dataColumn = new DataColumn(attribute);
+                    dataColumn.Caption = meta.DisplayName.UserLocalizedLabel.Label;
+                    if (attribute.Contains("."))
+                    {
+                        dataColumn.Caption = attribute.Split('.')[0] + " " + dataColumn.Caption;
+                    }
+                }
+                else
+                {
                     dataColumn.Caption = attribute;
-
-                    if (!attribute.Contains(".") && showFriendlyNames)
-                    {
-                        var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute);
-
-                        dataColumn.Caption = meta?.DisplayName?.UserLocalizedLabel?.Label ?? attribute;
-                    }
-                    columns.Add(dataColumn);
                 }
+                columns.Add(dataColumn);
             }
-        }
-
-        private void PopulateColumnsFromEntities(IEnumerable<Entity> entities, List<DataColumn> columns)
-        {
-            //Stopwatch stopWatch = new Stopwatch();
-            //stopWatch.Start();
-
-            // get a unique list of the Attributes returned for all records
-            var attribKeys = entities
-                .SelectMany(e => e.Attributes)
-                .Select(a => a.Key)
-                .Distinct().ToList();
-
-            if (columnOrder != null && !showColumnsNotInColumnOrder)
-            {
-                attribKeys = attribKeys.Intersect(columnOrder).ToList();
-            }
-
-            var addedColumns = new List<string>();
-            foreach (var entity in entities)
-            {
-                //foreach (var attribute in entity.Attributes.Keys)
-                foreach (var attribute in attribKeys)
-                {
-                    //if (entity[attribute] == null)
-                    if (!entity.Attributes.ContainsKey(attribute))
-                    {
-                        continue;
-                    }
-                    if (entity[attribute] is Guid && (Guid)entity[attribute] == entity.Id)
-                    {
-                        continue;
-                    }
-                    if (addedColumns.Contains(attribute))
-                    {
-                        continue;
-                    }
-                    if (columns.Any(col => col.ColumnName == attribute))
-                    {
-                        addedColumns.Add(attribute);
-                        continue;
-                    }
-                    var value = entity[attribute];
-                    if (value == null)
-                    {
-                        continue;
-                    }
-
-                    var type = GetValueType(value);
-                    var dataColumn = new DataColumn(attribute, type);
-                    var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, entity[attribute]);
-                    if (showFriendlyNames &&
-                       meta != null &&
-                       meta.DisplayName != null &&
-                       meta.DisplayName.UserLocalizedLabel != null)
-                    {
-                        dataColumn.Caption = meta.DisplayName.UserLocalizedLabel.Label;
-                        if (attribute.Contains("."))
-                        {
-                            dataColumn.Caption = attribute.Split('.')[0] + " " + dataColumn.Caption;
-                        }
-                    }
-                    else
-                    {
-                        dataColumn.Caption = attribute;
-                    }
-                    dataColumn.ExtendedProperties.Add("Metadata", meta);
-                    dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
-                    if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))
-                    {
-                        dataColumn.ExtendedProperties.Add("Format", "yyyy-MM-dd HH:mm:ss.fff");
-                    }
-                    columns.Add(dataColumn);
-                    addedColumns.Add(attribute);
-                }
-
-                // if we have added all of the distinct cols, exit the loop;
-                if (addedColumns.Count == attribKeys.Count)
-                {
-                    break;
-                }
-            }
-
-            //stopWatch.Stop();
-            //// Get the elapsed time as a TimeSpan value.
-            //TimeSpan ts = stopWatch.Elapsed;
-
-            //// Format and display the TimeSpan value.
-            //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            //    ts.Hours, ts.Minutes, ts.Seconds,
-            //    ts.Milliseconds / 10);
-            //MessageBox.Show(elapsedTime);
         }
 
         private object GetFirstValueForAttribute(IEnumerable<Entity> entities, string attribute)

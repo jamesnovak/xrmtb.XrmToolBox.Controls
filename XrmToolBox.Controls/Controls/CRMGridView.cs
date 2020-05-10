@@ -25,7 +25,7 @@ namespace xrmtb.XrmToolBox.Controls
         private bool designedColumnsUsed = false;
         private List<string> filterColumns = null;
         private string filterText = null;
-        private string[] columnOrder = null;
+        private string[] columnOrder = new string[] { };
         private bool showAllColumnsInColumnOrder = false;
         private bool showColumnsNotInColumnOrder = true;
         private DataGridViewColumn[] designedColumns;
@@ -101,7 +101,7 @@ namespace xrmtb.XrmToolBox.Controls
                 {
                     throw new ArgumentException("DataSource can only contain entities of the same type.");
                 }
-                EntityName = entities?.FirstOrDefault(e => !string.IsNullOrEmpty(e.LogicalName))?.LogicalName;
+                EntityName = entities?.FirstOrDefault(e => !string.IsNullOrEmpty(e.LogicalName))?.LogicalName ?? string.Empty;
 
                 if (designedColumnsDetermined && designedColumnsUsed && designedColumns != null)
                 {
@@ -182,7 +182,7 @@ namespace xrmtb.XrmToolBox.Controls
             set
             {
                 var lastvalue = columnOrder != null ? string.Join(",", columnOrder) : string.Empty;
-                columnOrder = value?.Split(',', '\n').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray();
+                columnOrder = value?.Split(',', '\n').Select(c => c.Trim()).Where(c => !string.IsNullOrWhiteSpace(c)).ToArray() ?? new string[] { };
                 showAllColumnsInColumnOrder = showAllColumnsInColumnOrder && columnOrder?.Length > 0;
                 showColumnsNotInColumnOrder = showColumnsNotInColumnOrder || columnOrder?.Length == 0;
                 if (autoRefresh && !lastvalue.Equals(string.Join(",", columnOrder)))
@@ -338,7 +338,8 @@ namespace xrmtb.XrmToolBox.Controls
 
         #region Public properties
 
-        public string EntityName { get; private set; }
+        public string EntityName { get; private set; } = string.Empty;
+
         /// <summary>
         /// IEnumerable<Entity> representing currently selected rows
         /// </summary>
@@ -824,7 +825,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         private void ArrangeColumns()
         {
-            if (columnOrder == null || designedColumnsUsed)
+            if (columnOrder?.Length == 0 || designedColumnsUsed)
             {
                 return;
             }

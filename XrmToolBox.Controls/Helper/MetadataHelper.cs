@@ -48,7 +48,11 @@ namespace xrmtb.XrmToolBox.Controls
 
         private static EntityMetadata GetEntity(IOrganizationService service, string entity)
         {
-            if (!entities.ContainsKey(entity))
+            if (string.IsNullOrWhiteSpace(entity))
+            {
+                return null;
+            }
+            if (entities?.ContainsKey(entity) != true)
             {
                 var response = LoadEntityDetails(service, entity);
                 if (response != null && response.EntityMetadata != null && response.EntityMetadata.Count == 1 && response.EntityMetadata[0].LogicalName == entity)
@@ -56,7 +60,7 @@ namespace xrmtb.XrmToolBox.Controls
                     entities.Add(entity, response.EntityMetadata[0]);
                 }
             }
-            return entities[entity];
+            return entities.ContainsKey(entity) ? entities[entity] : null;
         }
 
         public static AttributeMetadata GetPrimaryAttribute(IOrganizationService service, string entity)

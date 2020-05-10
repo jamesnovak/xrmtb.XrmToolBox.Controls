@@ -12,6 +12,16 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+      - CDSDataComboBox now accepts IEnumerable of Entity OR EntityCollection as DataSource.
+      - CRMGridView 
+      -- Now accepts IEnumerable of Entity OR EntityCollection as DataSource.
+      -- Breaking Change: CRMGridView properties SelectedRowRecords and SelectedCellRecords are now of type IEnumerable of Entity!
+      -- New property: ShowAllColumnsInColumnOrder, set to show columns that do not contain any values
+      -- New property: ShowColumnsNotInColumnOrder, set to include all returned attributes even if they are not listed in ColumnOrder property
+      -- New property: EntityName, readonly
+      
+
+Version 1.2020.5.3:
       Added RetrieveMulitple method to the CDSDataComboBox with callbacks for progress updates and completion
 	    Minor update to EntitiesCollectionListView to display Aliased attribute values correctly when showing friendly names
 

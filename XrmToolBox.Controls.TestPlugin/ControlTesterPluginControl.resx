@@ -124,7 +124,7 @@
   <data name="toolStripDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAGdYAABnWARjRyu0AAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
         YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
         0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
         bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
@@ -139,7 +139,7 @@
   <data name="EntityListControl.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -150,7 +150,7 @@
   <data name="EntityListControl.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -161,7 +161,7 @@
   <data name="EntityListControl.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -172,7 +172,7 @@
   <data name="EntityListControl.ListViewColDefs3" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -183,7 +183,7 @@
   <data name="EntityListControl.ListViewColDefs4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -194,7 +194,7 @@
   <data name="EntityListViewBase.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -205,7 +205,7 @@
   <data name="EntityListViewBase.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -216,7 +216,7 @@
   <data name="EntityListViewBase.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -227,7 +227,7 @@
   <data name="EntityListViewBase.ListViewColDefs3" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -238,7 +238,7 @@
   <data name="EntityListViewBase.ListViewColDefs4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -262,7 +262,7 @@
   <data name="AttribListControl.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -273,7 +273,7 @@
   <data name="AttribListControl.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -284,7 +284,7 @@
   <data name="AttribListControl.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -295,7 +295,7 @@
   <data name="AttribListControl.ListViewColDefs3" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -306,7 +306,7 @@
   <data name="AttribListControl.ListViewColDefs4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -317,7 +317,7 @@
   <data name="AttribListControl.ListViewColDefs5" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -328,7 +328,7 @@
   <data name="AttribListControl.ListViewColDefs6" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -348,7 +348,7 @@
   <data name="GlobalOptionSetList.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -359,7 +359,7 @@
   <data name="GlobalOptionSetList.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -370,7 +370,7 @@
   <data name="GlobalOptionSetList.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -381,7 +381,7 @@
   <data name="GlobalOptionSetList.ListViewColDefs3" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -392,7 +392,7 @@
   <data name="GlobalOptionSetList.ListViewColDefs4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -426,10 +426,16 @@
         Mi4wEQgAAAABAAAACQkAAAAL
 </value>
   </data>
+  <metadata name="name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="revenue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="listViewEntCollection.ListViewColDefs" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -440,7 +446,7 @@
   <data name="listViewEntCollection.ListViewColDefs1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr
@@ -451,7 +457,7 @@
   <data name="listViewEntCollection.ListViewColDefs2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAF94cm10Yi5Ycm1Ub29sQm94LkNvbnRyb2xzLCBWZXJzaW9uPTEu
-        MjAyMC40LjksIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
+        MjAyMC41LjMsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MzRkZWYyYzQwNTAwYzYyYwUB
         AAAAK3hybXRiLlhybVRvb2xCb3guQ29udHJvbHMuTGlzdFZpZXdDb2x1bW5EZWYGAAAAFTxOYW1lPmtf
         X0JhY2tpbmdGaWVsZBw8RGlzcGxheU5hbWU+a19fQmFja2luZ0ZpZWxkFjxPcmRlcj5rX19CYWNraW5n
         RmllbGQePElzR3JvdXBDb2x1bW4+a19fQmFja2luZ0ZpZWxkHzxJc0ZpbHRlckNvbHVtbj5rX19CYWNr

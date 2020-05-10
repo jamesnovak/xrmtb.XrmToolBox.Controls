@@ -286,6 +286,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
             // SolutionDropdownGridView.UpdateConnection(newService);
             CrmGridView.OrganizationService = newService;
+            CrmGridViewDesignedCols.OrganizationService = newService;
             cdsDataComboBox.OrganizationService = newService;
 
             EntityListViewBase.UpdateConnection(newService);
@@ -767,7 +768,12 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void RadioCRMGridViewShowProps_CheckedChanged(object sender, EventArgs e)
         {
-            SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, CrmGridView.SelectedCellRecords?.FirstOrDefault());
+            if (radioCRMGridViewShowProps.Checked)
+                propCRMGridView.SelectedObject = CrmGridView;
+            else if (radioCRMGridViewSelEntity.Checked)
+                propCRMGridView.SelectedObject = CrmGridView.SelectedCellRecords?.FirstOrDefault();
+            else if (radioCRMGridViewRightShowProps.Checked)
+                propCRMGridView.SelectedObject = CrmGridViewDesignedCols;
         }
 
         #endregion CRMGridView event handlers
@@ -896,6 +902,31 @@ namespace Sample.XrmToolBox.TestPlugin
                         Controls.Remove(infoPanel);
                     }
                 });
+        }
+
+        private void buttonExecPredefinedCrmGridViewQuery_Click(object sender, EventArgs e)
+        {
+            var fex = new FetchExpression(@"<fetch>
+  <entity name='account' >
+    <attribute name='accountid' />
+    <attribute name='name' />
+    <attribute name='telephone1' />
+    <attribute name='address1_city' />
+    <attribute name='primarycontactid' />
+    <attribute name='revenue' />
+    <attribute name='address1_postofficebox' />
+    <filter>
+      <condition attribute='statecode' operator='eq' value='0' />
+    </filter>
+    <link-entity name='contact' from='contactid' to='primarycontactid' link-type='outer' alias='C' >
+      <attribute name='emailaddress1' />
+      <attribute name='address1_telephone3' />
+    </link-entity>
+    <attribute name='statecode' />
+  </entity>
+</fetch>");
+            var res = Service.RetrieveMultiple(fex);
+            CrmGridViewDesignedCols.DataSource = res;
         }
     }
 }

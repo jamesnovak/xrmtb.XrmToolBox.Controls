@@ -681,6 +681,13 @@ namespace xrmtb.XrmToolBox.Controls
                 {
                     var dataColumn = new DataColumn(attribute);
                     dataColumn.Caption = attribute;
+
+                    if (!attribute.Contains(".") && showFriendlyNames)
+                    {
+                        var meta = MetadataHelper.GetAttribute(organizationService, entities.EntityName, attribute);
+
+                        dataColumn.Caption = meta?.DisplayName?.UserLocalizedLabel?.Label ?? attribute;
+                    }
                     columns.Add(dataColumn);
                 }
             }

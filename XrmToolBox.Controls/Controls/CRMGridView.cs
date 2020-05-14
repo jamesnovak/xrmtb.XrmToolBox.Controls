@@ -36,9 +36,9 @@ namespace xrmtb.XrmToolBox.Controls
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             InitializeComponent();
-            ReadOnly = true;
-            AllowUserToAddRows = false;
-            AllowUserToDeleteRows = false;
+            base.ReadOnly = true;
+            base.AllowUserToAddRows = false;
+            base.AllowUserToDeleteRows = false;
             AllowUserToOrderColumns = true;
             AllowUserToResizeRows = false;
             CellClick += HandleClick;
@@ -52,19 +52,17 @@ namespace xrmtb.XrmToolBox.Controls
 
         #region Published properties
 
-        [Browsable(false)]
-        public IOrganizationService OrganizationService
-        {
-            get { return organizationService; }
-            set
-            {
-                organizationService = value;
-                if (autoRefresh)
-                {
-                    Refresh();
-                }
-            }
-        }
+        [Category("Behavior")]
+        [ReadOnly(true)]
+        public new bool ReadOnly { get; set; } = true;
+
+        [Category("Behavior")]
+        [ReadOnly(true)]
+        public new bool AllowUserToAddRows { get; set; } = false;
+
+        [Category("Behavior")]
+        [ReadOnly(true)]
+        public new bool AllowUserToDeleteRows { get; set; } = false;
 
         [Category("Data")]
         [Description("Indicates the source of data (IEnumerable<Entity> or EntityCollection) for the CRMGridView control.")]
@@ -333,11 +331,27 @@ namespace xrmtb.XrmToolBox.Controls
 
         #region Public properties
 
+        [Browsable(false)]
+        public IOrganizationService OrganizationService
+        {
+            get { return organizationService; }
+            set
+            {
+                organizationService = value;
+                if (autoRefresh)
+                {
+                    Refresh();
+                }
+            }
+        }
+
+        [Browsable(false)]
         public string EntityName { get; private set; } = string.Empty;
 
         /// <summary>
         /// IEnumerable<Entity> representing currently selected rows
         /// </summary>
+        [Browsable(false)]
         public IEnumerable<Entity> SelectedRowRecords
         {
             get
@@ -362,6 +376,7 @@ namespace xrmtb.XrmToolBox.Controls
         /// <summary>
         /// IEnumerable<Entity> representing all currently selected cells
         /// </summary>
+        [Browsable(false)]
         public IEnumerable<Entity> SelectedCellRecords
         {
             get

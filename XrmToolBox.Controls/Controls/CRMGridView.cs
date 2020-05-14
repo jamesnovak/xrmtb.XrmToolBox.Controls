@@ -20,7 +20,6 @@ namespace xrmtb.XrmToolBox.Controls
         private bool showIdColumn = true;
         private bool showIndexColumn = true;
         private bool showLocalTimes = false;
-        private bool entityReferenceClickable = false;
         private bool designedColumnsDetermined = false;
         private bool designedColumnsUsed = false;
         private List<string> filterColumns = null;
@@ -52,8 +51,8 @@ namespace xrmtb.XrmToolBox.Controls
         #endregion
 
         #region Published properties
-        [Category("Data")]
-        [DefaultValue(null)]
+
+        [Browsable(false)]
         public IOrganizationService OrganizationService
         {
             get { return organizationService; }
@@ -309,11 +308,7 @@ namespace xrmtb.XrmToolBox.Controls
         [Category("CRM")]
         [DefaultValue(false)]
         [Description("Set this to give EntityReference cells a clickable appearance.")]
-        public bool EntityReferenceClickable
-        {
-            get { return entityReferenceClickable; }
-            set { entityReferenceClickable = value; }
-        }
+        public bool EntityReferenceClickable { get; set; } = false;
         #endregion
 
         #region Published events
@@ -458,7 +453,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         private void HandleCellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (entityReferenceClickable)
+            if (EntityReferenceClickable)
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 {
@@ -485,7 +480,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         private void HandleCellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (entityReferenceClickable)
+            if (EntityReferenceClickable)
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 {
@@ -617,7 +612,7 @@ namespace xrmtb.XrmToolBox.Controls
             }
             var type = GetValueType(value);
             var dataColumn = new DataColumn(attribute, type);
-            var meta = MetadataHelper.GetAttribute(organizationService, EntityName, attribute, value);
+            var meta = organizationService.GetAttribute(EntityName, attribute, value);
             dataColumn.ExtendedProperties.Add("Metadata", meta);
             dataColumn.ExtendedProperties.Add("OriginalType", GetInnerValueType(value));
             if (meta is DateTimeAttributeMetadata && entities.Any(e => e.Contains(attribute) && e[attribute] is DateTime dtvalue && dtvalue.Millisecond > 0))

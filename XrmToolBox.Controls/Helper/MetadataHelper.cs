@@ -1,9 +1,9 @@
-﻿using Microsoft.Xrm.Sdk.Metadata;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Metadata.Query;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Metadata.Query;
-using Microsoft.Xrm.Sdk.Messages;
 using System.Linq;
 
 namespace xrmtb.XrmToolBox.Controls
@@ -16,7 +16,7 @@ namespace xrmtb.XrmToolBox.Controls
         public static String[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "PrimaryIdAttribute" };
         public static String[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "IsPrimaryName", "OptionSet", "SchemaName", "Targets" };
 
-        public static AttributeMetadata GetAttribute(IOrganizationService service, string entity, string attribute, object value)
+        public static AttributeMetadata GetAttribute(this IOrganizationService service, string entity, string attribute, object value)
         {
             if (value is AliasedValue)
             {
@@ -27,7 +27,7 @@ namespace xrmtb.XrmToolBox.Controls
             return GetAttribute(service, entity, attribute);
         }
 
-        public static AttributeMetadata GetAttribute(IOrganizationService service, string entity, string attribute)
+        public static AttributeMetadata GetAttribute(this IOrganizationService service, string entity, string attribute)
         {
             var entitymeta = GetEntity(service, entity);
             if (entitymeta != null)
@@ -63,7 +63,7 @@ namespace xrmtb.XrmToolBox.Controls
             return entities.ContainsKey(entity) ? entities[entity] : null;
         }
 
-        public static AttributeMetadata GetPrimaryAttribute(IOrganizationService service, string entity)
+        public static AttributeMetadata GetPrimaryAttribute(this IOrganizationService service, string entity)
         {
             var entitymeta = GetEntity(service, entity);
             if (entitymeta != null)
@@ -82,7 +82,7 @@ namespace xrmtb.XrmToolBox.Controls
             return null;
         }
 
-        public static RetrieveMetadataChangesResponse LoadEntities(IOrganizationService service)
+        public static RetrieveMetadataChangesResponse LoadEntities(this IOrganizationService service)
         {
             if (service == null)
             {
@@ -98,7 +98,7 @@ namespace xrmtb.XrmToolBox.Controls
             return service.Execute(req) as RetrieveMetadataChangesResponse;
         }
 
-        public static RetrieveMetadataChangesResponse LoadEntityDetails(IOrganizationService service, string entityName, int orgMajorVer = 0, int orgMinorVer = 0)
+        public static RetrieveMetadataChangesResponse LoadEntityDetails(this IOrganizationService service, string entityName, int orgMajorVer = 0, int orgMinorVer = 0)
         {
             if (service == null)
             {

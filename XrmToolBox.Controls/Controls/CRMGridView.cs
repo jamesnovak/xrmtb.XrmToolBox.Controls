@@ -523,11 +523,11 @@ namespace xrmtb.XrmToolBox.Controls
         #endregion
 
         #region Private methods
-        private CRMGridRecordEventArgs GetCRMRecordEventArgs(DataGridViewCellEventArgs e)
+        private CRMRecordEventArgs GetCRMRecordEventArgs(DataGridViewCellEventArgs e)
         {
             Entity entity = GetRecordFromCellEvent(e);
             var attribute = e.ColumnIndex >= 0 ? Columns[e.ColumnIndex].Name : string.Empty;
-            var args = new CRMGridRecordEventArgs(e.ColumnIndex, e.RowIndex, entity, attribute);
+            var args = new CRMRecordEventArgs(e.ColumnIndex, e.RowIndex, entity, attribute);
             return args;
         }
 

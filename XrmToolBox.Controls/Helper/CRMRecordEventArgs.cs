@@ -3,9 +3,9 @@ using System;
 
 namespace xrmtb.XrmToolBox.Controls
 {
-    public class CRMGridRecordEventArgs : EventArgs
+    public class CRMRecordEventArgs : EventArgs
     {
-        public CRMGridRecordEventArgs(int columnIndex, int rowIndex, Entity entity, string attribute)
+        public CRMRecordEventArgs(int columnIndex, int rowIndex, Entity entity, string attribute)
         {
             ColumnIndex = columnIndex;
             RowIndex = rowIndex;
@@ -29,5 +29,5 @@ namespace xrmtb.XrmToolBox.Controls
         }
     }
 
-    public delegate void CRMRecordEventHandler(object sender, CRMGridRecordEventArgs e);
+    public delegate void CRMRecordEventHandler(object sender, CRMRecordEventArgs e);
 }

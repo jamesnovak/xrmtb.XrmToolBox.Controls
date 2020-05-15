@@ -218,7 +218,7 @@
     </Compile>
     <Compile Include="Helper\CharacterEncoder.cs" />
     <Compile Include="Helper\CDSRecordEventArgs.cs" />
-    <Compile Include="Helper\CRMGridRecordEventArgs.cs" />
+    <Compile Include="Helper\CRMRecordEventArgs.cs" />
     <Compile Include="Controls\EntitiesDropdownControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

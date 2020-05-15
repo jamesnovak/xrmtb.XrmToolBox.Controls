@@ -173,14 +173,20 @@ namespace Sample.XrmToolBox.TestPlugin
             this.XmlViewerCRMDataGrid = new xrmtb.XrmToolBox.Controls.XMLViewer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.radioCRMGridViewRightShowProps = new System.Windows.Forms.RadioButton();
-            this.radioCRMGridViewShowProps = new System.Windows.Forms.RadioButton();
-            this.label18 = new System.Windows.Forms.Label();
-            this.radioCRMGridViewSelEntity = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cdsDataTextBox = new xrmtb.XrmToolBox.Controls.Controls.CDSDataTextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.textCdsDataComboBoxFormat = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cdsDataComboBox = new xrmtb.XrmToolBox.Controls.Controls.CDSDataComboBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.radioCRMGridViewTxtBx = new System.Windows.Forms.RadioButton();
+            this.radioCRMGridViewCmbBx = new System.Windows.Forms.RadioButton();
+            this.radioCRMGridViewRightShowProps = new System.Windows.Forms.RadioButton();
+            this.radioCRMGridViewSelEntity = new System.Windows.Forms.RadioButton();
+            this.radioCRMGridViewShowProps = new System.Windows.Forms.RadioButton();
+            this.label18 = new System.Windows.Forms.Label();
             this.propCRMGridView = new System.Windows.Forms.PropertyGrid();
             this.panel11 = new System.Windows.Forms.Panel();
             this.CrmGridViewDesignedCols = new xrmtb.XrmToolBox.Controls.CRMGridView();
@@ -296,6 +302,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel3.SuspendLayout();
             this.panel8.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CrmGridViewDesignedCols)).BeginInit();
             this.tabPageXrmViewer.SuspendLayout();
@@ -2041,7 +2048,7 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             this.splitterCRMGridView.Panel2.Controls.Add(this.tableLayoutPanel3);
             this.splitterCRMGridView.Size = new System.Drawing.Size(901, 558);
-            this.splitterCRMGridView.SplitterDistance = 295;
+            this.splitterCRMGridView.SplitterDistance = 299;
             this.splitterCRMGridView.SplitterWidth = 10;
             this.splitterCRMGridView.TabIndex = 2;
             // 
@@ -2060,7 +2067,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableCRMGridView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableCRMGridView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableCRMGridView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableCRMGridView.Size = new System.Drawing.Size(295, 558);
+            this.tableCRMGridView.Size = new System.Drawing.Size(299, 558);
             this.tableCRMGridView.TabIndex = 0;
             // 
             // panelCrmGridViewControls
@@ -2071,7 +2078,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panelCrmGridViewControls.Location = new System.Drawing.Point(2, 2);
             this.panelCrmGridViewControls.Margin = new System.Windows.Forms.Padding(2);
             this.panelCrmGridViewControls.Name = "panelCrmGridViewControls";
-            this.panelCrmGridViewControls.Size = new System.Drawing.Size(291, 50);
+            this.panelCrmGridViewControls.Size = new System.Drawing.Size(295, 50);
             this.panelCrmGridViewControls.TabIndex = 5;
             // 
             // dataGridViewGrouperControl1
@@ -2084,13 +2091,11 @@ namespace Sample.XrmToolBox.TestPlugin
             this.dataGridViewGrouperControl1.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridViewGrouperControl1.Name = "dataGridViewGrouperControl1";
             this.dataGridViewGrouperControl1.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.dataGridViewGrouperControl1.Size = new System.Drawing.Size(291, 24);
+            this.dataGridViewGrouperControl1.Size = new System.Drawing.Size(295, 24);
             this.dataGridViewGrouperControl1.TabIndex = 5;
             // 
             // CrmGridView
             // 
-            this.CrmGridView.AllowUserToAddRows = false;
-            this.CrmGridView.AllowUserToDeleteRows = false;
             this.CrmGridView.AllowUserToOrderColumns = true;
             this.CrmGridView.AllowUserToResizeRows = false;
             this.CrmGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -2099,10 +2104,10 @@ namespace Sample.XrmToolBox.TestPlugin
             this.CrmGridView.FilterColumns = "";
             this.CrmGridView.Location = new System.Drawing.Point(3, 258);
             this.CrmGridView.Name = "CrmGridView";
-            this.CrmGridView.ReadOnly = true;
+            this.CrmGridView.OrganizationService = null;
             this.CrmGridView.RowHeadersWidth = 72;
             this.CrmGridView.ShowFriendlyNames = true;
-            this.CrmGridView.Size = new System.Drawing.Size(289, 297);
+            this.CrmGridView.Size = new System.Drawing.Size(293, 297);
             this.CrmGridView.TabIndex = 2;
             this.CrmGridView.RecordClick += new xrmtb.XrmToolBox.Controls.CRMRecordEventHandler(this.crmGridView1_RecordClick);
             // 
@@ -2114,7 +2119,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(291, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 29);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // labelExecFetch
@@ -2159,7 +2164,7 @@ namespace Sample.XrmToolBox.TestPlugin
             xmlViewerSettings1.Tag = System.Drawing.Color.ForestGreen;
             xmlViewerSettings1.Value = System.Drawing.Color.Black;
             this.XmlViewerCRMDataGrid.Settings = xmlViewerSettings1;
-            this.XmlViewerCRMDataGrid.Size = new System.Drawing.Size(291, 197);
+            this.XmlViewerCRMDataGrid.Size = new System.Drawing.Size(295, 197);
             this.XmlViewerCRMDataGrid.TabIndex = 5;
             this.XmlViewerCRMDataGrid.Text = "";
             this.XmlViewerCRMDataGrid.TextChanged += new System.EventHandler(this.XmlViewerCRMDataGrid_TextChanged);
@@ -2178,88 +2183,75 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(596, 558);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(592, 558);
             this.tableLayoutPanel3.TabIndex = 20;
             // 
             // panel8
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.panel8, 2);
-            this.panel8.Controls.Add(this.radioCRMGridViewRightShowProps);
-            this.panel8.Controls.Add(this.radioCRMGridViewShowProps);
-            this.panel8.Controls.Add(this.label18);
-            this.panel8.Controls.Add(this.radioCRMGridViewSelEntity);
             this.panel8.Controls.Add(this.groupBox1);
+            this.panel8.Controls.Add(this.panel12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(2, 490);
+            this.panel8.Location = new System.Drawing.Point(2, 455);
             this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(592, 66);
+            this.panel8.Size = new System.Drawing.Size(588, 101);
             this.panel8.TabIndex = 16;
-            // 
-            // radioCRMGridViewRightShowProps
-            // 
-            this.radioCRMGridViewRightShowProps.AutoSize = true;
-            this.radioCRMGridViewRightShowProps.Checked = true;
-            this.radioCRMGridViewRightShowProps.Location = new System.Drawing.Point(10, 39);
-            this.radioCRMGridViewRightShowProps.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.radioCRMGridViewRightShowProps.Name = "radioCRMGridViewRightShowProps";
-            this.radioCRMGridViewRightShowProps.Size = new System.Drawing.Size(119, 17);
-            this.radioCRMGridViewRightShowProps.TabIndex = 7;
-            this.radioCRMGridViewRightShowProps.TabStop = true;
-            this.radioCRMGridViewRightShowProps.Text = "CRMGridView Right";
-            this.radioCRMGridViewRightShowProps.UseVisualStyleBackColor = true;
-            this.radioCRMGridViewRightShowProps.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
-            // 
-            // radioCRMGridViewShowProps
-            // 
-            this.radioCRMGridViewShowProps.AutoSize = true;
-            this.radioCRMGridViewShowProps.Checked = true;
-            this.radioCRMGridViewShowProps.Location = new System.Drawing.Point(10, 21);
-            this.radioCRMGridViewShowProps.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.radioCRMGridViewShowProps.Name = "radioCRMGridViewShowProps";
-            this.radioCRMGridViewShowProps.Size = new System.Drawing.Size(112, 17);
-            this.radioCRMGridViewShowProps.TabIndex = 3;
-            this.radioCRMGridViewShowProps.TabStop = true;
-            this.radioCRMGridViewShowProps.Text = "CRMGridView Left";
-            this.radioCRMGridViewShowProps.UseVisualStyleBackColor = true;
-            this.radioCRMGridViewShowProps.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
-            // 
-            // label18
-            // 
-            this.label18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label18.Location = new System.Drawing.Point(0, 0);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(301, 23);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "Choose what displays in the property control";
-            // 
-            // radioCRMGridViewSelEntity
-            // 
-            this.radioCRMGridViewSelEntity.AutoSize = true;
-            this.radioCRMGridViewSelEntity.Location = new System.Drawing.Point(130, 21);
-            this.radioCRMGridViewSelEntity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.radioCRMGridViewSelEntity.Name = "radioCRMGridViewSelEntity";
-            this.radioCRMGridViewSelEntity.Size = new System.Drawing.Size(96, 17);
-            this.radioCRMGridViewSelEntity.TabIndex = 2;
-            this.radioCRMGridViewSelEntity.TabStop = true;
-            this.radioCRMGridViewSelEntity.Text = "Selected Entity";
-            this.radioCRMGridViewSelEntity.UseVisualStyleBackColor = true;
-            this.radioCRMGridViewSelEntity.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.cdsDataTextBox);
+            this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.textCdsDataComboBoxFormat);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.cdsDataComboBox);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(301, 0);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(237, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(291, 66);
+            this.groupBox1.Size = new System.Drawing.Size(351, 101);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CDSDataComboBox";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(13, 74);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(34, 13);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "TxtBx";
+            // 
+            // cdsDataTextBox
+            // 
+            this.cdsDataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cdsDataTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.cdsDataTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.cdsDataTextBox.DisplayFormat = "";
+            this.cdsDataTextBox.Entity = null;
+            this.cdsDataTextBox.EntityReference = null;
+            this.cdsDataTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cdsDataTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cdsDataTextBox.Id = new System.Guid("00000000-0000-0000-0000-000000000000");
+            this.cdsDataTextBox.Location = new System.Drawing.Point(58, 71);
+            this.cdsDataTextBox.LogicalName = "";
+            this.cdsDataTextBox.Name = "cdsDataTextBox";
+            this.cdsDataTextBox.OrganizationService = null;
+            this.cdsDataTextBox.Size = new System.Drawing.Size(287, 20);
+            this.cdsDataTextBox.TabIndex = 9;
+            this.cdsDataTextBox.RecordClick += new xrmtb.XrmToolBox.Controls.CDSRecordEventHandler(this.cdsDataTextBox_RecordClick);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 47);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(40, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "CmbBx";
             // 
             // textCdsDataComboBoxFormat
             // 
@@ -2267,7 +2259,7 @@ namespace Sample.XrmToolBox.TestPlugin
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textCdsDataComboBoxFormat.Location = new System.Drawing.Point(58, 17);
             this.textCdsDataComboBoxFormat.Name = "textCdsDataComboBoxFormat";
-            this.textCdsDataComboBoxFormat.Size = new System.Drawing.Size(227, 20);
+            this.textCdsDataComboBoxFormat.Size = new System.Drawing.Size(287, 20);
             this.textCdsDataComboBoxFormat.TabIndex = 7;
             this.textCdsDataComboBoxFormat.TextChanged += new System.EventHandler(this.textCdsDataComboBoxFormat_TextChanged);
             // 
@@ -2287,11 +2279,97 @@ namespace Sample.XrmToolBox.TestPlugin
             this.cdsDataComboBox.DisplayFormat = "";
             this.cdsDataComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cdsDataComboBox.FormattingEnabled = true;
-            this.cdsDataComboBox.Location = new System.Drawing.Point(6, 39);
+            this.cdsDataComboBox.Location = new System.Drawing.Point(58, 44);
             this.cdsDataComboBox.Name = "cdsDataComboBox";
-            this.cdsDataComboBox.Size = new System.Drawing.Size(279, 21);
+            this.cdsDataComboBox.OrganizationService = null;
+            this.cdsDataComboBox.Size = new System.Drawing.Size(287, 21);
             this.cdsDataComboBox.TabIndex = 5;
             this.cdsDataComboBox.SelectedIndexChanged += new System.EventHandler(this.cdsDataComboBox_SelectedIndexChanged);
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.radioCRMGridViewTxtBx);
+            this.panel12.Controls.Add(this.radioCRMGridViewCmbBx);
+            this.panel12.Controls.Add(this.radioCRMGridViewRightShowProps);
+            this.panel12.Controls.Add(this.radioCRMGridViewSelEntity);
+            this.panel12.Controls.Add(this.radioCRMGridViewShowProps);
+            this.panel12.Controls.Add(this.label18);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(237, 101);
+            this.panel12.TabIndex = 8;
+            // 
+            // radioCRMGridViewTxtBx
+            // 
+            this.radioCRMGridViewTxtBx.AutoSize = true;
+            this.radioCRMGridViewTxtBx.Location = new System.Drawing.Point(159, 72);
+            this.radioCRMGridViewTxtBx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewTxtBx.Name = "radioCRMGridViewTxtBx";
+            this.radioCRMGridViewTxtBx.Size = new System.Drawing.Size(52, 17);
+            this.radioCRMGridViewTxtBx.TabIndex = 9;
+            this.radioCRMGridViewTxtBx.Text = "TxtBx";
+            this.radioCRMGridViewTxtBx.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewTxtBx.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
+            // radioCRMGridViewCmbBx
+            // 
+            this.radioCRMGridViewCmbBx.AutoSize = true;
+            this.radioCRMGridViewCmbBx.Location = new System.Drawing.Point(159, 18);
+            this.radioCRMGridViewCmbBx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewCmbBx.Name = "radioCRMGridViewCmbBx";
+            this.radioCRMGridViewCmbBx.Size = new System.Drawing.Size(58, 17);
+            this.radioCRMGridViewCmbBx.TabIndex = 8;
+            this.radioCRMGridViewCmbBx.Text = "CmbBx";
+            this.radioCRMGridViewCmbBx.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewCmbBx.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
+            // radioCRMGridViewRightShowProps
+            // 
+            this.radioCRMGridViewRightShowProps.AutoSize = true;
+            this.radioCRMGridViewRightShowProps.Location = new System.Drawing.Point(14, 45);
+            this.radioCRMGridViewRightShowProps.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewRightShowProps.Name = "radioCRMGridViewRightShowProps";
+            this.radioCRMGridViewRightShowProps.Size = new System.Drawing.Size(119, 17);
+            this.radioCRMGridViewRightShowProps.TabIndex = 7;
+            this.radioCRMGridViewRightShowProps.Text = "CRMGridView Right";
+            this.radioCRMGridViewRightShowProps.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewRightShowProps.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
+            // radioCRMGridViewSelEntity
+            // 
+            this.radioCRMGridViewSelEntity.AutoSize = true;
+            this.radioCRMGridViewSelEntity.Location = new System.Drawing.Point(14, 72);
+            this.radioCRMGridViewSelEntity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewSelEntity.Name = "radioCRMGridViewSelEntity";
+            this.radioCRMGridViewSelEntity.Size = new System.Drawing.Size(96, 17);
+            this.radioCRMGridViewSelEntity.TabIndex = 2;
+            this.radioCRMGridViewSelEntity.Text = "Selected Entity";
+            this.radioCRMGridViewSelEntity.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewSelEntity.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
+            // radioCRMGridViewShowProps
+            // 
+            this.radioCRMGridViewShowProps.AutoSize = true;
+            this.radioCRMGridViewShowProps.Checked = true;
+            this.radioCRMGridViewShowProps.Location = new System.Drawing.Point(14, 18);
+            this.radioCRMGridViewShowProps.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewShowProps.Name = "radioCRMGridViewShowProps";
+            this.radioCRMGridViewShowProps.Size = new System.Drawing.Size(112, 17);
+            this.radioCRMGridViewShowProps.TabIndex = 3;
+            this.radioCRMGridViewShowProps.TabStop = true;
+            this.radioCRMGridViewShowProps.Text = "CRMGridView Left";
+            this.radioCRMGridViewShowProps.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewShowProps.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(4, 0);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(222, 23);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Choose what displays in the property control";
             // 
             // propCRMGridView
             // 
@@ -2299,7 +2377,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.propCRMGridView.Location = new System.Drawing.Point(4, 3);
             this.propCRMGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.propCRMGridView.Name = "propCRMGridView";
-            this.propCRMGridView.Size = new System.Drawing.Size(290, 482);
+            this.propCRMGridView.Size = new System.Drawing.Size(288, 447);
             this.propCRMGridView.TabIndex = 8;
             // 
             // panel11
@@ -2307,15 +2385,13 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel11.Controls.Add(this.CrmGridViewDesignedCols);
             this.panel11.Controls.Add(this.buttonExecPredefinedCrmGridViewQuery);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(301, 3);
+            this.panel11.Location = new System.Drawing.Point(299, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(292, 482);
+            this.panel11.Size = new System.Drawing.Size(290, 447);
             this.panel11.TabIndex = 17;
             // 
             // CrmGridViewDesignedCols
             // 
-            this.CrmGridViewDesignedCols.AllowUserToAddRows = false;
-            this.CrmGridViewDesignedCols.AllowUserToDeleteRows = false;
             this.CrmGridViewDesignedCols.AllowUserToOrderColumns = true;
             this.CrmGridViewDesignedCols.AllowUserToResizeRows = false;
             this.CrmGridViewDesignedCols.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -2328,13 +2404,14 @@ namespace Sample.XrmToolBox.TestPlugin
             this.CrmGridViewDesignedCols.FilterColumns = "name";
             this.CrmGridViewDesignedCols.Location = new System.Drawing.Point(0, 23);
             this.CrmGridViewDesignedCols.Name = "CrmGridViewDesignedCols";
-            this.CrmGridViewDesignedCols.ReadOnly = true;
+            this.CrmGridViewDesignedCols.OrganizationService = null;
             this.CrmGridViewDesignedCols.ShowFriendlyNames = true;
             this.CrmGridViewDesignedCols.ShowIdColumn = false;
             this.CrmGridViewDesignedCols.ShowIndexColumn = false;
             this.CrmGridViewDesignedCols.ShowLocalTimes = true;
-            this.CrmGridViewDesignedCols.Size = new System.Drawing.Size(292, 459);
+            this.CrmGridViewDesignedCols.Size = new System.Drawing.Size(290, 424);
             this.CrmGridViewDesignedCols.TabIndex = 0;
+            this.CrmGridViewDesignedCols.RecordClick += new xrmtb.XrmToolBox.Controls.CRMRecordEventHandler(this.CrmGridViewDesignedCols_RecordClick);
             // 
             // name
             // 
@@ -2353,7 +2430,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.buttonExecPredefinedCrmGridViewQuery.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonExecPredefinedCrmGridViewQuery.Location = new System.Drawing.Point(0, 0);
             this.buttonExecPredefinedCrmGridViewQuery.Name = "buttonExecPredefinedCrmGridViewQuery";
-            this.buttonExecPredefinedCrmGridViewQuery.Size = new System.Drawing.Size(292, 23);
+            this.buttonExecPredefinedCrmGridViewQuery.Size = new System.Drawing.Size(290, 23);
             this.buttonExecPredefinedCrmGridViewQuery.TabIndex = 1;
             this.buttonExecPredefinedCrmGridViewQuery.Text = "Execute predefined query";
             this.buttonExecPredefinedCrmGridViewQuery.UseVisualStyleBackColor = true;
@@ -2849,6 +2926,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.cdsDataComboRetrieve.Location = new System.Drawing.Point(3, 3);
             this.cdsDataComboRetrieve.Margin = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.cdsDataComboRetrieve.Name = "cdsDataComboRetrieve";
+            this.cdsDataComboRetrieve.OrganizationService = null;
             this.cdsDataComboRetrieve.Size = new System.Drawing.Size(356, 21);
             this.cdsDataComboRetrieve.TabIndex = 0;
             // 
@@ -2967,9 +3045,10 @@ namespace Sample.XrmToolBox.TestPlugin
             this.flowLayoutPanel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CrmGridViewDesignedCols)).EndInit();
             this.tabPageXrmViewer.ResumeLayout(false);
@@ -3186,5 +3265,11 @@ namespace Sample.XrmToolBox.TestPlugin
         private System.Windows.Forms.DataGridViewTextBoxColumn revenue;
         private System.Windows.Forms.Button buttonExecPredefinedCrmGridViewQuery;
         private System.Windows.Forms.RadioButton radioCRMGridViewRightShowProps;
+        private System.Windows.Forms.Label label23;
+        private xrmtb.XrmToolBox.Controls.Controls.CDSDataTextBox cdsDataTextBox;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.RadioButton radioCRMGridViewTxtBx;
+        private System.Windows.Forms.RadioButton radioCRMGridViewCmbBx;
     }
 }

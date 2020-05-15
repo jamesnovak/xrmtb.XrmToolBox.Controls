@@ -288,6 +288,7 @@ namespace Sample.XrmToolBox.TestPlugin
             CrmGridView.OrganizationService = newService;
             CrmGridViewDesignedCols.OrganizationService = newService;
             cdsDataComboBox.OrganizationService = newService;
+            cdsDataTextBox.OrganizationService = newService;
 
             EntityListViewBase.UpdateConnection(newService);
             listViewEntCollection.UpdateConnection(newService);
@@ -774,13 +775,18 @@ namespace Sample.XrmToolBox.TestPlugin
                 propCRMGridView.SelectedObject = CrmGridView.SelectedCellRecords?.FirstOrDefault();
             else if (radioCRMGridViewRightShowProps.Checked)
                 propCRMGridView.SelectedObject = CrmGridViewDesignedCols;
+            else if (radioCRMGridViewCmbBx.Checked)
+                propCRMGridView.SelectedObject = cdsDataComboBox;
+            else if (radioCRMGridViewTxtBx.Checked)
+                propCRMGridView.SelectedObject = cdsDataTextBox;
         }
 
         #endregion CRMGridView event handlers
-        
+
         private void crmGridView1_RecordClick(object sender, CRMRecordEventArgs e)
         {
             SetPropertySelectedObject(radioCRMGridViewShowProps, propCRMGridView, CrmGridView, e.Entity);
+            cdsDataTextBox.Entity = e.Entity;
         }
 
         private void buttonExecFetch_Click(object sender, EventArgs e)
@@ -853,6 +859,7 @@ namespace Sample.XrmToolBox.TestPlugin
         private void textCdsDataComboBoxFormat_TextChanged(object sender, EventArgs e)
         {
             cdsDataComboBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
+            cdsDataTextBox.DisplayFormat = textCdsDataComboBoxFormat.Text;
         }
 
         private void cdsDataComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -927,6 +934,19 @@ namespace Sample.XrmToolBox.TestPlugin
 </fetch>");
             var res = Service.RetrieveMultiple(fex);
             CrmGridViewDesignedCols.DataSource = res;
+        }
+
+        private void CrmGridViewDesignedCols_RecordClick(object sender, CRMRecordEventArgs e)
+        {
+            cdsDataTextBox.Entity = e.Entity;
+        }
+
+        private void cdsDataTextBox_RecordClick(object sender, CDSRecordEventArgs e)
+        {
+            if (e.Entity != null)
+            {
+                MessageBox.Show($"Entity: {e.Entity.LogicalName} Id: {e.Entity.Id} Attributes: {e.Entity.Attributes.Count}");
+            }
         }
     }
 }

@@ -171,9 +171,17 @@
     <Compile Include="Controls\BoundListViewControl.Designer.cs">
       <DependentUpon>BoundListViewControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CDSDataComboBox.cs" />
+    <Compile Include="Controls\CDSDataComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\CDSDataComboBox.Designer.cs">
       <DependentUpon>CDSDataComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CDSDataTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CDSDataTextBox.Designer.cs">
+      <DependentUpon>CDSDataTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CRMGridView.cs">
       <SubType>Component</SubType>
@@ -209,7 +217,8 @@
       <DependentUpon>EntitiesCollectionListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CharacterEncoder.cs" />
-    <Compile Include="Helper\CRMRecordEventArgs.cs" />
+    <Compile Include="Helper\CDSRecordEventArgs.cs" />
+    <Compile Include="Helper\CRMGridRecordEventArgs.cs" />
     <Compile Include="Controls\EntitiesDropdownControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +246,7 @@
     <Compile Include="Controls\EntitiesListControl.Designer.cs">
       <DependentUpon>EntitiesListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EntityWrapper.cs" />
     <Compile Include="Helper\MetadataHelper.cs" />
     <Compile Include="Helper\SerializationStyle.cs" />
     <Compile Include="Controls\SolutionsDropdownControl.cs">

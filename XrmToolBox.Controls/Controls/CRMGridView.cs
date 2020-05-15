@@ -445,25 +445,25 @@ namespace xrmtb.XrmToolBox.Controls
         #region Private event handler methods
         private void HandleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OnRecordEvent(GetCRMRecordEventArgs(e), RecordClick);
+            GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordClick);
         }
 
         private void HandleDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                OnRecordEvent(GetCRMRecordEventArgs(e), RecordDoubleClick);
+                GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordDoubleClick);
             }
         }
 
         private void HandleCellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            OnRecordEvent(GetCRMRecordEventArgs(e), RecordEnter);
+            GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordEnter);
         }
 
         private void HandleCellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            OnRecordEvent(GetCRMRecordEventArgs(e), RecordLeave);
+            GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordLeave);
         }
 
         private void HandleCellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -490,7 +490,7 @@ namespace xrmtb.XrmToolBox.Controls
                     Cursor = Cursors.Hand;
                 }
             }
-            OnRecordEvent(GetCRMRecordEventArgs(e), RecordMouseEnter);
+            GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordMouseEnter);
         }
 
         private void HandleCellMouseLeave(object sender, DataGridViewCellEventArgs e)
@@ -517,25 +517,17 @@ namespace xrmtb.XrmToolBox.Controls
                     Cursor = Cursors.Default;
                 }
             }
-            OnRecordEvent(GetCRMRecordEventArgs(e), RecordMouseLeave);
+            GetCRMRecordEventArgs(e).OnRecordEvent(this, RecordMouseLeave);
         }
 
-        private void OnRecordEvent(CRMRecordEventArgs e, CRMRecordEventHandler RecordEventHandler)
-        {
-            var handler = RecordEventHandler;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
         #endregion
 
         #region Private methods
-        private CRMRecordEventArgs GetCRMRecordEventArgs(DataGridViewCellEventArgs e)
+        private CRMGridRecordEventArgs GetCRMRecordEventArgs(DataGridViewCellEventArgs e)
         {
             Entity entity = GetRecordFromCellEvent(e);
             var attribute = e.ColumnIndex >= 0 ? Columns[e.ColumnIndex].Name : string.Empty;
-            var args = new CRMRecordEventArgs(e.ColumnIndex, e.RowIndex, entity, attribute);
+            var args = new CRMGridRecordEventArgs(e.ColumnIndex, e.RowIndex, entity, attribute);
             return args;
         }
 
@@ -858,6 +850,4 @@ namespace xrmtb.XrmToolBox.Controls
         }
         #endregion
     }
-
-    public delegate void CRMRecordEventHandler(object sender, CRMRecordEventArgs e);
 }

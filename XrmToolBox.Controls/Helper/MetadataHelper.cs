@@ -10,11 +10,11 @@ namespace xrmtb.XrmToolBox.Controls
 {
     public static class MetadataHelper
     {
-        private static Dictionary<string, EntityMetadata> entities = new Dictionary<string, EntityMetadata>();
+        private static Dictionary<IOrganizationService, Dictionary<string, EntityMetadata>> entities = new Dictionary<IOrganizationService, Dictionary<string, EntityMetadata>>();
 
-        public static String[] entityProperties = { "LogicalName", "DisplayName", "ObjectTypeCode", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind" };
-        public static String[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "PrimaryIdAttribute" };
-        public static String[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "IsPrimaryName", "OptionSet", "SchemaName", "Targets" };
+        public static string[] entityProperties = { "LogicalName", "DisplayName", "ObjectTypeCode", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind" };
+        public static string[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "PrimaryIdAttribute" };
+        public static string[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "IsPrimaryName", "OptionSet", "SchemaName", "Targets" };
 
         public static AttributeMetadata GetAttribute(this IOrganizationService service, string entity, string attribute, object value)
         {
@@ -46,21 +46,31 @@ namespace xrmtb.XrmToolBox.Controls
             return null;
         }
 
-        private static EntityMetadata GetEntity(IOrganizationService service, string entity)
+        public static EntityMetadata GetEntity(IOrganizationService service, string entity)
         {
-            if (string.IsNullOrWhiteSpace(entity))
+            if (service == null || string.IsNullOrWhiteSpace(entity))
             {
                 return null;
             }
-            if (entities?.ContainsKey(entity) != true)
+            if (!entities.TryGetValue(service, out var serviceEntities))
             {
-                var response = LoadEntityDetails(service, entity);
-                if (response != null && response.EntityMetadata != null && response.EntityMetadata.Count == 1 && response.EntityMetadata[0].LogicalName == entity)
+                serviceEntities = new Dictionary<string, EntityMetadata>();
+                entities.Add(service, serviceEntities);
+            }
+
+            if (!serviceEntities.ContainsKey(entity))
+            {
                 {
-                    entities.Add(entity, response.EntityMetadata[0]);
+                    var response = LoadEntityDetails(service, entity);
+                    if (response != null && response.EntityMetadata != null && response.EntityMetadata.Count == 1 && response.EntityMetadata[0].LogicalName == entity)
+                    {
+                        {
+                            serviceEntities.Add(entity, response.EntityMetadata[0]);
+                        }
+                    }
                 }
             }
-            return entities.ContainsKey(entity) ? entities[entity] : null;
+            return serviceEntities[entity];
         }
 
         public static AttributeMetadata GetPrimaryAttribute(this IOrganizationService service, string entity)

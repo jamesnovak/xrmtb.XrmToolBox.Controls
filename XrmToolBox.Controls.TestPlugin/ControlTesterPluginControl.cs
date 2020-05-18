@@ -39,7 +39,7 @@ namespace Sample.XrmToolBox.TestPlugin
                 splitterSolnDropdown.SplitterDistance =
                 splitterViewDropdown.SplitterDistance =
                 splitterGlobalOptsList.SplitterDistance =
-                splitterCRMGridView.SplitterDistance = 
+                splitterCRMGridView.SplitterDistance =
                 splitterXmlViewerControl.SplitterDistance =
                 splitterXmlViewer.SplitterDistance = width =
                 splitterBoundListView.SplitterDistance = width;
@@ -289,6 +289,7 @@ namespace Sample.XrmToolBox.TestPlugin
             CrmGridViewDesignedCols.OrganizationService = newService;
             cdsDataComboBox.OrganizationService = newService;
             cdsDataTextBox.OrganizationService = newService;
+            cdsLookupDialog1.Service = newService;
 
             EntityListViewBase.UpdateConnection(newService);
             listViewEntCollection.UpdateConnection(newService);
@@ -779,6 +780,8 @@ namespace Sample.XrmToolBox.TestPlugin
                 propCRMGridView.SelectedObject = cdsDataComboBox;
             else if (radioCRMGridViewTxtBx.Checked)
                 propCRMGridView.SelectedObject = cdsDataTextBox;
+            else if (radioCRMGridViewLkpDlg.Checked)
+                propCRMGridView.SelectedObject = cdsLookupDialog1;
         }
 
         #endregion CRMGridView event handlers
@@ -886,7 +889,7 @@ namespace Sample.XrmToolBox.TestPlugin
 
             textBoxCDSComboProgress.Text = "";
 
-            cdsDataComboRetrieve.RetrieveMultiple(xmlViewerFetchCDSCombo.Text, 
+            cdsDataComboRetrieve.RetrieveMultiple(xmlViewerFetchCDSCombo.Text,
                 (string message) => {
 
                     textBoxCDSComboProgress.Text += $"{message}{Environment.NewLine}";
@@ -894,11 +897,11 @@ namespace Sample.XrmToolBox.TestPlugin
                     Refresh();
 
                 },
-                (int itemCount, Entity FirstItem) => 
+                (int itemCount, Entity FirstItem) =>
                 {
                     // Thread.Sleep(2000);
                     textBoxCDSComboProgress.Text += $"Count: {itemCount}{Environment.NewLine}";
-                    
+
                     InformationPanel.ChangeInformationPanelMessage(infoPanel, $"Count: {itemCount}, Entity: {FirstItem?.Attributes.First().ToString()}");
                     Refresh();
 
@@ -946,6 +949,14 @@ namespace Sample.XrmToolBox.TestPlugin
             if (e.Entity != null)
             {
                 MessageBox.Show($"Entity: {e.Entity.LogicalName} Id: {e.Entity.Id} Attributes: {e.Entity.Attributes.Count}");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (cdsLookupDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                cdsDataTextBox.Entity = cdsLookupDialog1.Entity;
             }
         }
     }

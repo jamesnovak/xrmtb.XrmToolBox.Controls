@@ -174,6 +174,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.cdsDataTextBox = new xrmtb.XrmToolBox.Controls.Controls.CDSDataTextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -181,6 +182,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.label21 = new System.Windows.Forms.Label();
             this.cdsDataComboBox = new xrmtb.XrmToolBox.Controls.Controls.CDSDataComboBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.radioCRMGridViewLkpDlg = new System.Windows.Forms.RadioButton();
             this.radioCRMGridViewTxtBx = new System.Windows.Forms.RadioButton();
             this.radioCRMGridViewCmbBx = new System.Windows.Forms.RadioButton();
             this.radioCRMGridViewRightShowProps = new System.Windows.Forms.RadioButton();
@@ -225,6 +227,8 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panelCDSComboRetrieve = new System.Windows.Forms.FlowLayoutPanel();
             this.cdsDataComboRetrieve = new xrmtb.XrmToolBox.Controls.Controls.CDSDataComboBox();
             this.buttonCDSComboRetrieve = new System.Windows.Forms.Button();
+            this.cdsLookupDialog1 = new xrmtb.XrmToolBox.Controls.Controls.CDSLookupDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStripMenu.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageEntList.SuspendLayout();
@@ -2201,6 +2205,7 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.cdsDataTextBox);
             this.groupBox1.Controls.Add(this.label22);
@@ -2214,6 +2219,17 @@ namespace Sample.XrmToolBox.TestPlugin
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CDSDataComboBox";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(324, 71);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 21);
+            this.button1.TabIndex = 11;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label23
             // 
@@ -2240,7 +2256,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.cdsDataTextBox.LogicalName = "";
             this.cdsDataTextBox.Name = "cdsDataTextBox";
             this.cdsDataTextBox.OrganizationService = null;
-            this.cdsDataTextBox.Size = new System.Drawing.Size(287, 20);
+            this.cdsDataTextBox.Size = new System.Drawing.Size(255, 20);
             this.cdsDataTextBox.TabIndex = 9;
             this.cdsDataTextBox.RecordClick += new xrmtb.XrmToolBox.Controls.CDSRecordEventHandler(this.cdsDataTextBox_RecordClick);
             // 
@@ -2288,6 +2304,7 @@ namespace Sample.XrmToolBox.TestPlugin
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.radioCRMGridViewLkpDlg);
             this.panel12.Controls.Add(this.radioCRMGridViewTxtBx);
             this.panel12.Controls.Add(this.radioCRMGridViewCmbBx);
             this.panel12.Controls.Add(this.radioCRMGridViewRightShowProps);
@@ -2300,10 +2317,22 @@ namespace Sample.XrmToolBox.TestPlugin
             this.panel12.Size = new System.Drawing.Size(237, 101);
             this.panel12.TabIndex = 8;
             // 
+            // radioCRMGridViewLkpDlg
+            // 
+            this.radioCRMGridViewLkpDlg.AutoSize = true;
+            this.radioCRMGridViewLkpDlg.Location = new System.Drawing.Point(159, 72);
+            this.radioCRMGridViewLkpDlg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioCRMGridViewLkpDlg.Name = "radioCRMGridViewLkpDlg";
+            this.radioCRMGridViewLkpDlg.Size = new System.Drawing.Size(59, 17);
+            this.radioCRMGridViewLkpDlg.TabIndex = 10;
+            this.radioCRMGridViewLkpDlg.Text = "LkpDlg";
+            this.radioCRMGridViewLkpDlg.UseVisualStyleBackColor = true;
+            this.radioCRMGridViewLkpDlg.CheckedChanged += new System.EventHandler(this.RadioCRMGridViewShowProps_CheckedChanged);
+            // 
             // radioCRMGridViewTxtBx
             // 
             this.radioCRMGridViewTxtBx.AutoSize = true;
-            this.radioCRMGridViewTxtBx.Location = new System.Drawing.Point(159, 72);
+            this.radioCRMGridViewTxtBx.Location = new System.Drawing.Point(159, 45);
             this.radioCRMGridViewTxtBx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioCRMGridViewTxtBx.Name = "radioCRMGridViewTxtBx";
             this.radioCRMGridViewTxtBx.Size = new System.Drawing.Size(52, 17);
@@ -2445,7 +2474,7 @@ namespace Sample.XrmToolBox.TestPlugin
             this.tabPageXrmViewer.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageXrmViewer.Size = new System.Drawing.Size(907, 564);
             this.tabPageXrmViewer.TabIndex = 8;
-            this.tabPageXrmViewer.Text = "XrmViewer";
+            this.tabPageXrmViewer.Text = "XmlViewer";
             this.tabPageXrmViewer.UseVisualStyleBackColor = true;
             // 
             // TableXmlViewers
@@ -2941,6 +2970,21 @@ namespace Sample.XrmToolBox.TestPlugin
             this.buttonCDSComboRetrieve.UseVisualStyleBackColor = true;
             this.buttonCDSComboRetrieve.Click += new System.EventHandler(this.buttonCDSComboRetrieve_Click);
             // 
+            // cdsLookupDialog1
+            // 
+            this.cdsLookupDialog1.Entity = null;
+            this.cdsLookupDialog1.LogicalNames = new string[] {
+        "account",
+        "contact",
+        "hej",
+        "hopp"};
+            this.cdsLookupDialog1.Multiselect = false;
+            this.cdsLookupDialog1.Service = null;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // ControlTesterPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3271,5 +3315,9 @@ namespace Sample.XrmToolBox.TestPlugin
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.RadioButton radioCRMGridViewTxtBx;
         private System.Windows.Forms.RadioButton radioCRMGridViewCmbBx;
+        private xrmtb.XrmToolBox.Controls.Controls.CDSLookupDialog cdsLookupDialog1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton radioCRMGridViewLkpDlg;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

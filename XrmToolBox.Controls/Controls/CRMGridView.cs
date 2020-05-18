@@ -80,25 +80,27 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 designedColumns = new DataGridViewColumn[Columns.Count];
                 Columns.CopyTo(designedColumns, 0);
-                base.DataSource = value;
 
                 if (value is EntityCollection entityCollection)
                 {
                     entities = entityCollection.Entities;
+                    EntityName = entityCollection.EntityName;
                 }
                 else if (value is IEnumerable<Entity> entitylist)
                 {
                     entities = entitylist;
+                    EntityName = entities?.FirstOrDefault(e => !string.IsNullOrEmpty(e.LogicalName))?.LogicalName ?? string.Empty;
                 }
                 else
                 {
                     entities = null;
+                    EntityName = string.Empty;
+                    base.DataSource = value;
                 }
                 if (entities?.Where(e => !string.IsNullOrEmpty(e.LogicalName)).Select(e => e.LogicalName).Distinct().Count() > 1)
                 {
                     throw new ArgumentException("DataSource can only contain entities of the same type.");
                 }
-                EntityName = entities?.FirstOrDefault(e => !string.IsNullOrEmpty(e.LogicalName))?.LogicalName ?? string.Empty;
 
                 if (designedColumnsDetermined && designedColumnsUsed && designedColumns != null)
                 {
@@ -539,7 +541,7 @@ namespace xrmtb.XrmToolBox.Controls
             }
             var rowno = e.RowIndex;
             var row = Rows[rowno];
-            var entity = row.Cells["#entity"].Value as Entity;
+            var entity = row.Cells["#entity"]?.Value as Entity;
             return entity;
         }
 

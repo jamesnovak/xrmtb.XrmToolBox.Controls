@@ -47,6 +47,7 @@
             this.splitGrids = new System.Windows.Forms.SplitContainer();
             this.gridResults = new xrmtb.XrmToolBox.Controls.CRMGridView();
             this.gridSelection = new xrmtb.XrmToolBox.Controls.CRMGridView();
+            this.btnRemoveValue = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -152,6 +153,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnRemoveValue);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnOk);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -296,6 +298,16 @@
             this.gridSelection.DataSourceChanged += new System.EventHandler(this.gridSelection_DataSourceChanged);
             this.gridSelection.SelectionChanged += new System.EventHandler(this.gridSelection_SelectionChanged);
             // 
+            // btnRemoveValue
+            // 
+            this.btnRemoveValue.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnRemoveValue.Location = new System.Drawing.Point(12, 6);
+            this.btnRemoveValue.Name = "btnRemoveValue";
+            this.btnRemoveValue.Size = new System.Drawing.Size(106, 23);
+            this.btnRemoveValue.TabIndex = 2;
+            this.btnRemoveValue.Text = "Remove value";
+            this.btnRemoveValue.UseVisualStyleBackColor = true;
+            // 
             // CDSLookupDialogForm
             // 
             this.AcceptButton = this.btnOk;
@@ -345,5 +357,6 @@
         private System.Windows.Forms.Button btnAddSelection;
         private System.Windows.Forms.Button btnRemoveSelection;
         internal System.Windows.Forms.SplitContainer splitGrids;
+        private System.Windows.Forms.Button btnRemoveValue;
     }
 }

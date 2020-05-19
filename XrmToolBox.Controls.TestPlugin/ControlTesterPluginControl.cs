@@ -954,10 +954,17 @@ namespace Sample.XrmToolBox.TestPlugin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (cdsLookupDialog1.ShowDialog(this) == DialogResult.OK)
+            Cursor = Cursors.WaitCursor;
+            switch (cdsLookupDialog1.ShowDialog(this))
             {
-                cdsDataTextBox.Entity = cdsLookupDialog1.Entity;
+                case DialogResult.OK:
+                    cdsDataTextBox.Entity = cdsLookupDialog1.Entity;
+                    break;
+                case DialogResult.Abort:
+                    cdsDataTextBox.Entity = null;
+                    break;
             }
+            Cursor = Cursors.Default;
         }
     }
 }

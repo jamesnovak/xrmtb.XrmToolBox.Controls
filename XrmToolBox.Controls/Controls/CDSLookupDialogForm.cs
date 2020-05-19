@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Extensions;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         #region Private Fields
 
         private Dictionary<string, List<Entity>> entityviews;
-        private string[] logicalNames;
         private IOrganizationService service;
+
         #endregion Private Fields
 
         #region Public Constructors
@@ -80,7 +81,12 @@ namespace xrmtb.XrmToolBox.Controls.Controls
                 {
                     txtFilter.Text = string.Empty;
                 }
-                gridResults.DataSource = service.ExecuteQuickFind(cmbEntity.SelectedItem as string, view, txtFilter.Text);
+                if (!(cmbEntity.SelectedItem is EntityMetadataProxy entity))
+                {
+                    gridResults.DataSource = null;
+                    return;
+                }
+                gridResults.DataSource = service.ExecuteQuickFind(entity.Metadata.LogicalName, view, txtFilter.Text);
                 var layout = new XmlDocument();
                 layout.LoadXml(view["layoutxml"].ToString());
                 gridResults.ColumnOrder = String.Join(",", layout.SelectNodes("//cell/@name").OfType<XmlAttribute>().Select(a => a.Value));
@@ -97,7 +103,12 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             cmbEntity.Items.Clear();
             if (logicalNames != null)
             {
-                cmbEntity.Items.AddRange(logicalNames);
+                cmbEntity.Items.AddRange(logicalNames
+                    .Where(l => !string.IsNullOrWhiteSpace(l))
+                    .Select(l => service.GetEntity(l))
+                    .Where(m => m != null)
+                    .Select(m => new EntityMetadataProxy(m))
+                    .ToArray());
             }
             cmbEntity.SelectedIndex = cmbEntity.Items.Count > 0 ? 0 : -1;
             cmbEntity.Enabled = cmbEntity.Items.Count > 1;
@@ -115,8 +126,14 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             entityviews = new Dictionary<string, List<Entity>>();
         }
 
-        private void SetViews(string logicalname)
+        private void SetViews(EntityMetadataProxy entity)
         {
+            if (entity == null)
+            {
+                cmbView.DataSource = null;
+                return;
+            }
+            var logicalname = entity.Metadata.LogicalName;
             if (!entityviews.ContainsKey(logicalname))
             {
                 var views = new List<Entity>();
@@ -172,7 +189,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         private void cmbEntity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetViews(cmbEntity.SelectedItem as string);
+            SetViews(cmbEntity.SelectedItem as EntityMetadataProxy);
         }
 
         private void cmbView_SelectedIndexChanged(object sender, EventArgs e)

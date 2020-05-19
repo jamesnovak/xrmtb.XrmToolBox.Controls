@@ -233,6 +233,7 @@
       <DependentUpon>EntitiesDropdownControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\EntityCollectionSerializer.cs" />
+    <Compile Include="Helper\EntityMetadataProxy.cs" />
     <Compile Include="Helper\EntitySerializer.cs" />
     <Compile Include="Controls\FilteredListViewBaseControl.cs">
       <SubType>UserControl</SubType>

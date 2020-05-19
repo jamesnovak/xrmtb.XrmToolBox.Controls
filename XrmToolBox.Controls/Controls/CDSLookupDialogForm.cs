@@ -23,10 +23,12 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         #region Public Constructors
 
-        public CDSLookupDialogForm(IOrganizationService service, string[] logicalNames, bool multiSelect, string title)
+        public CDSLookupDialogForm(IOrganizationService service, string[] logicalNames, bool multiSelect, bool friendlyNames, string title)
         {
             InitializeComponent();
             SetMulti(multiSelect);
+            gridResults.ShowFriendlyNames = friendlyNames;
+            gridSelection.ShowFriendlyNames = friendlyNames;
             Text = title;
             SetService(service);
             SetLogicalNames(logicalNames);

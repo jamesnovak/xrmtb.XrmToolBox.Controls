@@ -46,7 +46,7 @@ namespace xrmtb.XrmToolBox.Controls
             return null;
         }
 
-        public static EntityMetadata GetEntity(IOrganizationService service, string entity)
+        public static EntityMetadata GetEntity(this IOrganizationService service, string entity)
         {
             if (service == null || string.IsNullOrWhiteSpace(entity))
             {
@@ -60,17 +60,17 @@ namespace xrmtb.XrmToolBox.Controls
 
             if (!serviceEntities.ContainsKey(entity))
             {
+                var response = LoadEntityDetails(service, entity);
+                if (response != null && response.EntityMetadata != null && response.EntityMetadata.Count == 1 && response.EntityMetadata[0].LogicalName == entity)
                 {
-                    var response = LoadEntityDetails(service, entity);
-                    if (response != null && response.EntityMetadata != null && response.EntityMetadata.Count == 1 && response.EntityMetadata[0].LogicalName == entity)
-                    {
-                        {
-                            serviceEntities.Add(entity, response.EntityMetadata[0]);
-                        }
-                    }
+                    serviceEntities.Add(entity, response.EntityMetadata[0]);
                 }
             }
-            return serviceEntities[entity];
+            if (serviceEntities.TryGetValue(entity, out EntityMetadata meta))
+            {
+                return meta;
+            }
+            return null;
         }
 
         public static AttributeMetadata GetPrimaryAttribute(this IOrganizationService service, string entity)

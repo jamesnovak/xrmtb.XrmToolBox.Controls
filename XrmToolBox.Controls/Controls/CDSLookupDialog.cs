@@ -15,10 +15,6 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         #endregion Private Fields
 
-        #region Public Constructors
-
-        #endregion Public Constructors
-
         #region Public Properties
 
         /// <summary>
@@ -52,7 +48,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
                 if (value != null && value.Length > 0)
                 {
                     // Clever way to allow comma separated logicalnames too in the array
-                    logicalNames = 
+                    logicalNames =
                         string.Join(",", value)
                         .Split(',')
                         .Select(l => l.Trim())
@@ -78,6 +74,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         [Description("The string to display in the title bar of the dialog box.")]
         public string Title { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
@@ -107,6 +104,10 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             if (Service == null)
             {
                 throw new Exception("Service property must be set before calling ShowDialog.");
+            }
+            if (logicalNames == null || logicalNames.Length < 1)
+            {
+                throw new Exception("LogicalNames property must contain at least one entity before calling ShowDialog.");
             }
             var title = string.IsNullOrEmpty(Title) ? Multiselect ? "Select Records" : "Select Record" : Title;
             using (var form = new CDSLookupDialogForm(Service, LogicalNames, Multiselect, title))

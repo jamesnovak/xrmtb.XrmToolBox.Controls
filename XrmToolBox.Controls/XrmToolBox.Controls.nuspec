@@ -12,7 +12,17 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
-Changed to semantic versioning.
+      New controls:
+      * CDSDataTextBox - A TextBox control with four CDS properties: Entity, EntityReference, LogicalName and Id. Also event handler for RecordClick.
+      * CDSLookupDialog - A dialog just like OpenFileDialog etc, but for selecting CDS records.
+      
+      Improvements:
+      Various performance improvements to CRMGridView
+      Minor refactoring
+      
+
+Version 2.0.2:
+      Changed to semantic versioning.
 
       - CDSDataComboBox now accepts IEnumerable of Entity OR EntityCollection as DataSource.
       - CRMGridView 
@@ -22,7 +32,6 @@ Changed to semantic versioning.
       -- New property: ShowColumnsNotInColumnOrder, set to include all returned attributes even if they are not listed in ColumnOrder property
       -- New property: EntityName, readonly
       
-
 Version 1.2020.5.3:
       Added RetrieveMulitple method to the CDSDataComboBox with callbacks for progress updates and completion
 	    Minor update to EntitiesCollectionListView to display Aliased attribute values correctly when showing friendly names

@@ -39,7 +39,17 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             }
         }
 
-        [Description("List of entity logicalnames that shall be available to select from.")]
+        [Description("Entity logicalname to select records from for standard lookups.")]
+        public string LogicalName
+        {
+            get => logicalNames?.Length == 1 ? logicalNames[0] : string.Empty;
+            set
+            {
+                logicalNames = new string[] { value };
+            }
+        }
+
+        [Description("List of entity logicalnames that shall be available to select from for polymorphic lookups.")]
         public string[] LogicalNames
         {
             get => logicalNames;

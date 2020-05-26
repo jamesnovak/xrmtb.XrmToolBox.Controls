@@ -19,54 +19,6 @@ This release:
       Added possibility to always respect columnset - also for primary key column
 
 
-Version 2.1.1:
-      New controls:
-      * CDSDataTextBox - A TextBox control with four CDS properties: Entity, EntityReference, LogicalName and Id. Also event handler for RecordClick.
-      * CDSLookupDialog - A dialog just like OpenFileDialog etc, but for selecting CDS records.
-      
-      Improvements:
-      Various performance improvements to CRMGridView
-      Minor refactoring
-
-Version 2.0.2:
-      Changed to semantic versioning.
-
-      - CDSDataComboBox now accepts IEnumerable of Entity OR EntityCollection as DataSource.
-      - CRMGridView 
-      -- Now accepts IEnumerable of Entity OR EntityCollection as DataSource.
-      -- Breaking Change: CRMGridView properties SelectedRowRecords and SelectedCellRecords are now of type IEnumerable of Entity!
-      -- New property: ShowAllColumnsInColumnOrder, set to show columns that do not contain any values
-      -- New property: ShowColumnsNotInColumnOrder, set to include all returned attributes even if they are not listed in ColumnOrder property
-      -- New property: EntityName, readonly
-      
-Version 1.2020.5.3:
-      Added RetrieveMulitple method to the CDSDataComboBox with callbacks for progress updates and completion
-	    Minor update to EntitiesCollectionListView to display Aliased attribute values correctly when showing friendly names
-
-Version 1.2020.4.10:
-      Added property ColumnOrder to CRMGridView control
-	    Update references to latest SDK packages
-	    Fixes to BoundEntities control for LoadData and ClearData
-	    Fixes to EntityCollectionListView control for overloaded LoadData methods for collections and FetchXml
-	    ListDisplayItem is now public to allow loading data externally
-  
-Version 1.2019.12.1:
-      New control:
-      - CDSDataComboBox, set an EntityCollection as DataSource on this ComboBox. Display Format may be entered to specify data to show. SelectedEntity exposed for easy access to the selected record.
-
-Version 1.2019.7.6:
-      New control: 
-      - DataGridViewGrouper, adding group capabilities to the DataGrid controls
-      Updates:
-      - CRMGridView display milliseconds, Alias for friendly names, LocalTime for aliased values etc.
-
-Version 1.2019.3.1:
-      New controls:
-      - CRMGridView
-      - XMLViewer
-      - XMLViewerControl
-      Updates:
-      - Additional fixes for base controls and removal of XrmToolBox dependency
     </releaseNotes>
     <copyright>©2019-2020 Jim Novak, Jonas Rapp</copyright>
     <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>

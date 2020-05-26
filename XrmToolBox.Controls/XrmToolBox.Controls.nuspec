@@ -12,6 +12,11 @@
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
 This release:
+      Bugfix for results from aggregate queries aggregating on primary key column
+      Added possibility to always respect columnset - also for primary key column
+
+
+Version 2.1.1:
       New controls:
       * CDSDataTextBox - A TextBox control with four CDS properties: Entity, EntityReference, LogicalName and Id. Also event handler for RecordClick.
       * CDSLookupDialog - A dialog just like OpenFileDialog etc, but for selecting CDS records.
@@ -19,7 +24,6 @@ This release:
       Improvements:
       Various performance improvements to CRMGridView
       Minor refactoring
-      
 
 Version 2.0.2:
       Changed to semantic versioning.

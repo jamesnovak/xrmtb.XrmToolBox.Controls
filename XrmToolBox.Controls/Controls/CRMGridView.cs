@@ -576,7 +576,14 @@ namespace xrmtb.XrmToolBox.Controls
                         .Select(a => a.Key)
                         .Distinct());
                 }
-                attributes.Distinct().ToList().ForEach(a => AddColumnForAttribute(entities, columns, a, showAllColumnsInColumnOrder));
+                attributes.Distinct().ToList().ForEach(a =>
+                {
+                    // Force the column to be displayed if it's in the ColumnOrder list and we either want to display
+                    // all the listed columns or it contains data
+                    var force = columnOrder.Contains(a) && (showAllColumnsInColumnOrder || entities.Any(e => e.Contains(a)));
+
+                    AddColumnForAttribute(entities, columns, a, force);
+                });
             }
             columns.Add(new DataColumn("#entity", typeof(Entity)));
             return columns;
@@ -672,8 +679,13 @@ namespace xrmtb.XrmToolBox.Controls
             if (CreateColumnForAttribute(entities, attribute, force) is DataColumn dataColumn && dataColumn != null)
             {
                 var meta = dataColumn.ExtendedProperties.ContainsKey("Metadata") ? dataColumn.ExtendedProperties["Metadata"] as AttributeMetadata : null;
-                if (meta?.IsPrimaryId == true)
-                {   // Never add column for primary key, it has a dedicated column
+                if (meta?.IsPrimaryId == true && (!force || ShowIdColumn && meta.LogicalName == attribute))
+                {
+                    // Don't show the primary key column twice. Ignore the primary key column if:
+                    // * `force` is false, i.e. the user isn't asking to see this column via the ColumnOrder property, OR
+                    // * The standard ID column is being already shown (via ShowIdColumn) and this isn't an aliased version
+                    //   An aliased column probably indicates an aggregate query and we want to show the aggregate (e.g. count)
+                    //   as a different column to the ID of the record.
                     return;
                 }
                 if (showFriendlyNames &&

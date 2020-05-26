@@ -11,6 +11,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
+Full release notes: https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/releases/tag/$buildnumber$
+	    
+	    
 This release:
       Bugfix for results from aggregate queries aggregating on primary key column
       Added possibility to always respect columnset - also for primary key column

@@ -15,8 +15,14 @@ Full release notes: https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/rele
 	    
 	    
 This release:
-      Bugfix for results from aggregate queries aggregating on primary key column
-      Added possibility to always respect columnset - also for primary key column
+* CRMGridView
+  - Bugfix for results from aggregate queries aggregating on primary key column
+  - Added possibility to always respect columnset - also for primary key column
+
+* CDSLookupDialog
+  - Adding double click to select record
+  - Added LogicalName property for non polymorphic lookups
+
 
 
     </releaseNotes>

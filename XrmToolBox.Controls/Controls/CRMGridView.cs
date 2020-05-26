@@ -672,7 +672,7 @@ namespace xrmtb.XrmToolBox.Controls
             if (CreateColumnForAttribute(entities, attribute, force) is DataColumn dataColumn && dataColumn != null)
             {
                 var meta = dataColumn.ExtendedProperties.ContainsKey("Metadata") ? dataColumn.ExtendedProperties["Metadata"] as AttributeMetadata : null;
-                if (!force && meta?.IsPrimaryId == true)
+                if (meta?.IsPrimaryId == true && (!force || ShowIdColumn && meta.LogicalName == attribute))
                 {   // Never add column for primary key, it has a dedicated column
                     return;
                 }

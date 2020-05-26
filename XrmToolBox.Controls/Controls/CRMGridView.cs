@@ -576,7 +576,7 @@ namespace xrmtb.XrmToolBox.Controls
                         .Select(a => a.Key)
                         .Distinct());
                 }
-                attributes.Distinct().ToList().ForEach(a => AddColumnForAttribute(entities, columns, a, showAllColumnsInColumnOrder));
+                attributes.Distinct().ToList().ForEach(a => AddColumnForAttribute(entities, columns, a, columnOrder.Contains(a) && (showAllColumnsInColumnOrder || entities.Any(e => e.Contains(a)))));
             }
             columns.Add(new DataColumn("#entity", typeof(Entity)));
             return columns;
@@ -672,7 +672,7 @@ namespace xrmtb.XrmToolBox.Controls
             if (CreateColumnForAttribute(entities, attribute, force) is DataColumn dataColumn && dataColumn != null)
             {
                 var meta = dataColumn.ExtendedProperties.ContainsKey("Metadata") ? dataColumn.ExtendedProperties["Metadata"] as AttributeMetadata : null;
-                if (meta?.IsPrimaryId == true)
+                if (!force && meta?.IsPrimaryId == true)
                 {   // Never add column for primary key, it has a dedicated column
                     return;
                 }

@@ -38,6 +38,7 @@
             this.cmbEntity = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRemoveValue = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -47,7 +48,6 @@
             this.splitGrids = new System.Windows.Forms.SplitContainer();
             this.gridResults = new xrmtb.XrmToolBox.Controls.CRMGridView();
             this.gridSelection = new xrmtb.XrmToolBox.Controls.CRMGridView();
-            this.btnRemoveValue = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -162,6 +162,16 @@
             this.panel2.Size = new System.Drawing.Size(533, 37);
             this.panel2.TabIndex = 1;
             // 
+            // btnRemoveValue
+            // 
+            this.btnRemoveValue.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnRemoveValue.Location = new System.Drawing.Point(12, 6);
+            this.btnRemoveValue.Name = "btnRemoveValue";
+            this.btnRemoveValue.Size = new System.Drawing.Size(106, 23);
+            this.btnRemoveValue.TabIndex = 2;
+            this.btnRemoveValue.Text = "Remove value";
+            this.btnRemoveValue.UseVisualStyleBackColor = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -271,6 +281,7 @@
             this.gridResults.ShowLocalTimes = true;
             this.gridResults.Size = new System.Drawing.Size(513, 293);
             this.gridResults.TabIndex = 2;
+            this.gridResults.RecordDoubleClick += new xrmtb.XrmToolBox.Controls.CRMRecordEventHandler(this.gridResults_RecordDoubleClick);
             this.gridResults.SelectionChanged += new System.EventHandler(this.gridResults_SelectionChanged);
             // 
             // gridSelection
@@ -297,16 +308,6 @@
             this.gridSelection.TabIndex = 3;
             this.gridSelection.DataSourceChanged += new System.EventHandler(this.gridSelection_DataSourceChanged);
             this.gridSelection.SelectionChanged += new System.EventHandler(this.gridSelection_SelectionChanged);
-            // 
-            // btnRemoveValue
-            // 
-            this.btnRemoveValue.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnRemoveValue.Location = new System.Drawing.Point(12, 6);
-            this.btnRemoveValue.Name = "btnRemoveValue";
-            this.btnRemoveValue.Size = new System.Drawing.Size(106, 23);
-            this.btnRemoveValue.TabIndex = 2;
-            this.btnRemoveValue.Text = "Remove value";
-            this.btnRemoveValue.UseVisualStyleBackColor = true;
             // 
             // CDSLookupDialogForm
             // 

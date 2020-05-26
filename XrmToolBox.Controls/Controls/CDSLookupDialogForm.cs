@@ -209,6 +209,18 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             btnClearSelection.Enabled = gridSelection.Rows.Count > 0;
         }
 
+        private void gridResults_RecordDoubleClick(object sender, CRMRecordEventArgs e)
+        {
+            if (gridResults.MultiSelect)
+            {
+                btnAddSelection_Click(sender, e);
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
+
         private void gridSelection_SelectionChanged(object sender, EventArgs e)
         {
             btnRemoveSelection.Enabled = gridSelection.SelectedRowRecords?.Count() > 0;

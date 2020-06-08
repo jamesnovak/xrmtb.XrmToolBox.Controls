@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Extensions;
-using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +14,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
     {
         #region Private Fields
 
+        private const int Error_QuickFindQueryRecordLimit = -2147164124;
         private Dictionary<string, List<Entity>> entityviews;
         private IOrganizationService service;
 
@@ -76,28 +75,53 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         private void LoadData()
         {
-            if (cmbView.SelectedEntity is Entity view)
+            if (!(cmbView.SelectedEntity is Entity view))
             {
-                txtFilter.Enabled = view.GetAttributeValue<int>(Savedquery.QueryType) == 4;
-                if (!txtFilter.Enabled && !string.IsNullOrWhiteSpace(txtFilter.Text))
-                {
-                    txtFilter.Text = string.Empty;
-                }
-                if (!(cmbEntity.SelectedItem is EntityMetadataProxy entity))
-                {
-                    gridResults.DataSource = null;
-                    return;
-                }
-                gridResults.DataSource = service.ExecuteQuickFind(entity.Metadata.LogicalName, view, txtFilter.Text);
-                var layout = new XmlDocument();
-                layout.LoadXml(view["layoutxml"].ToString());
-                gridResults.ColumnOrder = String.Join(",", layout.SelectNodes("//cell/@name").OfType<XmlAttribute>().Select(a => a.Value));
-                gridResults.ShowAllColumnsInColumnOrder = true;
-                gridResults.ShowColumnsNotInColumnOrder = false;
-                gridSelection.ColumnOrder = gridResults.ColumnOrder;
-                gridSelection.ShowAllColumnsInColumnOrder = true;
-                gridSelection.ShowColumnsNotInColumnOrder = false;
+                return;
             }
+            txtFilter.Enabled = view.GetAttributeValue<int>(Savedquery.QueryType) == 4;
+            if (!txtFilter.Enabled && !string.IsNullOrWhiteSpace(txtFilter.Text))
+            {
+                txtFilter.Text = string.Empty;
+            }
+            if (!(cmbEntity.SelectedItem is EntityMetadataProxy entity))
+            {
+                gridResults.DataSource = null;
+                return;
+            }
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                gridResults.DataSource = service.ExecuteQuickFind(entity.Metadata.LogicalName, view, txtFilter.Text);
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                if (ex.Detail.ErrorCode == Error_QuickFindQueryRecordLimit)
+                {
+                    if (view.TryGetAttributeValue<bool?>(Savedquery.Isquickfindquery, out bool? isqf) && isqf == true)
+                    {
+                        Cursor = Cursors.Arrow;
+                        MessageBox.Show("The environment contains too many records to use the Quick Find view.\nPlease select another view.", "Loading data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (cmbView.DataSource is IEnumerable<Entity> views)
+                        {
+                            views = views.Except(views.Where(v => v.TryGetAttributeValue<bool?>(Savedquery.Isquickfindquery, out bool? isqfq) && isqfq == true));
+                            cmbView.DataSource = views;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
+            }
+            var layout = new XmlDocument();
+            layout.LoadXml(view["layoutxml"].ToString());
+            gridResults.ColumnOrder = String.Join(",", layout.SelectNodes("//cell/@name").OfType<XmlAttribute>().Select(a => a.Value));
+            gridResults.ShowAllColumnsInColumnOrder = true;
+            gridResults.ShowColumnsNotInColumnOrder = false;
+            gridSelection.ColumnOrder = gridResults.ColumnOrder;
+            gridSelection.ShowAllColumnsInColumnOrder = true;
+            gridSelection.ShowColumnsNotInColumnOrder = false;
         }
 
         private void SetLogicalNames(string[] logicalNames)
@@ -196,7 +220,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         private void cmbView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadData();
+            timerLoadData.Start();
         }
 
         private void gridResults_SelectionChanged(object sender, EventArgs e)
@@ -224,6 +248,12 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         private void gridSelection_SelectionChanged(object sender, EventArgs e)
         {
             btnRemoveSelection.Enabled = gridSelection.SelectedRowRecords?.Count() > 0;
+        }
+
+        private void timerLoadData_Tick(object sender, EventArgs e)
+        {
+            timerLoadData.Stop();
+            LoadData();
         }
 
         private void txtFilter_Enter(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace xrmtb.XrmToolBox.Controls.Helper
     /// </summary>
     internal static class LookupHelper
     {
+        private const int ViewType_QuickFind = 4;
         #region Internal Methods
 
         /// <summary>
@@ -48,13 +49,12 @@ namespace xrmtb.XrmToolBox.Controls.Helper
             {
                 return null;
             }
-            var quickfindtype = 4;
             var qe = new QueryExpression(Savedquery.EntityName);
-            qe.ColumnSet.AddColumns(Savedquery.PrimaryName, Savedquery.Fetchxml, Savedquery.Layoutxml, Savedquery.QueryType);
+            qe.ColumnSet.AddColumns(Savedquery.PrimaryName, Savedquery.Fetchxml, Savedquery.Layoutxml, Savedquery.QueryType, Savedquery.Isquickfindquery);
             qe.Criteria.AddCondition(Savedquery.Fetchxml, ConditionOperator.NotNull);
             qe.Criteria.AddCondition(Savedquery.Layoutxml, ConditionOperator.NotNull);
             qe.Criteria.AddCondition(Savedquery.ReturnedTypeCode, ConditionOperator.Equal, logicalname);
-            qe.Criteria.AddCondition(Savedquery.QueryType, quickfind ? ConditionOperator.Equal : ConditionOperator.NotEqual, quickfindtype);
+            qe.Criteria.AddCondition(Savedquery.QueryType, quickfind ? ConditionOperator.Equal : ConditionOperator.NotEqual, ViewType_QuickFind);
             try
             {
                 var newviews = service.RetrieveMultiple(qe);

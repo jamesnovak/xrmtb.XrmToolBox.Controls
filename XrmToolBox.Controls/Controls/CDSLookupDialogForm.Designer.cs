@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDSLookupDialogForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnFilter = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbView = new xrmtb.XrmToolBox.Controls.Controls.CDSDataComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbEntity = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,8 +46,10 @@
             this.btnAddSelection = new System.Windows.Forms.Button();
             this.btnRemoveSelection = new System.Windows.Forms.Button();
             this.splitGrids = new System.Windows.Forms.SplitContainer();
+            this.timerLoadData = new System.Windows.Forms.Timer(this.components);
             this.gridResults = new xrmtb.XrmToolBox.Controls.CRMGridView();
             this.gridSelection = new xrmtb.XrmToolBox.Controls.CRMGridView();
+            this.cmbView = new xrmtb.XrmToolBox.Controls.Controls.CDSDataComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -104,21 +106,6 @@
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Filter";
-            // 
-            // cmbView
-            // 
-            this.cmbView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbView.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbView.DisplayFormat = "";
-            this.cmbView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbView.FormattingEnabled = true;
-            this.cmbView.Location = new System.Drawing.Point(100, 46);
-            this.cmbView.Name = "cmbView";
-            this.cmbView.OrganizationService = null;
-            this.cmbView.Size = new System.Drawing.Size(421, 21);
-            this.cmbView.TabIndex = 3;
-            this.cmbView.SelectedIndexChanged += new System.EventHandler(this.cmbView_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -202,7 +189,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(99, 94);
+            this.panel3.Size = new System.Drawing.Size(99, 118);
             this.panel3.TabIndex = 2;
             // 
             // btnClearSelection
@@ -256,8 +243,12 @@
             this.splitGrids.Panel2.Controls.Add(this.panel3);
             this.splitGrids.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.splitGrids.Size = new System.Drawing.Size(533, 391);
-            this.splitGrids.SplitterDistance = 293;
+            this.splitGrids.SplitterDistance = 269;
             this.splitGrids.TabIndex = 4;
+            // 
+            // timerLoadData
+            // 
+            this.timerLoadData.Tick += new System.EventHandler(this.timerLoadData_Tick);
             // 
             // gridResults
             // 
@@ -279,7 +270,7 @@
             this.gridResults.ShowIdColumn = false;
             this.gridResults.ShowIndexColumn = false;
             this.gridResults.ShowLocalTimes = true;
-            this.gridResults.Size = new System.Drawing.Size(513, 293);
+            this.gridResults.Size = new System.Drawing.Size(513, 269);
             this.gridResults.TabIndex = 2;
             this.gridResults.RecordDoubleClick += new xrmtb.XrmToolBox.Controls.CRMRecordEventHandler(this.gridResults_RecordDoubleClick);
             this.gridResults.SelectionChanged += new System.EventHandler(this.gridResults_SelectionChanged);
@@ -304,10 +295,25 @@
             this.gridSelection.ShowIdColumn = false;
             this.gridSelection.ShowIndexColumn = false;
             this.gridSelection.ShowLocalTimes = true;
-            this.gridSelection.Size = new System.Drawing.Size(424, 94);
+            this.gridSelection.Size = new System.Drawing.Size(424, 118);
             this.gridSelection.TabIndex = 3;
             this.gridSelection.DataSourceChanged += new System.EventHandler(this.gridSelection_DataSourceChanged);
             this.gridSelection.SelectionChanged += new System.EventHandler(this.gridSelection_SelectionChanged);
+            // 
+            // cmbView
+            // 
+            this.cmbView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbView.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbView.DisplayFormat = "";
+            this.cmbView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbView.FormattingEnabled = true;
+            this.cmbView.Location = new System.Drawing.Point(100, 46);
+            this.cmbView.Name = "cmbView";
+            this.cmbView.OrganizationService = null;
+            this.cmbView.Size = new System.Drawing.Size(421, 21);
+            this.cmbView.TabIndex = 3;
+            this.cmbView.SelectedIndexChanged += new System.EventHandler(this.cmbView_SelectedIndexChanged);
             // 
             // CDSLookupDialogForm
             // 
@@ -359,5 +365,6 @@
         private System.Windows.Forms.Button btnRemoveSelection;
         internal System.Windows.Forms.SplitContainer splitGrids;
         private System.Windows.Forms.Button btnRemoveValue;
+        private System.Windows.Forms.Timer timerLoadData;
     }
 }

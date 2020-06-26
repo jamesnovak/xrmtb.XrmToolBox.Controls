@@ -33,7 +33,7 @@ namespace xrmtb.XrmToolBox.Controls.Helper
                 return null;
             }
             var fetchDoc = new XmlDocument();
-            fetchDoc.LoadXml(view.GetAttributeValue<string>("fetchxml"));
+            fetchDoc.LoadXml(view.GetAttributeValue<string>(Savedquery.Fetchxml));
             var filterNodes = fetchDoc.SelectNodes("fetch/entity/filter");
             var metadata = MetadataHelper.GetEntity(service, logicalName);
             foreach (XmlNode filterNode in filterNodes)
@@ -43,7 +43,7 @@ namespace xrmtb.XrmToolBox.Controls.Helper
             return service.RetrieveMultiple(new FetchExpression(fetchDoc.OuterXml));
         }
 
-        internal static EntityCollection RetrieveViews(this IOrganizationService service, string logicalname, bool quickfind)
+        internal static EntityCollection RetrieveSystemViews(this IOrganizationService service, string logicalname, bool quickfind)
         {
             if (service == null)
             {
@@ -55,6 +55,28 @@ namespace xrmtb.XrmToolBox.Controls.Helper
             qe.Criteria.AddCondition(Savedquery.Layoutxml, ConditionOperator.NotNull);
             qe.Criteria.AddCondition(Savedquery.ReturnedTypeCode, ConditionOperator.Equal, logicalname);
             qe.Criteria.AddCondition(Savedquery.QueryType, quickfind ? ConditionOperator.Equal : ConditionOperator.NotEqual, ViewType_QuickFind);
+            try
+            {
+                var newviews = service.RetrieveMultiple(qe);
+                return newviews;
+            }
+            catch (FaultException<OrganizationServiceFault>)
+            {
+                return null;
+            }
+        }
+
+        internal static EntityCollection RetrievePersonalViews(this IOrganizationService service, string logicalname)
+        {
+            if (service == null)
+            {
+                return null;
+            }
+            var qe = new QueryExpression(UserQuery.EntityName);
+            qe.ColumnSet.AddColumns(UserQuery.PrimaryName, UserQuery.Fetchxml, UserQuery.Layoutxml, UserQuery.QueryType);
+            qe.Criteria.AddCondition(UserQuery.Fetchxml, ConditionOperator.NotNull);
+            qe.Criteria.AddCondition(UserQuery.Layoutxml, ConditionOperator.NotNull);
+            qe.Criteria.AddCondition(UserQuery.ReturnedTypeCode, ConditionOperator.Equal, logicalname);
             try
             {
                 var newviews = service.RetrieveMultiple(qe);

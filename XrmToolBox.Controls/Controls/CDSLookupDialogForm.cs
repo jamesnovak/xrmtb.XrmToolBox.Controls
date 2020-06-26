@@ -17,15 +17,17 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         private const int Error_QuickFindQueryRecordLimit = -2147164124;
         private Dictionary<string, List<Entity>> entityviews;
         private IOrganizationService service;
+        private bool includePersonalViews;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public CDSLookupDialogForm(IOrganizationService service, string[] logicalNames, bool multiSelect, bool friendlyNames, string title)
+        public CDSLookupDialogForm(IOrganizationService service, string[] logicalNames, bool multiSelect, bool friendlyNames, bool includePersonalViews, string title)
         {
             InitializeComponent();
             SetMulti(multiSelect);
+            this.includePersonalViews = includePersonalViews;
             gridResults.ShowFriendlyNames = friendlyNames;
             gridSelection.ShowFriendlyNames = friendlyNames;
             Text = title;
@@ -75,19 +77,22 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         private void LoadData()
         {
-            if (!(cmbView.SelectedEntity is Entity view))
+            if (!(cmbEntity.SelectedItem is EntityMetadataProxy entity))
             {
+                gridResults.DataSource = null;
+                return;
+            }
+            if (!(cmbView.SelectedEntity is Entity view) ||
+                !view.Contains(Savedquery.Fetchxml) ||
+                string.IsNullOrWhiteSpace(view.GetAttributeValue<string>(Savedquery.Fetchxml).Trim()))
+            {
+                gridResults.DataSource = null;
                 return;
             }
             txtFilter.Enabled = view.GetAttributeValue<int>(Savedquery.QueryType) == 4;
             if (!txtFilter.Enabled && !string.IsNullOrWhiteSpace(txtFilter.Text))
             {
                 txtFilter.Text = string.Empty;
-            }
-            if (!(cmbEntity.SelectedItem is EntityMetadataProxy entity))
-            {
-                gridResults.DataSource = null;
-                return;
             }
             try
             {
@@ -163,13 +168,20 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             if (!entityviews.ContainsKey(logicalname))
             {
                 var views = new List<Entity>();
-                if (service.RetrieveViews(logicalname, true) is EntityCollection qfviews)
+                if (service.RetrieveSystemViews(logicalname, true) is EntityCollection qfviews)
                 {
                     views.AddRange(qfviews.Entities);
                 }
-                if (service.RetrieveViews(logicalname, false) is EntityCollection otherviews)
+                if (service.RetrieveSystemViews(logicalname, false) is EntityCollection otherviews)
                 {
                     views.AddRange(otherviews.Entities);
+                }
+                if (includePersonalViews && service.RetrievePersonalViews(logicalname) is EntityCollection userviews && userviews.Entities.Count > 0)
+                {
+                    var separator = new Entity(UserQuery.EntityName);
+                    separator.Attributes[UserQuery.PrimaryName] = "-- Personal Views --";
+                    views.Add(separator);
+                    views.AddRange(userviews.Entities);
                 }
                 entityviews.Add(logicalname, views);
             }

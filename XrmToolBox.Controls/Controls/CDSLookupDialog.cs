@@ -76,6 +76,10 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         [Description("Controls whether multiple records can be selected in the dialog.")]
         public bool Multiselect { get; set; } = false;
 
+        [DefaultValue(false)]
+        [Description("Include personal views for record selection.")]
+        public bool IncludePersonalViews { get; set; } = false;
+
         [DefaultValue(true)]
         [Description("True to show friendly names, False to show logical names and guid etc.")]
         public bool ShowFriendlyNames { get; set; } = true;
@@ -124,7 +128,7 @@ namespace xrmtb.XrmToolBox.Controls.Controls
                 throw new Exception("LogicalNames property must contain at least one entity before calling ShowDialog.");
             }
             var title = string.IsNullOrEmpty(Title) ? Multiselect ? "Select Records" : "Select Record" : Title;
-            using (var form = new CDSLookupDialogForm(Service, LogicalNames, Multiselect, ShowFriendlyNames, title))
+            using (var form = new CDSLookupDialogForm(Service, LogicalNames, Multiselect, ShowFriendlyNames, IncludePersonalViews, title))
             {
                 var result = form.ShowDialog(owner);
                 Entities = form.GetSelectedRecords();

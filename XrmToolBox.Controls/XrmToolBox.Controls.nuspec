@@ -16,13 +16,9 @@ Full release notes:
 	    
 	    
 This release:
-* CRMGridView
-  - Bugfix for results from aggregate queries aggregating on primary key column
-  - Added possibility to always respect columnset - also for primary key column
 
 * CDSLookupDialog
-  - Adding double click to select record
-  - Added LogicalName property for non polymorphic lookups
+  - Adding option to include personal views
 
 
 

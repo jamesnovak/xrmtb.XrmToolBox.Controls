@@ -140,6 +140,11 @@ namespace xrmtb.XrmToolBox.Controls.Controls
             get { return organizationService; }
             set
             {
+                if (value == organizationService)
+                {
+                    return;
+                }
+                Entity = null;
                 organizationService = value;
                 LoadRecord();
                 Refresh();

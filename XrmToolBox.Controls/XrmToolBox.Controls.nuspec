@@ -14,14 +14,6 @@
 Full release notes:
 👉 https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/releases/tag/$buildnumber$
 	    
-	    
-This release:
-
-* CDSLookupDialog
-  - Adding option to include personal views
-
-
-
     </releaseNotes>
     <copyright>©2019-2020 Jim Novak, Jonas Rapp</copyright>
     <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>

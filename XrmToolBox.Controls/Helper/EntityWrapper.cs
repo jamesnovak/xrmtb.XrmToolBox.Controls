@@ -31,12 +31,16 @@ namespace xrmtb.XrmToolBox.Controls.Helper
 
         public static string EntityToString(Entity entity, IOrganizationService service, string Format = null)
         {
+            if (entity == null)
+            {
+                return string.Empty;
+            }
             var value = Format;
             if (string.IsNullOrWhiteSpace(value))
             {
-                value = MetadataHelper.GetPrimaryAttribute(service, entity.LogicalName)?.LogicalName;
+                value = MetadataHelper.GetPrimaryAttribute(service, entity.LogicalName)?.LogicalName ?? string.Empty;
             }
-            if (!Format.Contains("{{") || !Format.Contains("}}"))
+            if (!value.Contains("{{") || !value.Contains("}}"))
             {
                 value = "{{" + value + "}}";
             }

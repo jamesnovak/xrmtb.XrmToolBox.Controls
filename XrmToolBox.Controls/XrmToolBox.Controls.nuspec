@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Shared User controls for developing XrmToolBox Tools</description>
     <releaseNotes>
-Full release notes:
-👉 https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/releases/tag/$buildnumber$
+Full release notes and commit history of this release:
+  https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/releases/tag/$buildnumber$
 	    
     </releaseNotes>
     <copyright>©2019-2020 Jim Novak, Jonas Rapp</copyright>

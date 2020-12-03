@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
-using Microsoft.Xrm.Sdk.Workflow;
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using xrmtb.XrmToolBox.Controls.Helper;
 
@@ -156,7 +153,13 @@ namespace xrmtb.XrmToolBox.Controls.Controls
         {
             get
             {
-                return entity?.Entity?.ToEntityReference();
+                var result = entity?.Entity?.ToEntityReference();
+                if (result == null)
+                {
+                    return null;
+                }
+                result.Name = EntityWrapper.EntityToString(entity?.Entity, organizationService);
+                return result;
             }
             set
             {

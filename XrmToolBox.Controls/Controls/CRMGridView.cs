@@ -363,7 +363,7 @@ namespace xrmtb.XrmToolBox.Controls
                     return null;
                 }
                 var result = new List<Entity>();
-                foreach (DataGridViewRow row in SelectedRows)
+                foreach (DataGridViewRow row in SelectedRows.OfType<DataGridViewRow>().OrderBy(r => r.Index))
                 {
                     var entity = row.Cells["#entity"].Value as Entity;
                     if (entity != null)

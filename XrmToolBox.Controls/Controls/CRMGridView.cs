@@ -433,6 +433,7 @@ namespace xrmtb.XrmToolBox.Controls
         /// </summary>
         public override void Refresh()
         {
+            designedColumnsDetermined = false;
             if (entities != null)
             {
                 var cols = GetTableColumns(entities);
@@ -535,7 +536,7 @@ namespace xrmtb.XrmToolBox.Controls
 
         private Entity GetRecordFromCellEvent(DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            if (e.RowIndex == -1 || !Columns.Contains("#entity"))
             {
                 return null;
             }

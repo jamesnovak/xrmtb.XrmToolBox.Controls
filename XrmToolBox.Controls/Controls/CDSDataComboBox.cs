@@ -99,8 +99,16 @@ namespace xrmtb.XrmToolBox.Controls.Controls
 
         public override void Refresh()
         {
-            base.DataSource = entities?.Select(e => new EntityWrapper(e, displayFormat, organizationService)).ToArray();
+            SuspendLayout();
+            var selected = SelectedEntity;
+            var ds = entities?.Select(e => new EntityWrapper(e, displayFormat, organizationService)).ToArray();
+            base.DataSource = ds;
             base.Refresh();
+            if (selected != null && ds.FirstOrDefault(e => e.Entity.Id.Equals(selected.Id)) is EntityWrapper newselected)
+            {
+                SelectedItem = newselected;
+            }
+            ResumeLayout();
         }
 
         public void RetrieveMultiple(QueryBase query, ProgressUpdate progressCallback, RetrieveComplete completeCallback)

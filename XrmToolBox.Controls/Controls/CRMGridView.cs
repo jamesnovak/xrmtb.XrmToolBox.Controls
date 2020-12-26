@@ -433,7 +433,6 @@ namespace xrmtb.XrmToolBox.Controls
         /// </summary>
         public override void Refresh()
         {
-            designedColumnsDetermined = false;
             if (entities != null)
             {
                 var cols = GetTableColumns(entities);
@@ -586,7 +585,10 @@ namespace xrmtb.XrmToolBox.Controls
                     AddColumnForAttribute(entities, columns, a, force);
                 });
             }
-            columns.Add(new DataColumn("#entity", typeof(Entity)));
+            if (!columns.Any(c => c.ColumnName.Equals("#entity")))
+            {
+                columns.Add(new DataColumn("#entity", typeof(Entity)));
+            }
             return columns;
         }
 
@@ -810,6 +812,7 @@ namespace xrmtb.XrmToolBox.Controls
         {
             SuspendLayout();
             base.DataSource = dTable;
+            VerifySupportingColumn("#entity");
             foreach (DataGridViewColumn col in Columns)
             {
                 var datacolumn = dTable.Columns[col.DataPropertyName];
@@ -845,6 +848,21 @@ namespace xrmtb.XrmToolBox.Controls
                 AutoResizeColumns(AutoSizeColumnsMode);
             }
             ResumeLayout();
+        }
+
+        private void VerifySupportingColumn(string col)
+        {
+            if (!Columns.Contains(col))
+            {
+                var newcol = new DataGridViewTextBoxColumn
+                {
+                    Name = col,
+                    DataPropertyName = col,
+                    HeaderText = col,
+                    ReadOnly = true
+                };
+                Columns.Add(newcol);
+            }
         }
 
         private void ArrangeColumns()

@@ -15,7 +15,7 @@ Full release notes and commit history of this release:
   https://github.com/jamesnovak/xrmtb.XrmToolBox.Controls/releases/tag/$buildnumber$
 	    
     </releaseNotes>
-    <copyright>©2019-2020 Jim Novak, Jonas Rapp</copyright>
+    <copyright>©2019-2021 Jim Novak, Jonas Rapp</copyright>
     <tags>XrmToolBox MSDyn365 MSDynCRM WinForm EntityMetadata AttributeMetadata ViewDropdown SolutionDropdown GlobalOptionSetListView</tags>
     <dependencies />
     <language>en-US</language>

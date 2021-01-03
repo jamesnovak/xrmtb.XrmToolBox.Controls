@@ -656,7 +656,7 @@ namespace xrmtb.XrmToolBox.Controls
             {
                 return typeof(string);
             }
-            if (showFriendlyNames && !ValueTypeIsFriendly(value))
+            if (showFriendlyNames || !ValueTypeIsFriendly(value))
             {
                 return typeof(string);
             }

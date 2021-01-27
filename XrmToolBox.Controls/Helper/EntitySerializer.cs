@@ -164,74 +164,92 @@ namespace xrmtb.XrmToolBox.Controls
             }
         }
 
-        public static string ToJSON(Entity entity, Formatting format, int indent)
+        public static string ToJSON(Entity entity, System.Xml.Formatting format, int indent)
         {
-            StringBuilder sb = new StringBuilder();
-            var space = format == Formatting.Indented ? " " : "";
-            sb.Append(
-                Sep(format, indent + 0) + "{" + space +
-                Sep(format, indent + 1) + "\"entity\":" + space + "\"" + entity.LogicalName + "\"," +
-                Sep(format, indent + 1) + "\"id\":" + space + "\"{" + entity.Id.ToString() + "}\"," +
-                Sep(format, indent + 1) + "\"attributes\":" + space + "[");
+            var jsonObject = ToJSONObject(entity, JsonFormat.Legacy);
 
-            bool first = true;
-            foreach (KeyValuePair<string, object> attribute in entity.Attributes)
+            return Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject, format == System.Xml.Formatting.Indented ? Newtonsoft.Json.Formatting.Indented : Newtonsoft.Json.Formatting.None);
+        }
+
+        internal static object ToJSONObject(Entity entity, JsonFormat format)
+        {
+            var entityDictionary = new Dictionary<string, object>();
+
+            if (format == JsonFormat.Legacy)
             {
-                Object value = attribute.Value;
-                if (attribute.Key == entity.LogicalName + "id")
-                {
-                    continue;
-                }
-                if (attribute.Key.EndsWith("_base") && entity.Contains(attribute.Key.Substring(0, attribute.Key.Length - 5)))
-                {
-                    continue;
-                }
+                entityDictionary["entity"] = entity.LogicalName;
+                entityDictionary["id"] = entity.Id.ToString("B");
 
-                if (first)
-                {
-                    sb.Append(Sep(format, indent + 2) + "{");
-                    first = false;
-                }
-                else
-                    sb.Append("," + Sep(format, indent + 2) + "{");
+                var attributesList = new List<Dictionary<string, object>>();
+                entityDictionary["attributes"] = attributesList;
 
-                if (value is AliasedValue)
+                foreach (var attribute in entity.Attributes)
                 {
-                    if (!string.IsNullOrEmpty(((AliasedValue)value).AttributeLogicalName))
+                    var name = attribute.Key;
+                    var value = attribute.Value;
+
+                    if (name == entity.LogicalName + "id")
                     {
-                        sb.Append(Sep(format, indent + 3) + "\"attributelogicalname\":" + space + "\"" + (((AliasedValue)value).AttributeLogicalName) + "\",");
+                        continue;
                     }
-                    if (!string.IsNullOrEmpty(((AliasedValue)value).EntityLogicalName))
+
+                    if (name.EndsWith("_base") && entity.Contains(name.Substring(0, name.Length - 5)))
                     {
-                        sb.Append(Sep(format, indent + 3) + "\"entitylogicalname\":" + space + "\"" + (((AliasedValue)value).EntityLogicalName) + "\",");
+                        continue;
                     }
-                    value = (((AliasedValue)value).Value);
-                }
 
-                sb.Append(Sep(format, indent + 3) + "\"name\":" + space + "\"" + attribute.Key + "\",");
-                sb.Append(Sep(format, indent + 3) + "\"type\":" + space + "\"" + LastClassName(value) + "\",");
+                    var attributeDictionary = new Dictionary<string, object>();
+                    attributesList.Add(attributeDictionary);
 
-                if (value is EntityReference)
-                {
-                    sb.Append(Sep(format, indent + 3) + "\"entity\":" + space + "\"" + ((EntityReference)value).LogicalName + "\",");
-                    if (!string.IsNullOrEmpty(((EntityReference)value).Name))
+                    if (value is AliasedValue av)
                     {
-                        sb.Append(Sep(format, indent + 3) + "\"namevalue\":" + space + "\"" + ((EntityReference)value).Name + "\",");
+                        if (!String.IsNullOrEmpty(av.AttributeLogicalName))
+                        {
+                            attributeDictionary["attributelogicalname"] = av.AttributeLogicalName;
+                        }
+
+                        if (!String.IsNullOrEmpty(av.EntityLogicalName))
+                        {
+                            attributeDictionary["entitylogicalname"] = av.EntityLogicalName;
+                        }
                     }
-                    value = ((EntityReference)value).Id;
 
+                    attributeDictionary["name"] = name;
+                    attributeDictionary["type"] = LastClassName(value);
+
+                    if (value is EntityReference er)
+                    {
+                        attributeDictionary["entity"] = er.LogicalName;
+
+                        if (!String.IsNullOrEmpty(er.Name))
+                        {
+                            attributeDictionary["namevalue"] = er.Name;
+                        }
+                    }
+
+                    if (value != null)
+                    {
+                        attributeDictionary["value"] = AttributeToJSONType(value, format);
+                    }
                 }
-
-                if (value != null)
-                {
-                    sb.Append(string.Format(Sep(format, indent + 3) + "\"value\":" + space + "\"{0}\"", AttributeToBaseType(value)));
-                }
-
-                sb.Append(Sep(format, indent + 2) + "}");
             }
-            sb.Append(Sep(format, indent + 1) + "]");
-            sb.Append(Sep(format, indent + 0) + "}");
-            return sb.ToString();
+            else if (format == JsonFormat.WebApi)
+            {
+                foreach (var attribute in entity.Attributes)
+                {
+                    var name = attribute.Key;
+                    var value = attribute.Value;
+
+                    if (name.EndsWith("_base") && entity.Contains(name.Substring(0, name.Length - 5)))
+                    {
+                        continue;
+                    }
+
+                    entityDictionary[name] = AttributeToJSONType(value, format);
+                }
+            }
+
+            return entityDictionary;
         }
 
         private static string LastClassName(object obj)
@@ -312,6 +330,55 @@ namespace xrmtb.XrmToolBox.Controls
                 return ((Money)attribute).Value;
             else if (attribute is BooleanManagedProperty)
                 return ((BooleanManagedProperty)attribute).Value;
+            else
+                return attribute;
+        }
+
+        private static object AttributeToJSONType(object attribute, JsonFormat jsonFormat, bool showFriendlyNames = false)
+        {
+            if (jsonFormat == JsonFormat.Legacy)
+                return AttributeToBaseType(attribute, showFriendlyNames);
+
+            if (attribute is AliasedValue av)
+            {
+                return AttributeToJSONType(av.Value, jsonFormat, showFriendlyNames);
+            }
+            else if (attribute is EntityReference er)
+            {
+                if (showFriendlyNames)
+                {
+                    return er.Name;
+                }
+                else
+                {
+                    return er.Id;
+                }
+            }
+            else if (attribute is EntityReferenceCollection erc)
+            {
+                // What is the best format for this? Can't see where this is returned by WebAPI so currently making up our own format
+                // This currently generates the format:
+                // {
+                //   "logicalname1": [ "id1", "id2" ],
+                //   "logicalname2": [ "id3", "id4" ]
+                // }
+                return erc.GroupBy(e => e.LogicalName)
+                    .ToDictionary(g => g.Key, g => g.Select(e => e.Id).ToArray());
+            }
+            else if (attribute is EntityCollection ec)
+            {
+                return ec.Entities
+                    .Select(e => ToJSONObject(e, jsonFormat))
+                    .ToArray();
+            }
+            else if (attribute is OptionSetValue osv)
+                return osv.Value;
+            else if (attribute is OptionSetValueCollection osvc)
+                return osvc.Select(o => o.Value).ToArray();
+            else if (attribute is Money m)
+                return m.Value;
+            else if (attribute is BooleanManagedProperty bmp)
+                return bmp.Value;
             else
                 return attribute;
         }

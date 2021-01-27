@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
@@ -76,17 +77,24 @@ namespace xrmtb.XrmToolBox.Controls
 
         public static string ToJSON(EntityCollection collection, Formatting format)
         {
-            var space = format == Formatting.Indented ? " " : "";
-            StringBuilder sb = new StringBuilder();
-            sb.Append("{" + EntitySerializer.Sep(format, 1) + "\"entities\":" + space + "[");
-            List<string> entities = new List<string>();
-            foreach (Entity entity in collection.Entities)
-            {
-                entities.Add(EntitySerializer.ToJSON(entity, format, 2));
-            }
-            sb.Append(string.Join(",", entities));
-            sb.Append(EntitySerializer.Sep(format, 1) + "]" + EntitySerializer.Sep(format, 0) + "}");
-            return sb.ToString();
+            return ToJSON(collection, format, JsonFormat.Legacy);
+        }
+
+        /// <summary>
+        /// Produces a JSON document containing the details of an <see cref="EntityCollection"/>
+        /// </summary>
+        /// <param name="collection">The entity collection to convert to JSON</param>
+        /// <param name="format">Indicates if the generated JSON should be indented or not</param>
+        /// <param name="jsonFormat">The format of the JSON document to produce</param>
+        /// <returns>A string containing the JSON representation of the <paramref name="collection"/></returns>
+        public static string ToJSON(EntityCollection collection, Formatting format, JsonFormat jsonFormat)
+        {
+            var rootDictionary = new Dictionary<string, object>();
+
+            var key = jsonFormat == JsonFormat.Legacy ? "entities" : "value";
+            rootDictionary[key] = collection.Entities.Select(e => EntitySerializer.ToJSONObject(e, jsonFormat)).ToArray();
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(rootDictionary, format == System.Xml.Formatting.Indented ? Newtonsoft.Json.Formatting.Indented : Newtonsoft.Json.Formatting.None);
         }
     }
 }

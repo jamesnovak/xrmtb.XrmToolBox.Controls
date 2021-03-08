@@ -13,7 +13,7 @@ namespace xrmtb.XrmToolBox.Controls
         private static Dictionary<IOrganizationService, Dictionary<string, EntityMetadata>> entities = new Dictionary<IOrganizationService, Dictionary<string, EntityMetadata>>();
 
         public static string[] entityProperties = { "LogicalName", "DisplayName", "ObjectTypeCode", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind" };
-        public static string[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "PrimaryIdAttribute" };
+        public static string[] entityDetails = { "Attributes", "ManyToOneRelationships", "OneToManyRelationships", "ManyToManyRelationships", "SchemaName", "LogicalCollectionName", "EntitySetName", "PrimaryIdAttribute" };
         public static string[] attributeProperties = { "DisplayName", "AttributeType", "IsValidForRead", "AttributeOf", "IsManaged", "IsCustomizable", "IsCustomAttribute", "IsValidForAdvancedFind", "IsPrimaryId", "IsPrimaryName", "OptionSet", "SchemaName", "Targets" };
 
         public static AttributeMetadata GetAttribute(this IOrganizationService service, string entity, string attribute, object value)
@@ -136,7 +136,9 @@ namespace xrmtb.XrmToolBox.Controls
             if (orgMajorVer < 8)
             {
                 result.Remove("LogicalCollectionName");
+                result.Remove("EntitySetName");
             }
+
             return result.ToArray();
         }
     }

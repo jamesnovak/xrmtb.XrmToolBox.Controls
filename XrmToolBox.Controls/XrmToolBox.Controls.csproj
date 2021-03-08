@@ -255,6 +255,7 @@
       <DependentUpon>EntitiesListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\EntityWrapper.cs" />
+    <Compile Include="Helper\JsonFormat.cs" />
     <Compile Include="Helper\LookupHelper.cs" />
     <Compile Include="Helper\MetadataHelper.cs" />
     <Compile Include="Helper\SerializationStyle.cs" />
